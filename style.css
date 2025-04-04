@@ -70,6 +70,8 @@ button {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease, color 0.3s ease;
+    display: inline-block; /* Butonları yan yana hizalamak için */
+    margin: 5px; /* Butonlar arasında boşluk */
 }
 
 button:hover {
