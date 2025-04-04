@@ -26,13 +26,22 @@ nav {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
+nav ul {
+    display: flex; /* Butonları yan yana hizalar */
+    justify-content: center; /* Ortalar */
+    gap: 15px; /* Butonlar arasında boşluk */
+    list-style: none; /* Liste işaretlerini kaldırır */
+    padding: 0; /* Varsayılan padding'i kaldırır */
+    margin: 0; /* Varsayılan margin'i kaldırır */
+}
+
 nav a {
     color: #f5f5f5;
     text-decoration: none;
     font-weight: bold;
-    padding: 8px 15px;
+    padding: 10px 20px; /* Buton boyutları */
     border: 2px solid #f5f5f5; /* Beyaz çerçeve */
-    border-radius: 5px;
+    border-radius: 5px; /* Yuvarlatılmış köşeler */
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
