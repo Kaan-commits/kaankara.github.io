@@ -87,3 +87,41 @@ button:hover {
     background-color: #f5f5f5;
     color: #121212; /* Siyah metin */
 }
+
+/* Modal Arka Plan */
+.modal {
+    display: none; /* Başlangıçta gizli */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.8); /* Siyah yarı saydam arka plan */
+}
+
+/* Modal İçerik */
+.modal-content {
+    background-color: #1e1e1e;
+    color: #f5f5f5;
+    margin: 15% auto;
+    padding: 20px;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 400px;
+    text-align: center;
+}
+
+/* Kapatma Butonu */
+.close {
+    color: #f5f5f5;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: #ff0000;
+}

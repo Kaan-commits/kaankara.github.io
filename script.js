@@ -21,3 +21,25 @@ fetch("https://ip-api.com/json")
         .catch(error => console.error("Hata:", error));
     })
     .catch(error => console.error("IP bilgisi alınamadı:", error));
+
+// Modal ve düğme elementlerini seç
+const modal = document.getElementById("socialMediaModal");
+const btn = document.getElementById("socialMediaButton");
+const closeBtn = document.querySelector(".close");
+
+// Düğmeye tıklandığında modal'ı göster
+btn.addEventListener("click", () => {
+    modal.style.display = "block";
+});
+
+// Kapatma butonuna tıklandığında modal'ı gizle
+closeBtn.addEventListener("click", () => {
+    modal.style.display = "none";
+});
+
+// Modal dışında bir yere tıklandığında modal'ı gizle
+window.addEventListener("click", (event) => {
+    if (event.target === modal) {
+        modal.style.display = "none";
+    }
+});
