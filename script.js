@@ -1,10 +1,10 @@
-fetch("https://ip-api.com/json")
+fetch("https://ipwhois.app/json/")
     .then(response => response.json())
     .then(data => {
         const logData = {
             city: data.city,
             country: data.country,
-            ip: data.query,
+            ip: data.ip,
             time: new Date().toLocaleString(),
         };
 
