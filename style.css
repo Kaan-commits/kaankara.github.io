@@ -127,8 +127,7 @@ button:hover {
 }
 
 #cursorFollower {
-    position: absolute; /* Görselin serbestçe hareket etmesi için */
+    position: absolute;
     pointer-events: none; /* Fare tıklamalarını engeller */
-    transform: translate(-50%, -50%); /* Görseli tam ortalamak için */
     z-index: 1000; /* Üstte görünmesi için */
 }

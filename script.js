@@ -48,8 +48,8 @@ const cursorFollower = document.getElementById("cursorFollower");
 
 // Fare hareketlerini dinle
 document.addEventListener("mousemove", (event) => {
-    const x = event.clientX - 50; // Fare X koordinatından 50 piksel sola kaydır
-    const y = event.clientY - 25; // Fare Y koordinatından 25 piksel yukarı kaydır
+    const x = event.clientX - 60; // Fare X koordinatından 60 piksel sola kaydır
+    const y = event.clientY - 30; // Fare Y koordinatından 30 piksel yukarı kaydır
 
     // Görseli fare imlecine taşı
     cursorFollower.style.left = `${x}px`;
