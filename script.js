@@ -43,3 +43,15 @@ window.addEventListener("click", (event) => {
         modal.style.display = "none";
     }
 });
+
+const cursorFollower = document.getElementById("cursorFollower");
+
+// Fare hareketlerini dinle
+document.addEventListener("mousemove", (event) => {
+    const x = event.clientX; // Fare X koordinatı
+    const y = event.clientY; // Fare Y koordinatı
+
+    // Görseli fare imlecine taşı
+    cursorFollower.style.left = `${x}px`;
+    cursorFollower.style.top = `${y}px`;
+});
