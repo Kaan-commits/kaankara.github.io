@@ -131,3 +131,8 @@ button:hover {
     pointer-events: none; /* Fare tıklamalarını engeller */
     z-index: 1000; /* Üstte görünmesi için */
 }
+
+#cursorFollower img {
+    width: 100px;
+    height: 100px;
+}
