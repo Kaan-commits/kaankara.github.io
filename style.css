@@ -140,6 +140,7 @@ button:hover {
 #videoGallery {
     text-align: center;
     padding: 20px;
+    padding-bottom: 100px; /* Alt kısma ekstra boşluk ekler */
 }
 
 .video-container {
