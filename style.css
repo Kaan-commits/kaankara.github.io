@@ -136,3 +136,22 @@ button:hover {
     width: 150px; /* Yeni genişlik */
     height: 150px; /* Yeni yükseklik */
 }
+
+#videoGallery {
+    text-align: center;
+    padding: 20px;
+}
+
+.video-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
+
+.video-container iframe {
+    width: 300px;
+    height: 200px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
