@@ -10,43 +10,42 @@
 <body>
     <header style="display: flex; align-items: center; padding: 20px;">
         <img src="Assets/Kaan_ghibli.jpeg" alt="Kaan Kara" style="width: 150px; height: 100px; border-radius: 50%; margin-right: 20px;">
-        <h1>Hoş Geldiniz!</h1>
+        <h1>Welcome!</h1>
     </header>
 
     <!-- Modal Yapısı -->
     <div id="socialMediaModal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
-            <h2>Sosyal Medya Hesaplarım</h2>
+            <h2>Social Media Accounts</h2>
             <ul>
                 <li><a href="https://www.instagram.com/thekaankara/" target="_blank">Instagram</a></li>
                 <li><a href="https://www.linkedin.com/in/kaan-kara-104851252/" target="_blank">LinkedIn</a></li>
                 <li><a href="https://github.com/kaanking1907" target="_blank">GitHub</a></li>
                 <li><a href="https://www.youtube.com/channel/UCc_2_AVpN7Ew9yPQIfsB1Kw" target="_blank">Youtube</a></li>
+                <li><a href="https://open.spotify.com/user/k6bc2aij207snalhr5kyrxyjr?si=d0dbfb3041c74652" target="_blank">Spotify</a></li>
             </ul>
         </div>
     </div>
 
     <nav>
         <ul style="display: flex; justify-content: center; gap: 15px; list-style: none; padding: 0; margin: 0;">
-            <li><a href="https://www.youtube.com/@kaankara9228">Youtube</a></li>
-            <li><a id="socialMediaButton">Sosyal Medya</a></li> <!-- Çalışır hale getirilen düğme -->
-            <li><a href="/videogaleri">Video Galeri</a></li> <!-- Yeni buton -->
+            <li><a id="socialMediaButton">Social Media</a></li> <!-- Çalışır hale getirilen düğme -->
+            <li><a href="/videogaleri">Video Gallery</a></li> <!-- Yeni buton -->
         </ul>
     </nav>
     <main>
         <section id="hakkinda">
-            <h2>Hakkında</h2>
+            <h2>About</h2>
             <p>Trying and learning new stuff.</p>
         </section>
         <section id="Hedefler">
-            <h2>Hedefler</h2>
-            <p>Okuluma <a href="https://www.biruni.edu.tr">(Biruni Üniversitesi)</a> mobil uygulama yap.</p>
-                <p><a href="https://frozenduckgames9.wordpress.com"></a>Frozen Duck Games</p>
+            <h2>Goals</h2>
+            <p>Mobile app for my univercity <a href="https://www.biruni.edu.tr">(Biruni Univercity)</a>.</p>
         </section>
         <section id="iletisim">
-            <h2>İletişim</h2>
-            <p>Ulaşmak için <a href="kaan.kara@yahoo.com">kaan.kara@yahoo.com</a> adresine e-posta gönderebilirsiniz.</p>
+            <h2>Contact</h2>
+            <p>Email: <a href="kaan.kara@yahoo.com">kaan.kara@yahoo.com</a></p>
         </section>
     </main>
     <footer>
@@ -55,6 +54,12 @@
     <div id="cursorFollower">
         <img src="Assets/Sonic_Running.gif" alt="Takip Eden Görsel" style="width: 50px; height: 50px;">
     </div>
+    <div class="animated-background"></div>
+    <canvas id="stars"></canvas>
+    <video autoplay muted loop id="backgroundVideo">
+        <source src="" type="video/mp4">
+        Tarayıcınız video etiketini desteklemiyor.
+    </video>
 <script src="script.js"></script> <!-- JavaScript dosyasını bağlama -->
 </body>
 </html>
