@@ -1,30 +1,38 @@
 /* Modern ve siyah tema için güncellenmiş CSS */
 
-body, html {
+html, body {
     margin: 0;
     padding: 0;
-    overflow: hidden; /* Kaydırma çubuklarını gizler */
+    height: 100%; /* Sayfanın tamamını kapsaması için */
+    overflow-y: scroll; /* Dikey kaydırma çubuğunu etkinleştir */
 }
 
 body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Sayfanın tamamını kapsaması için */
     font-family: 'Roboto', Arial, sans-serif;
-    margin: 0;
-    padding: 0;
     background-color: #121212; /* Siyah arka plan */
     color: #f5f5f5; /* Beyaz metin */
     line-height: 1.6;
+    overflow-y: auto; /* Sayfanın kaydırılabilir olmasını sağlar */
+    height: auto; /* Tüm ekran yüksekliği yerine içeriğe göre ayarlanır */
 }
 
 /* Header */
 header {
+    background-color: rgba(0, 0, 0, 0.7); /* Siyah yarı saydam arka plan */
+    color: white;
+    text-align: center;
+    padding: 10px;
+    margin-bottom: 20px; /* Header ile içerik arasında boşluk */
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 10px;
-    background-color: rgba(0, 0, 0, 0.7); /* Siyah yarı saydam arka plan */
-    color: white;
-    text-align: center;
+    position: sticky; /* Header'ı sayfanın üst kısmına sabitler */
+    top: 0;
+    z-index: 1000;
 }
 
 header img {
@@ -42,7 +50,7 @@ header h1 {
 header button {
     margin-top: 10px;
     padding: 10px 20px;
-    background-color: rgba(255, 255, 255, 0.8); /* Beyaz yarı saydam arka plan */
+    background-color: rgba(0, 0, 0, 0.7); /* Beyaz yarı saydam arka plan */
     color: #121212;
     border: none;
     border-radius: 5px;
@@ -51,7 +59,23 @@ header button {
 }
 
 header button:hover {
-    background-color: rgba(255, 255, 255, 1); /* Hover durumunda daha opak */
+    background-color: rgba(255, 255, 255, 0.8); /* Hover durumunda daha opak */
+}
+
+/* Header'daki bağlantılar */
+header a {
+    text-decoration: none; /* Alt çizgiyi kaldır */
+    color: white; /* Yazı rengini beyaz yap */
+    background-color: transparent; /* Tamamen şeffaf arka plan */
+    padding: 5px 10px; /* İç boşluk ekle */
+    border: 2px solid rgba(255, 255, 255, 0.5); /* Yarı saydam beyaz çerçeve */
+    border-radius: 5px; /* Köşeleri yuvarlat */
+    transition: color 0.3s ease, border-color 0.3s ease; /* Hover animasyonu */
+}
+
+header a:hover {
+    color: rgba(255, 255, 255, 0.8); /* Hover durumunda yazı rengini daha opak yap */
+    border-color: rgba(255, 255, 255, 0.8); /* Çerçeve rengini daha opak yap */
 }
 
 nav {
@@ -73,30 +97,31 @@ nav ul {
     margin: 0; /* Varsayılan margin'i kaldırır */
 }
 
+/* Nav içindeki bağlantılar */
 nav a {
-    color: #f5f5f5;
     text-decoration: none;
-    font-weight: bold;
-    padding: 10px 20px; /* Buton boyutları */
-    border: 2px solid #f5f5f5; /* Beyaz çerçeve */
-    border-radius: 5px; /* Yuvarlatılmış köşeler */
-    transition: background-color 0.3s ease, color 0.3s ease;
+    color: white;
+    background-color: transparent; /* Tamamen şeffaf arka plan */
+    padding: 10px 15px; /* İç boşluk ekle */
+    border: 2px solid rgba(255, 255, 255, 0.5); /* Yarı saydam beyaz çerçeve */
+    border-radius: 5px; /* Köşeleri yuvarlat */
+    transition: color 0.3s ease, border-color 0.3s ease; /* Hover animasyonu */
 }
 
 nav a:hover {
-    background-color: #f5f5f5;
-    color: #121212; /* Siyah metin */
+    color: rgba(255, 255, 255, 0.8); /* Hover durumunda yazı rengini daha opak yap */
+    border-color: rgba(255, 255, 255, 0.8); /* Çerçeve rengini daha opak yap */
 }
 
 /* Main */
 main {
-    background-color: rgba(0, 0, 0, 0.8); /* Beyaz yarı saydam arka plan */
+    flex: 1; /* İçeriği esnek yapar ve sayfanın geri kalanını kaplar */
     padding: 20px;
+    background-color: rgba(0, 0, 0, 0.7); /* Beyaz yarı saydam arka plan */
     border-radius: 8px; /* Köşeleri yuvarlat */
     margin: 20px auto;
     max-width: 1200px; /* İçeriği ortalamak için genişlik belirle */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Hafif gölge ekle */
-    color: #f5f5f5;
 }
 
 /* Footer */
@@ -105,8 +130,7 @@ footer {
     color: white;
     padding: 10px;
     text-align: center;
-    position: fixed;
-    bottom: 0;
+    margin-top: 20px; /* Footer ile içerik arasında boşluk */
     width: 100%;
     box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.5);
     font-size: 14px; /* Footer yazı boyutunu küçült */
@@ -131,40 +155,83 @@ button:hover {
 
 /* Modal Arka Plan */
 .modal {
-    display: none; /* Başlangıçta gizli */
+    display: none; /* Varsayılan olarak gizli */
     position: fixed;
-    z-index: 1000;
-    left: 0;
     top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.8); /* Siyah yarı saydam arka plan */
+    background-color: rgba(0, 0, 0, 0.8); /* Yarı saydam siyah arka plan */
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
 }
 
 /* Modal İçerik */
 .modal-content {
-    background-color: #1e1e1e;
-    color: #f5f5f5;
-    margin: 15% auto;
+    background-color: #fff; /* Beyaz arka plan */
     padding: 20px;
-    border-radius: 8px;
-    width: 80%;
-    max-width: 400px;
+    border-radius: 10px;
     text-align: center;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 0.3s ease-in-out;
 }
 
 /* Kapatma Butonu */
-.close {
-    color: #f5f5f5;
-    float: right;
-    font-size: 28px;
+.modal-content .close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
     font-weight: bold;
+    color: #333;
     cursor: pointer;
+    transition: color 0.3s ease;
 }
 
-.close:hover {
-    color: #ff0000;
+.modal-content .close:hover {
+    color: #ff0000; /* Hover durumunda kırmızı */
+}
+
+/* Sosyal Medya İkonları */
+.social-icons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.social-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: #333;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.social-icon img {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 10px;
+    transition: transform 0.3s ease;
+}
+
+.social-icon span {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.social-icon:hover {
+    transform: scale(1.1); /* Hover durumunda büyütme */
+    color: #0073e6; /* Hover durumunda mavi renk */
+}
+
+social-icon:hover img {
+    transform: rotate(10deg); /* Hover durumunda hafif döndürme */
 }
 
 #cursorFollower {
@@ -190,6 +257,7 @@ button:hover {
     flex-wrap: wrap;
     justify-content: center;
     gap: 15px;
+    margin-bottom: 20px; /* Alt kısma ekstra boşluk ekle */
 }
 
 .video-container iframe {
@@ -234,4 +302,46 @@ canvas {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
+}
+
+/* Projects Section */
+#projects {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+.project-item {
+    background-color: rgba(255, 255, 255, 0.8); /* Beyaz yarı saydam arka plan */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 15px;
+    text-align: center;
+    max-width: 600px; /* Proje kutusunun maksimum genişliği */
+    margin: 20px auto; /* Ortalamak için */
+}
+
+.project-item img {
+    width: 45%; /* Görsellerin genişliği */
+    height: auto; /* En-boy oranını koru */
+    border-radius: 8px;
+    margin: 5px; /* Görseller arasında boşluk */
+    display: inline-block; /* Yan yana görünmesi için */
+}
+
+.project-item h2 {
+    font-size: 20px;
+    margin: 10px 0;
+    color: black; /* Başlık rengini siyah yap */
+}
+
+.project-item p {
+    font-size: 14px;
+    color: #333; /* Açıklama metni rengi */
+}
+
+#hakkında h2, #hedefler h2, #projeler h2, #socialMediaModal h2 {
+    color: black; /* Yazı rengini siyah yap */
 }

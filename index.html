@@ -9,8 +9,16 @@
 </head>
 <body>
     <header style="display: flex; align-items: center; padding: 10px;">
-        <img src="Assets/Kaan_ghibli.jpeg" alt="Kaan Kara" style="width: 100px; height: 75px; border-radius: 50%; margin-right: 15px;">
-        <h1 style="font-size: 24px;">Welcome!</h1>
+        <div style="display: flex; align-items: center;">
+            <img src="Assets/Kaan_ghibli.jpeg" alt="Kaan Kara" style="width: 100px; height: 75px; border-radius: 50%; margin-right: 15px;">
+            <h1 style="font-size: 24px;">Welcome!</h1>
+        </div>
+        <div>
+            <ul style="display: flex; gap: 15px; list-style: none; padding: 0; margin: 0;">
+                <li><a id="socialMediaButton" href="#">Social Media</a></li>
+                <li><a href="/videogaleri.html">Video Gallery</a></li>
+            </ul>
+        </div>
     </header>
 
     <!-- Modal Yapısı -->
@@ -18,29 +26,38 @@
         <div class="modal-content">
             <span class="close">&times;</span>
             <h2>Social Media Accounts</h2>
-            <ul>
-                <li><a href="https://www.instagram.com/thekaankara/" target="_blank">Instagram</a></li>
-                <li><a href="https://www.linkedin.com/in/kaan-kara-104851252/" target="_blank">LinkedIn</a></li>
-                <li><a href="https://github.com/kaanking1907" target="_blank">GitHub</a></li>
-                <li><a href="https://www.youtube.com/channel/UCc_2_AVpN7Ew9yPQIfsB1Kw" target="_blank">Youtube</a></li>
-                <li><a href="https://open.spotify.com/user/k6bc2aij207snalhr5kyrxyjr?si=d0dbfb3041c74652" target="_blank">Spotify</a></li>
-            </ul>
+            <div class="social-icons">
+                <a href="https://www.instagram.com/thekaankara/" target="_blank" class="social-icon instagram">
+                    <img src="Assets/SocialMediaLogos/insta.avif" alt="Instagram">
+                    <span>Instagram</span>
+                </a>
+                <a href="https://www.linkedin.com/in/kaan-kara-104851252/" target="_blank" class="social-icon linkedin">
+                    <img src="Assets/SocialMediaLogos/linkedin.avif" alt="LinkedIn">
+                    <span>LinkedIn</span>
+                </a>
+                <a href="https://github.com/kaanking1907" target="_blank" class="social-icon github">
+                    <img src="Assets/SocialMediaLogos/github.png" alt="GitHub">
+                    <span>GitHub</span>
+                </a>
+                <a href="https://www.youtube.com/channel/UCc_2_AVpN7Ew9yPQIfsB1Kw" target="_blank" class="social-icon youtube">
+                    <img src="Assets/SocialMediaLogos/youtube.avif" alt="YouTube">
+                    <span>YouTube</span>
+                </a>
+                <a href="https://open.spotify.com/user/k6bc2aij207snalhr5kyrxyjr?si=d0dbfb3041c74652" target="_blank" class="social-icon spotify">
+                    <img src="Assets/SocialMediaLogos/spoti.png" alt="Spotify">
+                    <span>Spotify</span>
+                </a>
+            </div>
         </div>
     </div>
 
-    <nav>
-        <ul style="display: flex; justify-content: center; gap: 15px; list-style: none; padding: 0; margin: 0;">
-            <li><a id="socialMediaButton">Social Media</a></li> <!-- Çalışır hale getirilen düğme -->
-            <li><a href="/videogaleri.html">Video Gallery</a></li> <!-- Yeni buton -->
-        </ul>
-    </nav>
     <main>
         <section id="hakkinda">
             <h2>About</h2>
             <p>Trying and learning new stuff.</p>
         </section>
         <section id="Hedefler">
-            <h2>Goals</h2>
+            <h2><a href="/projects.html">My Projects</a></h2>
             <p>Mobile app for my univercity <a href="https://www.biruni.edu.tr">(Biruni Univercity)</a>.</p>
         </section>
         <section id="iletisim">
