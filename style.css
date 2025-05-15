@@ -345,3 +345,34 @@ canvas {
 #hakkında h2, #hedefler h2, #projeler h2, #socialMediaModal h2 {
     color: black; /* Yazı rengini siyah yap */
 }
+
+/* Class Notes Butonu */
+.class-notes-button {
+    display: inline-block; /* Buton gibi görünmesi için */
+    text-decoration: none; /* Alt çizgiyi kaldır */
+    color: white; /* Yazı rengini beyaz yap */
+    background-color: #0073e6; /* Mavi arka plan */
+    padding: 10px 20px; /* İç boşluk ekle */
+    border-radius: 5px; /* Köşeleri yuvarlat */
+    font-size: 16px; /* Yazı boyutunu ayarla */
+    font-weight: bold; /* Yazıyı kalın yap */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Hover animasyonu */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Hafif gölge ekle */
+}
+
+.class-notes-button:hover {
+    background-color: #005bb5; /* Hover durumunda daha koyu mavi */
+    transform: translateY(-2px); /* Hover durumunda yukarı kaldır */
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3); /* Hover durumunda gölgeyi büyüt */
+}
+
+.class-notes-button:active {
+    transform: translateY(0); /* Tıklama durumunda eski konuma getir */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Tıklama durumunda gölgeyi küçült */
+}
+
+.answer {
+  margin-top: 5px;
+  color: #333;
+  transition: opacity 0.3s ease;
+}

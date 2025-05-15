@@ -26,6 +26,10 @@ fetch("https://ipwhois.app/json/")
 const modal = document.getElementById("socialMediaModal");
 const socialMediaButton = document.getElementById("socialMediaButton");
 const closeButton = document.querySelector(".modal-content .close");
+const nextChapter = document.getElementById("nextChapter");
+const prevChapter = document.getElementById("prevChapter");
+const chapter2Content = document.getElementById("chapter2");
+const chapter3Content = document.getElementById("chapter3");
 
 // Modal'ı aç
 socialMediaButton.addEventListener("click", () => {
@@ -44,6 +48,31 @@ window.addEventListener("click", (event) => {
     }
 });
 
+nextChapter.addEventListener("click", () => {
+    showChapter3();
+});
+
+prevChapter.addEventListener("click", () => {
+    showChapter2();
+});
+
+function showChapter3() {
+  document.getElementById("chapter2").style.display = "none"; // Chapter 2'yi gizle
+  document.getElementById("chapter3").style.display = "block"; // Chapter 3'ü göster
+    document.getElementById("chapter4-5").style.display = "none"; // Chapter 4-5'i gizle
+}
+
+function showChapter2() {
+  document.getElementById("chapter3").style.display = "none"; // Chapter 3'ü gizle
+  document.getElementById("chapter2").style.display = "block"; // Chapter 2'yi göster
+    document.getElementById("chapter4-5").style.display = "none"; // Chapter 4-5'i gizle
+}
+
+function showChapter45(){
+    document.getElementById("chapter4-5").style.display = "block"; // Chapter 4-5'i göster
+    document.getElementById("chapter3").style.display = "none"; // Chapter 3'ü gizle
+    document.getElementById("chapter2").style.display = "none"; // Chapter 2'yi gizle
+}
 const cursorFollower = document.getElementById("cursorFollower");
 
 // Fare hareketlerini dinle

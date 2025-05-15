@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Bölüm 2 Özeti - Açıklamalı</title>
+  <link rel="stylesheet" href="../style.css">
+  <title>Gömülü Sistem Notes</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -14,6 +15,7 @@
     }
     h1 {
       color: #d35400;
+      text-align: center;
     }
     h2 {
       color: #2c3e50;
@@ -40,8 +42,9 @@
 </head>
 <body>
 
-  <h1>Bölüm 2 Özeti (Açıklamalı)</h1>
-
+  <div id="chapter2" style="display: block;">
+    <h1>Chapter 2  <span style="cursor: pointer; color: #d35400; margin-left: 10px;" onclick="showChapter3()">➡</span>
+    </h1>
   <h2>Kodlama Temelleri</h2>
   <ul>
     <li><strong>Kodda açıklamaların (yorumların) önemi:</strong> Kodun ne yaptığını daha sonra anlamanızı sağlar. Örneğin: <code>// Bu satır LED’i yakar</code></li>
@@ -79,6 +82,92 @@
     <li><strong>millis() fonksiyonu:</strong> Program başladığından beri geçen süreyi (ms olarak) verir. Zamanlama için kullanılır. Örn: zamanlayıcı yapmak için idealdir.</li>
     <li><strong>Mantıksal operatörler:</strong> <code>&&</code> (ve), <code>||</code> (veya), <code>!</code> (değil) gibi operatörlerle karmaşık koşullar yazılır.</li>
   </ul>
+</div>
 
+<div id="chapter3" style="display: none;">
+    <h1>
+    Chapter 3
+    <span style="cursor: pointer; color: #d35400; margin-right: 10px;" onclick="showChapter2()">⬅</span>
+    <span style="cursor: pointer; color: #d35400; margin-left: 10px;" onclick="showChapter45()">➡</span>
+  </h1>
+  <h2>Diziler ve Matematiksel İşlemler</h2>
+  <ul>
+    <li><strong>Diziler (Arrays) ve kullanımı:</strong> Aynı türde birden çok veriyi tek bir değişkende tutmak için kullanılır. Örn: <code>int sayilar[3] = {10, 20, 30};</code></li>
+    <li><strong>Potansiyometre nedir ve nasıl kullanılır:</strong> Ayarlanabilir dirençtir. Değerini analog pinle okuyarak kontrol yapılabilir (örn: ışık seviyesi).</li>
+    <li><strong>Analog pinlerden voltaj değeri okumak:</strong> <code>analogRead(pin)</code> ile 0-1023 arası değer elde edilir. Bu, 0-5V arası gerilimdir.</li>
+    <li><strong>sin() fonksiyonu kullanımı:</strong> Sinüs fonksiyonu trigonometrik hesaplamalar için kullanılır. Örn: LED parlaklığına dalga efekti vermek.</li>
+    <li><strong>Açıyı radyana çevirmek:</strong> Trigonometrik işlemlerde genellikle radyan kullanılır. <code>radyan = derece * PI / 180;</code></li>
+    <li><strong>Değişken türü dönüştürme (type casting):</strong> Bir değişkeni başka türe çevirmek için kullanılır. Örn: <code>float x = (float)10 / 3;</code></li>
+  </ul>
+
+  <h2>PWM ve RGB Işıklar</h2>
+  <ul>
+    <li><strong>PWM (Pulse Width Modulation) ve analogWrite():</strong> Dijital pin ile analog sinyale benzer çıkış üretilir. Örn: <code>analogWrite(9, 128);</code></li>
+    <li><strong>RGB renklerle ışık efekti oluşturmak:</strong> Üç PWM pini kullanılarak farklı renklerde ışık karışımı sağlanabilir.</li>
+    <li><strong>random() ve randomSeed():</strong> Rastgele sayı üretir. randomSeed() ile başlangıç noktası ayarlanarak kontrol sağlanır.</li>
+    <li><strong>Aynı devrede farklı efektler oluşturmak:</strong> Farklı yazılımlarla aynı donanım farklı şekilde çalışabilir. Kodun yaratıcılığı önemlidir.</li>
+  </ul>
+
+  <h2>Seri Haberleşme</h2>
+  <ul>
+    <li><strong>Seri haberleşme kavramı:</strong> Arduino ile bilgisayar veya başka cihaz arasında veri alışverişi sağlar.</li>
+    <li><strong>Serial.begin():</strong> Haberleşme hızı (baud rate) belirlenir. Örn: <code>Serial.begin(9600);</code></li>
+    <li><strong>Serial Monitor kullanarak komut göndermek:</strong> Kullanıcı seri monitör üzerinden Arduino’ya veri gönderebilir.</li>
+    <li><strong>Metin oluşturmak için dizi kullanmak:</strong> Karakter dizileriyle metin manipülasyonu yapılabilir. Örn: <code>char mesaj[10] = "Merhaba";</code></li>
+    <li><strong>Serial.flush():</strong> Seri tamponundaki verileri temizler.</li>
+    <li><strong>Serial.available():</strong> Okunacak veri olup olmadığını kontrol eder. Örn: <code>if (Serial.available() > 0)</code></li>
+  </ul>
+
+  <h2>Koşullu Döngüler ve Serial Giriş</h2>
+  <ul>
+    <li><strong>while() komutu ile koşul sağlandıkça döngü oluşturmak:</strong> Koşul doğru olduğu sürece işlem tekrarlanır. Örn: <code>while (sayac < 5) { ... }</code></li>
+    <li><strong>Serial.read():</strong> Seri monitörden gelen karakteri okur. Örn: <code>char veri = Serial.read();</code></li>
+    <li><strong>Pointer (işaretçi) kavramı:</strong> Bellek adreslerini tutan değişkenlerdir. İleri seviye bellek kontrolü sağlar.</li>
+    <li><strong>Serial.print() ve Serial.println():</strong> Seri monitöre veri yazdırır. <code>println()</code> satır sonu da ekler.</li>
+  </ul>
+
+  <h2>Metin ve Sayı İşlemleri</h2>
+  <ul>
+    <li><strong>strtok() ile metni bölmek:</strong> Belirli bir karaktere göre string parçalara ayrılır. Örn: <code>strtok(metin, ",");</code></li>
+    <li><strong>strtol():</strong> Metni uzun tam sayıya çevirir. Örn: <code>long sayi = strtol(metin, NULL, 10);</code></li>
+    <li><strong>constrain():</strong> Bir değeri belirli sınırlar içinde tutar. Örn: <code>constrain(x, 0, 255);</code></li>
+  </ul>
+</div>
+<div id="chapter4-5" style="display: none;">
+    <h1>
+    Chapter 4&5
+    <span style="cursor: pointer; color: #d35400; margin-right: 10px;" onclick="showChapter3()">⬅</span>
+  </h1>
+  <h1>Chapter 4</h1>
+
+  <ul>
+    <li><strong>Piezoelektrik dönüştürücü nedir ve nasıl çalışır:</strong> Mekanik titreşimleri elektrik sinyallerine çevirir. Genellikle ses üretimi için kullanılır.</li>
+    <li><strong>tone() fonksiyonu ile ses oluşturmak:</strong> Belirtilen bir pin üzerinden belirli frekansta ses sinyali üretir. Örn: <code>tone(8, 1000);</code></li>
+    <li><strong>noTone() fonksiyonu:</strong> tone() ile üretilen sesi durdurur. Örn: <code>noTone(8);</code></li>
+    <li><strong>#define komutu:</strong> Kod içinde sabitler tanımlamak için kullanılır. Okunabilirliği artırır. Örn: <code>#define LED_PIN 13</code></li>
+    <li><strong>sizeof() ile dizi boyutu (bayt cinsinden) almak:</strong> Bellekte ne kadar yer kapladığını öğrenmek için kullanılır.</li>
+    <li><strong>LDR (Işık Bağımlı Direnç) nedir:</strong> Işık miktarına göre direnci değişir. Işık algılama için kullanılır. <code>analogRead()</code> ile okunur.</li>
+    <li><strong>Gerilim bölücü kavramı:</strong> İki direnç ile bir giriş voltajını daha küçük değerlere bölmek için kullanılır.</li>
+  </ul>
+
+  <h1>Chapter 5</h1>
+
+  <ul>
+    <li><strong>Transistör ile yüksek güçlü cihazları çalıştırmak:</strong> Transistör bir anahtar gibi davranarak düşük akımla büyük yükleri kontrol eder.</li>
+    <li><strong>PWM ile motor hızını kontrol etmek:</strong> <code>analogWrite()</code> ile sinyalin ortalama değerini değiştirerek motorun dönüş hızını ayarlayabiliriz.</li>
+    <li><strong>Arduino dijital pini ile sağlanan akım:</strong> Genellikle 20-40 mA ile sınırlıdır, yüksek akımlı cihazlar için yetersizdir.</li>
+    <li><strong>Harici güç kaynağı kullanımı:</strong> Güçlü motorlar gibi cihazlar için dışarıdan enerji sağlamak gerekir.</li>
+    <li><strong>Transistörlerin çalışma prensibi:</strong> Baz akımı ile kollektör-emitter akımı kontrol edilir.</li>
+    <li><strong>Motorlar nasıl çalışır:</strong> Elektrik enerjisini mekanik enerjiye çevirirler.</li>
+    <li><strong>Back EMF'yi önlemek için diyot kullanmak:</strong> Motor durduğunda oluşan ters voltajı bastırmak için kullanılır.</li>
+    <li><strong>Diyot nedir, nasıl çalışır:</strong> Elektriği tek yönde ileten yarı iletken devre elemanıdır.</li>
+    <li><strong>Motorlardan güç üretimi:</strong> Motorlar ters yönde çalıştırıldığında jeneratör gibi enerji üretebilir.</li>
+    <li><strong>Diyotların devre korumasındaki rolü:</strong> Ters akım ve gerilimlere karşı bileşenleri korur.</li>
+    <li><strong>L293D Motor Sürücü Entegresi ile motor kontrolü:</strong> Birden fazla motoru kontrol etmeye olanak tanır. Geri dönüş ve hız kontrolü yapılabilir.</li>
+    <li><strong>Soğutucuların (heatsink) önemi:</strong> Entegrelerin aşırı ısınmasını önleyerek ömrünü uzatır.</li>
+    <li><strong>H-Köprüsü kavramı:</strong> Motorun yönünü değiştirmek için kullanılır. L293D gibi entegrelerde bu yapı vardır.</li>
+  </ul>
+
+    <script src="../script.js"></script>
 </body>
 </html>
