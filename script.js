@@ -129,3 +129,45 @@ if (canvas) {
     canvas.height = window.innerHeight;
   });
 }
+
+// Eğer dinamik eklemek istersen:
+const TRAIL_COUNT = 7;
+const trailElements = [];
+// Sayfaya göre farklı görsel kullan
+let trailImage = "Assets/Sonic_Running.gif";
+if (window.location.pathname.includes("videogaleri")) {
+  trailImage = "Assets/Paper_plane.gif";
+}
+for (let i = 0; i < TRAIL_COUNT; i++) {
+  const el = document.createElement("div");
+  el.className = "cursor-trail";
+  el.style.position = "fixed";
+  el.style.pointerEvents = "none";
+  el.style.zIndex = 1000;
+  el.style.width = "40px";
+  el.style.height = "40px";
+  el.style.borderRadius = "50%";
+  el.style.background = `url('${trailImage}') center/cover no-repeat`;
+  el.style.transition = "transform 0.1s linear";
+  document.body.appendChild(el);
+  trailElements.push(el);
+}
+
+let positions = Array.from({ length: TRAIL_COUNT }, () => ({ x: window.innerWidth / 2, y: window.innerHeight / 2 }));
+
+document.addEventListener("mousemove", (event) => {
+  positions[0] = { x: event.clientX, y: event.clientY };
+});
+
+function animateTrail() {
+  for (let i = 1; i < TRAIL_COUNT; i++) {
+    // Her takipçi bir öncekinin pozisyonuna yaklaşsın
+    positions[i].x += (positions[i - 1].x - positions[i].x) * 0.3;
+    positions[i].y += (positions[i - 1].y - positions[i].y) * 0.3;
+  }
+  for (let i = 0; i < TRAIL_COUNT; i++) {
+    trailElements[i].style.transform = `translate(${positions[i].x - 20}px, ${positions[i].y - 20}px)`;
+  }
+  requestAnimationFrame(animateTrail);
+}
+animateTrail();

@@ -392,3 +392,13 @@ canvas {
   color: #333;
   transition: opacity 0.3s ease;
 }
+
+.cursor-trail {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 1000;
+  /* Eğer farklı bir görsel/gif kullanmak istersen yukarıdaki JS'de url'yi değiştir */
+}
