@@ -85,7 +85,7 @@ if (canvas) {
   canvas.height = window.innerHeight;
 
   const stars = [];
-  for (let i = 0; i < 100; i++) {
+  for (let i = 0; i < 300; i++) {
     stars.push({
       x: Math.random() * canvas.width,
       y: Math.random() * canvas.height,
