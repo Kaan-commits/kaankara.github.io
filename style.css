@@ -17,6 +17,12 @@ body {
     line-height: 1.6;
     overflow-y: auto; /* Sayfanın kaydırılabilir olmasını sağlar */
     height: auto; /* Tüm ekran yüksekliği yerine içeriğe göre ayarlanır */
+    background-size: cover;
+}
+
+body.gif-bg {
+    background: url('Assets/starwars.gif') no-repeat center center fixed;
+    background-size: cover;
 }
 
 /* Header */
