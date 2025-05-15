@@ -240,6 +240,16 @@ social-icon:hover img {
     z-index: 1000; /* Üstte görünmesi için */
 }
 
+canvas#stars {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw !important;
+    height: 100vh !important;
+    z-index: -1;
+    display: block;
+}
+
 #cursorFollower img {
     width: 150px; /* Yeni genişlik */
     height: 150px; /* Yeni yükseklik */
