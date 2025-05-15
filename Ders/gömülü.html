@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bölüm 2 Özeti - Açıklamalı</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+      background-color: #f9f9f9;
+      color: #333;
+      line-height: 1.6;
+    }
+    h1 {
+      color: #d35400;
+    }
+    h2 {
+      color: #2c3e50;
+      border-bottom: 2px solid #ddd;
+      padding-bottom: 5px;
+    }
+    ul {
+      list-style-type: disc;
+      margin-left: 20px;
+    }
+    li {
+      margin-bottom: 10px;
+    }
+    strong {
+      color: #2980b9;
+    }
+    code {
+      background-color: #eee;
+      padding: 2px 5px;
+      border-radius: 4px;
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Bölüm 2 Özeti (Açıklamalı)</h1>
+
+  <h2>Kodlama Temelleri</h2>
+  <ul>
+    <li><strong>Kodda açıklamaların (yorumların) önemi:</strong> Kodun ne yaptığını daha sonra anlamanızı sağlar. Örneğin: <code>// Bu satır LED’i yakar</code></li>
+    <li><strong>Değişkenler ve türleri:</strong> Veriyi tutmak için kullanılır. Örnekler: <code>int</code> (tam sayı), <code>float</code> (ondalıklı), <code>boolean</code> (true/false).</li>
+    <li><strong>setup() ve loop() fonksiyonlarının amacı:</strong> <code>setup()</code> başlangıçta 1 kez çalışır, <code>loop()</code> ise sürekli tekrar eder.</li>
+    <li><strong>Fonksiyon kavramı:</strong> Belirli bir görevi yerine getiren kod bloklarıdır. Örneğin: <code>void ledYak() { digitalWrite(13, HIGH); }</code></li>
+    <li><strong>pinMode ayarlamak:</strong> Bir pini giriş (<code>INPUT</code>) veya çıkış (<code>OUTPUT</code>) olarak tanımlamak. Örn: <code>pinMode(13, OUTPUT);</code></li>
+    <li><strong>Bir pine HIGH/LOW değeri yazmak:</strong> Pinin elektrik durumunu ayarlamak. <code>digitalWrite(13, HIGH);</code> LED’i yakar.</li>
+    <li><strong>Gecikme oluşturmak:</strong> <code>delay(1000);</code> kodu, programı 1000 milisaniye (1 saniye) duraklatır.</li>
+  </ul>
+
+  <h2>Donanım Temelleri</h2>
+  <ul>
+    <li><strong>Breadboard kullanımı:</strong> Lehim yapmadan devre kurmayı sağlayan bir araçtır. Bağlantıları kolayca değiştirmeyi sağlar.</li>
+    <li><strong>Direnç nedir ve nasıl ölçülür:</strong> Akımı sınırlar. Ölçü birimi ohm (Ω)’dur. Örneğin bir LED’i korumak için kullanılır.</li>
+    <li><strong>LED için direnç değeri hesaplamak:</strong> Ohm kanunu kullanılır: <code>R = (V - Vled) / I</code></li>
+    <li><strong>Renk bantlarıyla direnç değeri hesaplamak:</strong> Dirençlerin üzerindeki renkler, değerlerini belirler. Örn: Kahverengi - Siyah - Kırmızı = 1kΩ</li>
+    <li><strong>LED nedir ve nasıl çalışır:</strong> Elektrik akımı geçtiğinde ışık yayan yarı iletken bir bileşendir. Doğru yönde bağlanmalıdır (anot-katot).</li>
+  </ul>
+
+  <h2>Yazılım Kontrolleri</h2>
+  <ul>
+    <li><strong>for döngüsüyle kodu tekrarlamak:</strong> Belirli sayıda işlemi tekrar eder. Örn: <code>for(int i = 0; i < 5; i++) { ... }</code></li>
+    <li><strong>Karşılaştırma operatörleri:</strong> <code>==</code> (eşit mi), <code>!=</code> (eşit değil), <code>&lt;</code>, <code>&gt;</code> gibi işlemlerle karşılaştırma yapılır.</li>
+    <li><strong>Matematik işlemleri:</strong> Toplama (<code>+</code>), çıkarma (<code>-</code>), çarpma (<code>*</code>), bölme (<code>/</code>) gibi işlemler yapılabilir.</li>
+    <li><strong>Yerel ve genel değişkenler:</strong> Yerel (local) değişkenler sadece tanımlandığı fonksiyonda geçerlidir. Genel (global) değişkenler tüm programda kullanılabilir.</li>
+    <li><strong>Pull-up / Pull-down dirençler:</strong> Giriş pinlerinin kararsız kalmaması için kullanılır. Varsayılan seviyeyi belirler (yüksek veya düşük).</li>
+  </ul>
+
+  <h2>Giriş / Çıkış ve Karar Yapıları</h2>
+  <ul>
+    <li><strong>Buton basımını okumak:</strong> <code>digitalRead(pin)</code> ile pinin durumu okunur. Örn: <code>if (digitalRead(2) == HIGH)</code></li>
+    <li><strong>if ile karar vermek:</strong> Koşula göre işlemler yapılır. Örn: <code>if (sayi > 10) { ... }</code></li>
+    <li><strong>Pin modunu değiştirmek:</strong> <code>pinMode(pin, INPUT);</code> veya <code>pinMode(pin, OUTPUT);</code> şeklinde yapılır.</li>
+    <li><strong>millis() fonksiyonu:</strong> Program başladığından beri geçen süreyi (ms olarak) verir. Zamanlama için kullanılır. Örn: zamanlayıcı yapmak için idealdir.</li>
+    <li><strong>Mantıksal operatörler:</strong> <code>&&</code> (ve), <code>||</code> (veya), <code>!</code> (değil) gibi operatörlerle karmaşık koşullar yazılır.</li>
+  </ul>
+
+</body>
+</html>
