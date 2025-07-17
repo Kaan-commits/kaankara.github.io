@@ -1,0 +1,82 @@
+from datetime import date
+
+# HTML içerik
+html_content = f"""
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Gizlilik Politikası</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            line-height: 1.6;
+            background-color: #f9f9f9;
+        }
+        h1, h2 {
+            color: #2c3e50;
+        }
+    </style>
+</head>
+<body>
+    <h1>Gizlilik Politikası</h1>
+    <p><strong>Biruni Connect</strong> olarak, gizliliğinize saygı duyuyoruz ve uygulamamızı kullandığınızda bilgilerinizin korunmasına büyük önem veriyoruz. Bu gizlilik politikası, kişisel verilerinizi nasıl topladığımızı, kullandığımızı ve koruduğumuzu açıklamaktadır.</p>
+
+    <h2>1. Topladığımız Bilgiler</h2>
+    <p>Uygulamamızı kullandığınızda şu türde bilgiler toplayabiliriz:</p>
+    <ul>
+        <li><strong>Kişisel Bilgiler:</strong> Adınız, e-posta adresiniz gibi kimliğinizi belirleyebilecek bilgiler.</li>
+        <li><strong>Cihaz ve Kullanım Bilgileri:</strong> Cihaz türü, işletim sistemi, kullanım süresi, uygulama içi etkileşim gibi teknik veriler.</li>
+        <li><strong>Konum Bilgileri:</strong> Sadece açık rıza verdiğinizde alınır. (örneğin QR yoklama için)</li>
+    </ul>
+
+    <h2>2. Bilgilerin Kullanımı</h2>
+    <p>Topladığımız bilgileri aşağıdaki amaçlarla kullanabiliriz:</p>
+    <ul>
+        <li>Uygulamanın işlevselliğini sağlamak ve geliştirmek</li>
+        <li>Destek ve geri bildirim süreçlerini yönetmek</li>
+        <li>Kullanıcı deneyimini iyileştirmek</li>
+        <li>İstatistiksel analizler yapmak</li>
+    </ul>
+
+    <h2>3. Bilgilerin Paylaşımı</h2>
+    <p>Kişisel bilgilerinizi üçüncü taraflarla paylaşmayız, satmayız veya kiralamayız. Ancak aşağıdaki durumlarda paylaşım yapılabilir:</p>
+    <ul>
+        <li>Yasal zorunluluklar kapsamında resmi makamlara</li>
+        <li>Hizmeti sunmamıza yardımcı olan güvenilir üçüncü taraf servis sağlayıcılarla (örneğin: Supabase)</li>
+    </ul>
+
+    <h2>4. Bilgilerin Güvenliği</h2>
+    <p>Verilerinizin güvenliği bizim için çok önemlidir. Bu nedenle veriler şifrelenerek saklanır ve yalnızca yetkili kişilerce erişilebilir.</p>
+
+    <h2>5. Üçüncü Taraf Hizmetleri</h2>
+    <p>Uygulama, üçüncü taraf hizmet sağlayıcıları (örneğin, Supabase) kullanabilir. Bu hizmetlerin kendi gizlilik politikaları geçerlidir.</p>
+
+    <h2>6. Çocukların Gizliliği</h2>
+    <p>13 yaşın altındaki bireylerden bilerek bilgi toplamıyoruz. Bu yaş grubundaki kullanıcılar uygulamayı velileri gözetiminde kullanmalıdır.</p>
+
+    <h2>7. Haklarınız</h2>
+    <p>KVKK ve ilgili gizlilik yasaları kapsamında kullanıcılar olarak şu haklara sahipsiniz:</p>
+    <ul>
+        <li>Verilerinize erişim talep etme</li>
+        <li>Verilerinizi düzeltme ya da silme isteme</li>
+        <li>Veri işlenmesine itiraz etme</li>
+    </ul>
+    <p>Bu talepler için bizimle <a href="mailto:frozenduckgames@gmail.com">frozenduckgames@gmail.com</a> adresinden iletişime geçebilirsiniz.</p>
+
+    <h2>8. Değişiklikler</h2>
+    <p>Gizlilik politikamız zamanla güncellenebilir. Güncellemeler uygulama içinden ya da iletişim bilgileriniz aracılığıyla tarafınıza bildirilir.</p>
+
+    <p><strong>Son güncelleme:</strong> {date.today().strftime("%d %B %Y")}<br>
+    <strong>İletişim Adresi:</strong> frozenduckgames@gmail.com</p>
+</body>
+</html>
+"""
+
+# HTML dosyasını kaydet
+file_path = "/mnt/data/gizlilik-politikasi.html"
+with open(file_path, "w", encoding="utf-8") as f:
+    f.write(html_content)
+
+file_path
