@@ -43,7 +43,7 @@
                 <div class="project-info">
                     <h3>Kompartisa</h3>
                     <p>Unity ile geliştirilmiş, heyecan verici bir kart tahmin oyunu. Daha fazla detay ve kapalı test aşamasına katılmak için iletişime geçebilirsiniz.</p>
-                    <a href="#" class="btn" target="_blank">View on GitHub</a>
+                    <a href="mailto:kaan.kara@yahoo.com?subject=Kompartisa%20Test%20Aşaması%20Hakkında" class="btn" target="_blank">İletişim</a>
                 </div>
             </div>
             <div class="project-card">
@@ -53,7 +53,7 @@
                 <div class="project-info">
                     <h3>Garipova</h3>
                     <p>Keşke sadece 2D ve 3D'nin karıştığı bir oyun olsa...</p>
-                    <a href="#" class="btn" target="_blank">Yakında</a>
+                    <a href="" class="btn" target="_blank">Yakında</a>
                 </div>
             </div>
 
@@ -63,5 +63,29 @@
         <p>&copy; Frozen Duck Games</p>
     </footer>
     <script src="script.js"></script>
+
+    <!-- YENİ EKLENEN KOD BAŞLANGICI -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const projectCards = document.querySelectorAll('.project-card');
+
+            projectCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    // Tıklanan kart zaten genişletilmiş mi kontrol et
+                    const isExpanded = this.classList.contains('expanded');
+
+                    // Önce tüm kartlardan 'expanded' class'ını kaldır
+                    projectCards.forEach(c => c.classList.remove('expanded'));
+
+                    // Eğer tıklanan kart genişletilmemişse, ona 'expanded' class'ını ekle
+                    if (!isExpanded) {
+                        this.classList.add('expanded');
+                    }
+                });
+            });
+        });
+    </script>
+    <!-- YENİ EKLENEN KOD SONU -->
+
 </body>
 </html>

@@ -388,7 +388,7 @@ canvas {
     overflow: hidden;
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
-    box-shadow: 0 8px meditative rgba(0, 0, 0, 0.4);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.4);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     display: flex;
     flex-direction: column;
@@ -491,4 +491,43 @@ canvas {
   pointer-events: none;
   z-index: 1000;
   /* Eğer farklı bir görsel/gif kullanmak istersen yukarıdaki JS'de url'yi değiştir */
+}
+
+/* === Genişletilmiş Proje Kartı Stilleri (YENİ VERSİYON) === */
+
+/* Animasyonların pürüzsüz olması için temel elemanlara transition ekleyelim */
+.project-card, .project-images, .project-info p, .project-images img {
+    transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* Genişletilmiş kartın kendisi */
+.project-card.expanded {
+    /* Geniş ekranlarda iki sütunluk yer kapla */
+    grid-column: span 2;
+    transform: translateY(0); /* Hover efektini sıfırla */
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6); /* Daha belirgin gölge */
+}
+
+/* Genişletilmiş kartın resim alanı */
+.project-card.expanded .project-images {
+    height: 400px; /* Resim yüksekliğini daha da artır */
+    background-color: rgba(0, 0, 0, 0.2); /* Resimlerin arkası için hafif bir arka plan */
+}
+
+/* Genişletilmiş karttaki resimlerin kendisi */
+.project-card.expanded .project-images img {
+    object-fit: contain; /* RESMİN TAMAMINI GÖSTER, KIRPMAYI ENGELLE */
+    height: 100%; /* Konteynerin yüksekliğine tam uyum sağla */
+}
+
+/* Genişletilmiş kartın açıklama metni */
+.project-card.expanded .project-info p {
+    font-size: 1.1em; /* Yazı tipini biraz büyüt */
+}
+
+/* Mobil ve daha dar ekranlar için (tek sütun düzeni) */
+@media (max-width: 850px) {
+    .project-card.expanded {
+        grid-column: span 1; /* Tek sütun kaplamaya devam et */
+    }
 }
