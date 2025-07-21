@@ -4,40 +4,64 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Projects</title>
-    <link rel="stylesheet" href="style.css"> <!-- CSS dosyasını bağlama -->
+    <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="gif-bg">
     <header>
         <h1>My Projects</h1>
-        <!-- Geri Dön Butonu -->
-        <button onclick="window.location.href='index.html'" style="margin-top: 10px; padding: 10px 20px; background-color: #f5f5f5; color: #121212; border: none; border-radius: 5px; cursor: pointer;">
-            Go Back
-        </button>
+        <a href="index.html" class="btn">Go Back</a>
     </header>
     <main>
         <section id="projects">
-            <h1>Biruni Connect</h1>
-            <div class="project-item">
-                <img src="Assets/1uni/AppSS/MainMenuB.jpeg" alt="Project 1" class="project-image">
-                <img src="Assets/1uni/AppSS/MainMenuW.jpeg" alt="Project 1" class="project-image">
-                <h2>Biruni Connect</h2>
-                <p>Ana menu ve temalar.</p>
+            <!-- Proje 1: Biruni Connect -->
+            <div class="project-card">
+                <div class="project-images">
+                    <img src="Assets/1uni/AppSS/MainMenuB.jpeg" alt="Biruni Connect Main Menu">
+                    <img src="Assets/1uni/AppSS/Anketler.jpeg" alt="Biruni Connect Surveys">
+                    <img src="Assets/1uni/AppSS/Chatbot.jpeg" alt="Biruni Connect Chatbot">
+                    <img src="Assets/1uni/AppSS/SanalTur.jpeg" alt="Biruni Connect Virtual Tour">
+                </div>
+                <div class="project-info">
+                    <h3>1Üni</h3>
+                    <p>Üniversite öğrencileri için geliştirilmiş, anketler, chatbot ve sanal tur gibi özellikler sunan bir mobil uygulama.</p>
+                    <a href="#" class="btn" target="_blank">Google Play İndirme Linki</a>
+                </div>
             </div>
-            <div class="project-item">
-                <img src="Assets/1uni/AppSS/Anketler.jpeg" alt="Project 2" class="project-image">
-                <h2>İnteraktif Anketler Sayfası</h2>
-                <p>Uygulamanın kullanıcı istek ve ihtiyaçlarına göre geliştirilmeye devam edilebilmesi için anketler sayfası.</p>
+
+            <!-- Proje 2: Örnek Proje -->
+            <div class="project-card">
+                <div class="project-images">
+                    <img src="Assets/placeholder1.png" alt="Proje 2 Görseli">
+                </div>
+                <div class="project-info">
+                    <h3>Kompartisa</h3>
+                    <p>Unity ile geliştirilmiş, heyecan verici bir kart tahmin oyunu. Daha fazla detay ve kapalı test aşamasına katılmak için iletişime geçebilirsiniz.</p>
+                    <a href="#" class="btn" target="_blank">View on GitHub</a>
+                </div>
             </div>
-            <div class="project-item">
-                <img src="Assets/1uni/AppSS/Chatbot.jpeg" alt="Project 3" class="project-image">
-                <h2>Chatbot ile İletişim ve Destek</h2>
-                <p>Chatbot ile hızlı ve kolay iletişim.</p>
+
+            <!-- Proje 3: Örnek Proje -->
+            <div class="project-card">
+                <div class="project-images">
+                    <img src="Assets/placeholder2.png" alt="Proje 3 Görseli">
+                </div>
+                <div class="project-info">
+                    <h3>Astro Runner</h3>
+                    <p>Bu gördüğünüz web sitesi. HTML, CSS ve JavaScript kullanılarak sıfırdan tasarlandı. Modern ve interaktif bir deneyim sunar.</p>
+                    <a href="https://github.com/kaanking1907/kaankara.github.io" class="btn" target="_blank">Source Code</a>
+                </div>
             </div>
-            <div class="project-item">
-                <img src="Assets/1uni/AppSS/SanalTur.jpeg" alt="Project 4" class="project-image">
-                <h2>360 Derece Görseller ile Sanal Tur</h2>
-                <p>Okulu oturduğunuz yerden gezme imkanı.</p>
+            <div class="project-card">
+                <div class="project-images">
+                    <img src="Assets/placeholder2.png" alt="Proje 3 Görseli">
+                </div>
+                <div class="project-info">
+                    <h3>Garipova</h3>
+                    <p>Bu gördüğünüz web sitesi. HTML, CSS ve JavaScript kullanılarak sıfırdan tasarlandı. Modern ve interaktif bir deneyim sunar.</p>
+                    <a href="https://github.com/kaanking1907/kaankara.github.io" class="btn" target="_blank">Source Code</a>
+                </div>
             </div>
+
         </section>
     </main>
     <footer>
