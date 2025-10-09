@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rock Paper Scissors - Kaan Kara</title>
+  <link rel="stylesheet" href="rps.css">
+</head>
+<body>
+  <header>
+    <h1>Rock • Paper • Scissors</h1>
+    <a href="index.html" class="btn">Go Back</a>
+  </header>
+
+  <main class="rps-wrap">
+    <div class="choices">
+      <button data-move="rock">Rock</button>
+      <button data-move="paper">Paper</button>
+      <button data-move="scissors">Scissors</button>
+    </div>
+    <div class="result">
+      <div class="you">You: <span id="youMove">-</span></div>
+      <div class="comp">CPU: <span id="cpuMove">-</span></div>
+      <div class="msg" id="msg">Make your move</div>
+    </div>
+  </main>
+
+  <script src="rps.js"></script>
+</body>
+</html>

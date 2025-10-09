@@ -1,0 +1,8 @@
+body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#071022;color:#fff;display:flex;flex-direction:column;min-height:100vh}
+header{display:flex;justify-content:space-between;align-items:center;padding:16px 24px;background:rgba(0,0,0,0.4)}
+.rps-wrap{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;padding:24px}
+.choices button{padding:12px 22px;margin:0 8px;border-radius:10px;border:none;background:#2b2f3a;color:#fff;cursor:pointer;transition:transform .15s}
+.choices button:hover{transform:translateY(-4px)}
+.result{margin-top:8px;text-align:center}
+.msg{margin-top:10px;color:#ffd9b8;font-weight:700}
+.btn{background:#d35400;color:#fff;padding:8px 14px;border-radius:10px;text-decoration:none}
