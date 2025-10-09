@@ -171,3 +171,39 @@ function animateTrail() {
   requestAnimationFrame(animateTrail);
 }
 animateTrail();
+
+/* === Games modal behavior === */
+(function(){
+  const gamesButton = document.getElementById('gamesButton');
+  const gamesModal = document.getElementById('gamesModal');
+  const closeGames = document.querySelector('.close-games');
+
+  function openGames(){
+    if(!gamesModal) return;
+    gamesModal.setAttribute('aria-hidden','false');
+    document.documentElement.style.overflow = 'hidden'; // prevent background scroll
+  }
+  function closeGamesModal(){
+    if(!gamesModal) return;
+    gamesModal.setAttribute('aria-hidden','true');
+    document.documentElement.style.overflow = ''; // restore
+  }
+
+  if (gamesButton) gamesButton.addEventListener('click', (e)=>{
+    e.preventDefault();
+    openGames();
+  });
+  if (closeGames) closeGames.addEventListener('click', closeGamesModal);
+
+  // click outside to close
+  if (gamesModal) {
+    gamesModal.addEventListener('click', (e)=>{
+      if (e.target === gamesModal) closeGamesModal();
+    });
+  }
+
+  // ESC to close
+  document.addEventListener('keydown', (e)=>{
+    if (e.key === 'Escape') closeGamesModal();
+  });
+})();

@@ -18,8 +18,7 @@
                 <li><a id="socialMediaButton" href="#">Social Media</a></li>
                 <li><a href="/videogaleri.html">Video Gallery</a></li>
                 <li><a href="/fotogaleri.html">Photo Gallery</a></li>
-                <li><a href="/Games/pong.html">Pong</a></li> <!-- yeni -->
-                <li><a href="/Games/rps.html">Rock Paper Scissors</a></li> <!-- yeni -->
+                <li><a href="#" id="gamesButton">Games</a></li>
             </ul>
         </div>
     </header>
@@ -52,6 +51,31 @@
                 </a>
             </div>
         </div>
+    </div>
+
+    <!-- GAMES MODAL -->
+    <div id="gamesModal" class="modal modal-games" aria-hidden="true">
+      <div class="modal-content modal-content-games" role="dialog" aria-modal="true" aria-labelledby="gamesTitle">
+        <button class="modal-close close-games" aria-label="Close games modal">&times;</button>
+        <h2 id="gamesTitle">Games</h2>
+        <div class="games-list">
+          <a class="game-item" href="/Games/pong.html" target="_self">
+            <div class="game-thumb pong-thumb" aria-hidden="true"></div>
+            <div class="game-meta">
+              <h3>Pong</h3>
+              <p>Classic Pong — kolay ve hızlı oynanış.</p>
+            </div>
+          </a>
+
+          <a class="game-item" href="/Games/rps.html" target="_self">
+            <div class="game-thumb rps-thumb" aria-hidden="true"></div>
+            <div class="game-meta">
+              <h3>Rock • Paper • Scissors</h3>
+              <p>Hızlı tur oyun — rakibi yen.</p>
+            </div>
+          </a>
+        </div>
+      </div>
     </div>
 
     <main>
