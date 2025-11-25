@@ -231,6 +231,15 @@ button:hover {
     animation: fadeIn 0.3s ease-in-out;
 }
 
+/* Modal başlık rengi */
+.modal-content h2 {
+    color: #333; /* Koyu gri/siyah ton */
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: 600;
+}
+
 /* Kapatma Butonu */
 .modal-content .close {
     position: absolute;
@@ -582,6 +591,10 @@ canvas {
   background: linear-gradient(135deg,#2a1036,#3b2a6a);
   /* veya: background-image: url('Assets/Games/rps-thumb.png'); */
 }
+.pong2-thumb {
+  background: linear-gradient(135deg,#aa29e7,#d2cfd9);
+  /* veya: background-image: url('Assets/Games/rps-thumb.png'); */
+}
 .game-info {
   padding: 14px 16px 18px;
   display: flex;
@@ -699,4 +712,28 @@ canvas {
   .modal-content-games { padding: 12px; }
   .game-thumb { width: 90px; height: 56px; }
   .game-meta h3 { font-size: 15px; }
+}
+
+/* === Main section link styles === */
+main section a {
+  color: #ff9966; /* Turuncu-pembe ton */
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
+main section a:hover {
+  color: #ffb380; /* Daha açık ton */
+  text-decoration: underline;
+}
+
+/* Email link özel stil */
+main section a[href*="mailto"],
+main section a[href*="@"] {
+  color: #66d9ff; /* Açık mavi ton */
+}
+
+main section a[href*="mailto"]:hover,
+main section a[href*="@"]:hover {
+  color: #99e6ff; /* Daha açık mavi */
 }
