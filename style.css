@@ -716,24 +716,24 @@ canvas {
 
 /* === Main section link styles === */
 main section a {
-  color: #ff9966; /* Turuncu-pembe ton */
+  color: #ff9966 !important; /* Turuncu-pembe ton */
   text-decoration: none;
   font-weight: 600;
   transition: color 0.3s ease, text-decoration 0.3s ease;
 }
 
 main section a:hover {
-  color: #ffb380; /* Daha açık ton */
+  color: #ffb380 !important; /* Daha açık ton */
   text-decoration: underline;
 }
 
 /* Email link özel stil */
 main section a[href*="mailto"],
 main section a[href*="@"] {
-  color: #66d9ff; /* Açık mavi ton */
+  color: #66d9ff !important; /* Açık mavi ton */
 }
 
 main section a[href*="mailto"]:hover,
 main section a[href*="@"]:hover {
-  color: #99e6ff; /* Daha açık mavi */
+  color: #99e6ff !important; /* Daha açık mavi */
 }
