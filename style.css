@@ -176,6 +176,39 @@ main {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Hafif gölge ekle */
 }
 
+/* === Main section link styles === */
+main section a {
+  color: #ff9966 !important; /* Turuncu-pembe ton */
+  text-decoration: none !important;
+  font-weight: 600 !important;
+  transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
+main section a:visited {
+  color: #ff9966 !important;
+}
+
+main section a:hover {
+  color: #ffb380 !important; /* Daha açık ton */
+  text-decoration: underline !important;
+}
+
+/* Email link özel stil */
+main section a[href*="mailto"],
+main section a[href*="@"] {
+  color: #66d9ff !important; /* Açık mavi ton */
+}
+
+main section a[href*="mailto"]:visited,
+main section a[href*="@"]:visited {
+  color: #66d9ff !important;
+}
+
+main section a[href*="mailto"]:hover,
+main section a[href*="@"]:hover {
+  color: #99e6ff !important; /* Daha açık mavi */
+}
+
 /* Footer */
 footer {
     background-color: rgba(0, 0, 0, 0.7); /* Siyah yarı saydam arka plan */
@@ -712,28 +745,4 @@ canvas {
   .modal-content-games { padding: 12px; }
   .game-thumb { width: 90px; height: 56px; }
   .game-meta h3 { font-size: 15px; }
-}
-
-/* === Main section link styles === */
-main section a {
-  color: #ff9966 !important; /* Turuncu-pembe ton */
-  text-decoration: none;
-  font-weight: 600;
-  transition: color 0.3s ease, text-decoration 0.3s ease;
-}
-
-main section a:hover {
-  color: #ffb380 !important; /* Daha açık ton */
-  text-decoration: underline;
-}
-
-/* Email link özel stil */
-main section a[href*="mailto"],
-main section a[href*="@"] {
-  color: #66d9ff !important; /* Açık mavi ton */
-}
-
-main section a[href*="mailto"]:hover,
-main section a[href*="@"]:hover {
-  color: #99e6ff !important; /* Daha açık mavi */
 }
