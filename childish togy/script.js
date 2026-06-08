@@ -2,19 +2,19 @@
 const products = [
     {
         id: 1,
-        name: "Classic Black Tee",
+        name: "Parlat AT",
         category: "tshirt",
         price: 45,
-        image: "Assets/fotogaleri/tees/tee1.jpg",
-        description: "Klasik siyah tişört, her stile uyar"
+        image: "Assets/fotogaleri/tees/tee-shiny-horse.jpg",
+        description: "İçindeki AT'ı parlat."
     },
     {
         id: 2,
         name: "Neon Vibes",
         category: "tshirt",
         price: 45,
-        image: "Assets/fotogaleri/tees/tee2.jpg",
-        description: "Neon renkli trend tişört"
+        image: "Assets/fotogaleri/tees/tee-flower-surf.jpg",
+        description: "Dikiş detaylı ada t-Shirt'ü"
     },
     {
         id: 3,
