@@ -20,9 +20,37 @@ html {
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Montserrat', system-ui, -apple-system, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: var(--text-color);
     background-color: #0A0E27;
+    position: relative;
+}
+
+/* Subtle grunge / noise overlay to emulate street texture */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-image: radial-gradient(rgba(255,255,255,0.02) 1px, transparent 1px);
+    background-size: 3px 3px;
+    opacity: 0.06;
+    mix-blend-mode: overlay;
+}
+
+/* Accent scribble / paint stroke behind hero */
+.hero::after {
+    content: "";
+    position: absolute;
+    right: 5%;
+    top: 10%;
+    width: 420px;
+    height: 220px;
+    background: linear-gradient(90deg, rgba(0,212,255,0.12), rgba(255,0,110,0.12));
+    transform: rotate(-12deg);
+    filter: blur(18px);
+    z-index: 0;
+    pointer-events: none;
 }
 
 /* Navigation */
@@ -48,7 +76,7 @@ body {
 .logo {
     font-size: 1.5rem;
     font-weight: bold;
-    color: white;
+    color: var(--primary-color);
     display: flex;
     align-items: center;
     gap: 10px;
@@ -56,6 +84,13 @@ body {
 
 .logo i {
     font-size: 2rem;
+}
+
+.logo span {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 1.6rem;
+    letter-spacing: 2px;
+    color: var(--primary-color);
 }
 
 .nav-menu {
@@ -132,6 +167,7 @@ body {
     text-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
     text-transform: uppercase;
     letter-spacing: 3px;
+    font-family: 'Bebas Neue', cursive;
 }
 
 .hero-content p {
@@ -235,6 +271,7 @@ body {
     transition: all 0.3s ease;
     cursor: pointer;
     border: 2px solid transparent;
+    position: relative;
 }
 
 .product-card:hover {
@@ -254,6 +291,22 @@ body {
     color: rgba(0, 212, 255, 0.3);
     position: relative;
     overflow: hidden;
+}
+
+/* Sticker / graffiti label */
+.product-card::before {
+    content: 'STREET';
+    position: absolute;
+    top: 12px;
+    left: -48px;
+    transform: rotate(-22deg);
+    background: var(--secondary-color);
+    color: #0A0E27;
+    font-family: 'Bebas Neue', cursive;
+    padding: 6px 70px;
+    font-weight: 700;
+    font-size: 12px;
+    box-shadow: 0 6px 18px rgba(255, 0, 110, 0.18);
 }
 
 .product-image::after {
