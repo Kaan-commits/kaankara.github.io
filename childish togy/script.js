@@ -2,7 +2,7 @@
 const products = [
     {
         id: 1,
-        name: "Parlat AT",
+        name: "Parlak AT",
         category: "tshirt",
         price: 45,
         image: "Assets/fotogaleri/tees/tee-shiny-horse.jpg",
@@ -10,7 +10,7 @@ const products = [
     },
     {
         id: 2,
-        name: "Neon Vibes",
+        name: "Çiçek Sörfü",
         category: "tshirt",
         price: 45,
         image: "Assets/fotogaleri/tees/tee-flower-surf.jpg",
