@@ -2,84 +2,75 @@
 const products = [
     {
         id: 1,
-        name: "Renkli T-Shirt",
+        name: "Classic Black Tee",
         category: "tshirt",
         price: 45,
-        icon: "👕",
-        description: "Yumuşak ve rahat %100 pamuk",
-        rating: "⭐⭐⭐⭐⭐"
+        image: "Assets/fotogaleri/tees/tee1.jpg",
+        description: "Klasik siyah tişört, her stile uyar"
     },
     {
         id: 2,
-        name: "Mavi Jeans",
-        category: "pants",
-        price: 89,
-        icon: "👖",
-        description: "Dayanıklı ve şık tasarım",
-        rating: "⭐⭐⭐⭐⭐"
+        name: "Neon Vibes",
+        category: "tshirt",
+        price: 45,
+        image: "Assets/fotogaleri/tees/tee2.jpg",
+        description: "Neon renkli trend tişört"
     },
     {
         id: 3,
-        name: "Prenses Elbisesi",
-        category: "dress",
-        price: 120,
-        icon: "👗",
-        description: "Özel günler için perfect",
-        rating: "⭐⭐⭐⭐⭐"
+        name: "Street Artist",
+        category: "tshirt",
+        price: 45,
+        image: "Assets/fotogaleri/tees/tee3.jpg",
+        description: "Sokak sanatı temalı tasarım"
     },
     {
         id: 4,
-        name: "Spor T-Shirt",
+        name: "Urban Dreams",
         category: "tshirt",
-        price: 55,
-        icon: "🎽",
-        description: "Hareketli çocuklar için ideal",
-        rating: "⭐⭐⭐⭐⭐"
+        price: 45,
+        image: "Assets/fotogaleri/tees/tee4.jpg",
+        description: "Şehir hayatı temalı tişört"
     },
     {
         id: 5,
-        name: "Kahverengi Pantolon",
-        category: "pants",
-        price: 75,
-        icon: "👖",
-        description: "Her mevsime uygun",
-        rating: "⭐⭐⭐⭐⭐"
+        name: "Vintage Style",
+        category: "tshirt",
+        price: 45,
+        image: "Assets/fotogaleri/tees/tee5.jpg",
+        description: "Retro stil tişört"
     },
     {
         id: 6,
-        name: "Yaz Elbisesi",
-        category: "dress",
-        price: 95,
-        icon: "👗",
-        description: "Havalı ve renkli",
-        rating: "⭐⭐⭐⭐⭐"
+        name: "Bold Statement",
+        category: "tshirt",
+        price: 45,
+        image: "Assets/fotogaleri/tees/tee6.jpg",
+        description: "Cesur ve çarpıcı tasarım"
     },
     {
         id: 7,
-        name: "Grafik T-Shirt",
+        name: "Minimalist",
         category: "tshirt",
-        price: 50,
-        icon: "👕",
-        description: "Çocukların sevdiği karakterler",
-        rating: "⭐⭐⭐⭐"
+        price: 45,
+        image: "Assets/fotogaleri/tees/tee7.jpg",
+        description: "Sade ve şık tasarım"
     },
     {
         id: 8,
-        name: "Siyah Pantolon",
-        category: "pants",
-        price: 85,
-        icon: "👖",
-        description: "Klasik ve şık",
-        rating: "⭐⭐⭐⭐⭐"
+        name: "Street Legends",
+        category: "tshirt",
+        price: 45,
+        image: "Assets/fotogaleri/tees/tee8.jpg",
+        description: "Sokak kültürü efsanesi"
     },
     {
         id: 9,
-        name: "Resmi Elbise",
-        category: "dress",
-        price: 150,
-        icon: "👗",
-        description: "Özel etkinlikler için",
-        rating: "⭐⭐⭐⭐⭐"
+        name: "Future Tense",
+        category: "tshirt",
+        price: 45,
+        image: "Assets/fotogaleri/tees/tee9.jpg",
+        description: "Futuristik tasarım"
     }
 ];
 
@@ -91,42 +82,31 @@ document.addEventListener('DOMContentLoaded', function() {
     displayProducts('all');
     setupCartListener();
 });
-
-// Display Products
 function displayProducts(category) {
     currentFilter = category;
     const productsGrid = document.getElementById('productsGrid');
     
-    let filteredProducts = products;
-    if (category !== 'all') {
-        filteredProducts = products.filter(p => p.category === category);
-    }
-
-    productsGrid.innerHTML = filteredProducts.map(product => `
+    productsGrid.innerHTML = products.map(product => `
         <div class="product-card" data-product-id="${product.id}">
-            <div class="product-image">${product.icon}</div>
+            <div class="product-image">
+                <img src="${product.image}" alt="${product.name}" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
             <div class="product-info">
                 <div class="product-name">${product.name}</div>
                 <div class="product-description">${product.description}</div>
-                <div class="product-rating">${product.rating}</div>
+                <div class="product-rating">⭐⭐⭐⭐⭐</div>
                 <div class="product-footer">
                     <div class="product-price">₺${product.price}</div>
                     <button class="add-to-cart-btn" onclick="addToCart(${product.id})">
-                        <i class="fas fa-shopping-cart"></i> Ekle
+                        <i class="fas fa-shopping-cart"></i> Sepete Ekle
                     </button>
                 </div>
             </div>
         </div>
     `).join('');
-
-    // Update filter buttons
-    document.querySelectorAll('.filter-btn').forEach(btn => {
-        btn.classList.remove('active');
-    });
-    document.querySelector(`[onclick="filterProducts('${category}')"]`).classList.add('active');
 }
 
-// Filter Products
+// Filter Products (not used but kept for compatibility)
 function filterProducts(category) {
     displayProducts(category);
 }
@@ -163,13 +143,15 @@ function showNotification(message) {
         position: fixed;
         top: 80px;
         right: 20px;
-        background: linear-gradient(135deg, #FF6B9D, #4ECDC4);
-        color: white;
+        background: linear-gradient(90deg, #00D4FF, #FF006E);
+        color: #0A0E27;
         padding: 15px 20px;
         border-radius: 10px;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 0 25px rgba(0, 212, 255, 0.4);
         z-index: 3000;
         animation: slideIn 0.3s ease-out;
+        font-weight: bold;
+        text-transform: uppercase;
     `;
     notification.textContent = message;
     document.body.appendChild(notification);
@@ -208,19 +190,17 @@ function displayCartItems() {
         return;
     }
 
-    let total = 0;
+    let totalItems = 0;
     cartItemsDiv.innerHTML = cart.map((item, index) => {
-        const itemTotal = item.price * item.quantity;
-        total += itemTotal;
+        totalItems += item.quantity;
 
         return `
             <div class="cart-item">
                 <div class="cart-item-info">
                     <h4>${item.name}</h4>
-                    <p>Miktar: ${item.quantity}</p>
+                    <p>Adet: ${item.quantity}</p>
                 </div>
                 <div>
-                    <div class="cart-item-price">₺${itemTotal}</div>
                     <button class="remove-btn" onclick="removeFromCart(${index})">
                         <i class="fas fa-trash"></i> Sil
                     </button>
@@ -229,7 +209,7 @@ function displayCartItems() {
         `;
     }).join('');
 
-    cartTotalDiv.textContent = total.toFixed(2);
+    cartTotalDiv.textContent = totalItems;
 }
 
 // Remove from Cart
@@ -247,14 +227,14 @@ function checkout() {
         return;
     }
 
-    const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-    alert(`Teşekkürler!\n\nSiparişiniz başarıyla oluşturuldu.\nToplam Tutar: ₺${total.toFixed(2)}\n\nÖdeme sayfasına yönlendirileceksiniz.`);
+    const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+    alert(`Teşekkürler!\n\nSiparişiniz başarıyla oluşturuldu.\nToplam Adet: ${totalItems}\n\nÖdeme sayfasına yönlendirileceksiniz.`);
     
     cart = [];
     updateCartCount();
     closeCart();
     displayCartItems();
-    showNotification('Siparişiniz alındı! 🎉');
+    showNotification('Siparişiniz alındı! 🔥');
 }
 
 // Handle Contact Form Submit
