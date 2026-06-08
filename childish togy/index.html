@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Çocuklar İçin Moda - Kids Fashion Store</title>
+    <title>TOGY TEES - Street Style</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -12,8 +12,8 @@
     <nav class="navbar">
         <div class="nav-container">
             <div class="logo">
-                <i class="fas fa-child"></i>
-                <span>Kids Fashion</span>
+                <i class="fas fa-shirt"></i>
+                <span>TOGY TEES</span>
             </div>
             <ul class="nav-menu">
                 <li><a href="#home" class="nav-link">Ana Sayfa</a></li>
@@ -33,8 +33,8 @@
     <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="hero-content">
-            <h1>Çocuklarınız İçin En Güzel Kıyafetler</h1>
-            <p>Rahat, Stylish ve Fiyat Uygun Çocuk Giyim Koleksiyonu</p>
+            <h1>TOGY TEES</h1>
+            <p>Sokak Stilinin Tüm Renkleri - Benzersiz T-Shirt Tasarımları</p>
             <button class="cta-btn" onclick="document.getElementById('products').scrollIntoView()">Alışverişe Başla</button>
         </div>
         <div class="hero-image">
@@ -46,13 +46,7 @@
 
     <!-- Products Section -->
     <section class="products" id="products">
-        <h2>Ürün Koleksiyonu</h2>
-        <div class="filter-buttons">
-            <button class="filter-btn active" onclick="filterProducts('all')">Tümü</button>
-            <button class="filter-btn" onclick="filterProducts('tshirt')">T-Shirt</button>
-            <button class="filter-btn" onclick="filterProducts('pants')">Pantolon</button>
-            <button class="filter-btn" onclick="filterProducts('dress')">Elbise</button>
-        </div>
+        <h2>Koleksiyonumuz</h2>
         <div class="products-grid" id="productsGrid">
             <!-- Ürünler burada dinamik olarak yüklenecek -->
         </div>
@@ -67,7 +61,7 @@
                 <p class="empty-cart">Sepetiniz boş</p>
             </div>
             <div class="cart-total">
-                <strong>Toplam: ₺<span id="cartTotal">0</span></strong>
+                <strong>Adet: <span id="cartTotal">0</span></strong>
             </div>
             <button class="checkout-btn" onclick="checkout()">Satın Al</button>
         </div>
@@ -76,27 +70,27 @@
     <!-- About Section -->
     <section class="about" id="about">
         <div class="about-content">
-            <h2>Hakkımızda</h2>
+            <h2>Neden Biz?</h2>
             <div class="about-grid">
                 <div class="about-item">
-                    <i class="fas fa-heart"></i>
-                    <h3>Kaliteli Ürünler</h3>
-                    <p>En iyi kumaş ve kaliteli malzeme ile üretilen ürünler</p>
+                    <i class="fas fa-diamond"></i>
+                    <h3>Premium Kumaş</h3>
+                    <p>%100 organik pamuk ile yapılan kaliteli tişörtler</p>
                 </div>
                 <div class="about-item">
-                    <i class="fas fa-shipping-fast"></i>
-                    <h3>Hızlı Kargo</h3>
-                    <p>Siparişiniz 2-3 iş günü içinde kapınızda</p>
+                    <i class="fas fa-palette"></i>
+                    <h3>Benzersiz Tasarımlar</h3>
+                    <p>Her sezon yeni ve trend tasarımlar</p>
                 </div>
                 <div class="about-item">
-                    <i class="fas fa-undo"></i>
-                    <h3>Kolay İade</h3>
-                    <p>Memnun değilseniz 30 gün içinde iade alabilirsiniz</p>
+                    <i class="fas fa-box"></i>
+                    <h3>Hızlı Teslimat</h3>
+                    <p>Siparişiniz 2-3 iş günü içinde elinizde</p>
                 </div>
                 <div class="about-item">
-                    <i class="fas fa-lock"></i>
-                    <h3>Güvenli Alışveriş</h3>
-                    <p>Tüm ödeme bilgileriniz tamamen güvenli</p>
+                    <i class="fas fa-users"></i>
+                    <h3>Sokak Kültürü</h3>
+                    <p>Gençliğin ruhunu yansıtan tasarımlar</p>
                 </div>
             </div>
         </div>
@@ -140,7 +134,7 @@
 
     <!-- Footer -->
     <footer class="footer">
-        <p>&copy; 2024 Kids Fashion Store. Tüm Hakları Saklıdır.</p>
+        <p>&copy; 2024 TOGY TEES. Sokak Stilinin Efsanesi.</p>
         <div class="social-links">
             <a href="#"><i class="fab fa-facebook"></i></a>
             <a href="#"><i class="fab fa-instagram"></i></a>
