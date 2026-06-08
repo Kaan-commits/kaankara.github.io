@@ -86,9 +86,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Slider images - place your images in `childish togy/slider/` (slide1.jpg, slide2.jpg...)
 const sliderImages = [
-    'slider/slide1.jpg',
-    'slider/slide2.jpg',
-    'slider/slide3.jpg'
+    'slider/1.jpg',
+    'slider/2.jpg',
+    'slider/3.jpg'
 ];
 
 function initSlider() {
