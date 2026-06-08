@@ -14,7 +14,7 @@ const products = [
         category: "tshirt",
         price: 45,
         image: "tees/tee-flower-surf.jpg",
-        description: "Dikiş detaylı ada t-Shirt'ü"
+        description: "Dikiş detaylı ada t-shirt'ü"
     },
     {
         id: 3,
