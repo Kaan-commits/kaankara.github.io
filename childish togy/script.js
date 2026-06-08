@@ -81,7 +81,34 @@ let currentFilter = 'all';
 document.addEventListener('DOMContentLoaded', function() {
     displayProducts('all');
     setupCartListener();
+    initSlider();
 });
+
+// Slider images - place your images in `childish togy/slider/` (slide1.jpg, slide2.jpg...)
+const sliderImages = [
+    'slider/slide1.jpg',
+    'slider/slide2.jpg',
+    'slider/slide3.jpg'
+];
+
+function initSlider() {
+    const slidesEl = document.getElementById('slides');
+    if (!slidesEl) return;
+    slidesEl.innerHTML = sliderImages.map((src, i) => `\n        <div class="slide${i===0? ' active': ''}"><img src="${src}" alt="Slide ${i+1}"></div>\n    `).join('');
+
+    const slideEls = slidesEl.querySelectorAll('.slide');
+    if (slideEls.length === 0) return;
+    let current = 0;
+    function show(n) {
+        slideEls.forEach((s, idx) => s.classList.toggle('active', idx === n));
+    }
+
+    document.getElementById('prevBtn').addEventListener('click', () => { current = (current - 1 + slideEls.length) % slideEls.length; show(current); reset(); });
+    document.getElementById('nextBtn').addEventListener('click', () => { current = (current + 1) % slideEls.length; show(current); reset(); });
+
+    let interval = setInterval(() => { current = (current + 1) % slideEls.length; show(current); }, 4000);
+    function reset() { clearInterval(interval); interval = setInterval(() => { current = (current + 1) % slideEls.length; show(current); }, 4000); }
+}
 function displayProducts(category) {
     currentFilter = category;
     const productsGrid = document.getElementById('productsGrid');
