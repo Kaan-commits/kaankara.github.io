@@ -135,7 +135,8 @@ body {
 /* Slider styles */
 .hero-slider {
     position: relative;
-    max-width: 1200px;
+    width: 1200px; /* target desktop width */
+    max-width: 100%; /* allow shrink on small viewports */
     margin: 0 auto;
     overflow: hidden;
     border-radius: 12px;
@@ -143,16 +144,22 @@ body {
 }
 .slides {
     position: relative;
+    width: 1200px;
+    max-width: 100%;
     height: 700px; /* desktop target height for 1200x700 images */
 }
 .slide {
     position: absolute;
-    inset: 0;
+    left: 0;
+    top: 0;
+    width: 1200px;
+    max-width: 100%;
+    height: 700px;
     opacity: 0;
     transition: opacity 0.6s ease;
 }
 .slide.active { opacity: 1; position: relative; }
-.slide img { width: 100%; height: 700px; object-fit: cover; display: block; }
+.slide img { width: 1200px; max-width: 100%; height: 700px; object-fit: cover; display: block; }
 .slider-btn {
     position: absolute;
     top: 50%;
