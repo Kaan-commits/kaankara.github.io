@@ -5,7 +5,7 @@ const products = [
         name: "Parlak AT",
         category: "tshirt",
         price: 45,
-        image: "Assets/fotogaleri/tees/tee-shiny-horse.jpg",
+        image: "tees/tee-shiny-horse.jpg",
         description: "İçindeki AT'ı parlat."
     },
     {
@@ -13,7 +13,7 @@ const products = [
         name: "Çiçek Sörfü",
         category: "tshirt",
         price: 45,
-        image: "Assets/fotogaleri/tees/tee-flower-surf.jpg",
+        image: "tees/tee-flower-surf.jpg",
         description: "Dikiş detaylı ada t-Shirt'ü"
     },
     {
