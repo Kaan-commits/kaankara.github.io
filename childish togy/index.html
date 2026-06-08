@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Çocuklar İçin Moda - Kids Fashion Store</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-child"></i>
+                <span>Kids Fashion</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Ana Sayfa</a></li>
+                <li><a href="#products" class="nav-link">Ürünler</a></li>
+                <li><a href="#about" class="nav-link">Hakkımızda</a></li>
+                <li><a href="#contact" class="nav-link">İletişim</a></li>
+            </ul>
+            <div class="nav-icons">
+                <a href="#cart" class="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Çocuklarınız İçin En Güzel Kıyafetler</h1>
+            <p>Rahat, Stylish ve Fiyat Uygun Çocuk Giyim Koleksiyonu</p>
+            <button class="cta-btn" onclick="document.getElementById('products').scrollIntoView()">Alışverişe Başla</button>
+        </div>
+        <div class="hero-image">
+            <div class="fashion-icon">
+                <i class="fas fa-shirt"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products" id="products">
+        <h2>Ürün Koleksiyonu</h2>
+        <div class="filter-buttons">
+            <button class="filter-btn active" onclick="filterProducts('all')">Tümü</button>
+            <button class="filter-btn" onclick="filterProducts('tshirt')">T-Shirt</button>
+            <button class="filter-btn" onclick="filterProducts('pants')">Pantolon</button>
+            <button class="filter-btn" onclick="filterProducts('dress')">Elbise</button>
+        </div>
+        <div class="products-grid" id="productsGrid">
+            <!-- Ürünler burada dinamik olarak yüklenecek -->
+        </div>
+    </section>
+
+    <!-- Cart Modal -->
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-content">
+            <span class="close" onclick="closeCart()">&times;</span>
+            <h2>Alışveriş Sepeti</h2>
+            <div class="cart-items" id="cartItems">
+                <p class="empty-cart">Sepetiniz boş</p>
+            </div>
+            <div class="cart-total">
+                <strong>Toplam: ₺<span id="cartTotal">0</span></strong>
+            </div>
+            <button class="checkout-btn" onclick="checkout()">Satın Al</button>
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="about-content">
+            <h2>Hakkımızda</h2>
+            <div class="about-grid">
+                <div class="about-item">
+                    <i class="fas fa-heart"></i>
+                    <h3>Kaliteli Ürünler</h3>
+                    <p>En iyi kumaş ve kaliteli malzeme ile üretilen ürünler</p>
+                </div>
+                <div class="about-item">
+                    <i class="fas fa-shipping-fast"></i>
+                    <h3>Hızlı Kargo</h3>
+                    <p>Siparişiniz 2-3 iş günü içinde kapınızda</p>
+                </div>
+                <div class="about-item">
+                    <i class="fas fa-undo"></i>
+                    <h3>Kolay İade</h3>
+                    <p>Memnun değilseniz 30 gün içinde iade alabilirsiniz</p>
+                </div>
+                <div class="about-item">
+                    <i class="fas fa-lock"></i>
+                    <h3>Güvenli Alışveriş</h3>
+                    <p>Tüm ödeme bilgileriniz tamamen güvenli</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <h2>İletişim</h2>
+        <div class="contact-container">
+            <form class="contact-form" onsubmit="handleSubmit(event)">
+                <input type="text" placeholder="Adınız" required>
+                <input type="email" placeholder="E-mail Adresiniz" required>
+                <textarea placeholder="Mesajınız" rows="5" required></textarea>
+                <button type="submit" class="submit-btn">Gönder</button>
+            </form>
+            <div class="contact-info">
+                <div class="info-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div>
+                        <h4>Adres</h4>
+                        <p>İstanbul, Türkiye</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-phone"></i>
+                    <div>
+                        <h4>Telefon</h4>
+                        <p>+90 (123) 456-7890</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-envelope"></i>
+                    <div>
+                        <h4>E-mail</h4>
+                        <p>info@kidsfashion.com</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2024 Kids Fashion Store. Tüm Hakları Saklıdır.</p>
+        <div class="social-links">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
