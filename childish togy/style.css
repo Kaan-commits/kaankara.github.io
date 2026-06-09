@@ -146,7 +146,7 @@ body {
     position: relative;
     width: 100%;
     max-width: 100%;
-    aspect-ratio: 1200 / 500; /* wider ratio -> reduced height */
+    aspect-ratio: 1200 / 600; /* increased height for better visibility */
 }
 .slide {
     position: absolute;
@@ -757,17 +757,17 @@ body {
 
 /* Responsive slider aspect-ratio adjustments for different breakpoints */
 @media (max-width: 1200px) {
-    /* slightly taller ratio for medium screens but still reduced height */
+    /* medium screens: increase height slightly */
     .slides, .slide img {
-        aspect-ratio: 1200 / 480;
+        aspect-ratio: 1200 / 540;
     }
 }
 
 /* For small screens reduce height further and allow a max height cap */
 @media (max-width: 480px) {
     .slides, .slide img {
-        aspect-ratio: 1000 / 360;
-        max-height: 360px;
+        aspect-ratio: 1000 / 420;
+        max-height: 420px;
     }
 }
 
