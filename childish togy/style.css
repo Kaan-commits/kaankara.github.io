@@ -794,3 +794,24 @@ body {
         grid-template-columns: 1fr;
     }
 }
+
+/* Large screens: make slider full-bleed and taller for better presence */
+@media (min-width: 1400px) {
+    .hero-slider {
+        width: 100vw;
+        max-width: none;
+        margin-left: calc(50% - 50vw);
+        margin-right: calc(50% - 50vw);
+        border-radius: 0;
+        overflow: hidden;
+        border-left: none;
+        border-right: none;
+    }
+
+    .slides, .slide img {
+        width: 100vw;
+        height: 700px; /* larger fixed height on very wide screens */
+        max-height: none;
+        aspect-ratio: auto;
+    }
+}
