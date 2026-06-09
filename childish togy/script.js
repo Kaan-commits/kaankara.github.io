@@ -58,7 +58,7 @@ const products = [
     },
     {
         id: 8,
-        name: "Dikkat Et Bob",
+        name: "Dikkat et Bob",
         category: "tshirt",
         price: 45,
         image: "tees/tee-bob.jpg",
