@@ -567,13 +567,13 @@ body {
 }
 
 .about-item h3 {
-    color: var(--primary-color);
+    color: var(--light-color);
     margin-bottom: 0.5rem;
     text-transform: uppercase;
 }
 
 .about-item p {
-    color: #AAB8D3;
+    color: var(--light-color);
 }
 
 /* Contact Section */
@@ -659,13 +659,13 @@ body {
 }
 
 .info-item h4 {
-    color: var(--primary-color);
+    color: var(--light-color);
     margin-bottom: 0.5rem;
     text-transform: uppercase;
 }
 
 .info-item p {
-    color: #AAB8D3;
+    color: var(--light-color);
 }
 
 /* Footer */
