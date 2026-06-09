@@ -135,8 +135,8 @@ body {
 /* Slider styles */
 .hero-slider {
     position: relative;
-    width: 1200px; /* target desktop width */
-    max-width: 100%; /* allow shrink on small viewports */
+    width: 100%;
+    max-width: 1400px; /* allow the slider to grow on larger screens */
     margin: 0 auto;
     overflow: hidden;
     border-radius: 12px;
@@ -144,22 +144,21 @@ body {
 }
 .slides {
     position: relative;
-    width: 1200px;
+    width: 100%;
     max-width: 100%;
-    height: 700px; /* desktop target height for 1200x700 images */
+    aspect-ratio: 1200 / 500; /* wider ratio -> reduced height */
 }
 .slide {
     position: absolute;
     left: 0;
     top: 0;
-    width: 1200px;
-    max-width: 100%;
-    height: 700px;
+    width: 100%;
+    height: 100%;
     opacity: 0;
     transition: opacity 0.6s ease;
 }
 .slide.active { opacity: 1; position: relative; }
-.slide img { width: 1200px; max-width: 100%; height: 700px; object-fit: cover; display: block; }
+.slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .slider-btn {
     position: absolute;
     top: 50%;
@@ -756,17 +755,19 @@ body {
     }
 }
 
-/* Responsive slider height to maintain 1200x700 (ratio ~0.583) on smaller viewports */
+/* Responsive slider aspect-ratio adjustments for different breakpoints */
 @media (max-width: 1200px) {
+    /* slightly taller ratio for medium screens but still reduced height */
     .slides, .slide img {
-        height: calc(100vw * 0.58333);
+        aspect-ratio: 1200 / 480;
     }
 }
 
-/* For very small screens cap the slider height to 420px */
+/* For small screens reduce height further and allow a max height cap */
 @media (max-width: 480px) {
     .slides, .slide img {
-        height: 420px;
+        aspect-ratio: 1000 / 360;
+        max-height: 360px;
     }
 }
 
