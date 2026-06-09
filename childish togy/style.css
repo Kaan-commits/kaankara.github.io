@@ -735,6 +735,25 @@ body {
         padding: 8px 15px;
         font-size: 0.9rem;
     }
+
+    /* Make the hero slider full-bleed on small screens */
+    .hero-slider {
+        width: 100vw;
+        max-width: none;
+        margin-left: calc(50% - 50vw);
+        margin-right: calc(50% - 50vw);
+        border-radius: 0;
+        overflow: hidden;
+        border-left: none;
+        border-right: none;
+    }
+
+    .slides, .slide, .slide img {
+        width: 100vw;
+        max-width: 100%;
+        object-fit: cover;
+        display: block;
+    }
 }
 
 /* Responsive slider height to maintain 1200x700 (ratio ~0.583) on smaller viewports */
