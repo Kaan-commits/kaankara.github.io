@@ -136,7 +136,7 @@ body {
 .hero-slider {
     position: relative;
     width: 100%;
-    max-width: 1400px; /* allow the slider to grow on larger screens */
+    max-width: 2400px; /* allow the slider to grow on larger screens */
     margin: 0 auto;
     overflow: hidden;
     border-radius: 12px;
