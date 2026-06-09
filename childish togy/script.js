@@ -21,7 +21,7 @@ const products = [
         name: "PSP",
         category: "tshirt",
         price: 45,
-        image: "/tees/tee-psp.jpg",
+        image: "tees/tee-psp.jpg",
         description: "Cep konsolu olmadan dışarı çıkmayanlara"
     },
     {
@@ -29,7 +29,7 @@ const products = [
         name: "Zihin Kontrolü",
         category: "tshirt",
         price: 45,
-        image: "/tees/tee-mind-control.jpg",
+        image: "tees/tee-mind-control.jpg",
         description: "Uzaylılar tarafından zihin kontrolünü kolaylaştırmaya tasarlandı"
     },
     {
