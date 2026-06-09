@@ -18,59 +18,59 @@ const products = [
     },
     {
         id: 3,
-        name: "Street Artist",
+        name: "PSP",
         category: "tshirt",
         price: 45,
-        image: "Assets/fotogaleri/tees/tee3.jpg",
-        description: "Sokak sanatı temalı tasarım"
+        image: "/tees/tee-psp.jpg",
+        description: "Cep konsolu olmadan dışarı çıkmayanlara"
     },
     {
         id: 4,
-        name: "Urban Dreams",
+        name: "Zihin Kontrolü",
         category: "tshirt",
         price: 45,
-        image: "Assets/fotogaleri/tees/tee4.jpg",
-        description: "Şehir hayatı temalı tişört"
+        image: "/tees/tee-mind-control.jpg",
+        description: "Uzaylılar tarafından zihin kontrolünü kolaylaştırmaya tasarlandı"
     },
     {
         id: 5,
-        name: "Vintage Style",
+        name: "Yerel Ünlü",
         category: "tshirt",
         price: 45,
-        image: "Assets/fotogaleri/tees/tee5.jpg",
-        description: "Retro stil tişört"
+        image: "tees/tee-local-celeb.jpg",
+        description: "Bütün mahalle onu tanır"
     },
     {
         id: 6,
-        name: "Bold Statement",
+        name: "Lego Star Wars",
         category: "tshirt",
         price: 45,
-        image: "Assets/fotogaleri/tees/tee6.jpg",
-        description: "Cesur ve çarpıcı tasarım"
+        image: "tees/tee-lego-sw.jpg",
+        description: "Lego Star Wars efsanesi"
     },
     {
         id: 7,
-        name: "Minimalist",
+        name: "Fih",
         category: "tshirt",
         price: 45,
-        image: "Assets/fotogaleri/tees/tee7.jpg",
-        description: "Sade ve şık tasarım"
+        image: "tees/tee-fih.jpg",
+        description: "Şaşkın balık burçları"
     },
     {
         id: 8,
-        name: "Street Legends",
+        name: "Dikkat Et Bob",
         category: "tshirt",
         price: 45,
-        image: "Assets/fotogaleri/tees/tee8.jpg",
-        description: "Sokak kültürü efsanesi"
+        image: "tees/tee-bob.jpg",
+        description: "Bob HAAAYYYIIIIIRRRRR!!!!!"
     },
     {
         id: 9,
-        name: "Future Tense",
+        name: "Prenses Amidala",
         category: "tshirt",
         price: 45,
-        image: "Assets/fotogaleri/tees/tee9.jpg",
-        description: "Futuristik tasarım"
+        image: "tees/tee-amidala.jpg",
+        description: "Padmeden önceki Padme"
     }
 ];
 
