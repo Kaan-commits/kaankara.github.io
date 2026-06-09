@@ -115,10 +115,16 @@ function displayProducts(category) {
     currentFilter = category;
     const productsGrid = document.getElementById('productsGrid');
     
-    productsGrid.innerHTML = products.map(product => `
+    productsGrid.innerHTML = products.map(product => {
+        // create a small SVG placeholder data URI in case the image fails to load
+        const svg = `<svg xmlns='http://www.w3.org/2000/svg' width='600' height='400'><rect width='100%' height='100%' fill='%231A1A2E'/><text x='50%' y='50%' fill='%23e9e6e1' font-size='22' font-family='Arial, sans-serif' dominant-baseline='middle' text-anchor='middle'>${product.name}</text></svg>`;
+        const placeholder = 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(svg);
+        const safeSrc = encodeURI(product.image);
+
+        return `
         <div class="product-card" data-product-id="${product.id}">
             <div class="product-image">
-                <img src="${product.image}" alt="${product.name}" style="width: 100%; height: 100%; object-fit: cover;">
+                <img src="${safeSrc}" alt="${product.name}" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.onerror=null;this.src='${placeholder}';">
             </div>
             <div class="product-info">
                 <div class="product-name">${product.name}</div>
@@ -132,7 +138,8 @@ function displayProducts(category) {
                 </div>
             </div>
         </div>
-    `).join('');
+    `;
+    }).join('');
 }
 
 // Filter Products (not used but kept for compatibility)
