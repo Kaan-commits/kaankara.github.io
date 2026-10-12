@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Komparsita · Kart Tahmin Oyunu · Frozen Duck Games</title>
+  <meta name="description" content="Komparsita: 52 kartlık destede açılacak kartı tahmin et, çarpanlarını kullan, rakibini puanda geç. Unity ile geliştirilen kart tahmin oyunu.">
+  <meta name="theme-color" content="#06060c">
+  <meta property="og:title" content="Komparsita · Kart Tahmin Oyunu">
+  <meta property="og:image" content="https://kaankara.com.tr/oyunlar/komparsita/ekran-goruntuleri/ana-menu.jpeg">
+  <link rel="icon" href="../../Assets/Kaan_ghibli.jpeg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../style.css?v=3">
+</head>
+<body class="game-page komparsita">
+  <a class="skip-link" href="#icerik">İçeriğe geç</a>
+  <div class="bg-glow" aria-hidden="true"></div>
+  <canvas id="stars" aria-hidden="true"></canvas>
+
+  <header class="site-header">
+    <nav class="nav container" aria-label="Ana menü">
+      <a class="brand" href="../../index.html">
+        <img src="../../Assets/Kaan_ghibli.jpeg" alt="">
+        <span>Kaan Kara</span>
+      </a>
+      <button class="nav-toggle" aria-label="Menüyü aç" aria-expanded="false" aria-controls="nav-links"><span></span></button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="../../index.html#oyunlar" aria-current="page">Oyunlar</a></li>
+        <li><a href="../../index.html#projeler">Projeler</a></li>
+        <li><a href="../../index.html#magaza">Mağaza</a></li>
+        <li><a href="../../fotogaleri.html">Galeri</a></li>
+        <li><a href="../../index.html#iletisim">İletişim</a></li>
+        <li><a class="nav-cta" href="../../Assets/CVturkce.pdf" target="_blank" rel="noopener">CV</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="icerik">
+    <section class="game-hero">
+      <div class="container game-hero-grid">
+        <div class="intro">
+          <a class="breadcrumb" href="../../index.html#oyunlar">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+            Tüm oyunlar
+          </a>
+          <span class="badge">Kapalı test</span>
+          <h1>Komparsita</h1>
+          <p class="tagline">Desteden açılacak kartı tahmin et. Türü mü, değeri mi, yoksa ikisi birden mi? Çarpanını doğru anda oyna, rakibini puanda geç.</p>
+          <div class="btn-row">
+            <a class="btn btn-primary" href="mailto:kaan.kara@yahoo.com?subject=Komparsita%20kapal%C4%B1%20test">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+              Kapalı teste katıl
+            </a>
+            <a class="btn" href="#ekran-goruntuleri">Ekran görüntüleri</a>
+          </div>
+          <ul class="meta-list">
+            <li><small>Tür</small><strong>Kart tahmin</strong></li>
+            <li><small>Platform</small><strong>Mobil</strong></li>
+            <li><small>Motor</small><strong>Unity</strong></li>
+            <li><small>Mod</small><strong>Online + yerel</strong></li>
+          </ul>
+        </div>
+        <div class="device-wrap intro-self">
+          <div class="device phone">
+            <img src="ekran-goruntuleri/ana-menu.jpeg" alt="Komparsita ana menüsü: Çevrimiçi Oyna ve Oyna butonları">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top:0">
+      <div class="container">
+        <div class="section-head">
+          <div class="reveal">
+            <span class="eyebrow">Oyun hakkında</span>
+            <h2 class="section-title">Şans değil, cesaret oyunu.</h2>
+          </div>
+          <p class="section-lead reveal" style="--d:.1s">52 kart bitene kadar sırayla tahmin yapılır. Ne kadar iddialı tahmin edersen o kadar çok puan alırsın, ama çarpanlar iki tarafı keskin bir kılıç.</p>
+        </div>
+        <div class="features">
+          <div class="feature reveal">
+            <div class="ico" aria-hidden="true">🃏</div>
+            <h3>Klasik 52'lik deste</h3>
+            <p>Önce kartın türünü (♠ ♥ ♦ ♣), sonra değerini (As'tan Papaz'a) seç ve tahminini onayla.</p>
+          </div>
+          <div class="feature reveal" style="--d:.08s">
+            <div class="ico" aria-hidden="true">🔥</div>
+            <h3>x2, x3, x5 çarpanlar</h3>
+            <p>Her oyuncunun sınırlı çarpan hakkı var. Doğru tahminde puanı katlar, yanlışta ceza yazar.</p>
+          </div>
+          <div class="feature reveal" style="--d:.16s">
+            <div class="ico" aria-hidden="true">🌐</div>
+            <h3>Online ya da yan yana</h3>
+            <p>Arkadaşınla aynı telefonda oyna ya da çevrimiçi bir rakiple karşılaş.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top:0">
+      <div class="container two-col">
+        <div>
+          <div class="reveal">
+            <span class="eyebrow">Nasıl oynanır?</span>
+            <h2 class="section-title" style="margin-bottom:28px">Dört adımda bir tur</h2>
+          </div>
+          <ol class="steps">
+            <li class="reveal">Sırası gelen oyuncu <strong>kart türünü</strong> seçer.</li>
+            <li class="reveal" style="--d:.06s">Ardından <strong>kart değerini</strong> (A, 2, 3 … K) seçer.</li>
+            <li class="reveal" style="--d:.12s">İsterse puanını katlamak için bir <strong>çarpan</strong> kullanır. Kullanılan çarpan geri alınamaz.</li>
+            <li class="reveal" style="--d:.18s"><strong>Tahmini Onayla</strong>'ya basar, kart açılır ve puan yazılır. 52 kart bittiğinde en yüksek puanlı oyuncu kazanır.</li>
+          </ol>
+        </div>
+        <div class="reveal" style="--d:.1s">
+          <table class="score-table">
+            <thead><tr><th>Tahmin</th><th style="text-align:right">Puan</th></tr></thead>
+            <tbody>
+              <tr><td>Tam doğru (tür + değer)<span class="score-bar pts-hi"><i style="--w:100%"></i></span></td><td class="pts-hi">+120</td></tr>
+              <tr><td>Değer + renk doğru<span class="score-bar pts-mid"><i style="--w:58%"></i></span></td><td class="pts-mid">+70</td></tr>
+              <tr><td>Sadece değer doğru<span class="score-bar pts-mid"><i style="--w:42%"></i></span></td><td class="pts-mid">+50</td></tr>
+              <tr><td>Sadece tür doğru<span class="score-bar pts-lo"><i style="--w:25%"></i></span></td><td class="pts-lo">+30</td></tr>
+              <tr><td>Sadece renk doğru<span class="score-bar pts-lo"><i style="--w:8%"></i></span></td><td class="pts-lo">+10</td></tr>
+              <tr><td>Hiçbiri doğru değil</td><td class="pts-zero">0</td></tr>
+              <tr><td>Çarpanla yanlış tahmin <small style="color:var(--dim)">(ör. x3)</small></td><td class="pts-neg">−30</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="ekran-goruntuleri" style="padding-top:0">
+      <div class="container">
+        <div class="section-head">
+          <div class="reveal">
+            <span class="eyebrow">Galeri</span>
+            <h2 class="section-title">Ekran görüntüleri</h2>
+          </div>
+          <p class="section-lead reveal" style="--d:.1s">Büyütmek için bir görsele dokun.</p>
+        </div>
+        <div class="shots portrait">
+          <a class="shot reveal" href="ekran-goruntuleri/ana-menu.jpeg" data-gallery="komparsita">
+            <img src="ekran-goruntuleri/ana-menu.jpeg" alt="Ana menü" loading="lazy"><span class="cap">Ana menü</span>
+          </a>
+          <a class="shot reveal" style="--d:.06s" href="ekran-goruntuleri/oyun-1.jpeg" data-gallery="komparsita">
+            <img src="ekran-goruntuleri/oyun-1.jpeg" alt="Tahmin ekranı: tür, değer ve çarpan seçimi" loading="lazy"><span class="cap">Tahmin ekranı</span>
+          </a>
+          <a class="shot reveal" style="--d:.12s" href="ekran-goruntuleri/oyun-2.jpeg" data-gallery="komparsita">
+            <img src="ekran-goruntuleri/oyun-2.jpeg" alt="x5 çarpanla kazanılan puan" loading="lazy"><span class="cap">x5 çarpan</span>
+          </a>
+          <a class="shot reveal" style="--d:.18s" href="ekran-goruntuleri/nasil-oynanir.jpeg" data-gallery="komparsita">
+            <img src="ekran-goruntuleri/nasil-oynanir.jpeg" alt="Nasıl oynanır ekranı" loading="lazy"><span class="cap">Nasıl oynanır</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top:0">
+      <div class="container">
+        <div class="cta-box reveal reveal-zoom">
+          <div>
+            <h2>Kapalı teste katılmak ister misin?</h2>
+            <p>Komparsita şu an kapalı test aşamasında. Bana yaz, test listesine ekleyeyim.</p>
+          </div>
+          <div class="btn-row">
+            <a class="btn btn-primary" href="mailto:kaan.kara@yahoo.com?subject=Komparsita%20kapal%C4%B1%20test">Bana yaz</a>
+            <a class="btn" href="../../privacyPolicyKomparsita.html">Gizlilik politikası</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top:0">
+      <div class="container game-nav">
+        <a href="../togy/"><small>← Önceki oyun</small><strong>Togy</strong></a>
+        <a href="../garipova/"><small>Sonraki oyun →</small><strong>Garipova</strong></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <span>© <span data-year>2026</span> <span class="duck">🦆</span> Frozen Duck Games</span>
+      <div class="footer-links">
+        <a href="../../index.html">Ana sayfa</a>
+        <a href="../../privacyPolicyKomparsita.html">Gizlilik</a>
+        <a href="mailto:kaan.kara@yahoo.com">İletişim</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../script.js?v=3"></script>
+</body>
+</html>

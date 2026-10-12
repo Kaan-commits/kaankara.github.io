@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Togy · Piksel Platform Macerası · Frozen Duck Games</title>
+  <meta name="description" content="Togy: iki dünya arasında geçen, boss savaşları ve tarot kartlarıyla şekillenen piksel sanatlı bir platform macerası. Android APK olarak denenebilir.">
+  <meta name="theme-color" content="#06060c">
+  <meta property="og:title" content="Togy · Piksel Platform Macerası">
+  <meta property="og:image" content="https://kaankara.com.tr/oyunlar/togy/ikon.png">
+  <link rel="icon" href="ikon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../style.css?v=3">
+</head>
+<body class="game-page togy">
+  <a class="skip-link" href="#icerik">İçeriğe geç</a>
+  <div class="bg-glow" aria-hidden="true"></div>
+  <canvas id="stars" aria-hidden="true"></canvas>
+
+  <header class="site-header">
+    <nav class="nav container" aria-label="Ana menü">
+      <a class="brand" href="../../index.html">
+        <img src="../../Assets/Kaan_ghibli.jpeg" alt="">
+        <span>Kaan Kara</span>
+      </a>
+      <button class="nav-toggle" aria-label="Menüyü aç" aria-expanded="false" aria-controls="nav-links"><span></span></button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="../../index.html#oyunlar" aria-current="page">Oyunlar</a></li>
+        <li><a href="../../index.html#projeler">Projeler</a></li>
+        <li><a href="../../index.html#magaza">Mağaza</a></li>
+        <li><a href="../../fotogaleri.html">Galeri</a></li>
+        <li><a href="../../index.html#iletisim">İletişim</a></li>
+        <li><a class="nav-cta" href="../../Assets/CVturkce.pdf" target="_blank" rel="noopener">CV</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="icerik">
+    <section class="game-hero">
+      <div class="container game-hero-grid">
+        <div class="intro">
+          <a class="breadcrumb" href="../../index.html#oyunlar">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+            Tüm oyunlar
+          </a>
+          <span class="badge">Erken sürüm · Android</span>
+          <h1>Togy</h1>
+          <p class="tagline">Piksel sanatlı bir platform macerası. Üst dünyadan alt dünyaya in, boss'larla yüzleş, seçtiğin tarot kartlarıyla oyunun kurallarını değiştir.</p>
+          <div class="btn-row">
+            <a class="btn btn-primary" href="../../Togy/Togy.apk" download>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+              APK indir
+            </a>
+            <a class="btn" href="#hakkinda">Oyun hakkında</a>
+          </div>
+          <ul class="meta-list">
+            <li><small>Tür</small><strong>Platform · Aksiyon</strong></li>
+            <li><small>Platform</small><strong>Android</strong></li>
+            <li><small>Motor</small><strong>Unity</strong></li>
+            <li><small>Boyut</small><strong>~50 MB</strong></li>
+          </ul>
+        </div>
+        <div class="device-wrap intro-self">
+          <div class="pixel-stage">
+            <img src="ikon.png" alt="Togy'nin piksel sanat karakteri koşarken">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="hakkinda" style="padding-top:0">
+      <div class="container">
+        <div class="section-head">
+          <div class="reveal">
+            <span class="eyebrow">Oyun hakkında</span>
+            <h2 class="section-title">İki dünya, bir deste kart.</h2>
+          </div>
+          <p class="section-lead reveal" style="--d:.1s">Togy'de yolculuk yukarıda başlar, ama asıl sınav aşağıda bekler. Her boss'tan önce çektiğin kartlar o savaşı senin için kolaylaştırabilir ya da zorlaştırabilir.</p>
+        </div>
+        <div class="features">
+          <div class="feature reveal">
+            <div class="ico" aria-hidden="true">🌗</div>
+            <h3>Üst ve alt dünya</h3>
+            <p>Katmanlı, parallax arka planlı haritalarda ilerle; doğru noktada alt dünyaya geç ve geri dön.</p>
+          </div>
+          <div class="feature reveal" style="--d:.08s">
+            <div class="ico" aria-hidden="true">👹</div>
+            <h3>Boss savaşları</h3>
+            <p>Zıplayarak üstüne gelen boss'ları alt et; zafer, yeni yolların kilidini açar.</p>
+          </div>
+          <div class="feature reveal" style="--d:.16s">
+            <div class="ico" aria-hidden="true">🔮</div>
+            <h3>Tarot kartları</h3>
+            <p>Savaş öncesi seçtiğin kartlar hızını, zıplamanı ve zorluğu değiştirir; doğru kombinasyonları bul.</p>
+          </div>
+          <div class="feature reveal">
+            <div class="ico" aria-hidden="true">💬</div>
+            <h3>Diyaloglar</h3>
+            <p>Hikâye, karakterlerle yapılan konuşmalarla ilerler.</p>
+          </div>
+          <div class="feature reveal" style="--d:.08s">
+            <div class="ico" aria-hidden="true">📱</div>
+            <h3>Dokunmatik kontroller</h3>
+            <p>Telefon için tasarlandı; gamepad ve klavye desteği de var.</p>
+          </div>
+          <div class="feature reveal" style="--d:.16s">
+            <div class="ico" aria-hidden="true">🌍</div>
+            <h3>Çoklu dil</h3>
+            <p>Oyunun içinden dil değiştirilebilir.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="ekran-goruntuleri" style="padding-top:0">
+      <div class="container">
+        <div class="section-head">
+          <div class="reveal">
+            <span class="eyebrow">Galeri</span>
+            <h2 class="section-title">Ekran görüntüleri</h2>
+          </div>
+        </div>
+        <!--
+          Ekran görüntülerini "oyunlar/togy/ekran-goruntuleri/" klasörüne koyup
+          aşağıdaki boş kutu yerine şöyle ekleyebilirsin (yatay görüntüler için "landscape"):
+
+          <div class="shots landscape">
+            <a class="shot reveal" href="ekran-goruntuleri/1.jpeg" data-gallery="togy">
+              <img src="ekran-goruntuleri/1.jpeg" alt="Açıklama" loading="lazy"><span class="cap">Başlık</span>
+            </a>
+          </div>
+        -->
+        <div class="shots-empty reveal">
+          <span class="big" aria-hidden="true">📸</span>
+          <strong>Ekran görüntüleri çok yakında</strong>
+          <span>O zamana kadar APK'yı indirip kendin görebilirsin.</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top:0">
+      <div class="container">
+        <div class="cta-box reveal reveal-zoom">
+          <div>
+            <h2>Hemen dene.</h2>
+            <p>APK'yı Android telefonuna indir ve kur. Kurulum sırasında "bilinmeyen kaynaklardan yükleme" izni vermen gerekebilir. Geri bildirimlerini çok isterim!</p>
+          </div>
+          <div class="btn-row">
+            <a class="btn btn-primary" href="../../Togy/Togy.apk" download>APK indir</a>
+            <a class="btn" href="mailto:kaan.kara@yahoo.com?subject=Togy%20geri%20bildirim">Geri bildirim gönder</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top:0">
+      <div class="container game-nav">
+        <a href="../garipova/"><small>← Önceki oyun</small><strong>Garipova</strong></a>
+        <a href="../komparsita/"><small>Sonraki oyun →</small><strong>Komparsita</strong></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <span>© <span data-year>2026</span> <span class="duck">🦆</span> Frozen Duck Games</span>
+      <div class="footer-links">
+        <a href="../../index.html">Ana sayfa</a>
+        <a href="mailto:kaan.kara@yahoo.com">İletişim</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../script.js?v=3"></script>
+</body>
+</html>

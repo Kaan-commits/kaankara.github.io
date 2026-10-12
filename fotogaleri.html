@@ -1,40 +1,76 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Photo Gallery - Kaan Kara</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Foto Galeri · Kaan Kara</title>
+  <meta name="description" content="Kaan Kara foto galeri.">
+  <meta name="theme-color" content="#06060c">
+  <link rel="icon" href="Assets/Kaan_ghibli.jpeg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=3">
 </head>
-<body class="gif-bg">
-    <header>
-        <h1>Photo Gallery</h1>
-        <!-- Geri Dön Butonu -->
-        <button onclick="window.location.href='index.html'" style="margin-top: 10px; padding: 10px 20px; background-color: #f5f5f5; color: #121212; border: none; border-radius: 5px; cursor: pointer;">
-            Go Back
-        </button>
-    </header>
-    <main>
-        <section id="photoGallery">
-            <h2>My Photos</h2>
-            <div class="photo-container">
-                <!-- Fotoğraflarınızı buraya ekleyebilirsiniz -->
-                <img src="Assets/fotogaleri/ben_AVM1.JPG" alt="Photo 1" class="gallery-photo">
-                <img src="Assets/fotogaleri/ben_AVM.png" alt="Photo 2" class="gallery-photo">
-                <img src="Assets/fotogaleri/ben_Bodrum1.JPG" alt="Photo 3" class="gallery-photo">
-                <img src="Assets/fotogaleri/ben_Bodrum.png" alt="Photo 4" class="gallery-photo">
-                <img src="Assets/fotogaleri/ben_Dubai.png" alt="Photo 5" class="gallery-photo">
-                <!-- Daha fazla fotoğraf ekleyebilirsiniz -->
-            </div>
-        </section>
-        <div style="height: 100px;"></div> <!-- Ekstra boşluk -->
-    </main>
-    <footer>
-        <p>&copy; Frozen Duck Games</p>
-    </footer>
-    <script src="script.js"></script>
-    <div class="animated-background"></div>
-    <canvas id="stars"></canvas>
+<body>
+  <a class="skip-link" href="#icerik">İçeriğe geç</a>
+  <div class="bg-glow" aria-hidden="true"></div>
+  <canvas id="stars" aria-hidden="true"></canvas>
+
+  <header class="site-header">
+    <nav class="nav container" aria-label="Ana menü">
+      <a class="brand" href="index.html">
+        <img src="Assets/Kaan_ghibli.jpeg" alt="">
+        <span>Kaan Kara</span>
+      </a>
+      <button class="nav-toggle" aria-label="Menüyü aç" aria-expanded="false" aria-controls="nav-links"><span></span></button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html#oyunlar">Oyunlar</a></li>
+        <li><a href="projects.html">Projeler</a></li>
+        <li><a href="index.html#magaza">Mağaza</a></li>
+        <li><a href="fotogaleri.html" aria-current="page">Galeri</a></li>
+        <li><a href="index.html#iletisim">İletişim</a></li>
+        <li><a class="nav-cta" href="Assets/CVturkce.pdf" target="_blank" rel="noopener">CV</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="icerik">
+    <section class="page-hero">
+      <div class="container intro">
+        <a class="breadcrumb" href="index.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          Ana sayfa
+        </a>
+        <h1>Foto galeri</h1>
+        <p>Gezilerden ve günlük hayattan birkaç kare.</p>
+        <div class="btn-row" style="margin-top:24px"><a class="btn" href="videogaleri.html">🎬 Video galeriye geç</a></div>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top:0">
+      <div class="container">
+        <div class="masonry">
+          <a class="shot reveal" style="--d:0.00s" href="Assets/fotogaleri/ben_AVM1.JPG" data-gallery="foto"><img src="Assets/fotogaleri/ben_AVM1.JPG" alt="AVM" loading="lazy"><span class="cap">AVM</span></a>
+          <a class="shot reveal" style="--d:0.06s" href="Assets/fotogaleri/ben_AVM.png" data-gallery="foto"><img src="Assets/fotogaleri/ben_AVM.png" alt="AVM" loading="lazy"><span class="cap">AVM</span></a>
+          <a class="shot reveal" style="--d:0.12s" href="Assets/fotogaleri/ben_Bodrum1.JPG" data-gallery="foto"><img src="Assets/fotogaleri/ben_Bodrum1.JPG" alt="Bodrum" loading="lazy"><span class="cap">Bodrum</span></a>
+          <a class="shot reveal" style="--d:0.18s" href="Assets/fotogaleri/ben_Bodrum.png" data-gallery="foto"><img src="Assets/fotogaleri/ben_Bodrum.png" alt="Bodrum" loading="lazy"><span class="cap">Bodrum</span></a>
+          <a class="shot reveal" style="--d:0.24s" href="Assets/fotogaleri/ben_Dubai.png" data-gallery="foto"><img src="Assets/fotogaleri/ben_Dubai.png" alt="Dubai" loading="lazy"><span class="cap">Dubai</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <span>© <span data-year>2026</span> <span class="duck">🦆</span> Frozen Duck Games</span>
+      <div class="footer-links">
+        <a href="index.html">Ana sayfa</a>
+        <a href="https://frozenduckgames9.wordpress.com" target="_blank" rel="noopener">Eski site</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js?v=3"></script>
 </body>
 </html>

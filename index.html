@@ -1,145 +1,275 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kaan Kara</title>
-    <link rel="stylesheet" href="style.css?v=2"> <!-- CSS dosyasını bağlama -->
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Kaan Kara · Frozen Duck Games</title>
+  <meta name="description" content="Kaan Kara — Frozen Duck Games. Unity ile geliştirilen Komparsita, Garipova ve Togy oyunları, 1Üni uygulaması ve daha fazlası.">
+  <meta name="theme-color" content="#06060c">
+  <meta property="og:title" content="Kaan Kara · Frozen Duck Games">
+  <meta property="og:description" content="Unity oyunları, mobil uygulamalar ve tuhaf fikirler.">
+  <meta property="og:image" content="https://kaankara.com.tr/Assets/Kaan_ghibli.jpeg">
+  <meta property="og:url" content="https://kaankara.com.tr/">
+  <link rel="icon" href="Assets/Kaan_ghibli.jpeg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=3">
 </head>
-<body class="gif-bg">
-    <header style="display: flex; align-items: center; padding: 10px;">
-        <div style="display: flex; align-items: center;">
-            <img src="Assets/Kaan_ghibli.jpeg" alt="Kaan Kara" style="width: 100px; height: 75px; border-radius: 50%; margin-right: 15px;">
-            <h1 style="font-size: 24px;">Welcome!</h1>
-        </div>
-        <div>
-            <ul style="display: flex; gap: 15px; list-style: none; padding: 0; margin: 0;">
-                <li><a id="socialMediaButton" href="#">Social Media</a></li>
-                <li><a href="/videogaleri.html">Video Gallery</a></li>
-                <li><a href="/fotogaleri.html">Photo Gallery</a></li>
-                <li><a href="#" id="gamesButton">Games</a></li>
-            </ul>
-        </div>
-    </header>
+<body>
+  <a class="skip-link" href="#icerik">İçeriğe geç</a>
+  <div class="bg-glow" aria-hidden="true"></div>
+  <canvas id="stars" aria-hidden="true"></canvas>
 
-    <!-- Modal Yapısı -->
-    <div id="socialMediaModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2>Social Media Accounts</h2>
-            <div class="social-icons">
-                <a href="https://www.instagram.com/thekaankara/" target="_blank" class="social-icon instagram">
-                    <img src="Assets/SocialMediaLogos/insta.avif" alt="Instagram">
-                    <span>Instagram</span>
-                </a>
-                <a href="https://www.linkedin.com/in/kaan-kara-104851252/" target="_blank" class="social-icon linkedin">
-                    <img src="Assets/SocialMediaLogos/linkedin.avif" alt="LinkedIn">
-                    <span>LinkedIn</span>
-                </a>
-                <a href="https://github.com/kaanking1907" target="_blank" class="social-icon github">
-                    <img src="Assets/SocialMediaLogos/github.png" alt="GitHub">
-                    <span>GitHub</span>
-                </a>
-                <a href="https://www.youtube.com/channel/UCc_2_AVpN7Ew9yPQIfsB1Kw" target="_blank" class="social-icon youtube">
-                    <img src="Assets/SocialMediaLogos/youtube.avif" alt="YouTube">
-                    <span>YouTube</span>
-                </a>
-                <a href="https://open.spotify.com/user/k6bc2aij207snalhr5kyrxyjr?si=d0dbfb3041c74652" target="_blank" class="social-icon spotify">
-                    <img src="Assets/SocialMediaLogos/spoti.png" alt="Spotify">
-                    <span>Spotify</span>
-                </a>
-            </div>
+  <header class="site-header">
+    <nav class="nav container" aria-label="Ana menü">
+      <a class="brand" href="index.html">
+        <img src="Assets/Kaan_ghibli.jpeg" alt="">
+        <span>Kaan Kara</span>
+      </a>
+      <button class="nav-toggle" aria-label="Menüyü aç" aria-expanded="false" aria-controls="nav-links"><span></span></button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#oyunlar">Oyunlar</a></li>
+        <li><a href="#projeler">Projeler</a></li>
+        <li><a href="#magaza">Mağaza</a></li>
+        <li><a href="fotogaleri.html">Galeri</a></li>
+        <li><a href="#iletisim">İletişim</a></li>
+        <li><a class="nav-cta" href="Assets/CVturkce.pdf" target="_blank" rel="noopener">CV</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="icerik">
+    <!-- ========== HERO ========== -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="intro">
+          <div class="status-pill"><span class="dot"></span> Şu an 3 Unity oyunu üzerinde çalışıyorum</div>
+          <h1>Merhaba, ben <span class="grad-text">Kaan</span>.</h1>
+          <p class="hero-sub">
+            <strong>Frozen Duck Games</strong> çatısı altında geliştiriyorum:
+            <span class="typed-line"><span class="typed" data-typed="Unity oyunları|mobil uygulamalar|piksel dünyalar|tuhaf fikirler">Unity oyunları</span></span>
+          </p>
+          <div class="btn-row">
+            <a class="btn btn-primary" href="#oyunlar">
+              Oyunlarımı keşfet
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+            </a>
+            <a class="btn" href="Assets/CVturkce.pdf" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+              CV indir
+            </a>
+          </div>
         </div>
-    </div>
 
-    <!-- GAMES MODAL -->
-    <div id="gamesModal" class="modal modal-games" aria-hidden="true">
-      <div class="modal-content modal-content-games" role="dialog" aria-modal="true" aria-labelledby="gamesTitle">
-        <button class="modal-close close-games" aria-label="Close games modal">&times;</button>
-        <h2 id="gamesTitle">Games</h2>
-        <div class="games-list">
-          <a class="game-item" href="/Games/pong.html" target="_self">
-            <div class="game-thumb pong-thumb" aria-hidden="true"></div>
-            <div class="game-meta">
-              <h3>Pong</h3>
-            </div>
-          </a>
-
-          <a class="game-item" href="/Games/rps.html" target="_self">
-            <div class="game-thumb rps-thumb" aria-hidden="true"></div>
-            <div class="game-meta">
-              <h3>Rock • Paper • Scissors</h3>
-            </div>
-          </a>
-
-          <a class="game-item" href="/Games/pong2.html" target="_self">
-            <div class="game-thumb pong2-thumb" aria-hidden="true"></div>
-            <div class="game-meta">
-              <h3>Pong 2</h3>
-            </div>
-          </a>
+        <div class="hero-visual intro-self" aria-hidden="true">
+          <div class="orbit"><span class="planet">🃏</span></div>
+          <div class="orbit o2"><span class="planet">🐧</span></div>
+          <div class="avatar"><img src="Assets/Kaan_ghibli.jpeg" alt=""></div>
+          <div class="float-chip c1">🎮 Unity <small>· C#</small></div>
+          <div class="float-chip c2">📱 1Üni <small>yayında</small></div>
         </div>
+      </div>
+      <a class="scroll-hint" href="#oyunlar" aria-label="Aşağı kaydır"></a>
+    </section>
+
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track">
+        <span>Komparsita</span><span>Garipova</span><span>Togy</span><span>1Üni</span><span>Astro Runner</span><span>Unity</span><span>C#</span><span>Android</span><span>iOS</span>
+        <span>Komparsita</span><span>Garipova</span><span>Togy</span><span>1Üni</span><span>Astro Runner</span><span>Unity</span><span>C#</span><span>Android</span><span>iOS</span>
       </div>
     </div>
 
-    <main>
-        <section id="hakkinda">
-            <h2>About</h2>
-            <p>Trying and learning new stuff.</p>
-            <a href="https://frozenduckgames9.wordpress.com">My old website</a>
-            <br><br>
-            <a href="/Assets/Kaan_Kara_CV_Eng.pdf" target="_blank" download>📄 Download My CV</a>
-        </section>
-        <section id="Hedefler">
-            <h2>Projects</h2>
-            <p><a href="/projects.html">My Projects</a></p>
-            <p><a href="./childish togy/index.html" style="display: inline-block; background: linear-gradient(135deg, #FF6B9D, #4ECDC4); color: white; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: bold; transition: transform 0.3s ease; margin-top: 10px;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">Childish Togy</a></p>
-        </section>
-        <section id="iletisim">
-            <h2>Contact</h2>
-            <p>Email: <a href="kaan.kara@yahoo.com">kaan.kara@yahoo.com</a></p>
-        </section>
+    <!-- ========== OYUNLAR ========== -->
+    <section class="section" id="oyunlar">
+      <div class="container">
+        <div class="section-head">
+          <div class="reveal">
+            <span class="eyebrow">Geliştirilenler</span>
+            <h2 class="section-title">Unity oyunlarım</h2>
+          </div>
+          <p class="section-lead reveal" style="--d:.1s">Şu an üzerinde çalıştığım üç oyun. Her birine tıklayıp ekran görüntülerine ve detaylara göz atabilirsin.</p>
+        </div>
 
-        <!-- GAMES BÖLÜMÜ -->
-        <section id="games" class="games-section">
-            <h2>Games</h2>
-            <div class="games-grid">
-                <a href="/Games/pong.html" class="game-card" aria-label="Pong">
-                    <div class="game-thumb pong-thumb" role="img" aria-hidden="true"></div>
-                    <div class="game-info">
-                        <h3>Pong</h3>
-                        <span class="btn">Play</span>
-                    </div>
-                </a>
-
-                <a href="/Games/rps.html" class="game-card" aria-label="Rock Paper Scissors">
-                    <div class="game-thumb rps-thumb" role="img" aria-hidden="true"></div>
-                    <div class="game-info">
-                        <h3>Rock • Paper • Scissors</h3>
-                        <span class="btn">Play</span>
-                    </div>
-                </a>
-
-                <a href="/Games/pong2.html" class="game-card" aria-label="Pong 2">
-                    <div class="game-thumb pong2-thumb" role="img" aria-hidden="true"></div>
-                    <div class="game-info">
-                        <h3>Pong 2</h3>
-                        <span class="btn">Play</span>
-                    </div>
-                </a>
+        <div class="games-grid">
+          <article class="game-card komparsita reveal" data-tilt>
+            <div class="game-cover cover-komparsita">
+              <span class="badge">Kapalı test</span>
+              <img src="oyunlar/komparsita/ekran-goruntuleri/ana-menu.jpeg" alt="Komparsita ana menüsü" loading="lazy">
             </div>
-        </section>
-    </main>
-    <footer style="text-align: center; padding: 10px; font-size: 14px;">
-        <p>&copy; Frozen Duck Games</p>
-        <p>Site In Progess</p>
-    </footer>
-    <!--<div id="cursorFollower">
-        <img src="Assets/Sonic_Running.gif" alt="Takip Eden Görsel" style="width: 50px; height: 50px;">
-    </div>-->
-    <div class="animated-background"></div>
-    <canvas id="stars"></canvas>
-<script src="script.js"></script> <!-- JavaScript dosyasını bağlama -->
+            <div class="game-body">
+              <h3>Komparsita</h3>
+              <p>Desteden açılacak kartı tahmin et, çarpanlarını doğru anda kullan ve rakibini puanda geç.</p>
+              <ul class="tags"><li>Kart</li><li>Çok oyunculu</li><li>Mobil</li></ul>
+              <a class="card-link stretched" href="oyunlar/komparsita/">
+                Oyunu incele
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+              </a>
+            </div>
+          </article>
+
+          <article class="game-card garipova reveal" style="--d:.1s" data-tilt>
+            <div class="game-cover">
+              <span class="badge">Geliştiriliyor</span>
+              <img src="oyunlar/garipova/ekran-goruntuleri/ana-menu.jpeg" alt="Garipova ana menüsü" loading="lazy">
+            </div>
+            <div class="game-body">
+              <h3>Garipova</h3>
+              <p>2D bir penguen, 3D bir dünyada. Arabaya atla, rampalardan uç, ovayı keşfet.</p>
+              <ul class="tags"><li>2D + 3D</li><li>Sürüş</li><li>Mobil</li></ul>
+              <a class="card-link stretched" href="oyunlar/garipova/">
+                Oyunu incele
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+              </a>
+            </div>
+          </article>
+
+          <article class="game-card togy reveal" style="--d:.2s" data-tilt>
+            <div class="game-cover cover-togy">
+              <span class="badge">Android APK</span>
+              <img src="oyunlar/togy/ikon.png" alt="Togy karakteri" loading="lazy">
+            </div>
+            <div class="game-body">
+              <h3>Togy</h3>
+              <p>Piksel sanatlı bir platform macerası: iki dünya arasında yolculuk, boss savaşları ve tarot kartları.</p>
+              <ul class="tags"><li>Piksel sanat</li><li>Platform</li><li>Android</li></ul>
+              <a class="card-link stretched" href="oyunlar/togy/">
+                Oyunu incele
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+              </a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== PROJELER ========== -->
+    <section class="section" id="projeler" style="padding-top:0">
+      <div class="container">
+        <div class="section-head">
+          <div class="reveal">
+            <span class="eyebrow">Yayında</span>
+            <h2 class="section-title">Diğer projeler</h2>
+          </div>
+          <a class="btn reveal" style="--d:.1s" href="projects.html">
+            Tüm projeler
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+
+        <div class="project-row">
+          <article class="project reveal">
+            <div class="project-thumb"><img src="Assets/1uni/AppSS/MainMenuB.jpeg" alt="1Üni uygulaması ana ekranı" loading="lazy"></div>
+            <div>
+              <h3>1Üni</h3>
+              <p>Üniversitemin öğrencileri için anketler, chatbot, sanal tur ve yemekhane listesi sunan mobil uygulama.</p>
+              <div class="btn-row">
+                <a class="btn" href="https://play.google.com/store/apps/details?id=com.frozenduckgames.oneuni" target="_blank" rel="noopener">Google Play</a>
+                <a class="btn" href="https://apps.apple.com/tr/app/1%C3%BCni/id6748721249" target="_blank" rel="noopener">App Store</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project reveal" style="--d:.1s">
+            <div class="project-thumb astro" aria-hidden="true"><span>🚀</span></div>
+            <div>
+              <h3>Astro Runner</h3>
+              <p>Farklı gezegenlerde, uzaylılar arasında koşturduğun bir endless runner oyunu.</p>
+              <div class="btn-row">
+                <a class="btn" href="https://play.google.com/store/apps/details?id=com.FrozenDuckGames.AstroRunner" target="_blank" rel="noopener">Google Play</a>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <div class="mini-games">
+          <a class="mini-game reveal" href="Games/pong.html">
+            <span class="icon" aria-hidden="true">🏓</span>
+            <span><strong>Pong</strong><small>Tarayıcıda oyna</small></span>
+            <span class="play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 4l14 8-14 8z"/></svg></span>
+          </a>
+          <a class="mini-game reveal" style="--d:.08s" href="Games/rps.html">
+            <span class="icon" aria-hidden="true">✂️</span>
+            <span><strong>Taş · Kağıt · Makas</strong><small>Tarayıcıda oyna</small></span>
+            <span class="play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 4l14 8-14 8z"/></svg></span>
+          </a>
+          <a class="mini-game reveal" style="--d:.16s" href="Games/pong2.html">
+            <span class="icon" aria-hidden="true">🕹️</span>
+            <span><strong>Pong 2</strong><small>Tarayıcıda oyna</small></span>
+            <span class="play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 4l14 8-14 8z"/></svg></span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== MAĞAZA ========== -->
+    <section class="section" id="magaza" style="padding-top:0">
+      <div class="container">
+        <div class="shop reveal reveal-zoom">
+          <div>
+            <span class="eyebrow" lang="en">Childish Togy</span>
+            <h2>Tişörtler <span class="grad-text">çok yakında</span> Shopier'de.</h2>
+            <p>Kendi tasarladığımız tişörtler Shopier mağazasına taşınıyor. Mağaza açıldığında siparişlerini doğrudan buradan verebileceksin.</p>
+            <!-- Link script.js içindeki SHOPIER_URL'den gelir -->
+            <a class="btn btn-primary" href="#magaza" data-shopier="Shopier mağazasına git" aria-disabled="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4zM3 6h18M16 10a4 4 0 0 1-8 0"/></svg>
+              <span data-label>Mağaza yakında açılıyor</span>
+            </a>
+            <p class="shop-note" data-shopier-note>Haberdar olmak için Instagram'dan takip et.</p>
+          </div>
+          <div class="tee-stack">
+            <figure><img src="Assets/magaza/tee-psp.jpg" alt="PSP baskılı siyah tişört" loading="lazy"></figure>
+            <figure><img src="Assets/magaza/tee-fih.jpg" alt="Fih baskılı beyaz tişört" loading="lazy"></figure>
+            <figure><img src="Assets/magaza/tee-flower-surf.jpg" alt="Çiçek Sörfü baskılı tişört" loading="lazy"></figure>
+            <figure><img src="Assets/magaza/tee-shiny-horse.jpg" alt="Parlak At baskılı tişört" loading="lazy"></figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== HAKKIMDA + İLETİŞİM ========== -->
+    <section class="section" id="iletisim" style="padding-top:0">
+      <div class="container about-grid">
+        <div class="panel reveal">
+          <span class="eyebrow">Hakkımda</span>
+          <h3>Denemeyi ve öğrenmeyi seviyorum.</h3>
+          <p>Frozen Duck Games adı altında Unity ile mobil oyunlar geliştiriyorum. Kart oyunundan piksel platformere, aklıma takılan her fikri oynanabilir bir şeye dönüştürmeye çalışıyorum.</p>
+          <p>Üniversitem için geliştirdiğim 1Üni uygulaması Google Play ve App Store'da yayında.</p>
+          <div class="quick-links">
+            <a href="fotogaleri.html"><strong>📸 Foto galeri</strong><small>Gezilerden kareler</small></a>
+            <a href="videogaleri.html"><strong>🎬 Video galeri</strong><small>Fortnite & FC</small></a>
+            <a href="Assets/CVturkce.pdf" target="_blank" rel="noopener"><strong>📄 CV</strong><small>Türkçe</small></a>
+            <a href="Assets/Kaan_Kara_CV_Eng.pdf" target="_blank" rel="noopener"><strong>📄 CV</strong><small>English</small></a>
+          </div>
+        </div>
+
+        <div class="panel reveal" style="--d:.1s">
+          <span class="eyebrow">İletişim</span>
+          <h3>Bir fikrin mi var? Yaz bana.</h3>
+          <a class="mail-link" href="mailto:kaan.kara@yahoo.com">kaan.kara@yahoo.com</a>
+          <div class="socials">
+            <a href="https://www.instagram.com/thekaankara/" target="_blank" rel="noopener"><img src="Assets/SocialMediaLogos/insta.avif" alt="">Instagram</a>
+            <a href="https://www.linkedin.com/in/kaan-kara-104851252/" target="_blank" rel="noopener"><img src="Assets/SocialMediaLogos/linkedin.avif" alt="">LinkedIn</a>
+            <a href="https://github.com/kaanking1907" target="_blank" rel="noopener"><img src="Assets/SocialMediaLogos/github.png" alt="">GitHub</a>
+            <a href="https://www.youtube.com/channel/UCc_2_AVpN7Ew9yPQIfsB1Kw" target="_blank" rel="noopener"><img src="Assets/SocialMediaLogos/youtube.avif" alt="">YouTube</a>
+            <a href="https://open.spotify.com/user/k6bc2aij207snalhr5kyrxyjr" target="_blank" rel="noopener"><img src="Assets/SocialMediaLogos/spoti.png" alt="">Spotify</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <span>© <span data-year>2026</span> <span class="duck">🦆</span> Frozen Duck Games</span>
+      <div class="footer-links">
+        <a href="privacyPolicy.html">1Üni Gizlilik</a>
+        <a href="privacyPolicyKomparsita.html">Komparsita Gizlilik</a>
+        <a href="https://frozenduckgames9.wordpress.com" target="_blank" rel="noopener">Eski site</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js?v=3"></script>
 </body>
 </html>

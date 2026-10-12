@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Garipova · 2D Penguen, 3D Dünya · Frozen Duck Games</title>
+  <meta name="description" content="Garipova: 2D bir penguenin 3D bir dünyada araba sürdüğü, rampalardan uçtuğu tuhaf bir keşif oyunu. Unity ile geliştiriliyor.">
+  <meta name="theme-color" content="#06060c">
+  <meta property="og:title" content="Garipova · 2D Penguen, 3D Dünya">
+  <meta property="og:image" content="https://kaankara.com.tr/oyunlar/garipova/ekran-goruntuleri/ana-menu.jpeg">
+  <link rel="icon" href="../../Assets/Kaan_ghibli.jpeg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../style.css?v=3">
+</head>
+<body class="game-page garipova">
+  <a class="skip-link" href="#icerik">İçeriğe geç</a>
+  <div class="bg-glow" aria-hidden="true"></div>
+  <canvas id="stars" aria-hidden="true"></canvas>
+
+  <header class="site-header">
+    <nav class="nav container" aria-label="Ana menü">
+      <a class="brand" href="../../index.html">
+        <img src="../../Assets/Kaan_ghibli.jpeg" alt="">
+        <span>Kaan Kara</span>
+      </a>
+      <button class="nav-toggle" aria-label="Menüyü aç" aria-expanded="false" aria-controls="nav-links"><span></span></button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="../../index.html#oyunlar" aria-current="page">Oyunlar</a></li>
+        <li><a href="../../index.html#projeler">Projeler</a></li>
+        <li><a href="../../index.html#magaza">Mağaza</a></li>
+        <li><a href="../../fotogaleri.html">Galeri</a></li>
+        <li><a href="../../index.html#iletisim">İletişim</a></li>
+        <li><a class="nav-cta" href="../../Assets/CVturkce.pdf" target="_blank" rel="noopener">CV</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="icerik">
+    <section class="game-hero">
+      <div class="container game-hero-grid wide-shot">
+        <div class="intro">
+          <a class="breadcrumb" href="../../index.html#oyunlar">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+            Tüm oyunlar
+          </a>
+          <span class="badge">Geliştiriliyor</span>
+          <h1>Garipova</h1>
+          <p class="tagline">Keşke sadece 2D ve 3D'nin karıştığı bir oyun olsa… Düz bir penguen, derinlikli bir dünyada: arabaya atla, rampalardan uç, ovanın tuhaflıklarını keşfet.</p>
+          <div class="btn-row">
+            <a class="btn btn-primary" href="#ekran-goruntuleri">Ekran görüntüleri</a>
+            <a class="btn" href="mailto:kaan.kara@yahoo.com?subject=Garipova">Haber ver bana</a>
+          </div>
+          <ul class="meta-list">
+            <li><small>Tür</small><strong>Keşif · Sürüş</strong></li>
+            <li><small>Platform</small><strong>Mobil</strong></li>
+            <li><small>Motor</small><strong>Unity</strong></li>
+            <li><small>Durum</small><strong>Yakında</strong></li>
+          </ul>
+        </div>
+        <div class="device-wrap intro-self">
+          <div class="device landscape">
+            <img src="ekran-goruntuleri/penguen.jpeg" alt="2D penguen, 3D dünyada arabanın yanında">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top:0">
+      <div class="container">
+        <div class="section-head">
+          <div class="reveal">
+            <span class="eyebrow">Oyun hakkında</span>
+            <h2 class="section-title">İki boyut, bir ova.</h2>
+          </div>
+          <p class="section-lead reveal" style="--d:.1s">Garipova'da karakterler kağıttan kesilmiş gibi düz, dünya ise tamamen üç boyutlu. Bu tezat oyunun hem görsel kimliği hem de esprisi.</p>
+        </div>
+        <div class="features">
+          <div class="feature reveal">
+            <div class="ico" aria-hidden="true">🐧</div>
+            <h3>2D karakter, 3D dünya</h3>
+            <p>Çizgi film tadındaki penguen, 3D bir haritada koşar, zıplar ve etrafı keşfeder.</p>
+          </div>
+          <div class="feature reveal" style="--d:.08s">
+            <div class="ico" aria-hidden="true">🏎️</div>
+            <h3>Arabaya bin, hız yap</h3>
+            <p>Araçlara binip inebilir, hız göstergesini zorlayarak dev çember rampalarda tur atabilirsin.</p>
+          </div>
+          <div class="feature reveal" style="--d:.16s">
+            <div class="ico" aria-hidden="true">🎒</div>
+            <h3>Envanter</h3>
+            <p>Yol boyunca bulduklarını envanterinde topla. Dokunmatik joystick ile mobil için tasarlandı.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="ekran-goruntuleri" style="padding-top:0">
+      <div class="container">
+        <div class="section-head">
+          <div class="reveal">
+            <span class="eyebrow">Galeri</span>
+            <h2 class="section-title">Ekran görüntüleri</h2>
+          </div>
+          <p class="section-lead reveal" style="--d:.1s">Büyütmek için bir görsele dokun.</p>
+        </div>
+        <div class="shots landscape">
+          <a class="shot reveal" href="ekran-goruntuleri/ana-menu.jpeg" data-gallery="garipova">
+            <img src="ekran-goruntuleri/ana-menu.jpeg" alt="Garipova ana menüsü ve penguen" loading="lazy"><span class="cap">Ana menü</span>
+          </a>
+          <a class="shot reveal" style="--d:.06s" href="ekran-goruntuleri/araba.jpeg" data-gallery="garipova">
+            <img src="ekran-goruntuleri/araba.jpeg" alt="Araba sürüşü ve hız göstergesi" loading="lazy"><span class="cap">Sürüş</span>
+          </a>
+          <a class="shot reveal" style="--d:.12s" href="ekran-goruntuleri/penguen.jpeg" data-gallery="garipova">
+            <img src="ekran-goruntuleri/penguen.jpeg" alt="Penguen 3D haritada" loading="lazy"><span class="cap">Keşif</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top:0">
+      <div class="container">
+        <div class="cta-box reveal reveal-zoom">
+          <div>
+            <h2>Garipova yolda.</h2>
+            <p>Oyun hâlâ geliştiriliyor. Test sürümü çıktığında ilk haberdar olanlardan olmak için bana yaz ya da Instagram'dan takip et.</p>
+          </div>
+          <div class="btn-row">
+            <a class="btn btn-primary" href="mailto:kaan.kara@yahoo.com?subject=Garipova">Bana yaz</a>
+            <a class="btn" href="https://www.instagram.com/thekaankara/" target="_blank" rel="noopener">Instagram</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top:0">
+      <div class="container game-nav">
+        <a href="../komparsita/"><small>← Önceki oyun</small><strong>Komparsita</strong></a>
+        <a href="../togy/"><small>Sonraki oyun →</small><strong>Togy</strong></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <span>© <span data-year>2026</span> <span class="duck">🦆</span> Frozen Duck Games</span>
+      <div class="footer-links">
+        <a href="../../index.html">Ana sayfa</a>
+        <a href="mailto:kaan.kara@yahoo.com">İletişim</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../script.js?v=3"></script>
+</body>
+</html>
