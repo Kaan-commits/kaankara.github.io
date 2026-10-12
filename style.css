@@ -666,8 +666,8 @@ p { margin: 0; }
 .game-card:hover::before { opacity: 1; }
 
 .game-card.komparsita { --c: var(--gold); }
-.game-card.garipova { --c: var(--orange); }
-.game-card.togy { --c: var(--pink); }
+.game-card.mindfield { --c: #ff4d6d; }
+.game-card.togy { --c: var(--ice); }
 
 .game-cover {
   position: relative;
@@ -691,25 +691,8 @@ p { margin: 0; }
 
 .cover-komparsita img { object-position: center 30%; }
 
-.cover-togy {
-  display: grid;
-  place-items: center;
-  background:
-    radial-gradient(circle at 50% 55%, rgba(255, 111, 174, 0.35), transparent 55%),
-    repeating-linear-gradient(0deg, rgba(255,255,255,0.03) 0 2px, transparent 2px 8px),
-    linear-gradient(160deg, #1a1033, #0b1a2b);
-}
-.cover-togy img {
-  width: 46%;
-  height: auto;
-  object-fit: contain;
-  image-rendering: pixelated;
-  animation: hop 1.4s var(--ease) infinite;
-}
-@keyframes hop {
-  0%, 100% { transform: translateY(0); }
-  40% { transform: translateY(-14%); }
-}
+.cover-mindfield img { object-position: center 38%; }
+.cover-togy img { object-position: 42% center; }
 
 .badge {
   position: absolute;
@@ -844,6 +827,7 @@ p { margin: 0; }
   gap: 16px;
   margin-top: 24px;
 }
+.mini-games--2 { grid-template-columns: repeat(2, 1fr); margin-top: 0; }
 @media (max-width: 640px) { .mini-games { grid-template-columns: 1fr; } }
 
 .mini-game {
@@ -1165,8 +1149,8 @@ p { margin: 0; }
 /* Oyun detay sayfası */
 .game-page { --accent: var(--c, var(--ice)); }
 .game-page.komparsita { --c: var(--gold); }
-.game-page.garipova { --c: var(--orange); }
-.game-page.togy { --c: var(--pink); }
+.game-page.mindfield { --c: #ff4d6d; }
+.game-page.togy { --c: var(--ice); }
 
 .game-page .bg-glow {
   background:
@@ -1265,53 +1249,6 @@ p { margin: 0; }
   background: var(--c);
   filter: blur(80px);
   opacity: 0.25;
-}
-
-.pixel-stage {
-  position: relative;
-  aspect-ratio: 1;
-  width: min(420px, 80vw);
-  margin: 0 auto;
-  display: grid;
-  place-items: center;
-  border-radius: 28px;
-  border: 1px solid var(--border-strong);
-  overflow: hidden;
-  background:
-    linear-gradient(180deg, transparent 72%, rgba(72, 224, 160, 0.25) 72%, rgba(72, 224, 160, 0.25) 74%, rgba(20, 14, 40, 0.9) 74%),
-    radial-gradient(circle at 70% 25%, rgba(255, 220, 160, 0.4) 0 6%, transparent 7%),
-    linear-gradient(180deg, #2a1650, #10203a);
-}
-.pixel-stage::before,
-.pixel-stage::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  width: 200%;
-  height: 26%;
-  bottom: 26%;
-  background:
-    radial-gradient(60px 40px at 10% 100%, rgba(139, 108, 255, 0.35) 98%, transparent),
-    radial-gradient(90px 60px at 30% 100%, rgba(139, 108, 255, 0.3) 98%, transparent),
-    radial-gradient(70px 50px at 55% 100%, rgba(139, 108, 255, 0.35) 98%, transparent),
-    radial-gradient(100px 70px at 80% 100%, rgba(139, 108, 255, 0.3) 98%, transparent);
-  animation: parallax 14s linear infinite;
-}
-.pixel-stage::after {
-  height: 16%;
-  opacity: 0.6;
-  animation-duration: 8s;
-  filter: hue-rotate(60deg);
-}
-@keyframes parallax { to { transform: translateX(-50%); } }
-
-.pixel-stage img {
-  position: relative;
-  z-index: 1;
-  width: 42%;
-  margin-top: 4%;
-  image-rendering: pixelated;
-  animation: hop 1.2s var(--ease) infinite;
 }
 
 /* Özellik kutuları */
@@ -1441,14 +1378,26 @@ p { margin: 0; }
   font-weight: 700;
 }
 
+/* Tuzak tablosu (Mindfield) */
+.trap-table td small { display: block; margin-top: 2px; color: var(--muted); font-size: 0.86rem; }
+.trap-table td strong { font-family: var(--font-display); }
+.trap-table .dot { display: inline-block; width: 10px; height: 10px; margin-right: 10px; border-radius: 3px; }
+
 /* Ekran görüntüsü galerisi */
 .shots {
   display: grid;
   gap: 18px;
 }
-.shots.portrait { grid-template-columns: repeat(4, 1fr); }
+.shots.portrait {
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(160px, 1fr);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 8px 2px 12px;
+  scrollbar-width: thin;
+}
+.shots.portrait .shot { scroll-snap-align: start; }
 .shots.landscape { grid-template-columns: repeat(2, 1fr); }
-.shots.landscape .shot:first-child { grid-column: 1 / -1; }
 
 .shot {
   display: block;
@@ -1481,8 +1430,6 @@ p { margin: 0; }
 
 @media (max-width: 760px) {
   .shots.portrait {
-    grid-template-columns: none;
-    grid-auto-flow: column;
     grid-auto-columns: 62%;
     overflow-x: auto;
     scroll-snap-type: x mandatory;

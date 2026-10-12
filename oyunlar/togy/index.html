@@ -7,12 +7,12 @@
   <meta name="description" content="Togy: iki dünya arasında geçen, boss savaşları ve tarot kartlarıyla şekillenen piksel sanatlı bir platform macerası. Android APK olarak denenebilir.">
   <meta name="theme-color" content="#06060c">
   <meta property="og:title" content="Togy · Piksel Platform Macerası">
-  <meta property="og:image" content="https://kaankara.com.tr/oyunlar/togy/ikon.png">
+  <meta property="og:image" content="https://kaankara.com.tr/oyunlar/togy/ekran-goruntuleri/orman.jpg">
   <link rel="icon" href="ikon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../../style.css?v=3">
+  <link rel="stylesheet" href="../../style.css?v=4">
 </head>
 <body class="game-page togy">
   <a class="skip-link" href="#icerik"><span data-i18n="nav.skip">İçeriğe geç</span></a>
@@ -40,7 +40,7 @@
 
   <main id="icerik">
     <section class="game-hero">
-      <div class="container game-hero-grid">
+      <div class="container game-hero-grid wide-shot">
         <div class="intro">
           <a class="breadcrumb" href="../../index.html#oyunlar">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
@@ -64,8 +64,8 @@
           </ul>
         </div>
         <div class="device-wrap intro-self">
-          <div class="pixel-stage">
-            <img src="ikon.png" alt="Togy'nin piksel sanat karakteri koşarken">
+          <div class="device landscape">
+            <img src="ekran-goruntuleri/orman.jpg" alt="Togy pikselli ormanda: huh? ben nerdeyim burası da neresi?">
           </div>
         </div>
       </div>
@@ -122,21 +122,21 @@
             <span class="eyebrow"><span data-i18n="nav.gallery">Galeri</span></span>
             <h2 class="section-title"><span data-i18n="game.shots">Ekran görüntüleri</span></h2>
           </div>
+          <p class="section-lead reveal" style="--d:.1s"><span data-i18n="game.tap">Büyütmek için bir görsele dokun.</span></p>
         </div>
-        <!--
-          Ekran görüntülerini "oyunlar/togy/ekran-goruntuleri/" klasörüne koyup
-          aşağıdaki boş kutu yerine şöyle ekleyebilirsin (yatay görüntüler için "landscape"):
-
-          <div class="shots landscape">
-            <a class="shot reveal" href="ekran-goruntuleri/1.jpeg" data-gallery="togy">
-              <img src="ekran-goruntuleri/1.jpeg" alt="Açıklama" loading="lazy"><span class="cap">Başlık</span>
-            </a>
-          </div>
-        -->
-        <div class="shots-empty reveal">
-          <span class="big" aria-hidden="true">📸</span>
-          <strong><span data-i18n="togy.noshots">Ekran görüntüleri çok yakında</span></strong>
-          <span><span data-i18n="togy.noshotsp">O zamana kadar APK'yı indirip kendin görebilirsin.</span></span>
+        <div class="shots landscape">
+          <a class="shot reveal" href="ekran-goruntuleri/orman.jpg" data-gallery="togy">
+            <img src="ekran-goruntuleri/orman.jpg" alt="Togy ormanda uyanıyor" loading="lazy"><span class="cap"><span data-i18n="togy.c1">Orman</span></span>
+          </a>
+          <a class="shot reveal" style="--d:.06s" href="ekran-goruntuleri/karsilasma.jpg" data-gallery="togy">
+            <img src="ekran-goruntuleri/karsilasma.jpg" alt="Togy ağaçların altında bir köylüyle karşılaşıyor" loading="lazy"><span class="cap"><span data-i18n="togy.c2">Karşılaşma</span></span>
+          </a>
+          <a class="shot reveal" style="--d:.12s" href="ekran-goruntuleri/diyalog.jpg" data-gallery="togy">
+            <img src="ekran-goruntuleri/diyalog.jpg" alt="Diyalog: Evet istanbul. Çok mu uzak?" loading="lazy"><span class="cap"><span data-i18n="togy.f4">Diyaloglar</span></span>
+          </a>
+          <a class="shot reveal" style="--d:.18s" href="ekran-goruntuleri/ana-menu.jpg" data-gallery="togy">
+            <img src="ekran-goruntuleri/ana-menu.jpg" alt="Togy ana menüsü" loading="lazy"><span class="cap"><span data-i18n="game.mainmenu">Ana menü</span></span>
+          </a>
         </div>
       </div>
     </section>
@@ -158,7 +158,7 @@
 
     <section class="section" style="padding-top:0">
       <div class="container game-nav">
-        <a href="../garipova/"><small><span data-i18n="game.prev">← Önceki oyun</span></small><strong>Garipova</strong></a>
+        <a href="../mindfield/"><small><span data-i18n="game.prev">← Önceki oyun</span></small><strong>Mindfield</strong></a>
         <a href="../komparsita/"><small><span data-i18n="game.next">Sonraki oyun →</span></small><strong>Komparsita</strong></a>
       </div>
     </section>
@@ -174,8 +174,8 @@
     </div>
   </footer>
 
-  <script src="../../i18n.js?v=1"></script>
+  <script src="../../i18n.js?v=2"></script>
 
-  <script src="../../script.js?v=3"></script>
+  <script src="../../script.js?v=4"></script>
 </body>
 </html>
