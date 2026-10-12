@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Garipova · 2D Penguen, 3D Dünya · Frozen Duck Games</title>
+  <title data-i18n="title.gari">Garipova · 2D Penguen, 3D Dünya · Frozen Duck Games</title>
   <meta name="description" content="Garipova: 2D bir penguenin 3D bir dünyada araba sürdüğü, rampalardan uçtuğu tuhaf bir keşif oyunu. Unity ile geliştiriliyor.">
   <meta name="theme-color" content="#06060c">
   <meta property="og:title" content="Garipova · 2D Penguen, 3D Dünya">
@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="../../style.css?v=3">
 </head>
 <body class="game-page garipova">
-  <a class="skip-link" href="#icerik">İçeriğe geç</a>
+  <a class="skip-link" href="#icerik"><span data-i18n="nav.skip">İçeriğe geç</span></a>
   <div class="bg-glow" aria-hidden="true"></div>
   <canvas id="stars" aria-hidden="true"></canvas>
 
@@ -25,14 +25,15 @@
         <img src="../../Assets/Kaan_ghibli.jpeg" alt="">
         <span>Kaan Kara</span>
       </a>
-      <button class="nav-toggle" aria-label="Menüyü aç" aria-expanded="false" aria-controls="nav-links"><span></span></button>
+      <button class="nav-toggle" aria-label="Menüyü aç" data-i18n-aria="nav.menu" aria-expanded="false" aria-controls="nav-links"><span></span></button>
       <ul class="nav-links" id="nav-links">
-        <li><a href="../../index.html#oyunlar" aria-current="page">Oyunlar</a></li>
-        <li><a href="../../index.html#projeler">Projeler</a></li>
-        <li><a href="../../index.html#magaza">Mağaza</a></li>
-        <li><a href="../../fotogaleri.html">Galeri</a></li>
-        <li><a href="../../index.html#iletisim">İletişim</a></li>
-        <li><a class="nav-cta" href="../../Assets/CVturkce.pdf" target="_blank" rel="noopener">CV</a></li>
+        <li><a href="../../index.html#oyunlar" aria-current="page"><span data-i18n="nav.games">Oyunlar</span></a></li>
+        <li><a href="../../index.html#projeler"><span data-i18n="nav.projects">Projeler</span></a></li>
+        <li><a href="../../index.html#magaza"><span data-i18n="nav.shop">Mağaza</span></a></li>
+        <li><a href="../../fotogaleri.html"><span data-i18n="nav.gallery">Galeri</span></a></li>
+        <li><a href="../../index.html#iletisim"><span data-i18n="nav.contact">İletişim</span></a></li>
+        <li><button class="lang-toggle" type="button" data-lang-toggle>EN</button></li>
+        <li><a class="nav-cta" href="../../Assets/CVturkce.pdf" data-href-en="../../Assets/Kaan_Kara_CV_Eng.pdf" target="_blank" rel="noopener">CV</a></li>
       </ul>
     </nav>
   </header>
@@ -43,20 +44,20 @@
         <div class="intro">
           <a class="breadcrumb" href="../../index.html#oyunlar">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-            Tüm oyunlar
+            <span data-i18n="game.all">Tüm oyunlar</span>
           </a>
-          <span class="badge">Geliştiriliyor</span>
+          <span class="badge"><span data-i18n="badge.dev">Geliştiriliyor</span></span>
           <h1>Garipova</h1>
-          <p class="tagline">Keşke sadece 2D ve 3D'nin karıştığı bir oyun olsa… Düz bir penguen, derinlikli bir dünyada: arabaya atla, rampalardan uç, ovanın tuhaflıklarını keşfet.</p>
+          <p class="tagline"><span data-i18n="gari.tagline">Keşke sadece 2D ve 3D'nin karıştığı bir oyun olsa… Düz bir penguen, derinlikli bir dünyada: arabaya atla, rampalardan uç, ovanın tuhaflıklarını keşfet.</span></p>
           <div class="btn-row">
-            <a class="btn btn-primary" href="#ekran-goruntuleri">Ekran görüntüleri</a>
-            <a class="btn" href="mailto:kaan.kara@yahoo.com?subject=Garipova">Haber ver bana</a>
+            <a class="btn btn-primary" href="#ekran-goruntuleri"><span data-i18n="game.shots">Ekran görüntüleri</span></a>
+            <a class="btn" href="mailto:kaan.kara@yahoo.com?subject=Garipova"><span data-i18n="gari.notify">Haber ver bana</span></a>
           </div>
           <ul class="meta-list">
-            <li><small>Tür</small><strong>Keşif · Sürüş</strong></li>
-            <li><small>Platform</small><strong>Mobil</strong></li>
-            <li><small>Motor</small><strong>Unity</strong></li>
-            <li><small>Durum</small><strong>Yakında</strong></li>
+            <li><small><span data-i18n="game.genre">Tür</span></small><strong><span data-i18n="gari.genre">Keşif · Sürüş</span></strong></li>
+            <li><small>Platform</small><strong><span data-i18n="tag.mobile">Mobil</span></strong></li>
+            <li><small><span data-i18n="game.engine">Motor</span></small><strong>Unity</strong></li>
+            <li><small><span data-i18n="game.status">Durum</span></small><strong><span data-i18n="game.soon">Yakında</span></strong></li>
           </ul>
         </div>
         <div class="device-wrap intro-self">
@@ -71,26 +72,26 @@
       <div class="container">
         <div class="section-head">
           <div class="reveal">
-            <span class="eyebrow">Oyun hakkında</span>
-            <h2 class="section-title">İki boyut, bir ova.</h2>
+            <span class="eyebrow"><span data-i18n="game.about">Oyun hakkında</span></span>
+            <h2 class="section-title"><span data-i18n="gari.h2">İki boyut, bir ova.</span></h2>
           </div>
-          <p class="section-lead reveal" style="--d:.1s">Garipova'da karakterler kağıttan kesilmiş gibi düz, dünya ise tamamen üç boyutlu. Bu tezat oyunun hem görsel kimliği hem de esprisi.</p>
+          <p class="section-lead reveal" style="--d:.1s"><span data-i18n="gari.lead">Garipova'da karakterler kağıttan kesilmiş gibi düz, dünya ise tamamen üç boyutlu. Bu tezat oyunun hem görsel kimliği hem de esprisi.</span></p>
         </div>
         <div class="features">
           <div class="feature reveal">
             <div class="ico" aria-hidden="true">🐧</div>
-            <h3>2D karakter, 3D dünya</h3>
-            <p>Çizgi film tadındaki penguen, 3D bir haritada koşar, zıplar ve etrafı keşfeder.</p>
+            <h3><span data-i18n="gari.f1">2D karakter, 3D dünya</span></h3>
+            <p><span data-i18n="gari.f1p">Çizgi film tadındaki penguen, 3D bir haritada koşar, zıplar ve etrafı keşfeder.</span></p>
           </div>
           <div class="feature reveal" style="--d:.08s">
             <div class="ico" aria-hidden="true">🏎️</div>
-            <h3>Arabaya bin, hız yap</h3>
-            <p>Araçlara binip inebilir, hız göstergesini zorlayarak dev çember rampalarda tur atabilirsin.</p>
+            <h3><span data-i18n="gari.f2">Arabaya bin, hız yap</span></h3>
+            <p><span data-i18n="gari.f2p">Araçlara binip inebilir, hız göstergesini zorlayarak dev çember rampalarda tur atabilirsin.</span></p>
           </div>
           <div class="feature reveal" style="--d:.16s">
             <div class="ico" aria-hidden="true">🎒</div>
-            <h3>Envanter</h3>
-            <p>Yol boyunca bulduklarını envanterinde topla. Dokunmatik joystick ile mobil için tasarlandı.</p>
+            <h3><span data-i18n="gari.f3">Envanter</span></h3>
+            <p><span data-i18n="gari.f3p">Yol boyunca bulduklarını envanterinde topla. Dokunmatik joystick ile mobil için tasarlandı.</span></p>
           </div>
         </div>
       </div>
@@ -100,20 +101,20 @@
       <div class="container">
         <div class="section-head">
           <div class="reveal">
-            <span class="eyebrow">Galeri</span>
-            <h2 class="section-title">Ekran görüntüleri</h2>
+            <span class="eyebrow"><span data-i18n="nav.gallery">Galeri</span></span>
+            <h2 class="section-title"><span data-i18n="game.shots">Ekran görüntüleri</span></h2>
           </div>
-          <p class="section-lead reveal" style="--d:.1s">Büyütmek için bir görsele dokun.</p>
+          <p class="section-lead reveal" style="--d:.1s"><span data-i18n="game.tap">Büyütmek için bir görsele dokun.</span></p>
         </div>
         <div class="shots landscape">
           <a class="shot reveal" href="ekran-goruntuleri/ana-menu.jpeg" data-gallery="garipova">
-            <img src="ekran-goruntuleri/ana-menu.jpeg" alt="Garipova ana menüsü ve penguen" loading="lazy"><span class="cap">Ana menü</span>
+            <img src="ekran-goruntuleri/ana-menu.jpeg" alt="Garipova ana menüsü ve penguen" loading="lazy"><span class="cap"><span data-i18n="game.mainmenu">Ana menü</span></span>
           </a>
           <a class="shot reveal" style="--d:.06s" href="ekran-goruntuleri/araba.jpeg" data-gallery="garipova">
-            <img src="ekran-goruntuleri/araba.jpeg" alt="Araba sürüşü ve hız göstergesi" loading="lazy"><span class="cap">Sürüş</span>
+            <img src="ekran-goruntuleri/araba.jpeg" alt="Araba sürüşü ve hız göstergesi" loading="lazy"><span class="cap"><span data-i18n="tag.driving">Sürüş</span></span>
           </a>
           <a class="shot reveal" style="--d:.12s" href="ekran-goruntuleri/penguen.jpeg" data-gallery="garipova">
-            <img src="ekran-goruntuleri/penguen.jpeg" alt="Penguen 3D haritada" loading="lazy"><span class="cap">Keşif</span>
+            <img src="ekran-goruntuleri/penguen.jpeg" alt="Penguen 3D haritada" loading="lazy"><span class="cap"><span data-i18n="gari.c3">Keşif</span></span>
           </a>
         </div>
       </div>
@@ -123,11 +124,11 @@
       <div class="container">
         <div class="cta-box reveal reveal-zoom">
           <div>
-            <h2>Garipova yolda.</h2>
-            <p>Oyun hâlâ geliştiriliyor. Test sürümü çıktığında ilk haberdar olanlardan olmak için bana yaz ya da Instagram'dan takip et.</p>
+            <h2><span data-i18n="gari.cta">Garipova yolda.</span></h2>
+            <p><span data-i18n="gari.ctap">Oyun hâlâ geliştiriliyor. Test sürümü çıktığında ilk haberdar olanlardan olmak için bana yaz ya da Instagram'dan takip et.</span></p>
           </div>
           <div class="btn-row">
-            <a class="btn btn-primary" href="mailto:kaan.kara@yahoo.com?subject=Garipova">Bana yaz</a>
+            <a class="btn btn-primary" href="mailto:kaan.kara@yahoo.com?subject=Garipova"><span data-i18n="game.write">Bana yaz</span></a>
             <a class="btn" href="https://www.instagram.com/thekaankara/" target="_blank" rel="noopener">Instagram</a>
           </div>
         </div>
@@ -136,8 +137,8 @@
 
     <section class="section" style="padding-top:0">
       <div class="container game-nav">
-        <a href="../komparsita/"><small>← Önceki oyun</small><strong>Komparsita</strong></a>
-        <a href="../togy/"><small>Sonraki oyun →</small><strong>Togy</strong></a>
+        <a href="../komparsita/"><small><span data-i18n="game.prev">← Önceki oyun</span></small><strong>Komparsita</strong></a>
+        <a href="../togy/"><small><span data-i18n="game.next">Sonraki oyun →</span></small><strong>Togy</strong></a>
       </div>
     </section>
   </main>
@@ -146,11 +147,13 @@
     <div class="container">
       <span>© <span data-year>2026</span> <span class="duck">🦆</span> Frozen Duck Games</span>
       <div class="footer-links">
-        <a href="../../index.html">Ana sayfa</a>
-        <a href="mailto:kaan.kara@yahoo.com">İletişim</a>
+        <a href="../../index.html"><span data-i18n="nav.home">Ana sayfa</span></a>
+        <a href="mailto:kaan.kara@yahoo.com"><span data-i18n="nav.contact">İletişim</span></a>
       </div>
     </div>
   </footer>
+
+  <script src="../../i18n.js?v=1"></script>
 
   <script src="../../script.js?v=3"></script>
 </body>

@@ -13,11 +13,11 @@
   <link rel="icon" href="Assets/Kaan_ghibli.jpeg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Pixelify+Sans:wght@700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css?v=3">
 </head>
 <body>
-  <a class="skip-link" href="#icerik">İçeriğe geç</a>
+  <a class="skip-link" href="#icerik"><span data-i18n="nav.skip">İçeriğe geç</span></a>
   <div class="bg-glow" aria-hidden="true"></div>
   <canvas id="stars" aria-hidden="true"></canvas>
 
@@ -27,14 +27,15 @@
         <img src="Assets/Kaan_ghibli.jpeg" alt="">
         <span>Kaan Kara</span>
       </a>
-      <button class="nav-toggle" aria-label="Menüyü aç" aria-expanded="false" aria-controls="nav-links"><span></span></button>
+      <button class="nav-toggle" aria-label="Menüyü aç" data-i18n-aria="nav.menu" aria-expanded="false" aria-controls="nav-links"><span></span></button>
       <ul class="nav-links" id="nav-links">
-        <li><a href="#oyunlar">Oyunlar</a></li>
-        <li><a href="#projeler">Projeler</a></li>
-        <li><a href="#magaza">Mağaza</a></li>
-        <li><a href="fotogaleri.html">Galeri</a></li>
-        <li><a href="#iletisim">İletişim</a></li>
-        <li><a class="nav-cta" href="Assets/CVturkce.pdf" target="_blank" rel="noopener">CV</a></li>
+        <li><a href="#oyunlar"><span data-i18n="nav.games">Oyunlar</span></a></li>
+        <li><a href="#projeler"><span data-i18n="nav.projects">Projeler</span></a></li>
+        <li><a href="#magaza"><span data-i18n="nav.shop">Mağaza</span></a></li>
+        <li><a href="fotogaleri.html"><span data-i18n="nav.gallery">Galeri</span></a></li>
+        <li><a href="#iletisim"><span data-i18n="nav.contact">İletişim</span></a></li>
+        <li><button class="lang-toggle" type="button" data-lang-toggle>EN</button></li>
+        <li><a class="nav-cta" href="Assets/CVturkce.pdf" data-href-en="Assets/Kaan_Kara_CV_Eng.pdf" target="_blank" rel="noopener">CV</a></li>
       </ul>
     </nav>
   </header>
@@ -44,20 +45,20 @@
     <section class="hero">
       <div class="container hero-grid">
         <div class="intro">
-          <div class="status-pill"><span class="dot"></span> Şu an 3 Unity oyunu üzerinde çalışıyorum</div>
-          <h1>Merhaba, ben <span class="grad-text">Kaan</span>.</h1>
+          <div class="status-pill"><span class="dot"></span> <span data-i18n="home.status">Şu an 3 Unity oyunu üzerinde çalışıyorum</span></div>
+          <h1><span data-i18n="home.h1">Merhaba, ben <span class="grad-text">Kaan</span>.</span></h1>
           <p class="hero-sub">
-            <strong>Frozen Duck Games</strong> çatısı altında geliştiriyorum:
-            <span class="typed-line"><span class="typed" data-typed="Unity oyunları|mobil uygulamalar|piksel dünyalar|tuhaf fikirler">Unity oyunları</span></span>
+            <span data-i18n="home.sub"><strong>Frozen Duck Games</strong> çatısı altında geliştiriyorum:</span>
+            <span class="typed-line"><span class="typed" data-typed="Unity oyunları|mobil uygulamalar|piksel dünyalar|tuhaf fikirler" data-typed-en="Unity games|mobile apps|pixel worlds|weird ideas"><span data-i18n="proj.unity">Unity oyunları</span></span></span>
           </p>
           <div class="btn-row">
             <a class="btn btn-primary" href="#oyunlar">
-              Oyunlarımı keşfet
+              <span data-i18n="home.explore">Oyunlarımı keşfet</span>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
             </a>
-            <a class="btn" href="Assets/CVturkce.pdf" target="_blank" rel="noopener">
+            <a class="btn" href="Assets/CVturkce.pdf" data-href-en="Assets/Kaan_Kara_CV_Eng.pdf" target="_blank" rel="noopener">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
-              CV indir
+              <span data-i18n="home.cv">CV indir</span>
             </a>
           </div>
         </div>
@@ -67,7 +68,7 @@
           <div class="orbit o2"><span class="planet">🐧</span></div>
           <div class="avatar"><img src="Assets/Kaan_ghibli.jpeg" alt=""></div>
           <div class="float-chip c1">🎮 Unity <small>· C#</small></div>
-          <div class="float-chip c2">📱 1Üni <small>yayında</small></div>
+          <div class="float-chip c2">📱 1Üni <small><span data-i18n="home.live">yayında</span></small></div>
         </div>
       </div>
       <a class="scroll-hint" href="#oyunlar" aria-label="Aşağı kaydır"></a>
@@ -85,24 +86,24 @@
       <div class="container">
         <div class="section-head">
           <div class="reveal">
-            <span class="eyebrow">Geliştirilenler</span>
-            <h2 class="section-title">Unity oyunlarım</h2>
+            <span class="eyebrow"><span data-i18n="home.wip">Geliştirilenler</span></span>
+            <h2 class="section-title"><span data-i18n="home.games">Unity oyunlarım</span></h2>
           </div>
-          <p class="section-lead reveal" style="--d:.1s">Şu an üzerinde çalıştığım üç oyun. Her birine tıklayıp ekran görüntülerine ve detaylara göz atabilirsin.</p>
+          <p class="section-lead reveal" style="--d:.1s"><span data-i18n="home.games.lead">Şu an üzerinde çalıştığım üç oyun. Her birine tıklayıp ekran görüntülerine ve detaylara göz atabilirsin.</span></p>
         </div>
 
         <div class="games-grid">
           <article class="game-card komparsita reveal" data-tilt>
             <div class="game-cover cover-komparsita">
-              <span class="badge">Kapalı test</span>
+              <span class="badge"><span data-i18n="badge.beta">Kapalı test</span></span>
               <img src="oyunlar/komparsita/ekran-goruntuleri/ana-menu.jpeg" alt="Komparsita ana menüsü" loading="lazy">
             </div>
             <div class="game-body">
               <h3>Komparsita</h3>
-              <p>Desteden açılacak kartı tahmin et, çarpanlarını doğru anda kullan ve rakibini puanda geç.</p>
-              <ul class="tags"><li>Kart</li><li>Çok oyunculu</li><li>Mobil</li></ul>
+              <p><span data-i18n="komp.short">Desteden açılacak kartı tahmin et, çarpanlarını doğru anda kullan ve rakibini puanda geç.</span></p>
+              <ul class="tags"><li><span data-i18n="tag.cards">Kart</span></li><li><span data-i18n="tag.multi">Çok oyunculu</span></li><li><span data-i18n="tag.mobile">Mobil</span></li></ul>
               <a class="card-link stretched" href="oyunlar/komparsita/">
-                Oyunu incele
+                <span data-i18n="card.view">Oyunu incele</span>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
               </a>
             </div>
@@ -110,15 +111,15 @@
 
           <article class="game-card garipova reveal" style="--d:.1s" data-tilt>
             <div class="game-cover">
-              <span class="badge">Geliştiriliyor</span>
+              <span class="badge"><span data-i18n="badge.dev">Geliştiriliyor</span></span>
               <img src="oyunlar/garipova/ekran-goruntuleri/ana-menu.jpeg" alt="Garipova ana menüsü" loading="lazy">
             </div>
             <div class="game-body">
               <h3>Garipova</h3>
-              <p>2D bir penguen, 3D bir dünyada. Arabaya atla, rampalardan uç, ovayı keşfet.</p>
-              <ul class="tags"><li>2D + 3D</li><li>Sürüş</li><li>Mobil</li></ul>
+              <p><span data-i18n="gari.short">2D bir penguen, 3D bir dünyada. Arabaya atla, rampalardan uç, ovayı keşfet.</span></p>
+              <ul class="tags"><li>2D + 3D</li><li><span data-i18n="tag.driving">Sürüş</span></li><li><span data-i18n="tag.mobile">Mobil</span></li></ul>
               <a class="card-link stretched" href="oyunlar/garipova/">
-                Oyunu incele
+                <span data-i18n="card.view">Oyunu incele</span>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
               </a>
             </div>
@@ -131,10 +132,10 @@
             </div>
             <div class="game-body">
               <h3>Togy</h3>
-              <p>Piksel sanatlı bir platform macerası: iki dünya arasında yolculuk, boss savaşları ve tarot kartları.</p>
-              <ul class="tags"><li>Piksel sanat</li><li>Platform</li><li>Android</li></ul>
+              <p><span data-i18n="togy.short">Piksel sanatlı bir platform macerası: iki dünya arasında yolculuk, boss savaşları ve tarot kartları.</span></p>
+              <ul class="tags"><li><span data-i18n="tag.pixel">Piksel sanat</span></li><li>Platform</li><li>Android</li></ul>
               <a class="card-link stretched" href="oyunlar/togy/">
-                Oyunu incele
+                <span data-i18n="card.view">Oyunu incele</span>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
               </a>
             </div>
@@ -143,16 +144,31 @@
       </div>
     </section>
 
+    <!-- ========== DUCK STRIKE ========== -->
+    <section class="section" id="duck-strike" style="padding-top:0">
+      <div class="container">
+        <a class="ds-banner reveal reveal-zoom" href="Games/duck-strike/">
+          <div class="ds-art" aria-hidden="true"><svg class="ds-duck" viewBox="0 0 24 18" shape-rendering="crispEdges" aria-hidden="true"><rect x="3" y="4" width="10" height="10" fill="#8a6a10"/><rect x="2" y="5" width="12" height="8" fill="#8a6a10"/><rect x="4" y="5" width="8" height="8" fill="#ffd23f"/><rect x="3" y="6" width="10" height="6" fill="#ffd23f"/><rect x="5" y="6" width="3" height="2" fill="#ffe680"/><rect x="10" y="7" width="5" height="4" fill="#fff3a8"/><rect x="13" y="7" width="1" height="1" fill="#111"/><rect x="13" y="10" width="1" height="1" fill="#111"/><rect x="15" y="8" width="3" height="2" fill="#ff9a1f"/><rect x="9" y="13" width="13" height="2" fill="#222"/><rect x="9" y="13" width="3" height="3" fill="#6b4a2b"/></svg><span class="ds-shot"></span></div>
+          <div class="ds-copy">
+            <span class="eyebrow"><span data-i18n="ds.banner.eyebrow">Yeni · Tarayıcıda online</span></span>
+            <h2>Duck Strike</h2>
+            <p><span data-i18n="ds.banner.text">Oda kur, kodu arkadaşlarına gönder, piksel ördeklerle kapış. Tüfek, tabanca ve bıçak; telefonda da çalışır. İndirme yok.</span></p>
+            <span class="btn btn-primary"><span data-i18n="ds.banner.btn">Hemen oyna</span> <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 4l14 8-14 8z"/></svg></span>
+          </div>
+        </a>
+      </div>
+    </section>
+
     <!-- ========== PROJELER ========== -->
     <section class="section" id="projeler" style="padding-top:0">
       <div class="container">
         <div class="section-head">
           <div class="reveal">
-            <span class="eyebrow">Yayında</span>
-            <h2 class="section-title">Diğer projeler</h2>
+            <span class="eyebrow"><span data-i18n="home.released">Yayında</span></span>
+            <h2 class="section-title"><span data-i18n="home.other">Diğer projeler</span></h2>
           </div>
           <a class="btn reveal" style="--d:.1s" href="projects.html">
-            Tüm projeler
+            <span data-i18n="home.allprojects">Tüm projeler</span>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
           </a>
         </div>
@@ -162,7 +178,7 @@
             <div class="project-thumb"><img src="Assets/1uni/AppSS/MainMenuB.jpeg" alt="1Üni uygulaması ana ekranı" loading="lazy"></div>
             <div>
               <h3>1Üni</h3>
-              <p>Üniversitemin öğrencileri için anketler, chatbot, sanal tur ve yemekhane listesi sunan mobil uygulama.</p>
+              <p><span data-i18n="uni.short">Üniversitemin öğrencileri için anketler, chatbot, sanal tur ve yemekhane listesi sunan mobil uygulama.</span></p>
               <div class="btn-row">
                 <a class="btn" href="https://play.google.com/store/apps/details?id=com.frozenduckgames.oneuni" target="_blank" rel="noopener">Google Play</a>
                 <a class="btn" href="https://apps.apple.com/tr/app/1%C3%BCni/id6748721249" target="_blank" rel="noopener">App Store</a>
@@ -174,7 +190,7 @@
             <div class="project-thumb astro" aria-hidden="true"><span>🚀</span></div>
             <div>
               <h3>Astro Runner</h3>
-              <p>Farklı gezegenlerde, uzaylılar arasında koşturduğun bir endless runner oyunu.</p>
+              <p><span data-i18n="astro.short">Farklı gezegenlerde, uzaylılar arasında koşturduğun bir endless runner oyunu.</span></p>
               <div class="btn-row">
                 <a class="btn" href="https://play.google.com/store/apps/details?id=com.FrozenDuckGames.AstroRunner" target="_blank" rel="noopener">Google Play</a>
               </div>
@@ -185,17 +201,17 @@
         <div class="mini-games">
           <a class="mini-game reveal" href="Games/pong.html">
             <span class="icon" aria-hidden="true">🏓</span>
-            <span><strong>Pong</strong><small>Tarayıcıda oyna</small></span>
+            <span><strong>Pong</strong><small><span data-i18n="mini.play">Tarayıcıda oyna</span></small></span>
             <span class="play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 4l14 8-14 8z"/></svg></span>
           </a>
           <a class="mini-game reveal" style="--d:.08s" href="Games/rps.html">
             <span class="icon" aria-hidden="true">✂️</span>
-            <span><strong>Taş · Kağıt · Makas</strong><small>Tarayıcıda oyna</small></span>
+            <span><strong><span data-i18n="mini.rps">Taş · Kağıt · Makas</span></strong><small><span data-i18n="mini.play">Tarayıcıda oyna</span></small></span>
             <span class="play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 4l14 8-14 8z"/></svg></span>
           </a>
           <a class="mini-game reveal" style="--d:.16s" href="Games/pong2.html">
             <span class="icon" aria-hidden="true">🕹️</span>
-            <span><strong>Pong 2</strong><small>Tarayıcıda oyna</small></span>
+            <span><strong>Pong 2</strong><small><span data-i18n="mini.play">Tarayıcıda oyna</span></small></span>
             <span class="play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 4l14 8-14 8z"/></svg></span>
           </a>
         </div>
@@ -208,14 +224,14 @@
         <div class="shop reveal reveal-zoom">
           <div>
             <span class="eyebrow" lang="en">Childish Togy</span>
-            <h2>Tişörtler <span class="grad-text">çok yakında</span> Shopier'de.</h2>
-            <p>Kendi tasarladığımız tişörtler Shopier mağazasına taşınıyor. Mağaza açıldığında siparişlerini doğrudan buradan verebileceksin.</p>
+            <h2><span data-i18n="shop.title">Tişörtler <span class="grad-text">çok yakında</span> Shopier'de.</span></h2>
+            <p><span data-i18n="shop.text">Kendi tasarladığımız tişörtler Shopier mağazasına taşınıyor. Mağaza açıldığında siparişlerini doğrudan buradan verebileceksin.</span></p>
             <!-- Link script.js içindeki SHOPIER_URL'den gelir -->
             <a class="btn btn-primary" href="#magaza" data-shopier="Shopier mağazasına git" aria-disabled="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4zM3 6h18M16 10a4 4 0 0 1-8 0"/></svg>
-              <span data-label>Mağaza yakında açılıyor</span>
+              <span data-label><span data-i18n="shop.btn">Mağaza yakında açılıyor</span></span>
             </a>
-            <p class="shop-note" data-shopier-note>Haberdar olmak için Instagram'dan takip et.</p>
+            <p class="shop-note" data-shopier-note><span data-i18n="shop.note">Haberdar olmak için Instagram'dan takip et.</span></p>
           </div>
           <div class="tee-stack">
             <figure><img src="Assets/magaza/tee-psp.jpg" alt="PSP baskılı siyah tişört" loading="lazy"></figure>
@@ -231,21 +247,21 @@
     <section class="section" id="iletisim" style="padding-top:0">
       <div class="container about-grid">
         <div class="panel reveal">
-          <span class="eyebrow">Hakkımda</span>
-          <h3>Denemeyi ve öğrenmeyi seviyorum.</h3>
-          <p>Frozen Duck Games adı altında Unity ile mobil oyunlar geliştiriyorum. Kart oyunundan piksel platformere, aklıma takılan her fikri oynanabilir bir şeye dönüştürmeye çalışıyorum.</p>
-          <p>Üniversitem için geliştirdiğim 1Üni uygulaması Google Play ve App Store'da yayında.</p>
+          <span class="eyebrow"><span data-i18n="about.eyebrow">Hakkımda</span></span>
+          <h3><span data-i18n="about.title">Denemeyi ve öğrenmeyi seviyorum.</span></h3>
+          <p><span data-i18n="about.p1">Frozen Duck Games adı altında Unity ile mobil oyunlar geliştiriyorum. Kart oyunundan piksel platformere, aklıma takılan her fikri oynanabilir bir şeye dönüştürmeye çalışıyorum.</span></p>
+          <p><span data-i18n="about.p2">Üniversitem için geliştirdiğim 1Üni uygulaması Google Play ve App Store'da yayında.</span></p>
           <div class="quick-links">
-            <a href="fotogaleri.html"><strong>📸 Foto galeri</strong><small>Gezilerden kareler</small></a>
-            <a href="videogaleri.html"><strong>🎬 Video galeri</strong><small>Fortnite & FC</small></a>
-            <a href="Assets/CVturkce.pdf" target="_blank" rel="noopener"><strong>📄 CV</strong><small>Türkçe</small></a>
+            <a href="fotogaleri.html"><strong><span data-i18n="about.photo">📸 Foto galeri</span></strong><small><span data-i18n="about.photo.sub">Gezilerden kareler</span></small></a>
+            <a href="videogaleri.html"><strong><span data-i18n="about.video">🎬 Video galeri</span></strong><small>Fortnite & FC</small></a>
+            <a href="Assets/CVturkce.pdf" target="_blank" rel="noopener"><strong>📄 CV</strong><small><span data-i18n="about.cv.tr">Türkçe</span></small></a>
             <a href="Assets/Kaan_Kara_CV_Eng.pdf" target="_blank" rel="noopener"><strong>📄 CV</strong><small>English</small></a>
           </div>
         </div>
 
         <div class="panel reveal" style="--d:.1s">
-          <span class="eyebrow">İletişim</span>
-          <h3>Bir fikrin mi var? Yaz bana.</h3>
+          <span class="eyebrow"><span data-i18n="nav.contact">İletişim</span></span>
+          <h3><span data-i18n="contact.title">Bir fikrin mi var? Yaz bana.</span></h3>
           <a class="mail-link" href="mailto:kaan.kara@yahoo.com">kaan.kara@yahoo.com</a>
           <div class="socials">
             <a href="https://www.instagram.com/thekaankara/" target="_blank" rel="noopener"><img src="Assets/SocialMediaLogos/insta.avif" alt="">Instagram</a>
@@ -263,12 +279,14 @@
     <div class="container">
       <span>© <span data-year>2026</span> <span class="duck">🦆</span> Frozen Duck Games</span>
       <div class="footer-links">
-        <a href="privacyPolicy.html">1Üni Gizlilik</a>
-        <a href="privacyPolicyKomparsita.html">Komparsita Gizlilik</a>
-        <a href="https://frozenduckgames9.wordpress.com" target="_blank" rel="noopener">Eski site</a>
+        <a href="privacyPolicy.html"><span data-i18n="foot.privacy1">1Üni Gizlilik</span></a>
+        <a href="privacyPolicyKomparsita.html"><span data-i18n="foot.privacy2">Komparsita Gizlilik</span></a>
+        <a href="https://frozenduckgames9.wordpress.com" target="_blank" rel="noopener"><span data-i18n="foot.old">Eski site</span></a>
       </div>
     </div>
   </footer>
+
+  <script src="i18n.js?v=1"></script>
 
   <script src="script.js?v=3"></script>
 </body>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Projeler · Kaan Kara</title>
+  <title data-i18n="title.projects">Projeler · Kaan Kara</title>
   <meta name="description" content="Kaan Kara'nın projeleri: 1Üni mobil uygulaması, Komparsita, Garipova, Togy ve Astro Runner.">
   <meta name="theme-color" content="#06060c">
   <link rel="icon" href="Assets/Kaan_ghibli.jpeg">
@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="style.css?v=3">
 </head>
 <body>
-  <a class="skip-link" href="#icerik">İçeriğe geç</a>
+  <a class="skip-link" href="#icerik"><span data-i18n="nav.skip">İçeriğe geç</span></a>
   <div class="bg-glow" aria-hidden="true"></div>
   <canvas id="stars" aria-hidden="true"></canvas>
 
@@ -23,14 +23,15 @@
         <img src="Assets/Kaan_ghibli.jpeg" alt="">
         <span>Kaan Kara</span>
       </a>
-      <button class="nav-toggle" aria-label="Menüyü aç" aria-expanded="false" aria-controls="nav-links"><span></span></button>
+      <button class="nav-toggle" aria-label="Menüyü aç" data-i18n-aria="nav.menu" aria-expanded="false" aria-controls="nav-links"><span></span></button>
       <ul class="nav-links" id="nav-links">
-        <li><a href="index.html#oyunlar">Oyunlar</a></li>
-        <li><a href="projects.html" aria-current="page">Projeler</a></li>
-        <li><a href="index.html#magaza">Mağaza</a></li>
-        <li><a href="fotogaleri.html">Galeri</a></li>
-        <li><a href="index.html#iletisim">İletişim</a></li>
-        <li><a class="nav-cta" href="Assets/CVturkce.pdf" target="_blank" rel="noopener">CV</a></li>
+        <li><a href="index.html#oyunlar"><span data-i18n="nav.games">Oyunlar</span></a></li>
+        <li><a href="projects.html" aria-current="page"><span data-i18n="nav.projects">Projeler</span></a></li>
+        <li><a href="index.html#magaza"><span data-i18n="nav.shop">Mağaza</span></a></li>
+        <li><a href="fotogaleri.html"><span data-i18n="nav.gallery">Galeri</span></a></li>
+        <li><a href="index.html#iletisim"><span data-i18n="nav.contact">İletişim</span></a></li>
+        <li><button class="lang-toggle" type="button" data-lang-toggle>EN</button></li>
+        <li><a class="nav-cta" href="Assets/CVturkce.pdf" data-href-en="Assets/Kaan_Kara_CV_Eng.pdf" target="_blank" rel="noopener">CV</a></li>
       </ul>
     </nav>
   </header>
@@ -40,10 +41,10 @@
       <div class="container intro">
         <a class="breadcrumb" href="index.html">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-          Ana sayfa
+          <span data-i18n="nav.home">Ana sayfa</span>
         </a>
-        <h1>Projeler</h1>
-        <p>Yayındaki uygulamalar, geliştirilmekte olan oyunlar ve tarayıcıda oynayabileceğin küçük denemeler.</p>
+        <h1><span data-i18n="nav.projects">Projeler</span></h1>
+        <p><span data-i18n="proj.lead">Yayındaki uygulamalar, geliştirilmekte olan oyunlar ve tarayıcıda oynayabileceğin küçük denemeler.</span></p>
       </div>
     </section>
 
@@ -52,21 +53,21 @@
       <div class="container">
         <div class="project-feature reveal">
           <div>
-            <span class="eyebrow">Mobil uygulama · Yayında</span>
+            <span class="eyebrow"><span data-i18n="proj.uni.eyebrow">Mobil uygulama · Yayında</span></span>
             <h2>1Üni</h2>
-            <p>Üniversitemin öğrencileri için geliştirdiğim mobil uygulama. Anketler, kampüs chatbot'u, sanal tur, yemekhane listesi ve kulüp etkinlikleri tek yerde.</p>
+            <p><span data-i18n="proj.uni">Üniversitemin öğrencileri için geliştirdiğim mobil uygulama. Anketler, kampüs chatbot'u, sanal tur, yemekhane listesi ve kulüp etkinlikleri tek yerde.</span></p>
             <div class="btn-row">
               <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=com.frozenduckgames.oneuni" target="_blank" rel="noopener">Google Play</a>
               <a class="btn" href="https://apps.apple.com/tr/app/1%C3%BCni/id6748721249" target="_blank" rel="noopener">App Store</a>
-              <a class="btn" href="privacyPolicy.html">Gizlilik</a>
+              <a class="btn" href="privacyPolicy.html"><span data-i18n="foot.privacy">Gizlilik</span></a>
             </div>
           </div>
           <div class="phone-strip">
-            <a class="shot" href="Assets/1uni/AppSS/MainMenuB.jpeg" data-gallery="1uni"><img src="Assets/1uni/AppSS/MainMenuB.jpeg" alt="1Üni ana menü (koyu tema)" loading="lazy"><span class="cap">Ana menü</span></a>
-            <a class="shot" href="Assets/1uni/AppSS/MainMenuW.jpeg" data-gallery="1uni"><img src="Assets/1uni/AppSS/MainMenuW.jpeg" alt="1Üni ana menü (açık tema)" loading="lazy"><span class="cap">Açık tema</span></a>
-            <a class="shot" href="Assets/1uni/AppSS/Anketler.jpeg" data-gallery="1uni"><img src="Assets/1uni/AppSS/Anketler.jpeg" alt="1Üni anketler ekranı" loading="lazy"><span class="cap">Anketler</span></a>
+            <a class="shot" href="Assets/1uni/AppSS/MainMenuB.jpeg" data-gallery="1uni"><img src="Assets/1uni/AppSS/MainMenuB.jpeg" alt="1Üni ana menü (koyu tema)" loading="lazy"><span class="cap"><span data-i18n="game.mainmenu">Ana menü</span></span></a>
+            <a class="shot" href="Assets/1uni/AppSS/MainMenuW.jpeg" data-gallery="1uni"><img src="Assets/1uni/AppSS/MainMenuW.jpeg" alt="1Üni ana menü (açık tema)" loading="lazy"><span class="cap"><span data-i18n="proj.light">Açık tema</span></span></a>
+            <a class="shot" href="Assets/1uni/AppSS/Anketler.jpeg" data-gallery="1uni"><img src="Assets/1uni/AppSS/Anketler.jpeg" alt="1Üni anketler ekranı" loading="lazy"><span class="cap"><span data-i18n="proj.polls">Anketler</span></span></a>
             <a class="shot" href="Assets/1uni/AppSS/Chatbot.jpeg" data-gallery="1uni"><img src="Assets/1uni/AppSS/Chatbot.jpeg" alt="1Üni chatbot ekranı" loading="lazy"><span class="cap">Chatbot</span></a>
-            <a class="shot" href="Assets/1uni/AppSS/SanalTur.jpeg" data-gallery="1uni"><img src="Assets/1uni/AppSS/SanalTur.jpeg" alt="1Üni sanal tur ekranı" loading="lazy"><span class="cap">Sanal tur</span></a>
+            <a class="shot" href="Assets/1uni/AppSS/SanalTur.jpeg" data-gallery="1uni"><img src="Assets/1uni/AppSS/SanalTur.jpeg" alt="1Üni sanal tur ekranı" loading="lazy"><span class="cap"><span data-i18n="proj.tour">Sanal tur</span></span></a>
           </div>
         </div>
       </div>
@@ -77,31 +78,31 @@
       <div class="container">
         <div class="section-head">
           <div class="reveal">
-            <span class="eyebrow">Geliştiriliyor</span>
-            <h2 class="section-title">Unity oyunları</h2>
+            <span class="eyebrow"><span data-i18n="badge.dev">Geliştiriliyor</span></span>
+            <h2 class="section-title"><span data-i18n="proj.unity">Unity oyunları</span></h2>
           </div>
         </div>
         <div class="games-grid">
           <article class="game-card komparsita reveal" data-tilt>
             <div class="game-cover cover-komparsita">
-              <span class="badge">Kapalı test</span>
+              <span class="badge"><span data-i18n="badge.beta">Kapalı test</span></span>
               <img src="oyunlar/komparsita/ekran-goruntuleri/ana-menu.jpeg" alt="Komparsita ana menüsü" loading="lazy">
             </div>
             <div class="game-body">
               <h3>Komparsita</h3>
-              <p>Desteden açılacak kartı tahmin et, çarpanlarını doğru anda kullan ve rakibini puanda geç.</p>
-              <a class="card-link stretched" href="oyunlar/komparsita/">Oyunu incele <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+              <p><span data-i18n="komp.short">Desteden açılacak kartı tahmin et, çarpanlarını doğru anda kullan ve rakibini puanda geç.</span></p>
+              <a class="card-link stretched" href="oyunlar/komparsita/"><span data-i18n="card.view">Oyunu incele</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
             </div>
           </article>
           <article class="game-card garipova reveal" style="--d:.1s" data-tilt>
             <div class="game-cover">
-              <span class="badge">Geliştiriliyor</span>
+              <span class="badge"><span data-i18n="badge.dev">Geliştiriliyor</span></span>
               <img src="oyunlar/garipova/ekran-goruntuleri/ana-menu.jpeg" alt="Garipova ana menüsü" loading="lazy">
             </div>
             <div class="game-body">
               <h3>Garipova</h3>
-              <p>2D bir penguen, 3D bir dünyada. Arabaya atla, rampalardan uç, ovayı keşfet.</p>
-              <a class="card-link stretched" href="oyunlar/garipova/">Oyunu incele <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+              <p><span data-i18n="gari.short">2D bir penguen, 3D bir dünyada. Arabaya atla, rampalardan uç, ovayı keşfet.</span></p>
+              <a class="card-link stretched" href="oyunlar/garipova/"><span data-i18n="card.view">Oyunu incele</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
             </div>
           </article>
           <article class="game-card togy reveal" style="--d:.2s" data-tilt>
@@ -111,8 +112,8 @@
             </div>
             <div class="game-body">
               <h3>Togy</h3>
-              <p>Piksel sanatlı bir platform macerası: iki dünya arasında yolculuk, boss savaşları ve tarot kartları.</p>
-              <a class="card-link stretched" href="oyunlar/togy/">Oyunu incele <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+              <p><span data-i18n="togy.short">Piksel sanatlı bir platform macerası: iki dünya arasında yolculuk, boss savaşları ve tarot kartları.</span></p>
+              <a class="card-link stretched" href="oyunlar/togy/"><span data-i18n="card.view">Oyunu incele</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
             </div>
           </article>
         </div>
@@ -124,8 +125,8 @@
       <div class="container">
         <div class="section-head">
           <div class="reveal">
-            <span class="eyebrow">Arşiv</span>
-            <h2 class="section-title">Daha fazlası</h2>
+            <span class="eyebrow"><span data-i18n="proj.archive">Arşiv</span></span>
+            <h2 class="section-title"><span data-i18n="proj.more">Daha fazlası</span></h2>
           </div>
         </div>
         <div class="project-row">
@@ -133,24 +134,29 @@
             <div class="project-thumb astro" aria-hidden="true"><span>🚀</span></div>
             <div>
               <h3>Astro Runner</h3>
-              <p>Farklı gezegenlerde, uzaylılar arasında koşturduğun bir endless runner oyunu.</p>
+              <p><span data-i18n="astro.short">Farklı gezegenlerde, uzaylılar arasında koşturduğun bir endless runner oyunu.</span></p>
               <div class="btn-row"><a class="btn" href="https://play.google.com/store/apps/details?id=com.FrozenDuckGames.AstroRunner" target="_blank" rel="noopener">Google Play</a></div>
             </div>
           </article>
           <div class="mini-games" style="margin-top:0;grid-template-columns:1fr">
+            <a class="mini-game reveal" href="Games/duck-strike/">
+              <span class="icon" aria-hidden="true">🦆</span>
+              <span><strong>Duck Strike</strong><small><span data-i18n="ds.mini">Online piksel shooter</span></small></span>
+              <span class="play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 4l14 8-14 8z"/></svg></span>
+            </a>
             <a class="mini-game reveal" href="Games/pong.html">
               <span class="icon" aria-hidden="true">🏓</span>
-              <span><strong>Pong</strong><small>Tarayıcıda oyna</small></span>
+              <span><strong>Pong</strong><small><span data-i18n="mini.play">Tarayıcıda oyna</span></small></span>
               <span class="play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 4l14 8-14 8z"/></svg></span>
             </a>
             <a class="mini-game reveal" style="--d:.08s" href="Games/rps.html">
               <span class="icon" aria-hidden="true">✂️</span>
-              <span><strong>Taş · Kağıt · Makas</strong><small>Tarayıcıda oyna</small></span>
+              <span><strong><span data-i18n="mini.rps">Taş · Kağıt · Makas</span></strong><small><span data-i18n="mini.play">Tarayıcıda oyna</span></small></span>
               <span class="play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 4l14 8-14 8z"/></svg></span>
             </a>
             <a class="mini-game reveal" style="--d:.16s" href="Games/pong2.html">
               <span class="icon" aria-hidden="true">🕹️</span>
-              <span><strong>Pong 2</strong><small>Tarayıcıda oyna</small></span>
+              <span><strong>Pong 2</strong><small><span data-i18n="mini.play">Tarayıcıda oyna</span></small></span>
               <span class="play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 4l14 8-14 8z"/></svg></span>
             </a>
           </div>
@@ -163,11 +169,13 @@
     <div class="container">
       <span>© <span data-year>2026</span> <span class="duck">🦆</span> Frozen Duck Games</span>
       <div class="footer-links">
-        <a href="index.html">Ana sayfa</a>
-        <a href="https://frozenduckgames9.wordpress.com" target="_blank" rel="noopener">Eski site</a>
+        <a href="index.html"><span data-i18n="nav.home">Ana sayfa</span></a>
+        <a href="https://frozenduckgames9.wordpress.com" target="_blank" rel="noopener"><span data-i18n="foot.old">Eski site</span></a>
       </div>
     </div>
   </footer>
+
+  <script src="i18n.js?v=1"></script>
 
   <script src="script.js?v=3"></script>
 </body>

@@ -9,6 +9,8 @@ const SHOPIER_URL = "";
 
 document.documentElement.classList.add("js");
 
+const tr = (key) => (window.i18n ? window.i18n.t(key) : key);
+
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const finePointer = window.matchMedia("(pointer: fine)").matches;
 
@@ -41,8 +43,14 @@ document.querySelectorAll("[data-shopier]").forEach((el) => {
     el.target = "_blank";
     el.rel = "noopener";
     el.removeAttribute("aria-disabled");
-    const label = el.querySelector("[data-label]");
-    if (label && el.dataset.shopier) label.textContent = el.dataset.shopier;
+    const label = el.querySelector("[data-label] [data-i18n]");
+    if (label) {
+      // Dil değişince de doğru metin görünsün
+      const update = () => (label.textContent = tr("shop.live"));
+      label.removeAttribute("data-i18n");
+      update();
+      document.addEventListener("langchange", update);
+    }
   }
 });
 document.querySelectorAll("[data-shopier-note]").forEach((el) => {
@@ -80,16 +88,21 @@ if ("IntersectionObserver" in window && !reduceMotion) {
 
 /* ---------- Daktilo efekti ---------- */
 document.querySelectorAll("[data-typed]").forEach((el) => {
-  const words = el.dataset.typed.split("|");
   if (reduceMotion) {
-    el.textContent = words[0];
+    const set = () => (el.textContent = el.dataset.typed.split("|")[0]);
+    set();
+    document.addEventListener("langchange", set);
     return;
   }
   let w = 0;
   let i = 0;
   let deleting = false;
   const tick = () => {
+    // Kelimeler her turda okunur, böylece dil değişimi hemen yansır
+    const words = el.dataset.typed.split("|");
+    w %= words.length;
     const word = words[w];
+    i = Math.min(i, deleting ? word.length : word.length - 1);
     i += deleting ? -1 : 1;
     el.textContent = word.slice(0, i);
     let delay = deleting ? 45 : 90;
@@ -205,12 +218,12 @@ if (canvas) {
   box.className = "lightbox";
   box.setAttribute("role", "dialog");
   box.setAttribute("aria-modal", "true");
-  box.setAttribute("aria-label", "Ekran görüntüsü");
+  box.setAttribute("aria-label", tr("lb.label"));
   box.innerHTML = `
     <img alt="">
-    <button class="lb-btn lb-close" aria-label="Kapat">${icon('<path d="M18 6 6 18M6 6l12 12"/>')}</button>
-    <button class="lb-btn lb-prev" aria-label="Önceki">${icon('<path d="m15 18-6-6 6-6"/>')}</button>
-    <button class="lb-btn lb-next" aria-label="Sonraki">${icon('<path d="m9 18 6-6-6-6"/>')}</button>
+    <button class="lb-btn lb-close" aria-label="${tr("lb.close")}">${icon('<path d="M18 6 6 18M6 6l12 12"/>')}</button>
+    <button class="lb-btn lb-prev" aria-label="${tr("lb.prev")}">${icon('<path d="m15 18-6-6 6-6"/>')}</button>
+    <button class="lb-btn lb-next" aria-label="${tr("lb.next")}">${icon('<path d="m9 18 6-6-6-6"/>')}</button>
     <div class="lb-count"></div>`;
   document.body.appendChild(box);
 

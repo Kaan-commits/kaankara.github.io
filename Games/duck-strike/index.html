@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
+  <title>Duck Strike · Frozen Duck Games</title>
+  <meta name="description" content="Duck Strike: tarayıcıda arkadaşlarınla oynayabileceğin online piksel ördek savaşı. Oda kur, kodu paylaş, oyna.">
+  <meta name="theme-color" content="#0b0a10">
+  <meta property="og:title" content="Duck Strike · Online piksel ördek savaşı">
+  <meta property="og:image" content="https://kaankara.com.tr/Assets/Kaan_ghibli.jpeg">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><circle cx='7' cy='8' r='6' fill='%23ffd23f'/><rect x='12' y='7' width='4' height='2' fill='%23ff9a1f'/></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="game.css?v=1">
+</head>
+<body>
+  <canvas id="game" aria-label="Duck Strike"></canvas>
+
+  <!-- ========== MENÜ ========== -->
+  <div id="menu" class="screen">
+    <div class="menu-top">
+      <a class="link" href="../../index.html">← kaankara.com.tr</a>
+      <button class="pbtn small" type="button" data-lang-toggle>EN</button>
+    </div>
+
+    <div class="menu-box">
+      <h1 class="logo">DUCK<span>STRIKE</span></h1>
+      <p class="tagline" data-i18n="ds.tag">Tarayıcıda online, piksel ördek savaşı.</p>
+
+      <div class="tabs" role="tablist">
+        <button class="tab active" type="button" role="tab" data-tab="play" data-i18n="ds.tab.play">Oyna</button>
+        <button class="tab" type="button" role="tab" data-tab="profile" data-i18n="ds.tab.profile">Profil</button>
+      </div>
+
+      <section class="panel" data-panel="play">
+        <button class="pbtn primary big" id="btnCreate" type="button">
+          <span data-i18n="ds.create">Oda oluştur</span>
+          <small data-i18n="ds.create.sub">Kodu arkadaşlarına gönder</small>
+        </button>
+        <form class="join" id="joinForm" autocomplete="off">
+          <input id="joinCode" maxlength="5" placeholder="Oda kodu" data-i18n-ph="ds.code" aria-label="Oda kodu" autocapitalize="characters" spellcheck="false">
+          <button class="pbtn" type="submit" data-i18n="ds.join">Katıl</button>
+        </form>
+        <button class="pbtn ghost" id="btnPractice" type="button" data-i18n="ds.practice">Botlarla antrenman</button>
+        <div class="controls">
+          <strong data-i18n="ds.controls">Kontroller</strong>
+          <p class="desk-only" data-i18n="ds.controls.desk">WASD hareket · Fare nişan ve ateş · 1-2-3 silah · R şarjör · Tab skor tablosu</p>
+          <p class="touch-only" data-i18n="ds.controls.touch">Sol başparmak hareket · Sağ başparmak nişan ve ateş</p>
+        </div>
+      </section>
+
+      <section class="panel" data-panel="profile" hidden>
+        <label class="field">
+          <span data-i18n="ds.name">İsim</span>
+          <span class="row">
+            <input id="nameInput" maxlength="16" spellcheck="false">
+            <button class="pbtn" id="btnSaveName" type="button" data-i18n="ds.save">Kaydet</button>
+          </span>
+        </label>
+        <div class="field">
+          <span data-i18n="ds.color">Renk</span>
+          <div class="swatches" id="swatches"></div>
+        </div>
+        <div class="field">
+          <span data-i18n="ds.stats">İstatistikler</span>
+          <div class="stats">
+            <div><b id="stK">0</b><small data-i18n="ds.kills">Öldürme</small></div>
+            <div><b id="stD">0</b><small data-i18n="ds.deaths">Ölüm</small></div>
+            <div><b id="stKD">0</b><small>K/D</small></div>
+            <div><b id="stG">0</b><small data-i18n="ds.matches">Maç</small></div>
+          </div>
+        </div>
+        <button class="link danger" id="btnReset" type="button" data-i18n="ds.reset">İstatistikleri sıfırla</button>
+      </section>
+    </div>
+    <p class="credit">© Frozen Duck Games</p>
+  </div>
+
+  <!-- ========== OYUN İÇİ ARAYÜZ ========== -->
+  <div id="hud" hidden>
+    <div id="touch" class="touch-only" aria-hidden="true">
+      <div class="stick" id="stickL"><i></i></div>
+      <div class="stick" id="stickR"><i></i></div>
+    </div>
+
+    <div class="hud-tl">
+      <div class="chip" id="roomChip"></div>
+      <button class="pbtn small" id="btnCopy" type="button" data-i18n="ds.copy">Linki kopyala</button>
+      <div class="bots" id="botCtrl" hidden>
+        <span data-i18n="ds.bots">Botlar</span>
+        <button class="pbtn small" id="btnBotMinus" type="button" aria-label="-">−</button>
+        <b id="botCount">0</b>
+        <button class="pbtn small" id="btnBotPlus" type="button" aria-label="+">+</button>
+      </div>
+    </div>
+
+    <div class="hud-tr">
+      <button class="pbtn icon" id="btnScore" type="button" aria-label="Skor">🏆</button>
+      <button class="pbtn icon" id="btnMute" type="button" aria-label="Ses">🔊</button>
+      <button class="pbtn icon" id="btnPause" type="button" aria-label="Menü">☰</button>
+    </div>
+
+    <ul id="killfeed"></ul>
+
+    <div class="hud-bl">
+      <div class="hp"><span>♥</span><b id="hpVal">100</b><i id="hpBar"></i></div>
+    </div>
+
+    <div class="hud-bc" id="slots">
+      <button class="slot" type="button" data-slot="0"><kbd>1</kbd><span data-i18n="ds.w.rifle">Tüfek</span></button>
+      <button class="slot" type="button" data-slot="1"><kbd>2</kbd><span data-i18n="ds.w.pistol">Tabanca</span></button>
+      <button class="slot" type="button" data-slot="2"><kbd>3</kbd><span data-i18n="ds.w.knife">Bıçak</span></button>
+    </div>
+
+    <div class="hud-br">
+      <button class="pbtn icon touch-only" id="btnReload" type="button" aria-label="R">⟳</button>
+      <div class="ammo"><b id="ammoVal">30</b><small id="ammoMax">/ 30</small><em id="reloadTxt" hidden data-i18n="ds.reloading">Şarjör değişiyor…</em></div>
+    </div>
+
+    <div id="deathMsg" class="center-msg" hidden>
+      <strong data-i18n="ds.dead">Öldün!</strong>
+      <span id="deathBy"></span>
+      <small id="deathTimer"></small>
+    </div>
+
+    <div id="scoreboard" class="overlay" hidden>
+      <div class="sheet">
+        <h2 id="sbTitle"></h2>
+        <table>
+          <thead><tr><th data-i18n="ds.player">Oyuncu</th><th data-i18n="ds.kills">Öldürme</th><th data-i18n="ds.deaths">Ölüm</th></tr></thead>
+          <tbody id="sbBody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div id="pause" class="overlay" hidden>
+      <div class="sheet narrow">
+        <h2 data-i18n="ds.menu">Menü</h2>
+        <button class="pbtn primary" id="btnResume" type="button" data-i18n="ds.resume">Devam et</button>
+        <button class="pbtn ghost" id="btnLeave" type="button" data-i18n="ds.leave">Odadan çık</button>
+        <button class="pbtn small" type="button" data-lang-toggle>EN</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="loading" class="overlay" hidden><div class="sheet narrow"><div class="spinner"></div><p id="loadingTxt"></p><button class="pbtn ghost small" id="btnCancel" type="button" data-i18n="ds.cancel">Vazgeç</button></div></div>
+  <div id="toast" role="status" aria-live="polite"></div>
+
+  <script src="../../i18n.js?v=1"></script>
+  <script src="https://cdn.jsdelivr.net/npm/peerjs@1.5.4/dist/peerjs.min.js"></script>
+  <script src="game.js?v=1"></script>
+</body>
+</html>

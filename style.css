@@ -196,6 +196,23 @@ p { margin: 0; }
   background: var(--surface-2);
 }
 
+.lang-toggle {
+  min-width: 44px;
+  height: 36px;
+  padding: 0 12px;
+  border-radius: 999px;
+  border: 1px solid var(--border-strong);
+  background: transparent;
+  color: var(--text);
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  transition: background 0.25s, border-color 0.25s;
+}
+.lang-toggle:hover { background: var(--surface-2); border-color: rgba(255, 255, 255, 0.35); }
+
 .nav-links .nav-cta {
   color: #06060c;
   background: var(--text);
@@ -258,6 +275,7 @@ p { margin: 0; }
   }
   .nav-links a { font-size: 1.5rem; padding: 10px 24px; font-family: var(--font-display); }
   .nav-links .nav-cta { margin: 12px 0 0; }
+  .lang-toggle { height: 44px; min-width: 64px; font-size: 1rem; margin-top: 8px; }
 
   .nav-open .nav-links { opacity: 1; visibility: visible; }
   .nav-open .nav-links li { transform: none; opacity: 1; }
@@ -267,6 +285,7 @@ p { margin: 0; }
   .nav-open .nav-links li:nth-child(5) { transition-delay: 0.16s; }
   .nav-open .nav-links li:nth-child(6) { transition-delay: 0.20s; }
   .nav-open .nav-links li:nth-child(7) { transition-delay: 0.24s; }
+  .nav-open .nav-links li:nth-child(8) { transition-delay: 0.28s; }
   body.nav-open { overflow: hidden; }
 }
 
@@ -864,6 +883,71 @@ p { margin: 0; }
 }
 .mini-game:hover .play { transform: scale(1.12) rotate(-8deg); }
 .mini-game .play svg { width: 14px; margin-left: 2px; }
+
+/* ---------- Duck Strike bandı ---------- */
+
+.ds-banner {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: clamp(24px, 4vw, 48px);
+  align-items: center;
+  padding: clamp(24px, 4vw, 40px);
+  border-radius: 28px;
+  border: 1px solid rgba(255, 210, 63, 0.35);
+  background:
+    radial-gradient(500px circle at 0% 50%, rgba(255, 210, 63, 0.16), transparent 60%),
+    var(--surface);
+  transition: border-color 0.3s, transform 0.5s var(--ease), box-shadow 0.5s var(--ease);
+}
+.ds-banner:hover { border-color: rgba(255, 210, 63, 0.7); box-shadow: 0 30px 60px -30px rgba(255, 210, 63, 0.5); }
+.ds-banner .eyebrow { color: var(--gold); }
+.ds-banner h2 {
+  font-family: "Pixelify Sans", var(--font-display);
+  font-variant-ligatures: none;
+  font-size: clamp(2.4rem, 6vw, 3.6rem);
+  letter-spacing: 0.02em;
+  color: #ffd23f;
+  text-shadow: 3px 3px 0 #8a5a00;
+  margin-bottom: 10px;
+}
+.ds-banner p { color: var(--muted); max-width: 520px; margin-bottom: 22px; }
+.ds-banner .btn-primary { background: #ffd23f; color: #2a1d00; box-shadow: 0 10px 30px -10px rgba(255, 210, 63, 0.8); }
+
+.ds-art {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  border-radius: 18px;
+  overflow: hidden;
+  background:
+    repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.05) 0 2px, transparent 2px 16px),
+    repeating-linear-gradient(90deg, rgba(0, 0, 0, 0.05) 0 2px, transparent 2px 16px),
+    #d2ae74;
+  box-shadow: inset 0 0 0 6px #4a3b33;
+}
+.ds-duck {
+  position: absolute;
+  left: 18%;
+  top: 30%;
+  width: 46%;
+  image-rendering: pixelated;
+  animation: duckmove 3s steps(12) infinite;
+}
+.ds-shot {
+  position: absolute;
+  left: 63%;
+  top: 59%;
+  width: 30%;
+  height: 3px;
+  background: linear-gradient(90deg, #fff6b0, transparent);
+  animation: pew 0.6s steps(2) infinite;
+}
+@keyframes duckmove { 50% { transform: translate(6%, -4%); } }
+@keyframes pew { 50% { opacity: 0; } }
+
+@media (max-width: 760px) {
+  .ds-banner { grid-template-columns: 1fr; }
+  .ds-art { max-width: 340px; }
+}
 
 /* ---------- Mağaza (Shopier) ---------- */
 

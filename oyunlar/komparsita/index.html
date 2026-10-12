@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Komparsita · Kart Tahmin Oyunu · Frozen Duck Games</title>
+  <title data-i18n="title.komp">Komparsita · Kart Tahmin Oyunu · Frozen Duck Games</title>
   <meta name="description" content="Komparsita: 52 kartlık destede açılacak kartı tahmin et, çarpanlarını kullan, rakibini puanda geç. Unity ile geliştirilen kart tahmin oyunu.">
   <meta name="theme-color" content="#06060c">
   <meta property="og:title" content="Komparsita · Kart Tahmin Oyunu">
@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="../../style.css?v=3">
 </head>
 <body class="game-page komparsita">
-  <a class="skip-link" href="#icerik">İçeriğe geç</a>
+  <a class="skip-link" href="#icerik"><span data-i18n="nav.skip">İçeriğe geç</span></a>
   <div class="bg-glow" aria-hidden="true"></div>
   <canvas id="stars" aria-hidden="true"></canvas>
 
@@ -25,14 +25,15 @@
         <img src="../../Assets/Kaan_ghibli.jpeg" alt="">
         <span>Kaan Kara</span>
       </a>
-      <button class="nav-toggle" aria-label="Menüyü aç" aria-expanded="false" aria-controls="nav-links"><span></span></button>
+      <button class="nav-toggle" aria-label="Menüyü aç" data-i18n-aria="nav.menu" aria-expanded="false" aria-controls="nav-links"><span></span></button>
       <ul class="nav-links" id="nav-links">
-        <li><a href="../../index.html#oyunlar" aria-current="page">Oyunlar</a></li>
-        <li><a href="../../index.html#projeler">Projeler</a></li>
-        <li><a href="../../index.html#magaza">Mağaza</a></li>
-        <li><a href="../../fotogaleri.html">Galeri</a></li>
-        <li><a href="../../index.html#iletisim">İletişim</a></li>
-        <li><a class="nav-cta" href="../../Assets/CVturkce.pdf" target="_blank" rel="noopener">CV</a></li>
+        <li><a href="../../index.html#oyunlar" aria-current="page"><span data-i18n="nav.games">Oyunlar</span></a></li>
+        <li><a href="../../index.html#projeler"><span data-i18n="nav.projects">Projeler</span></a></li>
+        <li><a href="../../index.html#magaza"><span data-i18n="nav.shop">Mağaza</span></a></li>
+        <li><a href="../../fotogaleri.html"><span data-i18n="nav.gallery">Galeri</span></a></li>
+        <li><a href="../../index.html#iletisim"><span data-i18n="nav.contact">İletişim</span></a></li>
+        <li><button class="lang-toggle" type="button" data-lang-toggle>EN</button></li>
+        <li><a class="nav-cta" href="../../Assets/CVturkce.pdf" data-href-en="../../Assets/Kaan_Kara_CV_Eng.pdf" target="_blank" rel="noopener">CV</a></li>
       </ul>
     </nav>
   </header>
@@ -43,23 +44,23 @@
         <div class="intro">
           <a class="breadcrumb" href="../../index.html#oyunlar">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-            Tüm oyunlar
+            <span data-i18n="game.all">Tüm oyunlar</span>
           </a>
-          <span class="badge">Kapalı test</span>
+          <span class="badge"><span data-i18n="badge.beta">Kapalı test</span></span>
           <h1>Komparsita</h1>
-          <p class="tagline">Desteden açılacak kartı tahmin et. Türü mü, değeri mi, yoksa ikisi birden mi? Çarpanını doğru anda oyna, rakibini puanda geç.</p>
+          <p class="tagline"><span data-i18n="komp.tagline">Desteden açılacak kartı tahmin et. Türü mü, değeri mi, yoksa ikisi birden mi? Çarpanını doğru anda oyna, rakibini puanda geç.</span></p>
           <div class="btn-row">
             <a class="btn btn-primary" href="mailto:kaan.kara@yahoo.com?subject=Komparsita%20kapal%C4%B1%20test">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
-              Kapalı teste katıl
+              <span data-i18n="komp.join">Kapalı teste katıl</span>
             </a>
-            <a class="btn" href="#ekran-goruntuleri">Ekran görüntüleri</a>
+            <a class="btn" href="#ekran-goruntuleri"><span data-i18n="game.shots">Ekran görüntüleri</span></a>
           </div>
           <ul class="meta-list">
-            <li><small>Tür</small><strong>Kart tahmin</strong></li>
-            <li><small>Platform</small><strong>Mobil</strong></li>
-            <li><small>Motor</small><strong>Unity</strong></li>
-            <li><small>Mod</small><strong>Online + yerel</strong></li>
+            <li><small><span data-i18n="game.genre">Tür</span></small><strong><span data-i18n="komp.genre">Kart tahmin</span></strong></li>
+            <li><small>Platform</small><strong><span data-i18n="tag.mobile">Mobil</span></strong></li>
+            <li><small><span data-i18n="game.engine">Motor</span></small><strong>Unity</strong></li>
+            <li><small><span data-i18n="game.mode">Mod</span></small><strong><span data-i18n="komp.modes">Online + yerel</span></strong></li>
           </ul>
         </div>
         <div class="device-wrap intro-self">
@@ -74,26 +75,26 @@
       <div class="container">
         <div class="section-head">
           <div class="reveal">
-            <span class="eyebrow">Oyun hakkında</span>
-            <h2 class="section-title">Şans değil, cesaret oyunu.</h2>
+            <span class="eyebrow"><span data-i18n="game.about">Oyun hakkında</span></span>
+            <h2 class="section-title"><span data-i18n="komp.h2">Şans değil, cesaret oyunu.</span></h2>
           </div>
-          <p class="section-lead reveal" style="--d:.1s">52 kart bitene kadar sırayla tahmin yapılır. Ne kadar iddialı tahmin edersen o kadar çok puan alırsın, ama çarpanlar iki tarafı keskin bir kılıç.</p>
+          <p class="section-lead reveal" style="--d:.1s"><span data-i18n="komp.lead">52 kart bitene kadar sırayla tahmin yapılır. Ne kadar iddialı tahmin edersen o kadar çok puan alırsın, ama çarpanlar iki tarafı keskin bir kılıç.</span></p>
         </div>
         <div class="features">
           <div class="feature reveal">
             <div class="ico" aria-hidden="true">🃏</div>
-            <h3>Klasik 52'lik deste</h3>
-            <p>Önce kartın türünü (♠ ♥ ♦ ♣), sonra değerini (As'tan Papaz'a) seç ve tahminini onayla.</p>
+            <h3><span data-i18n="komp.f1">Klasik 52'lik deste</span></h3>
+            <p><span data-i18n="komp.f1p">Önce kartın türünü (♠ ♥ ♦ ♣), sonra değerini (As'tan Papaz'a) seç ve tahminini onayla.</span></p>
           </div>
           <div class="feature reveal" style="--d:.08s">
             <div class="ico" aria-hidden="true">🔥</div>
-            <h3>x2, x3, x5 çarpanlar</h3>
-            <p>Her oyuncunun sınırlı çarpan hakkı var. Doğru tahminde puanı katlar, yanlışta ceza yazar.</p>
+            <h3><span data-i18n="komp.f2">x2, x3, x5 çarpanlar</span></h3>
+            <p><span data-i18n="komp.f2p">Her oyuncunun sınırlı çarpan hakkı var. Doğru tahminde puanı katlar, yanlışta ceza yazar.</span></p>
           </div>
           <div class="feature reveal" style="--d:.16s">
             <div class="ico" aria-hidden="true">🌐</div>
-            <h3>Online ya da yan yana</h3>
-            <p>Arkadaşınla aynı telefonda oyna ya da çevrimiçi bir rakiple karşılaş.</p>
+            <h3><span data-i18n="komp.f3">Online ya da yan yana</span></h3>
+            <p><span data-i18n="komp.f3p">Arkadaşınla aynı telefonda oyna ya da çevrimiçi bir rakiple karşılaş.</span></p>
           </div>
         </div>
       </div>
@@ -103,27 +104,27 @@
       <div class="container two-col">
         <div>
           <div class="reveal">
-            <span class="eyebrow">Nasıl oynanır?</span>
-            <h2 class="section-title" style="margin-bottom:28px">Dört adımda bir tur</h2>
+            <span class="eyebrow"><span data-i18n="komp.how">Nasıl oynanır?</span></span>
+            <h2 class="section-title" style="margin-bottom:28px"><span data-i18n="komp.steps">Dört adımda bir tur</span></h2>
           </div>
           <ol class="steps">
-            <li class="reveal">Sırası gelen oyuncu <strong>kart türünü</strong> seçer.</li>
-            <li class="reveal" style="--d:.06s">Ardından <strong>kart değerini</strong> (A, 2, 3 … K) seçer.</li>
-            <li class="reveal" style="--d:.12s">İsterse puanını katlamak için bir <strong>çarpan</strong> kullanır. Kullanılan çarpan geri alınamaz.</li>
-            <li class="reveal" style="--d:.18s"><strong>Tahmini Onayla</strong>'ya basar, kart açılır ve puan yazılır. 52 kart bittiğinde en yüksek puanlı oyuncu kazanır.</li>
+            <li class="reveal"><span data-i18n="komp.s1">Sırası gelen oyuncu <strong>kart türünü</strong> seçer.</span></li>
+            <li class="reveal" style="--d:.06s"><span data-i18n="komp.s2">Ardından <strong>kart değerini</strong> (A, 2, 3 … K) seçer.</span></li>
+            <li class="reveal" style="--d:.12s"><span data-i18n="komp.s3">İsterse puanını katlamak için bir <strong>çarpan</strong> kullanır. Kullanılan çarpan geri alınamaz.</span></li>
+            <li class="reveal" style="--d:.18s"><span data-i18n="komp.s4"><strong>Tahmini Onayla</strong>'ya basar, kart açılır ve puan yazılır. 52 kart bittiğinde en yüksek puanlı oyuncu kazanır.</span></li>
           </ol>
         </div>
         <div class="reveal" style="--d:.1s">
           <table class="score-table">
-            <thead><tr><th>Tahmin</th><th style="text-align:right">Puan</th></tr></thead>
+            <thead><tr><th><span data-i18n="komp.th1">Tahmin</span></th><th style="text-align:right"><span data-i18n="komp.th2">Puan</span></th></tr></thead>
             <tbody>
-              <tr><td>Tam doğru (tür + değer)<span class="score-bar pts-hi"><i style="--w:100%"></i></span></td><td class="pts-hi">+120</td></tr>
-              <tr><td>Değer + renk doğru<span class="score-bar pts-mid"><i style="--w:58%"></i></span></td><td class="pts-mid">+70</td></tr>
-              <tr><td>Sadece değer doğru<span class="score-bar pts-mid"><i style="--w:42%"></i></span></td><td class="pts-mid">+50</td></tr>
-              <tr><td>Sadece tür doğru<span class="score-bar pts-lo"><i style="--w:25%"></i></span></td><td class="pts-lo">+30</td></tr>
-              <tr><td>Sadece renk doğru<span class="score-bar pts-lo"><i style="--w:8%"></i></span></td><td class="pts-lo">+10</td></tr>
-              <tr><td>Hiçbiri doğru değil</td><td class="pts-zero">0</td></tr>
-              <tr><td>Çarpanla yanlış tahmin <small style="color:var(--dim)">(ör. x3)</small></td><td class="pts-neg">−30</td></tr>
+              <tr><td><span data-i18n="komp.r1">Tam doğru (tür + değer)</span><span class="score-bar pts-hi"><i style="--w:100%"></i></span></td><td class="pts-hi">+120</td></tr>
+              <tr><td><span data-i18n="komp.r2">Değer + renk doğru</span><span class="score-bar pts-mid"><i style="--w:58%"></i></span></td><td class="pts-mid">+70</td></tr>
+              <tr><td><span data-i18n="komp.r3">Sadece değer doğru</span><span class="score-bar pts-mid"><i style="--w:42%"></i></span></td><td class="pts-mid">+50</td></tr>
+              <tr><td><span data-i18n="komp.r4">Sadece tür doğru</span><span class="score-bar pts-lo"><i style="--w:25%"></i></span></td><td class="pts-lo">+30</td></tr>
+              <tr><td><span data-i18n="komp.r5">Sadece renk doğru</span><span class="score-bar pts-lo"><i style="--w:8%"></i></span></td><td class="pts-lo">+10</td></tr>
+              <tr><td><span data-i18n="komp.r6">Hiçbiri doğru değil</span></td><td class="pts-zero">0</td></tr>
+              <tr><td><span data-i18n="komp.r7">Çarpanla yanlış tahmin <small style="color:var(--dim)">(ör. x3)</small></span></td><td class="pts-neg">−30</td></tr>
             </tbody>
           </table>
         </div>
@@ -134,23 +135,23 @@
       <div class="container">
         <div class="section-head">
           <div class="reveal">
-            <span class="eyebrow">Galeri</span>
-            <h2 class="section-title">Ekran görüntüleri</h2>
+            <span class="eyebrow"><span data-i18n="nav.gallery">Galeri</span></span>
+            <h2 class="section-title"><span data-i18n="game.shots">Ekran görüntüleri</span></h2>
           </div>
-          <p class="section-lead reveal" style="--d:.1s">Büyütmek için bir görsele dokun.</p>
+          <p class="section-lead reveal" style="--d:.1s"><span data-i18n="game.tap">Büyütmek için bir görsele dokun.</span></p>
         </div>
         <div class="shots portrait">
           <a class="shot reveal" href="ekran-goruntuleri/ana-menu.jpeg" data-gallery="komparsita">
-            <img src="ekran-goruntuleri/ana-menu.jpeg" alt="Ana menü" loading="lazy"><span class="cap">Ana menü</span>
+            <img src="ekran-goruntuleri/ana-menu.jpeg" alt="Ana menü" loading="lazy"><span class="cap"><span data-i18n="game.mainmenu">Ana menü</span></span>
           </a>
           <a class="shot reveal" style="--d:.06s" href="ekran-goruntuleri/oyun-1.jpeg" data-gallery="komparsita">
-            <img src="ekran-goruntuleri/oyun-1.jpeg" alt="Tahmin ekranı: tür, değer ve çarpan seçimi" loading="lazy"><span class="cap">Tahmin ekranı</span>
+            <img src="ekran-goruntuleri/oyun-1.jpeg" alt="Tahmin ekranı: tür, değer ve çarpan seçimi" loading="lazy"><span class="cap"><span data-i18n="komp.c2">Tahmin ekranı</span></span>
           </a>
           <a class="shot reveal" style="--d:.12s" href="ekran-goruntuleri/oyun-2.jpeg" data-gallery="komparsita">
-            <img src="ekran-goruntuleri/oyun-2.jpeg" alt="x5 çarpanla kazanılan puan" loading="lazy"><span class="cap">x5 çarpan</span>
+            <img src="ekran-goruntuleri/oyun-2.jpeg" alt="x5 çarpanla kazanılan puan" loading="lazy"><span class="cap"><span data-i18n="komp.c3">x5 çarpan</span></span>
           </a>
           <a class="shot reveal" style="--d:.18s" href="ekran-goruntuleri/nasil-oynanir.jpeg" data-gallery="komparsita">
-            <img src="ekran-goruntuleri/nasil-oynanir.jpeg" alt="Nasıl oynanır ekranı" loading="lazy"><span class="cap">Nasıl oynanır</span>
+            <img src="ekran-goruntuleri/nasil-oynanir.jpeg" alt="Nasıl oynanır ekranı" loading="lazy"><span class="cap"><span data-i18n="komp.c4">Nasıl oynanır</span></span>
           </a>
         </div>
       </div>
@@ -160,12 +161,12 @@
       <div class="container">
         <div class="cta-box reveal reveal-zoom">
           <div>
-            <h2>Kapalı teste katılmak ister misin?</h2>
-            <p>Komparsita şu an kapalı test aşamasında. Bana yaz, test listesine ekleyeyim.</p>
+            <h2><span data-i18n="komp.cta">Kapalı teste katılmak ister misin?</span></h2>
+            <p><span data-i18n="komp.ctap">Komparsita şu an kapalı test aşamasında. Bana yaz, test listesine ekleyeyim.</span></p>
           </div>
           <div class="btn-row">
-            <a class="btn btn-primary" href="mailto:kaan.kara@yahoo.com?subject=Komparsita%20kapal%C4%B1%20test">Bana yaz</a>
-            <a class="btn" href="../../privacyPolicyKomparsita.html">Gizlilik politikası</a>
+            <a class="btn btn-primary" href="mailto:kaan.kara@yahoo.com?subject=Komparsita%20kapal%C4%B1%20test"><span data-i18n="game.write">Bana yaz</span></a>
+            <a class="btn" href="../../privacyPolicyKomparsita.html"><span data-i18n="komp.privacy">Gizlilik politikası</span></a>
           </div>
         </div>
       </div>
@@ -173,8 +174,8 @@
 
     <section class="section" style="padding-top:0">
       <div class="container game-nav">
-        <a href="../togy/"><small>← Önceki oyun</small><strong>Togy</strong></a>
-        <a href="../garipova/"><small>Sonraki oyun →</small><strong>Garipova</strong></a>
+        <a href="../togy/"><small><span data-i18n="game.prev">← Önceki oyun</span></small><strong>Togy</strong></a>
+        <a href="../garipova/"><small><span data-i18n="game.next">Sonraki oyun →</span></small><strong>Garipova</strong></a>
       </div>
     </section>
   </main>
@@ -183,12 +184,14 @@
     <div class="container">
       <span>© <span data-year>2026</span> <span class="duck">🦆</span> Frozen Duck Games</span>
       <div class="footer-links">
-        <a href="../../index.html">Ana sayfa</a>
-        <a href="../../privacyPolicyKomparsita.html">Gizlilik</a>
-        <a href="mailto:kaan.kara@yahoo.com">İletişim</a>
+        <a href="../../index.html"><span data-i18n="nav.home">Ana sayfa</span></a>
+        <a href="../../privacyPolicyKomparsita.html"><span data-i18n="foot.privacy">Gizlilik</span></a>
+        <a href="mailto:kaan.kara@yahoo.com"><span data-i18n="nav.contact">İletişim</span></a>
       </div>
     </div>
   </footer>
+
+  <script src="../../i18n.js?v=1"></script>
 
   <script src="../../script.js?v=3"></script>
 </body>
