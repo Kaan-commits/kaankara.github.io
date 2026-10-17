@@ -188,9 +188,13 @@
     "badge.internal": "Internal testing",
     "nav.menu": "Open menu",
     "ds.banner.eyebrow": "New · Online in your browser",
-    "ds.banner.text": "Create a room, send the code to friends and battle it out as pixel ducks. Rifle, pistol and knife; works on phones too. Nothing to download.",
+    "ds.banner.text": "Create a room, send the code to friends and battle it out as pixel ducks. Team deathmatch, zone defense, capture the flag and a horror mode played in the dark with flashlights. Nothing to download.",
     "ds.banner.btn": "Play now",
-    "ds.mini": "Online pixel shooter"
+    "ds.mini": "Online pixel shooter",
+    "dd.banner.eyebrow": "New · A pixel adventure played with dice",
+    "dd.banner.text": "Pick your class, roll the d20 and change the story with your choices. Turn-based fights, death saves and six different endings. Play solo or online with friends.",
+    "dd.banner.btn": "Start the adventure",
+    "dd.mini": "Pixel dice adventure · online"
   };
 
   // JavaScript'in kendisinin ürettiği metinler (iki dilde)
