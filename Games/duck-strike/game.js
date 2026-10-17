@@ -33,6 +33,35 @@ i18n.extend({
     "ds.rotate": "Daha iyi görüş için telefonu yan çevir",
     "ds.defaultName": "Ördek",
     "ds.you": "sen",
+    "ds.m.ffa": "Herkes tek",
+    "ds.m.tdm": "Takım maçı",
+    "ds.m.koth": "Alan savunması",
+    "ds.m.ctf": "Bayrak kapmaca",
+    "ds.md.ffa": "Herkes herkese karşı. Kural yok, sadece tüyler.",
+    "ds.md.tdm": "Turuncu ve Mavi takımlar. 20 öldürmeye ilk ulaşan takım kazanır. Takım arkadaşına hasar yok.",
+    "ds.md.koth": "Ortadaki alanı tut! Alanda yalnızca senin takımın varsa her saniye puan. 100 puana ilk ulaşan kazanır.",
+    "ds.md.ctf": "Rakibin bayrağını kap ve kendi üssüne getir. Kendi bayrağın üstteyken sayı olur. 3 sayıya ilk ulaşan kazanır.",
+    "ds.team0": "Turuncu",
+    "ds.team1": "Mavi",
+    "ds.win": "{team} TAKIM KAZANDI!",
+    "ds.newRound": "Yeni tur {s} sn içinde",
+    "ds.flag.take": "{name}, {team} bayrağını kaptı!",
+    "ds.flag.drop": "{team} bayrağı yere düştü!",
+    "ds.flag.ret": "{team} bayrağı üssüne döndü",
+    "ds.flag.cap": "{name} sayı yaptı! ({team})",
+    "ds.flag.mine": "Bayrağınız çalındı!",
+    "ds.flag.carry": "Bayrak sende! Üssüne koş!",
+    "ds.zone.hold": "{team} takım alanı tutuyor",
+    "ds.zone.cont": "Alan çekişmeli!",
+    "ds.modeBtn": "Mod: {m}",
+    "ds.darkBtn": "Korku modu: {s}",
+    "ds.on": "açık",
+    "ds.off": "kapalı",
+    "ds.rules": "Mod değişti: {m}",
+    "ds.darkTag": "karanlık",
+    "ds.home": "evde",
+    "ds.carried": "kaçırıldı",
+    "ds.dropped": "yerde",
   },
   en: {
     "ds.tag": "Online pixel duck battles in your browser.",
@@ -88,6 +117,37 @@ i18n.extend({
     "ds.rotate": "Turn your phone sideways for a better view",
     "ds.defaultName": "Duck",
     "ds.you": "you",
+    "ds.mode": "Mode",
+    "ds.darkLabel": "🔦 Horror mode: pitch dark, you only see where your flashlight points",
+    "ds.m.ffa": "Free for all",
+    "ds.m.tdm": "Team deathmatch",
+    "ds.m.koth": "Zone defense",
+    "ds.m.ctf": "Capture the flag",
+    "ds.md.ffa": "Everyone against everyone. No rules, just feathers.",
+    "ds.md.tdm": "Team Orange vs Team Blue. First team to 20 kills wins. No friendly fire.",
+    "ds.md.koth": "Hold the zone in the middle! Your team scores every second while only your team is inside. First to 100 wins.",
+    "ds.md.ctf": "Grab the enemy flag and bring it to your base. You score only while your own flag is home. First to 3 wins.",
+    "ds.team0": "Orange",
+    "ds.team1": "Blue",
+    "ds.win": "TEAM {team} WINS!",
+    "ds.newRound": "New round in {s}s",
+    "ds.flag.take": "{name} grabbed the {team} flag!",
+    "ds.flag.drop": "The {team} flag was dropped!",
+    "ds.flag.ret": "The {team} flag is back home",
+    "ds.flag.cap": "{name} scored! ({team})",
+    "ds.flag.mine": "Your flag was taken!",
+    "ds.flag.carry": "You have the flag! Run home!",
+    "ds.zone.hold": "Team {team} holds the zone",
+    "ds.zone.cont": "The zone is contested!",
+    "ds.modeBtn": "Mode: {m}",
+    "ds.darkBtn": "Horror mode: {s}",
+    "ds.on": "on",
+    "ds.off": "off",
+    "ds.rules": "Mode changed: {m}",
+    "ds.darkTag": "dark",
+    "ds.home": "home",
+    "ds.carried": "taken",
+    "ds.dropped": "dropped",
   },
 });
 i18n.apply();
@@ -117,6 +177,13 @@ const WEAPONS = [
   { id: "pistol", name: "ds.w.pistol", dmg: 28, rate: 0.22, mag: 12, reload: 1.2, spread: 0.018, bloom: 0.035, maxBloom: 0.1, range: 420, speed: 1, auto: false, icon: "🔫" },
   { id: "knife", name: "ds.w.knife", dmg: 55, rate: 0.5, melee: true, range: 22, speed: 1.12, icon: "🔪" },
 ];
+
+/* ---------------- Oyun modları ---------------- */
+const MODES = ["ffa", "tdm", "koth", "ctf"];
+const TEAM_COLORS = ["#ff8a3d", "#5ad7ff"];
+const WIN_SCORE = { tdm: 20, koth: 100, ctf: 3 };
+const ROUND_PAUSE_MS = 6000;
+const FLAG_RETURN_MS = 20000;
 
 /* Harita: sol yarı çizilir, sağ yarı aynası alınır.
    # duvar · C sandık · . kum · , taş zemin · S doğma noktası */
@@ -171,6 +238,14 @@ MAP.forEach((row, y) =>
     if (!isSolidTile(x, y)) FLOOR.push([x, y]);
   })
 );
+
+// Bayrak üsleri (her takımın kendi yarısında) ve alan savunmasının ortadaki alanı
+const FLAG_HOME = [
+  { x: 5 * TILE + 8, y: 16 * TILE + 8 },
+  { x: (MW - 6) * TILE + 8, y: 16 * TILE + 8 },
+];
+const ZONE = { x: WORLD_W / 2, y: WORLD_H / 2, r: 46 };
+const ZONE_TILES = FLOOR.filter(([x, y]) => Math.hypot(x * TILE + 8 - ZONE.x, y * TILE + 8 - ZONE.y) < ZONE.r - 10);
 
 /* ---------------- Yardımcılar ---------------- */
 const $ = (id) => document.getElementById(id);
@@ -235,14 +310,14 @@ function rayCircle(x, y, dx, dy, cx, cy, r) {
   return t >= 0 ? t : null;
 }
 
-function rayHit(x, y, a, max, ignoreId) {
+function rayHit(x, y, a, max, ignoreId, team = -1) {
   const wall = rayWall(x, y, a, max);
   const dx = Math.cos(a);
   const dy = Math.sin(a);
   let best = null;
   let bt = wall;
   for (const p of game.players.values()) {
-    if (!p.alive || p.id === ignoreId) continue;
+    if (!p.alive || p.id === ignoreId || (team >= 0 && teamMode() && p.team === team)) continue;
     const t = rayCircle(x, y, dx, dy, p.x, p.y, HIT_RADIUS);
     if (t !== null && t < bt) {
       bt = t;
@@ -270,6 +345,8 @@ const profile = (() => {
     kills: p.kills | 0,
     deaths: p.deaths | 0,
     matches: p.matches | 0,
+    mode: MODES.includes(p.mode) ? p.mode : "ffa",
+    dark: !!p.dark,
   };
 })();
 const saveProfile = () => {
@@ -335,6 +412,9 @@ const sfx = {
   hurt() { this.tone("sawtooth", 300, 120, 0.12, 0.15); },
   empty() { this.tone("square", 2000, 1800, 0.03, 0.06); },
   reload() { this.tone("square", 500, 700, 0.06, 0.06); },
+  fanfare() {
+    [523, 659, 784, 1047].forEach((f, i) => setTimeout(() => this.tone("square", f, f * 1.01, 0.14, 0.08), i * 110));
+  },
   quack(vol = 1) {
     this.tone("square", 620, 280, 0.12, 0.12 * vol);
     setTimeout(() => this.tone("square", 560, 240, 0.14, 0.1 * vol), 130);
@@ -515,14 +595,22 @@ const game = {
   paused: false,
   cam: { x: WORLD_W / 2, y: WORLD_H / 2 },
   shake: 0,
+  rules: { mode: "ffa", dark: false },
+  obj: null,
 };
+
+const teamMode = () => game.rules.mode !== "ffa";
+const sameTeam = (a, b) => !!(a && b && teamMode() && a.team >= 0 && a.team === b.team);
+const pColor = (p) => (teamMode() && p.team >= 0 ? TEAM_COLORS[p.team] : p.color);
+const teamName = (t) => T(`ds.team${t}`);
+const modeName = (m) => T(`ds.m.${m}`);
 
 // Oyuncunun kendi silah durumu (botlarda da aynısı kullanılır)
 const newLoadout = () => ({ w: 0, ammo: [WEAPONS[0].mag, WEAPONS[1].mag, 0], nextFire: 0, reloadUntil: 0, bloom: 0, seq: -1 });
 let local = newLoadout();
 
 function makePlayer(id, name, color, bot = false) {
-  return { id, name, color, x: SPAWNS[0].x, y: SPAWNS[0].y, a: 0, w: 0, hp: MAX_HP, alive: false, k: 0, d: 0, seq: 0, bot, rx: 0, ry: 0, ra: 0, respawnAt: 0, lastSeen: now(), flash: 0 };
+  return { id, name, color, x: SPAWNS[0].x, y: SPAWNS[0].y, a: 0, w: 0, hp: MAX_HP, alive: false, k: 0, d: 0, seq: 0, bot, rx: 0, ry: 0, ra: 0, respawnAt: 0, lastSeen: now(), flash: 0, team: -1, streak: 0 };
 }
 
 /* ---------------- Efektler ---------------- */
@@ -582,7 +670,7 @@ function fireLocal(aim, moving) {
     sfx.knife();
   } else {
     // Mermi izini hemen çiz; isabet kararını host verir
-    const hit = rayHit(me.x, me.y, a, W.range, me.id);
+    const hit = rayHit(me.x, me.y, a, W.range, me.id, me.team);
     addTracer(me.x + Math.cos(a) * 9, me.y + Math.sin(a) * 9, me.x + Math.cos(a) * hit.t, me.y + Math.sin(a) * hit.t);
     sfx.shot(local.w);
     game.shake = Math.max(game.shake, local.w === 0 ? 0.8 : 1.2);
@@ -611,7 +699,7 @@ function hostFire(id, x, y, a, w) {
     let target = null;
     let best = 1e9;
     for (const q of game.players.values()) {
-      if (q === p || !q.alive) continue;
+      if (q === p || !q.alive || sameTeam(p, q)) continue;
       const d = Math.hypot(q.x - x, q.y - y);
       const off = Math.abs(angDiff(a, Math.atan2(q.y - y, q.x - x)));
       if (d < W.range + HIT_RADIUS && off < 1.0 && d < best && canSee(p, q)) {
@@ -620,14 +708,14 @@ function hostFire(id, x, y, a, w) {
       }
     }
     emit({ k: "kn", s: id, x: r1(x), y: r1(y), a: r2(a), h: target ? target.id : 0 });
-    if (target) damage(target, W.dmg, p, w);
+    if (target && !game.obj.win) damage(target, W.dmg, p, w);
     return;
   }
-  const hit = rayHit(x, y, a, W.range, id);
+  const hit = rayHit(x, y, a, W.range, id, p.team);
   const ex = x + Math.cos(a) * hit.t;
   const ey = y + Math.sin(a) * hit.t;
   emit({ k: "sh", s: id, x: r1(x), y: r1(y), ex: r1(ex), ey: r1(ey), w, h: hit.p ? hit.p.id : 0 });
-  if (hit.p) damage(hit.p, W.dmg, p, w);
+  if (hit.p && !game.obj.win) damage(hit.p, W.dmg, p, w);
 }
 
 function damage(v, dmg, attacker, w) {
@@ -637,18 +725,162 @@ function damage(v, dmg, attacker, w) {
   v.hp = 0;
   v.alive = false;
   v.d++;
+  v.streak = 0;
   v.respawnAt = now() + RESPAWN_MS;
-  if (attacker && attacker !== v) attacker.k++;
-  emit({ k: "kill", a: attacker ? attacker.id : 0, an: attacker ? attacker.name : "", v: v.id, vn: v.name, vc: v.color, w, x: r1(v.x), y: r1(v.y) });
+  let streak = 0;
+  if (attacker && attacker !== v) {
+    attacker.k++;
+    attacker.streak = (attacker.streak || 0) + 1;
+    streak = attacker.streak;
+  }
+  if (game.rules.mode === "ctf" && game.obj.flags) for (const f of game.obj.flags) if (f.st === 1 && f.c === v.id) dropFlag(f);
+  emit({ k: "kill", a: attacker ? attacker.id : 0, an: attacker ? attacker.name : "", at: attacker ? attacker.team : -1, v: v.id, vn: v.name, vt: v.team, vc: pColor(v), w, x: r1(v.x), y: r1(v.y), st: streak });
+  if (game.rules.mode === "tdm" && attacker && attacker !== v && attacker.team >= 0) {
+    game.obj.sc[attacker.team]++;
+    checkWin(attacker.team);
+  }
+}
+
+/* ---------------- Hedefler (takım modları) ---------------- */
+function resetObjectives() {
+  game.obj = {
+    sc: [0, 0],
+    pts: [0, 0],
+    flags: game.rules.mode === "ctf" ? [0, 1].map((t) => ({ x: FLAG_HOME[t].x, y: FLAG_HOME[t].y, st: 0, c: 0, dt: 0 })) : null,
+    zone: { hold: -1 },
+    win: null,
+  };
+}
+function checkWin(t) {
+  const o = game.obj;
+  if (o.win || !(o.sc[t] >= WIN_SCORE[game.rules.mode])) return;
+  o.win = { t, until: now() + ROUND_PAUSE_MS };
+  emit({ k: "win", t });
+}
+function newRound() {
+  resetObjectives();
+  for (const p of game.players.values()) {
+    p.k = 0;
+    p.d = 0;
+    p.streak = 0;
+    p.alive = false;
+    p.respawnAt = 0;
+  }
+  emit({ k: "round" });
+}
+function dropFlag(f) {
+  f.st = 2;
+  f.c = 0;
+  f.dt = now();
+  emit({ k: "flag", a: "drop", t: game.obj.flags.indexOf(f) });
+}
+function homeFlag(f) {
+  const t = game.obj.flags.indexOf(f);
+  f.st = 0;
+  f.c = 0;
+  f.x = FLAG_HOME[t].x;
+  f.y = FLAG_HOME[t].y;
+}
+function objUpdate(dt) {
+  const o = game.obj;
+  if (o.win) {
+    if (now() >= o.win.until) newRound();
+    return;
+  }
+  const t = now();
+  if (game.rules.mode === "ctf") {
+    for (const f of o.flags) {
+      if (f.st === 1) {
+        const c = game.players.get(f.c);
+        if (!c || !c.alive) dropFlag(f);
+        else {
+          f.x = c.x;
+          f.y = c.y;
+        }
+      }
+      if (f.st === 2 && t - f.dt > FLAG_RETURN_MS) {
+        homeFlag(f);
+        emit({ k: "flag", a: "ret", t: o.flags.indexOf(f) });
+      }
+    }
+    for (const p of game.players.values()) {
+      if (!p.alive || p.team < 0) continue;
+      const own = o.flags[p.team];
+      const enemy = o.flags[1 - p.team];
+      if (enemy.st !== 1 && Math.hypot(p.x - enemy.x, p.y - enemy.y) < 12) {
+        enemy.st = 1;
+        enemy.c = p.id;
+        emit({ k: "flag", a: "take", t: 1 - p.team, n: p.name, id: p.id });
+      }
+      if (own.st === 2 && Math.hypot(p.x - own.x, p.y - own.y) < 12) {
+        homeFlag(own);
+        emit({ k: "flag", a: "ret", t: p.team, n: p.name });
+      }
+      if (enemy.st === 1 && enemy.c === p.id && own.st === 0 && Math.hypot(p.x - FLAG_HOME[p.team].x, p.y - FLAG_HOME[p.team].y) < 16) {
+        o.sc[p.team]++;
+        homeFlag(enemy);
+        emit({ k: "flag", a: "cap", t: p.team, n: p.name, id: p.id });
+        checkWin(p.team);
+        if (o.win) return;
+      }
+    }
+  } else if (game.rules.mode === "koth") {
+    const n = [0, 0];
+    for (const p of game.players.values()) if (p.alive && p.team >= 0 && Math.hypot(p.x - ZONE.x, p.y - ZONE.y) < ZONE.r) n[p.team]++;
+    const hold = n[0] && n[1] ? 2 : n[0] ? 0 : n[1] ? 1 : -1;
+    if (hold !== o.zone.hold) {
+      o.zone.hold = hold;
+      if (hold >= 0) emit({ k: "zone", t: hold });
+    }
+    if (hold === 0 || hold === 1) {
+      o.pts[hold] += dt;
+      o.sc[hold] = Math.floor(o.pts[hold]);
+      checkWin(hold);
+    }
+  }
+}
+function objSnap() {
+  const o = game.obj;
+  return {
+    sc: o.sc.slice(),
+    f: o.flags ? o.flags.map((f) => [r1(f.x), r1(f.y), f.st, f.c]) : null,
+    z: o.zone.hold,
+    w: o.win ? [o.win.t, Math.max(0, Math.round(o.win.until - now()))] : null,
+  };
+}
+function applyObj(s) {
+  if (!s) return;
+  const o = game.obj;
+  o.sc = s.sc;
+  o.flags = s.f ? s.f.map(([x, y, st, c]) => ({ x, y, st, c })) : null;
+  o.zone.hold = s.z;
+  o.win = s.w ? { t: s.w[0], until: now() + s.w[1] } : null;
+}
+/* Ev sahibi oyun modunu değiştirir: takımlar yeniden dağıtılır, skorlar sıfırlanır */
+function applyRules(r) {
+  game.rules = { mode: MODES.includes(r.mode) ? r.mode : "ffa", dark: !!r.dark };
+  [...game.players.values()].forEach((p, i) => (p.team = teamMode() ? i % 2 : -1));
+  resetObjectives();
+  for (const p of game.players.values()) {
+    p.k = 0;
+    p.d = 0;
+    p.streak = 0;
+    p.alive = false;
+    p.respawnAt = 0;
+  }
+  emit({ k: "rules", r: game.rules });
+  updateRoomChip();
+  renderObjBar(now());
 }
 
 function respawn(p) {
   // Diğer oyunculardan en uzak doğma noktasını seç
-  let best = SPAWNS[0];
+  const pool = teamMode() && p.team >= 0 ? SPAWNS.filter((s) => s.x < WORLD_W / 2 === (p.team === 0)) : SPAWNS;
+  let best = pool[0];
   let bestScore = -1;
-  for (const s of SPAWNS) {
+  for (const s of pool) {
     let m = 1e9;
-    for (const q of game.players.values()) if (q !== p && q.alive) m = Math.min(m, Math.hypot(q.x - s.x, q.y - s.y));
+    for (const q of game.players.values()) if (q !== p && q.alive && !sameTeam(p, q)) m = Math.min(m, Math.hypot(q.x - s.x, q.y - s.y));
     const score = m + Math.random() * 80;
     if (score > bestScore) {
       bestScore = score;
@@ -665,6 +897,7 @@ function respawn(p) {
 
 function hostUpdate(dt) {
   const t = now();
+  objUpdate(dt);
   for (const p of game.players.values()) {
     if (!p.alive && t >= p.respawnAt) respawn(p);
     if (p.bot) updateBot(p, dt);
@@ -675,12 +908,19 @@ function hostUpdate(dt) {
     game.lastSnap = t;
     broadcast({
       t: "s",
-      p: [...game.players.values()].map((p) => [p.id, p.name, p.color, r1(p.x), r1(p.y), r2(p.a), p.w, p.hp, p.alive ? 1 : 0, p.k, p.d, p.seq]),
+      p: [...game.players.values()].map((p) => [p.id, p.name, p.color, r1(p.x), r1(p.y), r2(p.a), p.w, p.hp, p.alive ? 1 : 0, p.k, p.d, p.seq, p.team, p.streak]),
+      o: objSnap(),
     });
   }
 }
 
+function pickTeam(self) {
+  const c = [0, 0];
+  for (const q of game.players.values()) if (q !== self && q.team >= 0) c[q.team]++;
+  return c[1] < c[0] ? 1 : 0;
+}
 function addPlayer(p) {
+  p.team = teamMode() ? pickTeam(p) : -1;
   game.players.set(p.id, p);
   p.respawnAt = 0;
   respawn(p);
@@ -709,7 +949,7 @@ function addBot() {
   const name = BOT_NAMES.find((n) => !used.has(`Bot ${n}`)) || "X";
   const b = makePlayer(`bot${++game.botSeq}`, `Bot ${name}`, COLORS[(game.botSeq * 3) % COLORS.length], true);
   b.L = newLoadout();
-  b.ai = { path: [], think: 0, target: null, react: 0, strafe: 0, strafeT: 0, stuck: 0, lx: 0, ly: 0 };
+  b.ai = { path: [], think: 0, target: null, react: 0, strafe: 0, strafeT: 0, stuck: 0, lx: 0, ly: 0, goal: null, role: game.botSeq % 3 === 0 ? "def" : "att" };
   addPlayer(b);
   emit({ k: "join", n: b.name });
   updateBotUI();
@@ -750,6 +990,29 @@ function findPath(fx0, fy0, tx, ty) {
   return path.reverse();
 }
 
+/* Karanlıkta bot yalnızca fenerinin gördüğünü, çok yakındakini ya da yeni ateş edeni fark eder */
+function botSpots(b, p, d) {
+  return d < 46 || (d < 175 && Math.abs(angDiff(b.a, Math.atan2(p.y - b.y, p.x - b.x))) < 0.55) || now() - p.flash < 600;
+}
+function botGoal(b) {
+  const o = game.obj;
+  if (o.win || b.team < 0) return null;
+  if (game.rules.mode === "koth") {
+    const [tx, ty] = ZONE_TILES[Math.floor(Math.random() * ZONE_TILES.length)];
+    return { x: tx * TILE + 8, y: ty * TILE + 8, zone: true };
+  }
+  if (game.rules.mode === "ctf" && o.flags) {
+    const mine = o.flags[b.team];
+    const theirs = o.flags[1 - b.team];
+    if (theirs.st === 1 && theirs.c === b.id) return FLAG_HOME[b.team];
+    if (mine.st !== 0 && (b.ai.role === "def" || mine.st === 2)) return { x: mine.x, y: mine.y };
+    if (theirs.st !== 1) return { x: theirs.x, y: theirs.y };
+    const c = game.players.get(theirs.c);
+    return c ? { x: c.x, y: c.y } : FLAG_HOME[b.team];
+  }
+  return null;
+}
+
 function updateBot(b, dt) {
   if (!b.alive) return;
   const ai = b.ai;
@@ -758,10 +1021,13 @@ function updateBot(b, dt) {
   if (ai.think <= 0) {
     ai.think = 0.3;
     let best = null;
-    let bd = 260;
+    // bayrağı taşıyan bot kavgaya girmez, eve koşar
+    const carrying = game.rules.mode === "ctf" && game.obj.flags && game.obj.flags.some((f) => f.st === 1 && f.c === b.id);
+    let bd = carrying ? 50 : 260;
     for (const p of game.players.values()) {
-      if (p === b || !p.alive) continue;
+      if (p === b || !p.alive || sameTeam(b, p)) continue;
       const d = dist(b, p);
+      if (game.rules.dark && !botSpots(b, p, d)) continue;
       if (d < bd && canSee(b, p)) {
         bd = d;
         best = p;
@@ -771,9 +1037,19 @@ function updateBot(b, dt) {
       ai.target = best;
       ai.react = 0.35 + Math.random() * 0.35;
     }
-    if (!best && !ai.path.length) {
-      const [tx, ty] = FLOOR[Math.floor(Math.random() * FLOOR.length)];
-      ai.path = findPath(b.x, b.y, tx, ty);
+    if (!best) {
+      const g = botGoal(b);
+      if (g) {
+        const moved = !ai.goal || Math.hypot(g.x - ai.goal.x, g.y - ai.goal.y) > 28;
+        if (ai.path.length ? moved && !g.zone : !g.zone || Math.random() < 0.15) {
+          ai.goal = g;
+          ai.path = findPath(b.x, b.y, Math.floor(g.x / TILE), Math.floor(g.y / TILE));
+        }
+      } else if (!ai.path.length) {
+        ai.goal = null;
+        const [tx, ty] = FLOOR[Math.floor(Math.random() * FLOOR.length)];
+        ai.path = findPath(b.x, b.y, tx, ty);
+      }
     }
   }
 
@@ -893,12 +1169,44 @@ function handleEvent(ev) {
     toast(T("ds.joined", { name: ev.n }));
   } else if (ev.k === "leave") {
     toast(T("ds.left", { name: ev.n }));
+  } else if (ev.k === "flag") {
+    const me = game.me;
+    const tn = teamName(ev.t);
+    if (ev.a === "take") {
+      announce(T("ds.flag.take", { name: ev.n, team: tn }), TEAM_COLORS[1 - ev.t]);
+      if (me && ev.id === myIdSafe()) announce(T("ds.flag.carry"), "#ffd23f");
+      else if (me && me.team === ev.t) announce(T("ds.flag.mine"), "#ff4d5e");
+      sfx.tone("square", 520, 880, 0.18, 0.1);
+    } else if (ev.a === "drop") {
+      announce(T("ds.flag.drop", { team: tn }), TEAM_COLORS[ev.t]);
+      sfx.tone("triangle", 600, 300, 0.2, 0.1);
+    } else if (ev.a === "ret") {
+      announce(T("ds.flag.ret", { team: tn }), TEAM_COLORS[ev.t]);
+      sfx.tone("triangle", 400, 800, 0.2, 0.1);
+    } else if (ev.a === "cap") {
+      announce(T("ds.flag.cap", { name: ev.n, team: tn }), TEAM_COLORS[ev.t]);
+      sfx.fanfare();
+    }
+  } else if (ev.k === "zone") {
+    if (ev.t === 2) announce(T("ds.zone.cont"), "#ff4d5e");
+    else announce(T("ds.zone.hold", { team: teamName(ev.t) }), TEAM_COLORS[ev.t]);
+  } else if (ev.k === "win") {
+    sfx.fanfare();
+  } else if (ev.k === "round") {
+    $("killfeed").innerHTML = "";
+  } else if (ev.k === "rules") {
+    game.rules = ev.r;
+    resetObjectives();
+    updateRoomChip();
+    renderObjBar(now());
+    toast(T("ds.rules", { m: modeName(ev.r.mode) + (ev.r.dark ? " · " + T("ds.darkTag") : "") }), 3000);
   }
 }
+const myIdSafe = () => game.myId;
 
 function hitFx(victimId, x, y, shooterId) {
   const v = game.players.get(victimId);
-  addFeathers(x, y, v ? v.color : "#fff", 5);
+  addFeathers(x, y, v ? pColor(v) : "#fff", 5);
   if (victimId === game.myId) {
     fx.hurt = now();
     game.shake = 3;
@@ -974,7 +1282,7 @@ function setupHostConn(conn) {
       const np = makePlayer(conn.peer, cleanName(msg.name) || T("ds.defaultName"), validColor(msg.color));
       game.conns.set(conn.peer, conn);
       addPlayer(np);
-      conn.send({ t: "w", id: conn.peer, code: game.code });
+      conn.send({ t: "w", id: conn.peer, code: game.code, rules: game.rules, o: objSnap() });
       emit({ k: "join", n: np.name });
       return;
     }
@@ -1025,11 +1333,15 @@ function joinRoom(code) {
       if (msg.t === "w") {
         clearTimeout(timer);
         game.code = msg.code;
-        startGame("client", msg.id);
+        startGame("client", msg.id, msg.rules);
+        applyObj(msg.o);
       } else if (msg.t === "full") {
         clearTimeout(timer);
         failToMenu(T("ds.err.full"));
-      } else if (msg.t === "s") applySnap(msg);
+      } else if (msg.t === "s") {
+        applySnap(msg);
+        applyObj(msg.o);
+      }
       else if (msg.t === "e") handleEvent(msg.e);
     });
     conn.on("close", () => {
@@ -1049,7 +1361,7 @@ function joinRoom(code) {
 function applySnap(msg) {
   const seen = new Set();
   for (const a of msg.p) {
-    const [id, name, color, x, y, ang, w, hp, alive, k, d, seq] = a;
+    const [id, name, color, x, y, ang, w, hp, alive, k, d, seq, team, streak] = a;
     seen.add(id);
     let p = game.players.get(id);
     const fresh = !p;
@@ -1059,6 +1371,8 @@ function applySnap(msg) {
     }
     p.name = name;
     p.color = color;
+    p.team = team === undefined ? -1 : team;
+    p.streak = streak | 0;
     p.hp = hp;
     p.alive = !!alive;
     p.k = k;
@@ -1088,8 +1402,10 @@ function applySnap(msg) {
 }
 
 /* ---------------- Oyun başlat / bitir ---------------- */
-function startGame(mode, myId) {
+function startGame(mode, myId, rules) {
   hideLoading();
+  game.rules = rules ? { mode: MODES.includes(rules.mode) ? rules.mode : "ffa", dark: !!rules.dark } : { mode: profile.mode, dark: profile.dark };
+  resetObjectives();
   game.mode = mode;
   game.isHost = mode !== "client";
   game.myId = myId;
@@ -1119,7 +1435,7 @@ function startGame(mode, myId) {
   $("menu").hidden = true;
   $("hud").hidden = false;
   document.body.classList.add("playing");
-  $("roomChip").innerHTML = mode === "practice" ? `<b>${T("ds.practiceLabel")}</b>` : `${T("ds.room")}: <b>${esc(game.code)}</b>`;
+  updateRoomChip();
   $("btnCopy").hidden = mode === "practice";
   $("botCtrl").hidden = !game.isHost;
   updateBotUI();
@@ -1419,6 +1735,8 @@ function render(t) {
   }
   ctx.globalAlpha = 1;
 
+  if (game.state === "playing") drawObjectives(t);
+
   // Oyuncular
   for (const p of game.players.values()) {
     if (!p.alive) continue;
@@ -1429,7 +1747,7 @@ function render(t) {
     ctx.save();
     ctx.translate(x, y);
     ctx.rotate(p.ra);
-    ctx.drawImage(duckSprite(p.color, p.w), -8, -9);
+    ctx.drawImage(duckSprite(pColor(p), p.w), -8, -9);
     if (t - p.flash < 50 && p.w !== 2) {
       ctx.fillStyle = "#fff6b0";
       ctx.fillRect(p.w === 0 ? 14 : 10, 3, 3, 3);
@@ -1466,6 +1784,8 @@ function render(t) {
   ctx.globalAlpha = 1;
 
   if (game.state !== "playing") return;
+  drawCarriedFlags(t);
+  if (game.rules.dark) drawDarkness(ox, oy, t);
 
   // İsimler ve can çubukları (ekran çözünürlüğünde, net görünsün)
   ctx.setTransform(1, 0, 0, 1, 0, 0);
@@ -1473,14 +1793,14 @@ function render(t) {
   ctx.font = `600 ${fs}px "Pixelify Sans", monospace`;
   ctx.textAlign = "center";
   for (const p of game.players.values()) {
-    if (!p.alive || p === game.me) continue;
+    if (!p.alive || p === game.me || !litForMe(p, t)) continue;
     const sx = p.rx * S + ox;
     const sy = (p.ry - 11) * S + oy;
     // Pikselli fontun "fi/fl" bitişik harflerini engelle
     const label = p.name.replace(/f(?=[il])/g, "f\u200c");
     ctx.fillStyle = "rgba(0,0,0,0.6)";
     ctx.fillText(label, sx + dpr, sy + dpr);
-    ctx.fillStyle = "#fff";
+    ctx.fillStyle = teamMode() && p.team >= 0 ? TEAM_COLORS[p.team] : "#fff";
     ctx.fillText(label, sx, sy);
     const bw = 12 * S;
     ctx.fillStyle = "rgba(0,0,0,0.5)";
@@ -1488,6 +1808,8 @@ function render(t) {
     ctx.fillStyle = p.hp > 40 ? "#48e0a0" : "#ff4d5e";
     ctx.fillRect(sx - bw / 2, sy + 3 * dpr, (bw * p.hp) / MAX_HP, 2 * dpr);
   }
+
+  drawIndicators(ox, oy, t);
 
   // Hasar alınca kırmızı kenar
   const hurtK = 1 - (t - fx.hurt) / 300;
@@ -1523,7 +1845,268 @@ function render(t) {
   }
 }
 
+/* ---------------- Hedef çizimleri ---------------- */
+function hexA(hex, a) {
+  const n = parseInt(hex.slice(1), 16);
+  return `rgba(${n >> 16},${(n >> 8) & 255},${n & 255},${a})`;
+}
+function drawFlag(x, y, team, t, small) {
+  const k = small ? 0.75 : 1;
+  const wave = Math.floor(t / 160) % 2;
+  x = Math.round(x);
+  y = Math.round(y);
+  ctx.fillStyle = "rgba(0,0,0,0.3)";
+  ctx.fillRect(x - 2, y + 1, 5, 2);
+  ctx.fillStyle = "#d8dde6";
+  ctx.fillRect(x, y - Math.round(15 * k), 1, Math.round(15 * k) + 1);
+  ctx.fillStyle = TEAM_COLORS[team];
+  ctx.fillRect(x + 1, y - Math.round(15 * k), Math.round(8 * k), Math.round(5 * k));
+  ctx.fillRect(x + 1 + Math.round(8 * k), y - Math.round(15 * k) + wave, 2, Math.round(4 * k));
+  ctx.fillStyle = shade(TEAM_COLORS[team], -0.35);
+  ctx.fillRect(x + 1, y - Math.round(11 * k), Math.round(8 * k), 1);
+}
+function drawObjectives(t) {
+  const o = game.obj;
+  if (!o) return;
+  const pulse = 0.5 + 0.5 * Math.sin(t / 300);
+  if (game.rules.mode === "ctf" && o.flags) {
+    for (let i = 0; i < 2; i++) {
+      const h = FLAG_HOME[i];
+      ctx.fillStyle = hexA(TEAM_COLORS[i], 0.12 + pulse * 0.06);
+      ctx.beginPath();
+      ctx.arc(h.x, h.y, 14, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.strokeStyle = hexA(TEAM_COLORS[i], 0.75);
+      ctx.lineWidth = 1.5;
+      ctx.setLineDash([3, 2]);
+      ctx.lineDashOffset = -t / 120;
+      ctx.stroke();
+      ctx.setLineDash([]);
+    }
+    for (let i = 0; i < 2; i++) if (o.flags[i].st !== 1) drawFlag(o.flags[i].x, o.flags[i].y, i, t);
+  } else if (game.rules.mode === "koth") {
+    const hold = o.zone.hold;
+    const col = hold === 0 || hold === 1 ? TEAM_COLORS[hold] : hold === 2 ? (Math.floor(t / 200) % 2 ? "#ffffff" : "#ff4d5e") : "#f4f1e8";
+    ctx.fillStyle = hexA(col, 0.1 + pulse * 0.08);
+    ctx.beginPath();
+    ctx.arc(ZONE.x, ZONE.y, ZONE.r, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.strokeStyle = hexA(col, 0.85);
+    ctx.lineWidth = 2;
+    ctx.setLineDash([5, 4]);
+    ctx.lineDashOffset = -t / 80;
+    ctx.stroke();
+    ctx.setLineDash([]);
+  }
+}
+function drawCarriedFlags(t) {
+  const o = game.obj;
+  if (!o || !o.flags) return;
+  for (let i = 0; i < 2; i++) {
+    const f = o.flags[i];
+    if (f.st !== 1) continue;
+    const c = game.players.get(f.c);
+    if (!c || !c.alive || !litForMe(c, t)) continue;
+    drawFlag(c.rx + 3, c.ry - 3, i, t, true);
+  }
+}
+
+/* ---------------- Korku modu: karanlık ve fenerler ---------------- */
+let darkCv = null;
+let darkG = null;
+function glow(g, x, y, r, a) {
+  const grd = g.createRadialGradient(x, y, 0, x, y, r);
+  grd.addColorStop(0, `rgba(0,0,0,${a})`);
+  grd.addColorStop(1, "rgba(0,0,0,0)");
+  g.fillStyle = grd;
+  g.fillRect(x - r, y - r, r * 2, r * 2);
+}
+// Fener konisi duvarlara çarpınca kesilir
+function lightCone(g, x, y, a, range, half, alpha) {
+  const N = 28;
+  g.beginPath();
+  g.moveTo(x, y);
+  for (let i = 0; i <= N; i++) {
+    const aa = a - half + (2 * half * i) / N;
+    const d = Math.min(range, rayWall(x, y, aa, range) + 4);
+    g.lineTo(x + Math.cos(aa) * d, y + Math.sin(aa) * d);
+  }
+  g.closePath();
+  const grd = g.createRadialGradient(x, y, 4, x, y, range);
+  grd.addColorStop(0, `rgba(0,0,0,${alpha})`);
+  grd.addColorStop(0.65, `rgba(0,0,0,${alpha * 0.8})`);
+  grd.addColorStop(1, "rgba(0,0,0,0)");
+  g.fillStyle = grd;
+  g.fill();
+}
+function drawDarkness(ox, oy, t) {
+  const lw = Math.ceil(canvas.width / S) + 2;
+  const lh = Math.ceil(canvas.height / S) + 2;
+  if (!darkCv) {
+    darkCv = document.createElement("canvas");
+    darkG = darkCv.getContext("2d");
+  }
+  if (darkCv.width !== lw || darkCv.height !== lh) {
+    darkCv.width = lw;
+    darkCv.height = lh;
+  }
+  const x0 = -ox / S;
+  const y0 = -oy / S;
+  const g = darkG;
+  g.setTransform(1, 0, 0, 1, 0, 0);
+  g.globalCompositeOperation = "source-over";
+  g.clearRect(0, 0, lw, lh);
+  g.fillStyle = "rgba(3,2,8,0.965)";
+  g.fillRect(0, 0, lw, lh);
+  g.setTransform(1, 0, 0, 1, -x0, -y0);
+  g.globalCompositeOperation = "destination-out";
+  const me = game.me;
+  for (const p of game.players.values()) {
+    if (!p.alive) continue;
+    const mine = p === me;
+    lightCone(g, p.rx, p.ry, p.ra, mine ? 180 : 150, 0.42, mine ? 1 : 0.8);
+    glow(g, p.rx, p.ry, mine ? 30 : 15, mine ? 0.85 : 0.5);
+    if (t - p.flash < 70) glow(g, p.rx + Math.cos(p.ra) * 10, p.ry + Math.sin(p.ra) * 10, 64, 0.95);
+  }
+  // mermi izleri etrafı aydınlatır
+  g.lineCap = "round";
+  for (const tr of fx.tracers) {
+    const k = clamp(1 - (t - tr.t) / 90, 0, 1);
+    g.strokeStyle = `rgba(0,0,0,${0.7 * k})`;
+    g.lineWidth = 10;
+    g.beginPath();
+    g.moveTo(tr.x1, tr.y1);
+    g.lineTo(tr.x2, tr.y2);
+    g.stroke();
+    glow(g, tr.x2, tr.y2, 22, 0.8 * k);
+  }
+  for (const sl of fx.slashes) glow(g, sl.x, sl.y, 24, 0.6);
+  // hedefler hafifçe parlar
+  const o = game.obj;
+  if (o && o.flags) for (const f of o.flags) glow(g, f.x, f.y - 6, 26, 0.55);
+  if (o && game.rules.mode === "koth") glow(g, ZONE.x, ZONE.y, ZONE.r + 8, 0.28);
+  if (!me || !me.alive) {
+    g.setTransform(1, 0, 0, 1, 0, 0);
+    g.fillStyle = "rgba(0,0,0,0.4)";
+    g.fillRect(0, 0, lw, lh);
+  }
+  ctx.imageSmoothingEnabled = true;
+  ctx.drawImage(darkCv, x0, y0);
+  ctx.imageSmoothingEnabled = false;
+}
+// Karanlıkta bir oyuncunun ismi/bayrağı ancak görülebiliyorsa çizilir
+function litForMe(p, t) {
+  const me = game.me;
+  if (!game.rules.dark || !me || p === me || sameTeam(me, p)) return true;
+  if (t - p.flash < 150) return true;
+  if (!me.alive) return false;
+  const d = Math.hypot(p.rx - me.rx, p.ry - me.ry);
+  if (d < 28) return true;
+  return d < 180 && Math.abs(angDiff(me.ra, Math.atan2(p.ry - me.ry, p.rx - me.rx))) < 0.45 && canSee({ x: me.rx, y: me.ry }, { x: p.rx, y: p.ry });
+}
+// Ekran dışındaki hedefleri kenarda okla göster
+function drawIndicators(ox, oy, t) {
+  const o = game.obj;
+  if (!o || o.win) return;
+  const pts = [];
+  if (game.rules.mode === "koth") pts.push([ZONE.x, ZONE.y, "#f4f1e8"]);
+  if (game.rules.mode === "ctf" && o.flags) {
+    const me = game.me;
+    o.flags.forEach((f, i) => {
+      if (me && f.st === 1 && f.c === me.id) {
+        pts.push([FLAG_HOME[me.team].x, FLAG_HOME[me.team].y, TEAM_COLORS[me.team]]);
+        return;
+      }
+      if (f.st === 1 && game.rules.dark) return;
+      pts.push([f.x, f.y, TEAM_COLORS[i]]);
+    });
+  }
+  const m = 34 * dpr;
+  const W = canvas.width;
+  const H = canvas.height;
+  for (const [wx, wy, col] of pts) {
+    const sx = wx * S + ox;
+    const sy = wy * S + oy;
+    if (sx > m && sy > m && sx < W - m && sy < H - m) continue;
+    const a = Math.atan2(sy - H / 2, sx - W / 2);
+    const ex = clamp(sx, m, W - m);
+    const ey = clamp(sy, m, H - m);
+    const bob = Math.sin(t / 200) * 3 * dpr;
+    ctx.save();
+    ctx.translate(ex + Math.cos(a) * bob, ey + Math.sin(a) * bob);
+    ctx.rotate(a);
+    ctx.fillStyle = "rgba(0,0,0,0.55)";
+    ctx.beginPath();
+    ctx.moveTo(13 * dpr, 2 * dpr);
+    ctx.lineTo(-7 * dpr, -7 * dpr);
+    ctx.lineTo(-7 * dpr, 11 * dpr);
+    ctx.fill();
+    ctx.fillStyle = col;
+    ctx.beginPath();
+    ctx.moveTo(12 * dpr, 0);
+    ctx.lineTo(-8 * dpr, -9 * dpr);
+    ctx.lineTo(-8 * dpr, 9 * dpr);
+    ctx.closePath();
+    ctx.fill();
+    ctx.restore();
+  }
+}
+
 /* ---------------- Arayüz ---------------- */
+function updateRoomChip() {
+  const tag = modeName(game.rules.mode) + (game.rules.dark ? " · 🔦" : "");
+  $("roomChip").innerHTML = game.mode === "practice" ? `<b>${T("ds.practiceLabel")}</b> <small>${esc(tag)}</small>` : `${T("ds.room")}: <b>${esc(game.code || "")}</b> <small>${esc(tag)}</small>`;
+}
+let announceSeq = 0;
+function announce(msg, color) {
+  const box = $("announce");
+  const el = document.createElement("div");
+  el.textContent = msg;
+  el.style.setProperty("--ac", color || "#ffd23f");
+  box.appendChild(el);
+  while (box.children.length > 3) box.firstChild.remove();
+  const id = ++announceSeq;
+  setTimeout(() => el.classList.add("fade"), 2600);
+  setTimeout(() => el.remove(), 3200 + id * 0);
+}
+let objCache = "";
+function renderObjBar(t) {
+  const bar = $("objBar");
+  const o = game.obj;
+  const msg = $("roundMsg");
+  if (!teamMode() || !o) {
+    if (!bar.hidden) bar.hidden = true;
+    msg.hidden = true;
+    return;
+  }
+  const m = game.rules.mode;
+  let mid = `<em>${WIN_SCORE[m]}</em>`;
+  if (m === "koth") {
+    const h = o.zone.hold;
+    mid = `<em class="zone" style="--zc:${h === 0 || h === 1 ? TEAM_COLORS[h] : h === 2 ? "#ff4d5e" : "#6d6280"}">${h === 2 ? "⚔" : "◎"}</em>`;
+  }
+  const flagTxt = (i) => {
+    if (m !== "ctf" || !o.flags) return "";
+    const f = o.flags[i];
+    return `<small>🚩 ${T(f.st === 0 ? "ds.home" : f.st === 1 ? "ds.carried" : "ds.dropped")}</small>`;
+  };
+  const me = game.me;
+  const html = `<span class="t0${me && me.team === 0 ? " mine" : ""}"><i>${teamName(0)}</i><b>${o.sc[0]}</b>${flagTxt(0)}</span>${mid}<span class="t1${me && me.team === 1 ? " mine" : ""}"><b>${o.sc[1]}</b><i>${teamName(1)}</i>${flagTxt(1)}</span>`;
+  const sig = html + i18n.lang;
+  if (sig !== objCache) {
+    objCache = sig;
+    bar.innerHTML = html;
+  }
+  bar.hidden = false;
+  if (o.win) {
+    msg.hidden = false;
+    msg.style.setProperty("--wc", TEAM_COLORS[o.win.t]);
+    const sLeft = Math.max(1, Math.ceil((o.win.until - t) / 1000));
+    const txt = `<strong>${esc(T("ds.win", { team: teamName(o.win.t).toLocaleUpperCase(i18n.lang === "tr" ? "tr" : "en") }))}</strong><small>${esc(T("ds.newRound", { s: sLeft }))}</small>`;
+    if (msg.innerHTML !== txt) msg.innerHTML = txt;
+  } else msg.hidden = true;
+}
+
 let toastTimer = 0;
 function toast(msg, ms = 2200) {
   const el = $("toast");
@@ -1543,8 +2126,10 @@ function hideLoading() {
 function addKillfeed(ev) {
   const li = document.createElement("li");
   const W = WEAPONS[ev.w] || WEAPONS[0];
-  const killer = ev.an && ev.a !== ev.v ? `${esc(ev.an)}<span class="w">${W.icon}</span>` : `<span class="w">💀</span>`;
-  li.innerHTML = `${killer}${esc(ev.vn)}`;
+  const nm = (n, team) => (teamMode() && team >= 0 ? `<b style="color:${TEAM_COLORS[team]}">${esc(n)}</b>` : esc(n));
+  const killer = ev.an && ev.a !== ev.v ? `${nm(ev.an, ev.at)}<span class="w">${W.icon}</span>` : `<span class="w">💀</span>`;
+  const streak = ev.st >= 2 ? `<span class="streak s${Math.min(ev.st, 5)}">x${ev.st}</span>` : "";
+  li.innerHTML = `${streak}${killer}${nm(ev.vn, ev.vt)}`;
   if (ev.a === game.myId || ev.v === game.myId) li.classList.add("me");
   const feed = $("killfeed");
   feed.prepend(li);
@@ -1577,24 +2162,37 @@ function updateHud(t) {
       $("deathTimer").textContent = T("ds.respawn", { s });
     }
   }
+  renderObjBar(t);
   if (!$("scoreboard").hidden) renderScore();
 }
 
 function renderScore() {
+  const row = (p) => `<tr class="${p.id === game.myId ? "me" : ""}"><td><span class="dot" style="background:${pColor(p)}"></span>${esc(p.name)}${p.id === game.myId ? ` (${T("ds.you")})` : ""}</td><td>${p.k}</td><td>${p.d}</td></tr>`;
   const rows = [...game.players.values()].sort((a, b) => b.k - a.k || a.d - b.d);
-  const html = rows
-    .map((p) => `<tr class="${p.id === game.myId ? "me" : ""}"><td><span class="dot" style="background:${validColor(p.color)}"></span>${esc(p.name)}${p.id === game.myId ? ` (${T("ds.you")})` : ""}</td><td>${p.k}</td><td>${p.d}</td></tr>`)
-    .join("");
+  let html;
+  if (teamMode() && game.obj) {
+    html = [0, 1]
+      .map((tm) => `<tr class="team" style="--tc:${TEAM_COLORS[tm]}"><td>${teamName(tm)}</td><td colspan="2">${game.obj.sc[tm]}</td></tr>` + rows.filter((p) => p.team === tm).map(row).join(""))
+      .join("");
+  } else html = rows.map(row).join("");
   if ($("sbBody").innerHTML !== html) $("sbBody").innerHTML = html;
-  $("sbTitle").textContent = game.mode === "practice" ? T("ds.score") : `${T("ds.score")} · ${game.code}`;
+  $("sbTitle").textContent = `${game.mode === "practice" ? T("ds.score") : `${T("ds.score")} · ${game.code}`} · ${modeName(game.rules.mode)}`;
 }
 function showScore(on) {
   $("scoreboard").hidden = !on;
   if (on) renderScore();
 }
+function renderPauseRules() {
+  const can = game.isHost;
+  $("btnMode").hidden = !can;
+  $("btnDark").hidden = !can;
+  $("btnMode").textContent = T("ds.modeBtn", { m: modeName(game.rules.mode) });
+  $("btnDark").textContent = T("ds.darkBtn", { s: T(game.rules.dark ? "ds.on" : "ds.off") });
+}
 function togglePause(force) {
   const on = force !== undefined ? force : $("pause").hidden;
   $("pause").hidden = !on;
+  if (on) renderPauseRules();
   game.paused = on && game.mode === "practice" ? true : false;
   if (on) {
     keys.clear();
@@ -1656,6 +2254,41 @@ $("btnReset").addEventListener("click", () => {
   renderProfile();
 });
 
+function renderModePick() {
+  document.querySelectorAll("#modes button").forEach((b) => {
+    b.textContent = modeName(b.dataset.mode);
+    b.setAttribute("aria-pressed", String(b.dataset.mode === profile.mode));
+  });
+  $("modeDesc").textContent = T(`ds.md.${profile.mode}`);
+  $("darkToggle").checked = profile.dark;
+}
+$("modes").addEventListener("click", (e) => {
+  const b = e.target.closest("button[data-mode]");
+  if (!b) return;
+  profile.mode = b.dataset.mode;
+  saveProfile();
+  renderModePick();
+});
+$("darkToggle").addEventListener("change", (e) => {
+  profile.dark = e.target.checked;
+  saveProfile();
+});
+$("btnMode").addEventListener("click", () => {
+  if (!game.isHost) return;
+  const m = MODES[(MODES.indexOf(game.rules.mode) + 1) % MODES.length];
+  profile.mode = m;
+  saveProfile();
+  applyRules({ mode: m, dark: game.rules.dark });
+  renderPauseRules();
+});
+$("btnDark").addEventListener("click", () => {
+  if (!game.isHost) return;
+  profile.dark = !game.rules.dark;
+  saveProfile();
+  applyRules({ mode: game.rules.mode, dark: !game.rules.dark });
+  renderPauseRules();
+});
+
 $("btnCreate").addEventListener("click", () => createRoom());
 $("joinForm").addEventListener("submit", (e) => {
   e.preventDefault();
@@ -1696,9 +2329,11 @@ updateMuteBtn();
 
 document.addEventListener("langchange", () => {
   if (game.state === "playing") {
-    $("roomChip").innerHTML = game.mode === "practice" ? `<b>${T("ds.practiceLabel")}</b>` : `${T("ds.room")}: <b>${esc(game.code)}</b>`;
+    updateRoomChip();
     hudCache = "";
+    objCache = "";
   }
+  renderModePick();
 });
 
 window.addEventListener("beforeunload", () => {
@@ -1710,6 +2345,7 @@ const urlCode = new URLSearchParams(location.search).get("oda");
 if (urlCode) $("joinCode").value = urlCode.toUpperCase().slice(0, 5);
 
 renderProfile();
+renderModePick();
 requestAnimationFrame(frame);
 
 // Test ve hata ayıklama için
