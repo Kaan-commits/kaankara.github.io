@@ -194,7 +194,22 @@
     "dd.banner.eyebrow": "New · A pixel adventure played with dice",
     "dd.banner.text": "Pick your class, roll the d20 and change the story with your choices. Turn-based fights, death saves and six different endings. Play solo or online with friends.",
     "dd.banner.btn": "Start the adventure",
-    "dd.mini": "Pixel dice adventure · online"
+    "dd.mini": "Pixel dice adventure · online",
+    "planet.land": "Land on the planet",
+    "title.arcade": "Arcade · Kaan Kara",
+    "arc.eyebrow": "Play in your browser · No download",
+    "arc.all": "All games",
+    "arc.classics.n": "+3 classics",
+    "arc.lead": "Games that open in your browser and play right away. No download: create a room, send the code to friends or play a quick solo round.",
+    "arc.classics.eyebrow": "For a quick break",
+    "arc.classics": "Classics",
+    "arc.pong": "Steer your paddle with the mouse and don't miss the ball. Miss it and the game starts over.",
+    "arc.pong2": "Two players on one keyboard: one on W/S, the other on the arrow keys. Who slips first?",
+    "arc.rps": "Classic rock-paper-scissors against the computer. Perfect for a quick round.",
+    "arc.play": "Play",
+    "tag.solo": "Single player",
+    "tag.local2": "2 players · same device",
+    "tag.desktop": "Desktop"
   };
 
   // JavaScript'in kendisinin ürettiği metinler (iki dilde)
@@ -216,6 +231,10 @@
       "fx.crawl": "Çok uzak bir galakside, bir ördek oyun geliştiriyordu…",
       "fx.ready": "OYUNCU 1 HAZIR",
       "fx.skip": "Geçmek için dokun",
+      "sound.on": "Sesi aç",
+      "sound.off": "Sesi kapat",
+      "sound.toast.on": "🔊 Ses açık",
+      "sound.toast.off": "🔇 Ses kapalı",
       "fx.ducks": "Gizli mod: Ördek istilası! 🦆",
     },
     en: {
@@ -235,6 +254,10 @@
       "fx.crawl": "In a galaxy far, far away, a duck was making games…",
       "fx.ready": "PLAYER 1 READY",
       "fx.skip": "Tap to skip",
+      "sound.on": "Turn sound on",
+      "sound.off": "Turn sound off",
+      "sound.toast.on": "🔊 Sound on",
+      "sound.toast.off": "🔇 Sound off",
       "fx.ducks": "Secret mode: Duck invasion! 🦆",
     },
   };

@@ -12,8 +12,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Pixelify+Sans:wght@500;700&family=Press+Start+2P&family=Silkscreen:wght@400;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../../style.css?v=8">
-  <script>(function(){var d=document.documentElement,t;try{t=new URLSearchParams(location.search).get("theme")||localStorage.getItem("theme");if(t)localStorage.setItem("theme",t);if(!sessionStorage.getItem("intro")&&!matchMedia("(prefers-reduced-motion: reduce)").matches)d.dataset.intro="pending"}catch(e){}d.dataset.theme=t||"galaxy"})()</script>
+  <link rel="stylesheet" href="../../style.css?v=9">
+  <script>(function(){var d=document.documentElement,t;try{var s=sessionStorage;t=new URLSearchParams(location.search).get("theme")||localStorage.getItem("theme");if(t)localStorage.setItem("theme",t);if(!matchMedia("(prefers-reduced-motion: reduce)").matches){if(!s.getItem("intro"))d.dataset.intro="pending";else if(s.getItem("warp-in"))d.dataset.arrive="1"}s.removeItem("warp-in")}catch(e){}d.dataset.theme=t||"galaxy"})()</script>
 </head>
 <body class="game-page mindfield">
   <a class="skip-link" href="#icerik"><span data-i18n="nav.skip">İçeriğe geç</span></a>
@@ -29,6 +29,7 @@
       <button class="nav-toggle" aria-label="Menüyü aç" data-i18n-aria="nav.menu" aria-expanded="false" aria-controls="nav-links"><span></span></button>
       <ul class="nav-links" id="nav-links">
         <li><a href="../../index.html#oyunlar" aria-current="page"><span data-i18n="nav.games">Oyunlar</span></a></li>
+        <li><a href="../../arcade.html">Arcade</a></li>
         <li><a href="../../index.html#projeler"><span data-i18n="nav.projects">Projeler</span></a></li>
         <li><a href="../../index.html#magaza"><span data-i18n="nav.shop">Mağaza</span></a></li>
         <li><a href="../../fotogaleri.html"><span data-i18n="nav.gallery">Galeri</span></a></li>
@@ -207,7 +208,7 @@
     </div>
   </footer>
 
-  <script src="../../i18n.js?v=6"></script>
-  <script src="../../script.js?v=7"></script>
+  <script src="../../i18n.js?v=7"></script>
+  <script src="../../script.js?v=8"></script>
 </body>
 </html>

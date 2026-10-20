@@ -201,6 +201,204 @@ const toast = (() => {
   };
 })();
 
+/* ---------- Ses efektleri (Web Audio ile üretilir, varsayılan kapalı) ---------- */
+const sfx = (() => {
+  let on = false;
+  try {
+    on = localStorage.getItem("sound") === "on";
+  } catch (e) {}
+  let ac = null;
+  let master = null;
+  let noiseBuf = null;
+  let rumble = null;
+
+  const ensure = () => {
+    if (!on) return null;
+    if (!ac) {
+      const AC = window.AudioContext || window.webkitAudioContext;
+      if (!AC) return null;
+      ac = new AC();
+      master = ac.createGain();
+      master.gain.value = 0.4;
+      master.connect(ac.destination);
+      noiseBuf = ac.createBuffer(1, ac.sampleRate * 2, ac.sampleRate);
+      const d = noiseBuf.getChannelData(0);
+      for (let i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1;
+    }
+    if (ac.state === "suspended") ac.resume();
+    return ac;
+  };
+
+  // Tek bir nota: dalga tipi, frekans (kayabilir), süre, ses yüksekliği
+  const tone = ({ type = "sine", f = 440, f2 = 0, t = 0.2, v = 0.2, delay = 0, filter = 0 }) => {
+    const a = ensure();
+    if (!a) return;
+    const t0 = a.currentTime + delay;
+    const o = a.createOscillator();
+    const g = a.createGain();
+    o.type = type;
+    o.frequency.setValueAtTime(f, t0);
+    if (f2) o.frequency.exponentialRampToValueAtTime(f2, t0 + t);
+    g.gain.setValueAtTime(0.0001, t0);
+    g.gain.exponentialRampToValueAtTime(v, t0 + 0.008);
+    g.gain.exponentialRampToValueAtTime(0.0001, t0 + t);
+    let node = o;
+    if (filter) {
+      const bp = a.createBiquadFilter();
+      bp.type = "bandpass";
+      bp.frequency.value = filter;
+      bp.Q.value = 2.5;
+      node = o.connect(bp);
+    }
+    node.connect(g).connect(master);
+    o.start(t0);
+    o.stop(t0 + t + 0.05);
+  };
+
+  // Filtrelenmiş beyaz gürültü: vınlama, cızırtı
+  const noise = ({ t = 0.5, v = 0.2, f = 800, f2 = 0, type = "bandpass", q = 1, delay = 0 }) => {
+    const a = ensure();
+    if (!a) return;
+    const t0 = a.currentTime + delay;
+    const src = a.createBufferSource();
+    src.buffer = noiseBuf;
+    const bf = a.createBiquadFilter();
+    bf.type = type;
+    bf.Q.value = q;
+    bf.frequency.setValueAtTime(f, t0);
+    if (f2) bf.frequency.exponentialRampToValueAtTime(f2, t0 + t);
+    const g = a.createGain();
+    g.gain.setValueAtTime(0.0001, t0);
+    g.gain.exponentialRampToValueAtTime(v, t0 + t * 0.3);
+    g.gain.exponentialRampToValueAtTime(0.0001, t0 + t);
+    src.connect(bf).connect(g).connect(master);
+    src.start(t0);
+    src.stop(t0 + t + 0.05);
+  };
+
+  const sounds = {
+    blip: () => tone({ type: "triangle", f: 660, f2: 990, t: 0.12, v: 0.15 }),
+    chime: () => {
+      tone({ f: 880, t: 0.4, v: 0.12 });
+      tone({ f: 1320, t: 0.45, v: 0.07, delay: 0.05 });
+    },
+    pew: () => tone({ type: "square", f: 1500, f2: 160, t: 0.17, v: 0.07 }),
+    coin: () => {
+      tone({ type: "square", f: 988, t: 0.08, v: 0.07 });
+      tone({ type: "square", f: 1319, t: 0.32, v: 0.07, delay: 0.08 });
+    },
+    whoosh: () => {
+      noise({ t: 1.1, v: 0.3, f: 250, f2: 3200, q: 0.7 });
+      tone({ type: "sawtooth", f: 55, f2: 240, t: 1, v: 0.05 });
+    },
+    ready: () => {
+      noise({ t: 0.18, v: 0.12, f: 3000, type: "highpass" });
+      [523, 659, 784, 1047].forEach((f, i) => tone({ type: "square", f, t: i === 3 ? 0.3 : 0.1, v: 0.06, delay: 0.2 + i * 0.1 }));
+    },
+    crtOff: () => {
+      tone({ f: 1400, f2: 50, t: 0.4, v: 0.12 });
+      noise({ t: 0.25, v: 0.1, f: 4000, type: "highpass" });
+    },
+    fanfare: () => [392, 523, 659, 784, 659, 784].forEach((f, i) => tone({ type: "square", f, t: 0.14, v: 0.06, delay: i * 0.11 })),
+    quack: () => {
+      tone({ type: "sawtooth", f: 560, f2: 380, t: 0.13, v: 0.22, filter: 1150 });
+      tone({ type: "sawtooth", f: 500, f2: 300, t: 0.2, v: 0.2, filter: 1000, delay: 0.12 });
+    },
+  };
+
+  // Basılı tutulan hiperuzay: tut bırak boyunca süren uğultu
+  const hold = (start) => {
+    if (start) {
+      const a = ensure();
+      if (!a || rumble) return;
+      const t0 = a.currentTime;
+      const src = a.createBufferSource();
+      src.buffer = noiseBuf;
+      src.loop = true;
+      const lp = a.createBiquadFilter();
+      lp.type = "lowpass";
+      lp.frequency.setValueAtTime(150, t0);
+      lp.frequency.exponentialRampToValueAtTime(1400, t0 + 1.4);
+      const o = a.createOscillator();
+      o.type = "sawtooth";
+      o.frequency.setValueAtTime(40, t0);
+      o.frequency.exponentialRampToValueAtTime(110, t0 + 1.4);
+      const g = a.createGain();
+      g.gain.setValueAtTime(0.0001, t0);
+      g.gain.exponentialRampToValueAtTime(0.28, t0 + 0.5);
+      src.connect(lp).connect(g);
+      o.connect(lp);
+      g.connect(master);
+      src.start(t0);
+      o.start(t0);
+      rumble = { src, o, g };
+    } else if (rumble) {
+      const { src, o, g } = rumble;
+      const t0 = ac.currentTime;
+      g.gain.cancelScheduledValues(t0);
+      g.gain.setValueAtTime(Math.max(g.gain.value, 0.0001), t0);
+      g.gain.exponentialRampToValueAtTime(0.0001, t0 + 0.6);
+      src.stop(t0 + 0.65);
+      o.stop(t0 + 0.65);
+      rumble = null;
+    }
+  };
+
+  // Tarayıcı sesi ancak bir dokunuştan sonra başlatır
+  const unlock = () => {
+    if (on) ensure();
+  };
+  document.addEventListener("pointerdown", unlock, { passive: true });
+  document.addEventListener("keydown", unlock);
+
+  return {
+    get on() {
+      return on;
+    },
+    set(v) {
+      on = v;
+      try {
+        localStorage.setItem("sound", v ? "on" : "off");
+      } catch (e) {}
+      if (!v) hold(false);
+    },
+    play(name) {
+      if (on && !reduceMotion) sounds[name]();
+    },
+    hold(start) {
+      if (on && !reduceMotion) hold(start);
+      else if (!start) hold(false);
+    },
+  };
+})();
+
+/* ---------- Ses düğmesi (sağ alt köşe) ---------- */
+(() => {
+  const btn = document.createElement("button");
+  btn.type = "button";
+  btn.className = "sound-toggle";
+  const icons = {
+    on: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg>',
+    off: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="m22 9-6 6M16 9l6 6"/></svg>',
+  };
+  const render = () => {
+    btn.innerHTML = sfx.on ? icons.on : icons.off;
+    btn.setAttribute("aria-pressed", String(sfx.on));
+    const label = tr(sfx.on ? "sound.off" : "sound.on");
+    btn.setAttribute("aria-label", label);
+    btn.title = label;
+  };
+  btn.addEventListener("click", () => {
+    sfx.set(!sfx.on);
+    render();
+    toast(tr(sfx.on ? "sound.toast.on" : "sound.toast.off"), 1600);
+    sfx.play("blip");
+  });
+  document.addEventListener("langchange", render);
+  render();
+  document.body.appendChild(btn);
+})();
+
 /* ---------- Yıldız alanı (temaya göre değişir) ---------- */
 const sky = (() => {
   const canvas = document.getElementById("stars");
@@ -218,6 +416,8 @@ const sky = (() => {
   let warp = 0; // 0 = normal, 1 = tam hız
   let holding = false;
   let boostUntil = 0;
+  let ramp = 0.05; // warp'a geçiş hızı
+  let focus = null; // hiperuzayın çıktığı nokta (null = ekranın ortası)
   let px = 0; // fare paralaksı (-1..1), yumuşatılmış
   let py = 0;
   let tpx = 0;
@@ -294,8 +494,8 @@ const sky = (() => {
 
   /* Galaksi: yıldızların arasından ileri uçuş, basılı tutunca hiperuzay */
   const drawGalaxy = (dt) => {
-    const cx = w / 2 + px * 60;
-    const cy = h / 2 + py * 40;
+    const cx = focus ? focus.x : w / 2 + px * 60;
+    const cy = focus ? focus.y : h / 2 + py * 40;
     const f = Math.max(w, h) * 0.5;
     const speed = (0.0016 + warp * 0.03 + Math.min(Math.abs(scrollV), 60) * 0.00012) * dt;
     const tail = 1 + warp * 16;
@@ -483,7 +683,7 @@ const sky = (() => {
   const draw = (dt) => {
     ctx.clearRect(0, 0, w, h);
     const target = holding || performance.now() < boostUntil ? 1 : 0;
-    warp += (target - warp) * (target ? 0.05 : 0.04) * dt;
+    warp += (target - warp) * (target ? ramp : 0.04) * dt;
     if (warp < 0.002) warp = 0;
     px += (tpx - px) * 0.05 * dt;
     py += (tpy - py) * 0.05 * dt;
@@ -539,6 +739,9 @@ const sky = (() => {
     setMode(m) {
       mode = m;
       parts = [];
+      focus = null;
+      ramp = 0.05;
+      boostUntil = 0;
       seed();
       if (reduceMotion) draw(0);
     },
@@ -548,6 +751,19 @@ const sky = (() => {
     },
     boost(ms) {
       if (!reduceMotion) boostUntil = performance.now() + ms;
+    },
+    // Sayfadan çıkış: verilen noktadan hızla hiperuzaya
+    jump(x, y) {
+      if (reduceMotion) return;
+      focus = { x, y };
+      ramp = 0.14;
+      boostUntil = performance.now() + 5000;
+    },
+    // Yeni sayfaya varış: tam hızda başla, yavaşla
+    arrive() {
+      if (reduceMotion) return;
+      warp = 1;
+      boostUntil = performance.now() + 200;
     },
   };
 })();
@@ -600,6 +816,7 @@ const playFx = (t, done) => {
       if (jumped) return;
       jumped = true;
       sky.boost(1200);
+      sfx.play("whoosh");
       finish();
     };
     const el = overlay("fx-crawl", `<p>${tr("fx.crawl")}</p><small>${tr("fx.skip")}</small>`, 3000, jump);
@@ -609,9 +826,11 @@ const playFx = (t, done) => {
     }, 2100);
   } else if (t === "retro") {
     overlay("fx-crt", `<p>${tr("fx.ready")}</p>`, 1300);
+    sfx.play("ready");
     setTimeout(finish, 700);
   } else {
     sky.boost(650);
+    sfx.play("whoosh");
     finish();
   }
 };
@@ -677,6 +896,7 @@ document.addEventListener("langchange", renderToggles);
     if (!press) return;
     clearTimeout(press.timer);
     sky.hold(false);
+    sfx.hold(false);
     document.body.classList.remove("is-warping");
   };
   document.addEventListener("pointerdown", (e) => {
@@ -685,6 +905,7 @@ document.addEventListener("langchange", renderToggles);
     press.timer = setTimeout(() => {
       press.warped = true;
       sky.hold(true);
+      sfx.hold(true);
       document.body.classList.add("is-warping");
     }, 280);
   });
@@ -697,6 +918,7 @@ document.addEventListener("langchange", renderToggles);
   document.addEventListener("click", (e) => {
     if (isUI(e.target) || (press && press.warped) || window.getSelection().toString()) return;
     sky.burst(e.clientX, e.clientY);
+    sfx.play({ galaxy: "pew", retro: "coin", space: "chime" }[theme]);
   });
 })();
 
@@ -715,6 +937,7 @@ document.addEventListener("langchange", renderToggles);
     let hits = 0;
     let gone = 0;
     toast(tr("fx.ducks"));
+    sfx.play("fanfare");
     const finish = () => {
       if (++gone < total) return;
       active = false;
@@ -731,6 +954,7 @@ document.addEventListener("langchange", renderToggles);
       el.addEventListener("click", () => {
         if (el.classList.contains("hit")) return;
         hits++;
+        sfx.play("quack");
         el.classList.add("hit");
         sky.burst(el.getBoundingClientRect().left + size / 2, el.getBoundingClientRect().top + size / 2);
         setTimeout(() => {
@@ -847,5 +1071,63 @@ document.addEventListener("langchange", renderToggles);
     const dx = e.changedTouches[0].clientX - startX;
     if (Math.abs(dx) > 50 && group.length > 1) show(index + (dx < 0 ? 1 : -1));
     startX = null;
+  });
+})();
+
+/* ---------- Sayfa geçişleri: galakside hiperuzay, retroda CRT kapanışı ---------- */
+(() => {
+  // Yeni sayfaya varış (<head> betiği data-arrive koyar)
+  if (root.dataset.arrive) {
+    if (theme !== "retro") sky.arrive();
+    setTimeout(() => delete root.dataset.arrive, 900);
+  }
+  if (reduceMotion) return;
+
+  let leaving = false;
+  const leave = (href, x, y) => {
+    if (leaving) return;
+    leaving = true;
+    try {
+      sessionStorage.setItem("warp-in", "1");
+    } catch (e) {}
+    const el = document.createElement("div");
+    el.className = `fx-leave fx-leave-${theme}`;
+    el.setAttribute("aria-hidden", "true");
+    el.style.setProperty("--x", `${x}px`);
+    el.style.setProperty("--y", `${y}px`);
+    if (theme === "retro") {
+      el.innerHTML = "<i></i>";
+      sfx.play("crtOff");
+    } else {
+      sky.jump(x, y);
+      sfx.play("whoosh");
+    }
+    document.body.appendChild(el);
+    setTimeout(() => (location.href = href), theme === "retro" ? 450 : 700);
+  };
+
+  document.addEventListener("click", (e) => {
+    if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    const a = e.target.closest("a[href]");
+    if (!a || (a.target && a.target !== "_self") || a.hasAttribute("download")) return;
+    const url = new URL(a.href, location.href);
+    if (url.origin !== location.origin) return;
+    if (url.pathname === location.pathname && url.search === location.search) return; // aynı sayfada çapa
+    if (!/(\/|\.html?)$/.test(url.pathname)) return; // PDF vb. dosyalar
+    e.preventDefault();
+    // Gezegene tıklandıysa hiperuzay gezegenin merkezinden başlar
+    const r = (a.querySelector(".planet-body") || a).getBoundingClientRect();
+    const fromPlanet = !!a.querySelector(".planet-body");
+    const x = fromPlanet || !e.clientX ? r.left + r.width / 2 : e.clientX;
+    const y = fromPlanet || !e.clientY ? r.top + r.height / 2 : e.clientY;
+    leave(url.href, x, y);
+  });
+
+  // Geri tuşuyla önbellekten dönülürse perdeyi kaldır
+  window.addEventListener("pageshow", (e) => {
+    if (!e.persisted) return;
+    document.querySelectorAll(".fx-leave").forEach((n) => n.remove());
+    leaving = false;
+    sky.setMode(theme);
   });
 })();
