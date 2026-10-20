@@ -5,12 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title data-i18n="title.foto">Foto Galeri · Kaan Kara</title>
   <meta name="description" content="Kaan Kara foto galeri.">
-  <meta name="theme-color" content="#06060c">
+  <meta name="theme-color" content="#000005">
   <link rel="icon" href="Assets/Kaan_ghibli.jpeg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=5">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Pixelify+Sans:wght@500;700&family=Press+Start+2P&family=Silkscreen:wght@400;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=8">
+  <script>(function(){var d=document.documentElement,t;try{t=new URLSearchParams(location.search).get("theme")||localStorage.getItem("theme");if(t)localStorage.setItem("theme",t);if(!sessionStorage.getItem("intro")&&!matchMedia("(prefers-reduced-motion: reduce)").matches)d.dataset.intro="pending"}catch(e){}d.dataset.theme=t||"galaxy"})()</script>
 </head>
 <body>
   <a class="skip-link" href="#icerik"><span data-i18n="nav.skip">İçeriğe geç</span></a>
@@ -30,6 +31,7 @@
         <li><a href="index.html#magaza"><span data-i18n="nav.shop">Mağaza</span></a></li>
         <li><a href="fotogaleri.html" aria-current="page"><span data-i18n="nav.gallery">Galeri</span></a></li>
         <li><a href="index.html#iletisim"><span data-i18n="nav.contact">İletişim</span></a></li>
+        <li><button class="theme-toggle" type="button" data-theme-toggle aria-label="Temayı değiştir"><span class="theme-ico" aria-hidden="true"></span><span class="theme-name">Uzay</span></button></li>
         <li><button class="lang-toggle" type="button" data-lang-toggle>EN</button></li>
         <li><a class="nav-cta" href="Assets/CVturkce.pdf" data-href-en="Assets/Kaan_Kara_CV_Eng.pdf" target="_blank" rel="noopener">CV</a></li>
       </ul>
@@ -72,8 +74,8 @@
     </div>
   </footer>
 
-  <script src="i18n.js?v=4"></script>
+  <script src="i18n.js?v=6"></script>
 
-  <script src="script.js?v=4"></script>
+  <script src="script.js?v=7"></script>
 </body>
 </html>
