@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title data-i18n="title.arcade">Arcade · Kaan Kara</title>
+  <meta name="description" content="Kaan Kara'nın tarayıcıda oynanan oyunları: Duck Strike, Ducks &amp; Dragons, Pong ve daha fazlası. İndirme yok.">
+  <meta name="theme-color" content="#000005">
+  <link rel="icon" href="Assets/Kaan_ghibli.jpeg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Pixelify+Sans:wght@500;700&family=Press+Start+2P&family=Silkscreen:wght@400;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=9">
+  <script>(function(){var d=document.documentElement,t;try{var s=sessionStorage;t=new URLSearchParams(location.search).get("theme")||localStorage.getItem("theme");if(t)localStorage.setItem("theme",t);if(!matchMedia("(prefers-reduced-motion: reduce)").matches){if(!s.getItem("intro"))d.dataset.intro="pending";else if(s.getItem("warp-in"))d.dataset.arrive="1"}s.removeItem("warp-in")}catch(e){}d.dataset.theme=t||"galaxy"})()</script>
+</head>
+<body>
+  <a class="skip-link" href="#icerik"><span data-i18n="nav.skip">İçeriğe geç</span></a>
+  <div class="bg-glow" aria-hidden="true"></div>
+  <canvas id="stars" aria-hidden="true"></canvas>
+
+  <header class="site-header">
+    <nav class="nav container" aria-label="Ana menü">
+      <a class="brand" href="index.html">
+        <img src="Assets/Kaan_ghibli.jpeg" alt="">
+        <span>Kaan Kara</span>
+      </a>
+      <button class="nav-toggle" aria-label="Menüyü aç" data-i18n-aria="nav.menu" aria-expanded="false" aria-controls="nav-links"><span></span></button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html#oyunlar"><span data-i18n="nav.games">Oyunlar</span></a></li>
+        <li><a href="arcade.html" aria-current="page">Arcade</a></li>
+        <li><a href="projects.html"><span data-i18n="nav.projects">Projeler</span></a></li>
+        <li><a href="index.html#magaza"><span data-i18n="nav.shop">Mağaza</span></a></li>
+        <li><a href="fotogaleri.html"><span data-i18n="nav.gallery">Galeri</span></a></li>
+        <li><a href="index.html#iletisim"><span data-i18n="nav.contact">İletişim</span></a></li>
+        <li><button class="theme-toggle" type="button" data-theme-toggle aria-label="Temayı değiştir"><span class="theme-ico" aria-hidden="true"></span><span class="theme-name">Uzay</span></button></li>
+        <li><button class="lang-toggle" type="button" data-lang-toggle>EN</button></li>
+        <li><a class="nav-cta" href="Assets/CVturkce.pdf" data-href-en="Assets/Kaan_Kara_CV_Eng.pdf" target="_blank" rel="noopener">CV</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="icerik">
+    <section class="page-hero">
+      <div class="container intro">
+        <a class="breadcrumb" href="index.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          <span data-i18n="nav.home">Ana sayfa</span>
+        </a>
+        <h1>Arcade</h1>
+        <p><span data-i18n="arc.lead">Tarayıcıda açılıp hemen oynanan oyunlarım. İndirme yok: oda kur, kodu arkadaşlarına gönder ya da tek başına bir tur at.</span></p>
+      </div>
+    </section>
+
+    <!-- Öne çıkanlar -->
+    <section class="section" id="duck-strike" style="padding:0 0 28px">
+      <div class="container">
+        <a class="ds-banner reveal reveal-zoom" href="Games/duck-strike/">
+          <div class="ds-art" aria-hidden="true"><svg class="ds-duck" viewBox="0 0 24 18" shape-rendering="crispEdges" aria-hidden="true"><rect x="3" y="4" width="10" height="10" fill="#8a6a10"/><rect x="2" y="5" width="12" height="8" fill="#8a6a10"/><rect x="4" y="5" width="8" height="8" fill="#ffd23f"/><rect x="3" y="6" width="10" height="6" fill="#ffd23f"/><rect x="5" y="6" width="3" height="2" fill="#ffe680"/><rect x="10" y="7" width="5" height="4" fill="#fff3a8"/><rect x="13" y="7" width="1" height="1" fill="#111"/><rect x="13" y="10" width="1" height="1" fill="#111"/><rect x="15" y="8" width="3" height="2" fill="#ff9a1f"/><rect x="9" y="13" width="13" height="2" fill="#222"/><rect x="9" y="13" width="3" height="3" fill="#6b4a2b"/></svg><span class="ds-shot"></span></div>
+          <div class="ds-copy">
+            <span class="eyebrow"><span data-i18n="ds.banner.eyebrow">Yeni · Tarayıcıda online</span></span>
+            <h2>Duck Strike</h2>
+            <p><span data-i18n="ds.banner.text">Oda kur, kodu arkadaşlarına gönder, piksel ördeklerle kapış. Takım maçı, alan savunması, bayrak kapmaca ve karanlıkta fenerle oynanan korku modu. İndirme yok.</span></p>
+            <span class="btn btn-primary"><span data-i18n="ds.banner.btn">Hemen oyna</span> <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 4l14 8-14 8z"/></svg></span>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <section class="section" id="ducks-dragons" style="padding-top:0">
+      <div class="container">
+        <a class="ds-banner dd-banner reveal reveal-zoom" href="Games/ducks-dragons/">
+          <div class="ds-copy">
+            <span class="eyebrow"><span data-i18n="dd.banner.eyebrow">Yeni · Zarla oynanan piksel macera</span></span>
+            <h2>Ducks &amp; Dragons</h2>
+            <p><span data-i18n="dd.banner.text">Sınıfını seç, d20 at, seçimlerinle hikâyeyi değiştir. Tur tabanlı savaşlar, ölüm kurtarma zarları ve altı farklı son. Tek başına ya da arkadaşlarınla online.</span></p>
+            <span class="btn btn-primary"><span data-i18n="dd.banner.btn">Maceraya başla</span> <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 4l14 8-14 8z"/></svg></span>
+          </div>
+          <div class="dd-art" aria-hidden="true"><svg class="dd-duck" viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true"><rect x="2" y="4" width="1" height="12" fill="#8a5a2b"/><rect x="1" y="2" width="3" height="2" fill="#5ad7ff"/><rect x="3" y="9" width="10" height="5" fill="#6a4bc4"/><rect x="4" y="8" width="8" height="1" fill="#6a4bc4"/><rect x="4" y="13" width="7" height="1" fill="#ffd23f"/><rect x="5" y="3" width="7" height="6" fill="#ffd23f"/><rect x="6" y="2" width="5" height="1" fill="#ffd23f"/><rect x="4" y="3" width="9" height="1" fill="#4a2f9a"/><rect x="6" y="2" width="5" height="1" fill="#6a4bc4"/><rect x="7" y="1" width="3" height="1" fill="#6a4bc4"/><rect x="9" y="0" width="2" height="1" fill="#6a4bc4"/><rect x="12" y="6" width="3" height="1" fill="#ff9a1f"/><rect x="12" y="7" width="2" height="1" fill="#c46a00"/><rect x="10" y="5" width="1" height="1" fill="#16101c"/><rect x="5" y="14" width="2" height="1" fill="#ff9a1f"/><rect x="9" y="14" width="2" height="1" fill="#ff9a1f"/><rect x="4" y="15" width="3" height="1" fill="#c46a00"/><rect x="9" y="15" width="3" height="1" fill="#c46a00"/></svg><svg class="dd-die" viewBox="0 0 40 40" aria-hidden="true"><polygon points="20,2 36,11 36,29 20,38 4,29 4,11" fill="#c8302a" stroke="#1a1220" stroke-width="2.4" stroke-linejoin="round"/><path d="M20,9 L31,27 L9,27 Z M20,9 L20,2 M20,9 L4,11 M20,9 L36,11 M31,27 L36,11 M31,27 L36,29 M31,27 L20,38 M9,27 L4,11 M9,27 L4,29 M9,27 L20,38" fill="none" stroke="#7a1410" stroke-width="1.3"/><polygon points="20,9 31,27 9,27" fill="#e8483a"/><text x="20" y="24.5" text-anchor="middle" font-family="Pixelify Sans, monospace" font-weight="700" font-size="9" fill="#fff3c0">20</text></svg><span class="dd-spark s1"></span><span class="dd-spark s2"></span><span class="dd-spark s3"></span></div>
+        </a>
+      </div>
+    </section>
+
+
+    <!-- Klasikler -->
+    <section class="section" id="klasikler">
+      <div class="container">
+        <div class="section-head">
+          <div class="reveal">
+            <span class="eyebrow"><span data-i18n="arc.classics.eyebrow">Kısa bir mola için</span></span>
+            <h2 class="section-title"><span data-i18n="arc.classics">Klasikler</span></h2>
+          </div>
+        </div>
+        <div class="arcade-grid">
+          <article class="arcade-card pong reveal" style="--d:0s">
+            <div class="arcade-art" aria-hidden="true"><span class="pong-court"><i class="pad l"></i><i class="pad r"></i><i class="ball"></i><i class="net"></i></span></div>
+            <div class="arcade-body">
+              <h3>Pong</h3>
+              <p><span data-i18n="arc.pong">Fareyle raketini yönet, topu kaçırma. Kaçırırsan oyun baştan başlar.</span></p>
+              <ul class="tags"><li><span data-i18n="tag.solo">Tek kişilik</span></li><li><span data-i18n="tag.desktop">Bilgisayar</span></li></ul>
+              <a class="card-link stretched" href="Games/pong.html"><span data-i18n="arc.play">Oyna</span> <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 4l14 8-14 8z"/></svg></a>
+            </div>
+          </article>
+          <article class="arcade-card pong2 reveal" style="--d:0.08s">
+            <div class="arcade-art" aria-hidden="true"><span class="pong-court two"><i class="pad l"></i><i class="pad r"></i><i class="ball"></i><i class="net"></i><b class="p2">1P · 2P</b></span></div>
+            <div class="arcade-body">
+              <h3>Pong 2</h3>
+              <p><span data-i18n="arc.pong2">Aynı klavyede iki kişi: biri W/S, diğeri ok tuşları. Kim önce hata yapacak?</span></p>
+              <ul class="tags"><li><span data-i18n="tag.local2">2 kişi · aynı cihaz</span></li><li><span data-i18n="tag.desktop">Bilgisayar</span></li></ul>
+              <a class="card-link stretched" href="Games/pong2.html"><span data-i18n="arc.play">Oyna</span> <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 4l14 8-14 8z"/></svg></a>
+            </div>
+          </article>
+          <article class="arcade-card rps reveal" style="--d:0.16s">
+            <div class="arcade-art" aria-hidden="true"><span class="rps-hands"><i>✊</i><i>✋</i><i>✌️</i></span></div>
+            <div class="arcade-body">
+              <h3><span data-i18n="mini.rps">Taş · Kağıt · Makas</span></h3>
+              <p><span data-i18n="arc.rps">Bilgisayara karşı klasik taş-kağıt-makas. Hızlı bir tur için ideal.</span></p>
+              <ul class="tags"><li><span data-i18n="tag.solo">Tek kişilik</span></li><li><span data-i18n="tag.mobile">Mobil</span></li></ul>
+              <a class="card-link stretched" href="Games/rps.html"><span data-i18n="arc.play">Oyna</span> <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 4l14 8-14 8z"/></svg></a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <span>© <span data-year>2026</span> <span class="duck">🦆</span> Frozen Duck Games</span>
+      <div class="footer-links">
+        <a href="index.html"><span data-i18n="nav.home">Ana sayfa</span></a>
+        <a href="projects.html"><span data-i18n="nav.projects">Projeler</span></a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="i18n.js?v=7"></script>
+
+  <script src="script.js?v=8"></script>
+</body>
+</html>

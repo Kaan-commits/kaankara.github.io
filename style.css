@@ -1947,7 +1947,7 @@ html[data-intro="playing"] :is(.intro > *, .intro-self) { animation-play-state: 
 [data-theme="galaxy"] .typed { border-right-color: #ffe81f; }
 [data-theme="galaxy"] .avatar { box-shadow: 0 0 0 1px rgba(255, 232, 31, 0.3), 0 30px 90px -20px rgba(75, 213, 238, 0.55); }
 [data-theme="galaxy"] .orbit { border-color: rgba(255, 232, 31, 0.22); }
-[data-theme="galaxy"] .marquee-track span { letter-spacing: 0.12em; text-transform: uppercase; }
+[data-theme="galaxy"] .marquee-track span { letter-spacing: 0.06em; }
 [data-theme="galaxy"] .marquee-track span::after { color: #ffe81f; }
 
 /* =========================================================
@@ -2136,6 +2136,470 @@ html[data-intro="playing"] :is(.intro > *, .intro-self) { animation-play-state: 
 [data-theme="retro"] .nav-links a { font-size: 0.85rem; padding: 8px 10px; }
 /* İngilizce marka adları ("Unity", "coin") Türkçe büyük harfe çevrilince "UNİTY" olmasın */
 [data-theme="retro"] :is(.status-pill, .float-chip, .fx-toast) { text-transform: none; }
+
+/* =========================================================
+   Oyun gezegenleri (yalnızca galaksi teması; diğerlerinde kartlar)
+   ========================================================= */
+
+.planet-map { display: none; }
+[data-theme="galaxy"] .planet-map { display: block; }
+[data-theme="galaxy"] #oyunlar .games-grid { display: none; }
+
+.planet-map {
+  position: relative;
+  height: 640px;
+}
+
+.planet-orbits {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+.planet-orbits circle {
+  fill: none;
+  stroke: rgba(255, 232, 31, 0.16);
+  stroke-width: 1.2;
+  stroke-dasharray: 3 7;
+  vector-effect: non-scaling-stroke;
+}
+
+.planet-sun {
+  position: absolute;
+  left: -15%;
+  top: 50%;
+  width: 34%;
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 240, 160, 0.6), rgba(255, 190, 0, 0.16) 32%, transparent 68%);
+  pointer-events: none;
+}
+
+.planet {
+  --size: 170px;
+  --c: #ffd23f;
+  position: absolute;
+  left: var(--px);
+  top: var(--py);
+  z-index: 1;
+  width: 280px;
+  margin: calc(var(--size) / -2) 0 0 -140px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
+  text-align: center;
+}
+/* Konumlar yörünge çemberlerinin üzerine denk gelir (viewBox 1000×640) */
+.planet.komparsita { --px: 16%; --py: 32.8%; --size: 170px; --c: #ffd23f; }
+.planet.mindfield { --px: 50%; --py: 56.25%; --size: 140px; --c: #ff4d6d; }
+.planet.togy { --px: 84%; --py: 37.5%; --size: 200px; --c: #5ad7ff; }
+
+.planet-body {
+  position: relative;
+  width: var(--size);
+  height: var(--size);
+  flex-shrink: 0;
+  animation: float 8s ease-in-out infinite;
+  transition: scale 0.5s var(--ease);
+}
+.planet.mindfield .planet-body { animation-delay: -3s; }
+.planet.togy .planet-body { animation-delay: -5s; }
+.planet:hover .planet-body,
+.planet:focus-visible .planet-body { scale: 1.08; }
+
+.orb {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #000;
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--c) 35%, transparent),
+    0 0 50px -10px var(--c);
+  transition: box-shadow 0.5s var(--ease);
+}
+.planet:hover .orb,
+.planet:focus-visible .orb {
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--c) 70%, transparent),
+    0 0 80px -6px var(--c);
+}
+/* Yüzey: oyunun ana menüsündeki logosu */
+.orb img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: var(--pos, 50% 50%);
+  transform: translateY(var(--dy, 0)) scale(var(--zoom, 1));
+}
+/* --pos logoyu ortaya getirir; yatay görüntüde (Togy) bunu --dy yapar */
+.planet.komparsita .orb { --pos: 50% 28%; --zoom: 0.88; background: #1c2a33; }
+.planet.mindfield .orb { --pos: 50% 49%; --zoom: 1.25; background: #10163a; }
+.planet.togy .orb { --zoom: 1.1; --dy: 41%; }
+/* Küre gölgesi: ortası aydınlık (logo okunur), kenarlar kararır */
+.orb::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 30% 24%, rgba(255, 255, 255, 0.22), transparent 26%),
+    radial-gradient(circle at 42% 40%, transparent 52%, rgba(0, 0, 0, 0.8) 78%);
+  box-shadow: inset -10px -14px 28px rgba(0, 0, 0, 0.55);
+}
+
+/* Komparsita: kartlardan bir halka */
+.ring {
+  position: absolute;
+  left: -40%;
+  right: -40%;
+  top: 58%;
+  height: 22%;
+  z-index: 0;
+  border-radius: 50%;
+  border: 5px dashed color-mix(in srgb, var(--c) 80%, transparent);
+  transform: rotate(-16deg);
+  filter: drop-shadow(0 0 6px color-mix(in srgb, var(--c) 60%, transparent));
+}
+.ring.front { z-index: 2; clip-path: inset(50% 0 0 0); }
+
+/* Mindfield ve Togy: aylar */
+.moon-orbit {
+  position: absolute;
+  inset: -20%;
+  z-index: 3;
+  border-radius: 50%;
+  pointer-events: none;
+  animation: spin 11s linear infinite;
+}
+.moon-orbit.m2 { inset: -36%; animation-duration: 19s; animation-direction: reverse; }
+.moon {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 16px;
+  height: 16px;
+  margin: -8px 0 0 -8px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #fff, #a3abc0 45%, #343949 78%);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.25);
+}
+.m2 .moon { width: 11px; height: 11px; margin: -5px 0 0 -5px; background: radial-gradient(circle at 35% 30%, #eafff5, #48e0a0 50%, #12513a 85%); }
+
+.planet-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+.planet-badge {
+  color: var(--c);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+.planet strong {
+  font-family: var(--font-display);
+  font-size: 1.55rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  line-height: 1.1;
+}
+.planet small { color: var(--muted); font-size: 0.9rem; line-height: 1.5; }
+.planet-go {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 4px;
+  color: var(--c);
+  font-size: 0.92rem;
+  font-weight: 600;
+}
+.planet-go svg { width: 16px; transition: transform 0.4s var(--ease); }
+.planet:hover .planet-go svg { transform: translateX(6px); }
+
+/* Dar ekranda: gezegenler alt alta, yazı yanlarında */
+@media (max-width: 900px) {
+  .planet-map { height: auto; display: flex; flex-direction: column; gap: 56px; }
+  [data-theme="galaxy"] .planet-map { display: flex; }
+  .planet-orbits, .planet-sun { display: none; }
+  .planet {
+    position: relative;
+    left: auto;
+    top: auto;
+    width: auto;
+    margin: 0;
+    flex-direction: row;
+    gap: clamp(28px, 7vw, 56px);
+    text-align: left;
+  }
+  .planet-info { align-items: flex-start; }
+  .planet.mindfield { flex-direction: row-reverse; text-align: right; }
+  .planet.mindfield .planet-info { align-items: flex-end; }
+  .planet.komparsita { --size: min(150px, 32vw); padding-left: 10%; }
+  .planet.mindfield { --size: min(130px, 28vw); }
+  .planet.togy { --size: min(160px, 34vw); }
+  .ring { left: -34%; right: -34%; }
+}
+@media (max-width: 480px) {
+  .planet strong { font-size: 1.25rem; }
+  .planet small { font-size: 0.85rem; }
+  .planet.komparsita { padding-left: 8%; }
+}
+
+/* =========================================================
+   Arcade: ana sayfadaki şerit + arcade sayfasındaki kartlar
+   ========================================================= */
+
+.arcade-strip {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+@media (max-width: 900px) { .arcade-strip { grid-template-columns: 1fr; } }
+
+.arcade-tile {
+  --c: var(--ice);
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 16px 14px 14px;
+  border-radius: var(--radius);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  transition: transform 0.35s var(--ease), border-color 0.3s, box-shadow 0.35s var(--ease);
+}
+.arcade-tile:hover {
+  transform: translateY(-4px);
+  border-color: color-mix(in srgb, var(--c) 60%, transparent);
+  box-shadow: 0 22px 44px -26px var(--c);
+}
+.arcade-tile.ds { --c: #ffd23f; }
+.arcade-tile.dd { --c: #ff5a48; }
+.tile-art {
+  flex: 0 0 72px;
+  height: 72px;
+  display: grid;
+  place-items: center;
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--c) 14%, #0b0b14);
+  border: 1px solid color-mix(in srgb, var(--c) 35%, transparent);
+  font-size: 2rem;
+  overflow: hidden;
+}
+.tile-art svg { width: 84%; filter: drop-shadow(2px 3px 0 rgba(0, 0, 0, 0.45)); }
+.tile-duck { image-rendering: pixelated; }
+.arcade-tile:hover .tile-art svg { animation: ddroll 0.9s var(--ease); }
+.tile-text { flex: 1; min-width: 0; }
+.tile-text strong { display: block; font-family: var(--font-display); font-size: 1.1rem; }
+.tile-text small { color: var(--muted); font-size: 0.88rem; }
+.arcade-tile .play {
+  flex: 0 0 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--c);
+  color: #08080f;
+  transition: transform 0.35s var(--ease);
+}
+.arcade-tile .play svg { width: 14px; margin-left: 2px; }
+.arcade-tile:hover .play { transform: scale(1.12) rotate(-8deg); }
+
+.arcade-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+@media (max-width: 1000px) { .arcade-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 640px) { .arcade-grid { grid-template-columns: 1fr; } }
+
+.arcade-card {
+  --c: var(--ice);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--radius);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  overflow: hidden;
+  transition: transform 0.45s var(--ease), border-color 0.4s, box-shadow 0.45s var(--ease);
+}
+.arcade-card:hover {
+  transform: translateY(-6px);
+  border-color: color-mix(in srgb, var(--c) 55%, transparent);
+  box-shadow: 0 30px 60px -30px color-mix(in srgb, var(--c) 70%, transparent);
+}
+.arcade-card.pong2 { --c: var(--pink); }
+.arcade-card.rps { --c: var(--gold); }
+.arcade-art {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: radial-gradient(circle at 50% 40%, color-mix(in srgb, var(--c) 20%, #07070f), #040408 75%);
+  border-bottom: 1px solid var(--border);
+}
+.arcade-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 22px 24px 24px;
+}
+.arcade-body h3 { font-size: 1.4rem; }
+.arcade-body p { color: var(--muted); font-size: 0.95rem; }
+.arcade-card:hover .card-link svg { transform: translateX(6px); }
+
+/* Minik Pong sahnesi */
+.pong-court {
+  position: relative;
+  display: block;
+  width: 70%;
+  aspect-ratio: 16 / 9;
+  border: 2px solid color-mix(in srgb, var(--c) 45%, transparent);
+}
+.pong-court i { position: absolute; display: block; background: #fff; }
+.pong-court .pad { width: 3.5%; height: 26%; }
+.pong-court .pad.l { left: 4%; animation: padl 2.4s ease-in-out infinite; }
+.pong-court .pad.r { right: 4%; animation: padr 2.4s ease-in-out infinite; }
+.pong-court.two .pad.l { background: var(--ice); }
+.pong-court.two .pad.r { background: var(--pink); }
+.pong-court .ball { width: 4%; aspect-ratio: 1; box-shadow: 0 0 10px #fff; animation: pongball 2.4s linear infinite; }
+.pong-court .net { left: 50%; top: 4%; bottom: 4%; width: 0; border-left: 2px dashed rgba(255, 255, 255, 0.22); background: none; }
+.pong-court .p2 {
+  position: absolute;
+  top: 8%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 2px 6px;
+  background: #050509;
+  font: 400 0.55rem/1.4 "Press Start 2P", monospace;
+  color: rgba(255, 255, 255, 0.75);
+}
+@keyframes pongball {
+  0%, 100% { left: 8.5%; top: 34%; }
+  25% { left: 48%; top: 84%; }
+  50% { left: 87.5%; top: 44%; }
+  75% { left: 48%; top: 8%; }
+}
+@keyframes padl { 0%, 100% { top: 24%; } 50% { top: 56%; } }
+@keyframes padr { 0%, 100% { top: 62%; } 50% { top: 32%; } }
+
+.rps-hands { display: flex; gap: 18px; font-size: clamp(2.4rem, 5vw, 3.2rem); }
+.rps-hands i { font-style: normal; animation: rps 1.8s ease-in-out infinite; }
+.rps-hands i:nth-child(2) { animation-delay: 0.3s; }
+.rps-hands i:nth-child(3) { animation-delay: 0.6s; }
+@keyframes rps { 0%, 60%, 100% { transform: none; } 30% { transform: translateY(-14px) rotate(-10deg); } }
+
+/* ---------- Ses düğmesi ---------- */
+
+.sound-toggle {
+  position: fixed;
+  right: max(16px, env(safe-area-inset-right));
+  bottom: max(16px, env(safe-area-inset-bottom));
+  z-index: 1500;
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  border: 1px solid var(--border-strong);
+  background: var(--header-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: var(--muted);
+  cursor: pointer;
+  transition: transform 0.3s var(--ease), color 0.2s, border-color 0.2s;
+}
+.sound-toggle:hover { color: var(--text); transform: scale(1.08); }
+.sound-toggle:active { transform: scale(0.92); }
+.sound-toggle[aria-pressed="true"] { color: var(--accent); border-color: var(--accent); }
+.sound-toggle svg { width: 20px; height: 20px; }
+
+/* =========================================================
+   Sayfa geçişleri
+   ========================================================= */
+
+/* Çıkış: tıklanan noktadan parlama, sonra karanlık (galaksi/uzay) */
+.fx-leave { position: fixed; inset: 0; z-index: 2900; }
+.fx-leave::before,
+.fx-leave::after { content: ""; position: absolute; inset: 0; }
+.fx-leave:not(.fx-leave-retro)::before {
+  background: radial-gradient(circle at var(--x) var(--y), #fff 0, rgba(200, 230, 255, 0.9) 4%, rgba(110, 170, 255, 0.35) 18%, transparent 42%);
+  opacity: 0;
+  transform-origin: var(--x) var(--y);
+  animation: leave-flash 0.72s cubic-bezier(0.6, 0, 0.9, 0.4) forwards;
+}
+.fx-leave:not(.fx-leave-retro)::after {
+  background: #000;
+  opacity: 0;
+  animation: leave-dark 0.72s ease-in forwards;
+}
+@keyframes leave-flash {
+  0%, 30% { opacity: 0; transform: scale(0.3); }
+  75% { opacity: 1; transform: scale(2.2); }
+  100% { opacity: 1; transform: scale(3); }
+}
+@keyframes leave-dark {
+  0%, 62% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+/* Retro: CRT kapanışı — ekran ortadaki çizgiye, çizgi noktaya söner */
+.fx-leave-retro::before,
+.fx-leave-retro::after { background: #000; transform: scaleY(0); animation: crt-close 0.28s ease-in forwards; }
+.fx-leave-retro::before { bottom: 50%; transform-origin: top; }
+.fx-leave-retro::after { top: 50%; transform-origin: bottom; }
+.fx-leave-retro i {
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 2px;
+  margin-top: -1px;
+  background: #fff;
+  box-shadow: 0 0 18px #fff, 0 0 40px #ff2fb9;
+  opacity: 0;
+  animation: crt-dot 0.46s ease-in forwards;
+}
+@keyframes crt-close { to { transform: scaleY(1); } }
+@keyframes crt-dot {
+  0%, 55% { opacity: 0; transform: scaleX(1); }
+  62% { opacity: 1; transform: scaleX(1); }
+  90% { opacity: 1; transform: scaleX(0.01) scaleY(2); }
+  100% { opacity: 0; transform: scaleX(0); }
+}
+
+/* Varış: içerik hiperuzaydan süzülerek gelir; retroda ekran ortadan açılır */
+html[data-arrive]:not([data-theme="retro"]) body > :not(#stars):not(.bg-glow) {
+  animation: arrive 0.8s var(--ease) both;
+}
+@keyframes arrive { from { opacity: 0; transform: scale(1.05); filter: blur(6px); } }
+html[data-theme="retro"][data-arrive] body::after { animation: crt-open 0.45s ease-out both; }
+@keyframes crt-open {
+  from { box-shadow: inset 0 50vh 0 #000, inset 0 -50vh 0 #000; }
+  to { box-shadow: inset 0 0 0 #000, inset 0 0 0 #000; }
+}
+
+/* Retro temada yeni öğeler de köşeli */
+[data-theme="retro"] :is(.arcade-tile, .tile-art, .arcade-tile .play, .arcade-card, .sound-toggle) { border-radius: 0; }
+[data-theme="retro"] :is(.arcade-tile, .arcade-card) { border-width: 2px; box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.5); }
+[data-theme="retro"] .arcade-tile:hover,
+[data-theme="retro"] .arcade-card:hover { box-shadow: 0 0 0 2px var(--c), 8px 8px 0 var(--c); }
+[data-theme="retro"] .sound-toggle { border: 2px solid var(--ice); box-shadow: 3px 3px 0 var(--pink); }
+[data-theme="retro"] .pong-court { border-width: 3px; }
 
 /* ---------- Hareket azaltma tercihi ---------- */
 
