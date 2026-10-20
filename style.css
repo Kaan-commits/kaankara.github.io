@@ -32,6 +32,9 @@
   --font-display: "Space Grotesk", system-ui, sans-serif;
   --font-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
 
+  --header-bg: rgba(8, 8, 16, 0.72);
+  --overlay-bg: rgba(6, 6, 12, 0.96);
+
   --header-h: 72px;
   --gutter: clamp(16px, 4vw, 40px);
   --max: 1180px;
@@ -138,7 +141,7 @@ p { margin: 0; }
 
 .site-header.scrolled {
   height: 62px;
-  background: rgba(8, 8, 16, 0.72);
+  background: var(--header-bg);
   backdrop-filter: blur(18px) saturate(140%);
   -webkit-backdrop-filter: blur(18px) saturate(140%);
   border-bottom-color: var(--border);
@@ -261,7 +264,7 @@ p { margin: 0; }
     flex-direction: column;
     justify-content: center;
     gap: 8px;
-    background: rgba(6, 6, 12, 0.96);
+    background: var(--overlay-bg);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     opacity: 0;
@@ -1655,6 +1658,484 @@ p { margin: 0; }
 @media (max-width: 640px) {
   .lb-prev, .lb-next { top: auto; bottom: 10px; margin-top: 0; }
 }
+
+/* =========================================================
+   Temalar ve etkileşim efektleri
+   <html data-theme="space | galaxy | retro">
+   ========================================================= */
+
+/* ---------- Tema düğmesi ---------- */
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 36px;
+  padding: 0 10px;
+  border-radius: 999px;
+  border: 1px solid var(--border-strong);
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+  transition: background 0.25s, border-color 0.25s, transform 0.3s var(--ease);
+}
+.theme-toggle:hover { background: var(--surface-2); }
+.theme-toggle:active { transform: scale(0.9) rotate(-10deg); }
+.theme-ico { display: grid; width: 18px; height: 18px; }
+.theme-ico svg { width: 100%; height: 100%; }
+.theme-name { display: none; font-family: var(--font-display); font-size: 1rem; font-weight: 700; }
+
+@media (max-width: 860px) {
+  .theme-toggle { height: 44px; padding: 0 18px; margin-top: 8px; }
+  .theme-name { display: inline; }
+  .nav-open .nav-links li:nth-child(9) { transition-delay: 0.32s; }
+}
+
+/* ---------- Bildirim balonu ---------- */
+
+.fx-toast {
+  position: fixed;
+  left: 50%;
+  bottom: max(20px, env(safe-area-inset-bottom));
+  z-index: 2600;
+  max-width: calc(100vw - 32px);
+  padding: 10px 18px;
+  border-radius: 999px;
+  border: 1px solid var(--border-strong);
+  background: var(--header-bg);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  color: var(--muted);
+  font-size: 0.9rem;
+  text-align: center;
+  pointer-events: none;
+  opacity: 0;
+  transform: translate(-50%, 20px);
+  transition: opacity 0.35s var(--ease), transform 0.35s var(--ease);
+}
+.fx-toast strong { color: var(--text); }
+.fx-toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+/* ---------- Tema geçiş perdeleri ---------- */
+
+.fx-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2800;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: #000;
+  cursor: pointer;
+}
+
+/* İlk açılış: script.js perdeyi kurana kadar sayfa gizli; JS çalışmazsa 2.5 sn sonra kendiliğinden açılır */
+html[data-intro="pending"] body > * {
+  visibility: hidden;
+  animation: intro-safety 0s 2.5s forwards;
+}
+@keyframes intro-safety { to { visibility: visible; } }
+/* Perde kalkana kadar hero animasyonu bekler */
+html[data-intro="playing"] :is(.intro > *, .intro-self) { animation-play-state: paused; }
+
+.fx-crawl { transition: opacity 0.7s ease; }
+.fx-crawl small {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: max(28px, env(safe-area-inset-bottom));
+  color: #6a6f86;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-align: center;
+  opacity: 0;
+  animation: crawlin 2s ease 0.4s forwards;
+}
+.fx-crawl.out { opacity: 0; pointer-events: none; }
+.fx-crawl p {
+  max-width: 30ch;
+  color: #4bd5ee;
+  font-size: clamp(1.1rem, 3vw, 1.7rem);
+  line-height: 1.5;
+  text-align: center;
+  opacity: 0;
+  animation: crawlin 1.9s ease 0.1s forwards;
+}
+@keyframes crawlin {
+  25%, 80% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+.fx-crt { background: none; pointer-events: none; }
+.fx-crt::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #000;
+  animation: crtfade 1.1s ease forwards;
+}
+.fx-crt::before {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 2px;
+  margin-top: -1px;
+  background: #fff;
+  box-shadow: 0 0 20px #fff, 0 0 40px #ff2fb9;
+  transform: scaleX(0);
+  animation: crtline 0.7s ease-out forwards;
+}
+.fx-crt p {
+  position: relative;
+  z-index: 2;
+  font-family: "Press Start 2P", monospace;
+  font-size: clamp(0.85rem, 3vw, 1.3rem);
+  color: #ffd319;
+  text-shadow: 3px 3px 0 #ff2fb9;
+  opacity: 0;
+  animation: crtready 1.3s steps(1) forwards;
+}
+@keyframes crtline {
+  45% { transform: scaleX(1) scaleY(1); opacity: 1; }
+  100% { transform: scaleX(1) scaleY(500); opacity: 0; }
+}
+@keyframes crtfade {
+  35% { opacity: 1; }
+  100% { opacity: 0; }
+}
+@keyframes crtready {
+  0% { opacity: 0; }
+  30% { opacity: 1; }
+  48% { opacity: 0; }
+  58%, 88% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+.is-warping { user-select: none; -webkit-user-select: none; }
+
+/* ---------- Ördek istilası ---------- */
+
+.fx-duck {
+  position: fixed;
+  left: 0;
+  top: var(--top);
+  z-index: 2400;
+  width: var(--s);
+  height: calc(var(--s) * 0.84);
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: crosshair;
+  animation: duckfly var(--dur) linear var(--delay) both;
+}
+.fx-duck svg {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(3px 4px 0 rgba(0, 0, 0, 0.4));
+  animation: duckbob var(--bob) ease-in-out infinite alternate;
+}
+.fx-duck.hit { animation-play-state: paused; cursor: default; }
+.fx-duck.hit svg { animation: duckfall 0.9s ease-in forwards; }
+@keyframes duckfly {
+  from { transform: translateX(-120px); }
+  to { transform: translateX(calc(100vw + 40px)); }
+}
+@keyframes duckbob { to { transform: translateY(-14px) rotate(-6deg); } }
+@keyframes duckfall {
+  20% { transform: translateY(-20px) rotate(20deg); }
+  100% { transform: translateY(110vh) rotate(200deg); }
+}
+
+/* =========================================================
+   GALAKSİ — altın yazılar, ışın kılıcı parıltıları, hiperuzay
+   ========================================================= */
+
+[data-theme="galaxy"] {
+  --bg: #000005;
+  --bg-2: #07080f;
+  --surface: rgba(255, 255, 255, 0.035);
+  --surface-2: rgba(255, 255, 255, 0.07);
+  --border: rgba(255, 232, 31, 0.12);
+  --border-strong: rgba(255, 232, 31, 0.32);
+  --text: #eef0f6;
+  --muted: #a9aec2;
+  --dim: #6a6f86;
+  --ice: #4bd5ee;
+  --violet: #6f8cff;
+  --pink: #ff4b4b;
+  --gold: #ffe81f;
+  --accent: #ffe81f;
+  --grad: linear-gradient(120deg, #fff6a8, #ffe81f 45%, #ffb400);
+  --header-bg: rgba(0, 0, 6, 0.8);
+  --overlay-bg: rgba(0, 0, 6, 0.97);
+  --saber: #4bd5ee;
+}
+
+[data-theme="galaxy"] ::selection { background: #ffe81f; color: #000; }
+
+[data-theme="galaxy"] .bg-glow {
+  background:
+    radial-gradient(70vw 40vw at 85% 5%, rgba(75, 120, 255, 0.1), transparent 60%),
+    radial-gradient(50vw 40vw at 0% 85%, rgba(255, 75, 75, 0.06), transparent 60%),
+    var(--bg);
+}
+/* Köşede büyük, karanlık bir gezegen — kaydırdıkça yavaşça yükselir (--sp: 0..1, script.js) */
+[data-theme="galaxy"] .bg-glow::after {
+  content: "";
+  position: absolute;
+  transform: translate3d(calc(var(--sp, 0) * -12vw), calc(var(--sp, 0) * -42vh), 0);
+  will-change: transform;
+  width: 80vmax;
+  height: 80vmax;
+  right: -38vmax;
+  bottom: -56vmax;
+  border-radius: 50%;
+  background: radial-gradient(circle at 32% 22%, #1a2440, #0a0e1c 42%, #020309 70%);
+  box-shadow:
+    inset 18px 14px 50px rgba(120, 170, 255, 0.22),
+    -6px -8px 70px rgba(80, 140, 255, 0.14);
+}
+
+[data-theme="galaxy"] h1,
+[data-theme="galaxy"] h2,
+[data-theme="galaxy"] h3 { letter-spacing: 0.01em; }
+[data-theme="galaxy"] .hero h1 { text-transform: uppercase; letter-spacing: 0; font-size: clamp(2.3rem, 7vw, 5.2rem); }
+[data-theme="galaxy"] .grad-text {
+  background: none;
+  color: transparent;
+  -webkit-text-stroke: 2px #ffe81f;
+  animation: none;
+  text-shadow: 0 0 22px rgba(255, 232, 31, 0.35);
+}
+
+/* Işın kılıçları */
+[data-theme="galaxy"] .eyebrow::before {
+  width: 34px;
+  height: 3px;
+  background: #fff;
+  box-shadow: 0 0 4px 1px var(--saber), 0 0 12px 2px var(--saber);
+  border-left: 7px solid #8d93a6;
+  border-radius: 1px 3px 3px 1px;
+}
+[data-theme="galaxy"] .section:nth-of-type(even) .eyebrow::before { --saber: #ff3b3b; }
+
+[data-theme="galaxy"] .btn-primary {
+  color: #000;
+  box-shadow: 0 0 0 1px rgba(255, 232, 31, 0.6), 0 10px 34px -10px rgba(255, 232, 31, 0.8);
+}
+[data-theme="galaxy"] .btn:not(.btn-primary):hover,
+[data-theme="galaxy"] .theme-toggle:hover,
+[data-theme="galaxy"] .lang-toggle:hover {
+  border-color: var(--saber);
+  box-shadow: 0 0 0 1px var(--saber), 0 0 22px -2px var(--saber);
+}
+[data-theme="galaxy"] .nav-links .nav-cta { background: #ffe81f; }
+[data-theme="galaxy"] .nav-links .nav-cta:hover { background: #fff; }
+
+[data-theme="galaxy"] .game-card:hover,
+[data-theme="galaxy"] .mini-game:hover,
+[data-theme="galaxy"] .quick-links a:hover,
+[data-theme="galaxy"] .socials a:hover {
+  border-color: rgba(255, 232, 31, 0.5);
+  box-shadow: 0 30px 60px -30px rgba(255, 232, 31, 0.35);
+}
+
+[data-theme="galaxy"] .status-pill .dot { background: var(--saber); box-shadow: 0 0 10px var(--saber); animation: none; }
+[data-theme="galaxy"] .typed { border-right-color: #ffe81f; }
+[data-theme="galaxy"] .avatar { box-shadow: 0 0 0 1px rgba(255, 232, 31, 0.3), 0 30px 90px -20px rgba(75, 213, 238, 0.55); }
+[data-theme="galaxy"] .orbit { border-color: rgba(255, 232, 31, 0.22); }
+[data-theme="galaxy"] .marquee-track span { letter-spacing: 0.12em; text-transform: uppercase; }
+[data-theme="galaxy"] .marquee-track span::after { color: #ffe81f; }
+
+/* =========================================================
+   RETRO — synthwave gün batımı, piksel yazılar, CRT tarama çizgileri
+   ========================================================= */
+
+[data-theme="retro"] {
+  --bg: #0d0221;
+  --bg-2: #1a0638;
+  --surface: rgba(26, 6, 56, 0.82);
+  --surface-2: rgba(52, 12, 98, 0.9);
+  --border: rgba(255, 47, 185, 0.4);
+  --border-strong: rgba(0, 240, 255, 0.65);
+  --text: #fbf4ff;
+  --muted: #d4bdf0;
+  --dim: #9a80c0;
+  --ice: #00f0ff;
+  --violet: #b14aed;
+  --pink: #ff2fb9;
+  --gold: #ffd319;
+  --orange: #ff901f;
+  --green: #39ff88;
+  --accent: #00f0ff;
+  --grad: linear-gradient(90deg, #ffd319, #ff901f 30%, #ff2975 62%, #f222ff);
+  --radius: 4px;
+  --radius-sm: 2px;
+  --shadow: 6px 6px 0 rgba(0, 0, 0, 0.55);
+  --font-display: "Pixelify Sans", "Space Grotesk", monospace;
+  --font-pixel: "Silkscreen", monospace; /* Press Start 2P'de "İ" küçük i gibi görünüyor */
+  --font-arcade: "Press Start 2P", monospace;
+  --header-bg: rgba(13, 2, 33, 0.9);
+  --overlay-bg: rgba(13, 2, 33, 0.97);
+}
+
+[data-theme="retro"] ::selection { background: var(--pink); color: #0d0221; }
+[data-theme="retro"] :focus-visible { outline-color: var(--gold); border-radius: 0; }
+
+[data-theme="retro"] .bg-glow {
+  background:
+    radial-gradient(80vw 50vh at 50% 70%, rgba(255, 41, 117, 0.18), transparent 70%),
+    linear-gradient(#0d0221, #1b0640 64%, #0d0221);
+}
+
+/* CRT tarama çizgileri + köşe kararması */
+[data-theme="retro"] body::before,
+[data-theme="retro"] body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 2500;
+  pointer-events: none;
+}
+[data-theme="retro"] body::before {
+  background: repeating-linear-gradient(to bottom, rgba(0, 0, 0, 0.18) 0 1px, transparent 1px 3px);
+}
+[data-theme="retro"] body::after {
+  background: radial-gradient(ellipse at center, transparent 62%, rgba(0, 0, 0, 0.5));
+}
+
+[data-theme="retro"] h1,
+[data-theme="retro"] h2,
+[data-theme="retro"] h3,
+[data-theme="retro"] h4 { letter-spacing: 0; }
+[data-theme="retro"] .hero h1 {
+  letter-spacing: 0;
+  text-shadow: 4px 4px 0 #ff2fb9, -2px -2px 0 rgba(0, 240, 255, 0.55);
+}
+[data-theme="retro"] .grad-text {
+  text-shadow: none;
+  filter: drop-shadow(4px 4px 0 #2a0845);
+}
+[data-theme="retro"] .section-title,
+[data-theme="retro"] .game-body h3 { text-shadow: 3px 3px 0 rgba(255, 47, 185, 0.6); }
+
+/* Köşeli, piksel her şey */
+[data-theme="retro"] :is(.btn, .lang-toggle, .theme-toggle, .nav-links a, .nav-toggle, .brand img, .status-pill, .tags li, .badge,
+  .float-chip, .orbit, .orbit .planet, .avatar, .project-feature, .shop, .ds-banner, .ds-art, .dd-art, .panel, .quick-links a,
+  .socials a, .mini-game, .mini-game .icon, .mini-game .play, .shot, .video, .device, .device img, .feature, .feature .ico,
+  .cta-box, .game-nav a, .tee-stack figure, .project, .project-thumb, .score-table, .lightbox img, .lb-btn, .fx-toast, .scroll-hint) {
+  border-radius: 0;
+}
+
+[data-theme="retro"] .brand { font-family: var(--font-arcade); font-size: 0.72rem; }
+[data-theme="retro"] .brand img { border: 2px solid var(--pink); box-shadow: 3px 3px 0 var(--ice); }
+
+[data-theme="retro"] .nav-links a,
+[data-theme="retro"] .lang-toggle,
+[data-theme="retro"] .theme-name {
+  font-family: var(--font-pixel);
+  font-size: 0.92rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+[data-theme="retro"] .nav-links a:hover,
+[data-theme="retro"] .nav-links a[aria-current="page"] { background: var(--pink); color: #0d0221; }
+[data-theme="retro"] .nav-links .nav-cta { background: var(--gold); color: #0d0221; box-shadow: 3px 3px 0 var(--pink); }
+[data-theme="retro"] .nav-links .nav-cta:hover { background: var(--ice); }
+@media (max-width: 860px) {
+  [data-theme="retro"] .nav-links a,
+  [data-theme="retro"] .lang-toggle,
+  [data-theme="retro"] .theme-name { font-size: 1.3rem; line-height: 1.5; }
+}
+
+[data-theme="retro"] .btn {
+  border: 2px solid var(--text);
+  font-family: var(--font-pixel);
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  line-height: 1.4;
+  text-transform: uppercase;
+  box-shadow: 4px 4px 0 var(--pink);
+}
+[data-theme="retro"] .btn:not(.btn-primary) { background: var(--bg-2); }
+[data-theme="retro"] .btn:not(.btn-primary):hover { background: var(--surface-2); border-color: var(--text); }
+[data-theme="retro"] .btn:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--pink); }
+[data-theme="retro"] .btn:active { transform: translate(4px, 4px); box-shadow: 0 0 0 var(--pink); }
+[data-theme="retro"] .btn-primary { color: #1a0638; border-color: #1a0638; box-shadow: 4px 4px 0 var(--ice); }
+[data-theme="retro"] .btn-primary:hover { box-shadow: 6px 6px 0 var(--ice); }
+
+[data-theme="retro"] .eyebrow {
+  font-family: var(--font-pixel);
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  line-height: 1.6;
+}
+[data-theme="retro"] .eyebrow::before {
+  content: "▶";
+  width: auto;
+  height: auto;
+  background: none;
+  font-size: 0.9em;
+  animation: blink 1s steps(1) infinite;
+}
+@keyframes blink { 50% { opacity: 0; } }
+
+[data-theme="retro"] .status-pill,
+[data-theme="retro"] .tags li,
+[data-theme="retro"] .badge,
+[data-theme="retro"] .float-chip,
+[data-theme="retro"] .shot .cap,
+[data-theme="retro"] .fx-toast {
+  font-family: var(--font-pixel);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  line-height: 1.6;
+  text-transform: uppercase;
+}
+[data-theme="retro"] .status-pill { border: 2px solid var(--green); color: var(--green); background: rgba(13, 2, 33, 0.85); }
+[data-theme="retro"] .status-pill .dot { border-radius: 0; animation: blink 1s steps(1) infinite; }
+[data-theme="retro"] .fx-toast { color: var(--text); border: 2px solid var(--ice); box-shadow: 4px 4px 0 var(--pink); }
+
+[data-theme="retro"] .typed { border-right: 0.5em solid var(--pink); }
+
+[data-theme="retro"] .avatar {
+  border: 4px solid var(--text);
+  box-shadow: 8px 8px 0 var(--pink), -6px -6px 0 rgba(0, 240, 255, 0.6);
+}
+[data-theme="retro"] .avatar img { image-rendering: pixelated; }
+[data-theme="retro"] .orbit { border: 2px dashed rgba(0, 240, 255, 0.4); }
+[data-theme="retro"] .orbit.o2 { border-color: rgba(255, 47, 185, 0.3); }
+
+[data-theme="retro"] .marquee { border-block: 2px solid var(--pink); background: rgba(13, 2, 33, 0.85); }
+[data-theme="retro"] .marquee-track span { color: var(--muted); }
+[data-theme="retro"] .marquee-track span::after { content: "★"; color: var(--gold); }
+
+[data-theme="retro"] :is(.game-card, .mini-game, .panel, .project-feature, .shop, .quick-links a, .socials a, .feature, .cta-box, .game-nav a, .project) {
+  border-width: 2px;
+  box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.5);
+}
+[data-theme="retro"] .game-card:hover { box-shadow: 0 0 0 2px var(--c), 8px 8px 0 var(--c); }
+[data-theme="retro"] :is(.mini-game, .quick-links a, .socials a, .game-nav a, .project, .feature):hover {
+  border-color: var(--ice);
+  box-shadow: 6px 6px 0 var(--pink);
+}
+[data-theme="retro"] .dd-banner .btn-primary { color: #fff8f0; }
+[data-theme="retro"] .site-footer { border-top: 2px solid var(--pink); }
+/* Silkscreen zaten geniş: sıkı aralık, ince kalınlık */
+[data-theme="retro"] :is(.nav-links a, .lang-toggle, .theme-name, .btn, .eyebrow, .status-pill, .tags li, .badge, .float-chip, .shot .cap, .fx-toast) {
+  font-weight: 400;
+  letter-spacing: 0.01em;
+}
+[data-theme="retro"] .nav-links a { font-size: 0.85rem; padding: 8px 10px; }
+/* İngilizce marka adları ("Unity", "coin") Türkçe büyük harfe çevrilince "UNİTY" olmasın */
+[data-theme="retro"] :is(.status-pill, .float-chip, .fx-toast) { text-transform: none; }
 
 /* ---------- Hareket azaltma tercihi ---------- */
 
