@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Kur ve Geç · Davet</title>
+  <meta name="description" content="Bir arkadaşın seni Kur ve Geç'te bir maça çağırıyor.">
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#1b1048">
+  <meta property="og:title" content="Kur ve Geç'te seni bir maça çağırıyorlar!">
+  <meta property="og:description" content="Dokun, oyun açılsın ve doğrudan arkadaşının odasına katıl.">
+  <meta property="og:image" content="https://kaankara.com.tr/oyunlar/mindfield/davet/ikon.png">
+  <link rel="icon" href="ikon.png">
+  <style>
+    :root { --bg: #1b1048; --card: #fffbf4; --text: #1c1a2b; --muted: #5f5a72; --accent: #ff3d5a; --accent-dark: #b81f39; --btn: #e9dfcf; --btn-dark: #c4b59c; }
+    * { box-sizing: border-box; }
+    body { margin: 0; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 24px 16px;
+           font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; color: var(--text);
+           background: radial-gradient(circle at 50% 30%, #5a2ee6 0%, #2b1396 55%, var(--bg) 100%); }
+    .card { width: 100%; max-width: 400px; background: var(--card); border-radius: 24px; padding: 28px 22px 22px; text-align: center;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35); }
+    .icon { width: 96px; height: 96px; border-radius: 22px; box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25); }
+    h1 { font-size: 24px; margin: 16px 0 8px; }
+    p { color: var(--muted); font-size: 15px; line-height: 1.45; margin: 0 0 18px; }
+    .room { display: inline-block; font-weight: 700; letter-spacing: 3px; background: #f1e9dc; border-radius: 10px; padding: 6px 12px; margin-bottom: 18px; }
+    .btn { display: block; width: 100%; padding: 15px 16px; border-radius: 14px; font-size: 16px; font-weight: 700; text-decoration: none;
+           border-bottom: 4px solid var(--btn-dark); background: var(--btn); color: var(--text); margin-top: 10px; }
+    .btn.primary { background: var(--accent); border-color: var(--accent-dark); color: #fff; }
+    .small { font-size: 13px; margin: 18px 0 0; }
+    [hidden] { display: none !important; }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <img class="icon" src="ikon.png" alt="">
+    <h1 data-t="title">Kur ve Geç'te maça çağrıldın!</h1>
+    <p data-t="body">Bir arkadaşın odasını açtı ve seni bekliyor. Dokun, oyun açılsın ve doğrudan odaya katıl.</p>
+    <div class="room" id="room" hidden></div>
+    <a class="btn primary" id="open" href="#" data-t="open">Odaya katıl</a>
+    <p class="small" data-t="noapp">Oyun henüz yüklü değil mi? Önce yükle, sonra bu linke tekrar dokun.</p>
+    <a class="btn" id="appstore" href="https://apps.apple.com/app/id6821066478" data-t="appstore">App Store'dan yükle</a>
+    <a class="btn" id="playstore" href="https://play.google.com/store/apps/details?id=com.FrozenDuckGames.Mindfield" data-t="playstore">Google Play'den yükle</a>
+  </main>
+  <script>
+    (function () {
+      var en = !/^tr/i.test(navigator.language || "");
+      var texts = {
+        title: "You're invited to a Kur ve Geç match!",
+        body: "A friend opened a room and is waiting for you. Tap to open the game and join their room.",
+        open: "Join the room",
+        noapp: "Don't have the game yet? Install it, then tap this link again.",
+        appstore: "Get it on the App Store",
+        playstore: "Get it on Google Play"
+      };
+      if (en) {
+        document.documentElement.lang = "en";
+        document.querySelectorAll("[data-t]").forEach(function (el) { el.textContent = texts[el.getAttribute("data-t")]; });
+      }
+
+      // The room travels after '#', so it never reaches the web server.
+      var params = new URLSearchParams(location.hash.slice(1));
+      var room = (params.get("oda") || "").toUpperCase();
+      var password = params.get("sifre");
+      var query = "oda=" + encodeURIComponent(room) + (password ? "&sifre=" + encodeURIComponent(password) : "");
+      var ua = navigator.userAgent;
+      var android = /Android/i.test(ua);
+      var ios = /iPhone|iPad|iPod/i.test(ua) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+      var playStore = document.getElementById("playstore").href;
+      var open = document.getElementById("open");
+
+      if (android) document.getElementById("appstore").hidden = true;
+      if (ios) document.getElementById("playstore").hidden = true;
+
+      if (!/^[A-Z0-9]{1,32}$/.test(room)) {
+        // No room in the link: just the store links.
+        open.hidden = true;
+        return;
+      }
+      document.getElementById("room").textContent = room;
+      document.getElementById("room").hidden = false;
+
+      // Android opens the game if it is installed and the Play Store page if not; iOS needs the scheme and a tap.
+      open.href = android
+        ? "intent://davet?" + query + "#Intent;scheme=kurvegec;package=com.FrozenDuckGames.Mindfield;S.browser_fallback_url=" +
+          encodeURIComponent(playStore) + ";end"
+        : "kurvegec://davet?" + query;
+      if (android) location.href = open.href;
+    })();
+  </script>
+</body>
+</html>
