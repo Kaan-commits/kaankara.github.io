@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mindfield (Kur ve Geç) – Veri Silme / Data Deletion</title>
+<style>
+  :root {
+    --bg: #f5f6fa; --card: #ffffff; --text: #23262b; --muted: #5f6670;
+    --accent: #c2263b; --border: #e1e3ea;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #0d0e14; --card: #181a22; --text: #e8e8ee; --muted: #a2a7b4; --accent: #ff5a6e; --border: #2c2f3a; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text);
+         font: 16px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; }
+  .wrap { max-width: 820px; margin: 0 auto; padding: 24px 16px 64px; }
+  .langs { display: flex; gap: 8px; justify-content: flex-end; margin-bottom: 16px; }
+  .langs a { padding: 6px 14px; border: 1px solid var(--border); border-radius: 10px;
+             color: var(--text); text-decoration: none; font-weight: 600; font-size: 14px; background: var(--card); }
+  .langs a.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+  article { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 24px 22px; margin-bottom: 24px; }
+  h1 { font-size: 28px; line-height: 1.25; margin: 0 0 4px; color: var(--accent); }
+  h2 { font-size: 19px; margin: 28px 0 8px; }
+  .meta { color: var(--muted); font-size: 14px; margin: 0 0 16px; }
+  ul, ol { padding-left: 22px; } li { margin: 4px 0; }
+  a { color: var(--accent); }
+  table { width: 100%; border-collapse: collapse; font-size: 15px; margin: 8px 0; }
+  th, td { text-align: left; vertical-align: top; padding: 8px 10px; border-bottom: 1px solid var(--border); }
+  th { color: var(--muted); font-weight: 600; }
+  .js article { display: none; } .js article.show { display: block; }
+  @media (max-width: 560px) { table, thead, tbody, tr, th, td { display: block; } thead { display: none; }
+    td { border: 0; padding: 2px 0; } tr { border-bottom: 1px solid var(--border); padding: 8px 0; } td:first-child { font-weight: 600; } }
+</style>
+<script>document.documentElement.classList.add("js");</script>
+</head>
+<body>
+<div class="wrap">
+  <nav class="langs" aria-label="Language">
+    <a href="#tr" data-lang="tr">Türkçe</a>
+    <a href="#en" data-lang="en">English</a>
+  </nav>
+
+  <!-- ===================== TÜRKÇE ===================== -->
+  <article id="tr" lang="tr">
+    <h1>Mindfield (Kur ve Geç) – Verilerini Sil</h1>
+    <p class="meta">Son güncelleme: 28 Ekim 2026</p>
+
+    <p>Bu sayfa, <strong>Frozen Duck Games</strong> tarafından yayınlanan <strong>Mindfield – Trap &amp; Run</strong> (Türkçe adıyla <strong>Kur ve Geç</strong>) oyunundaki verilerinin silinmesini nasıl isteyebileceğini anlatır. Oyunda e-posta veya şifreyle hesap açılmaz; oyun senin için otomatik olarak anonim bir oyuncu hesabı oluşturur.</p>
+
+    <h2>1. Oyunun içinden silme (önerilen)</h2>
+    <ol>
+      <li>Oyunu aç ve internete bağlı olduğundan emin ol.</li>
+      <li>Ana ekranda <strong>Ayarlar</strong>'a dokun.</li>
+      <li><strong>Verilerimi sil</strong>'e dokun.</li>
+      <li>Çıkan pencerede <strong>Evet, hepsini sil</strong>'i seç.</li>
+    </ol>
+    <p>Silme hemen gerçekleşir ve "Verilerin silindi" mesajı görünür. Oyuna yeni bir oyuncu olarak baştan başlarsın.</p>
+
+    <h2>2. E-postayla silme</h2>
+    <p>Oyunu sildiysen veya açamıyorsan <a href="mailto:kaan.kara@yahoo.com?subject=Mindfield%20veri%20silme">kaan.kara@yahoo.com</a> adresine "Mindfield veri silme" konulu bir e-posta gönder. E-postaya oyuncu adını ve oyunu en son ne zaman, hangi cihazda (Android/iOS) oynadığını yaz. Talebini en geç 30 gün içinde tamamlar ve sana bilgi veririz.</p>
+
+    <h2>3. Silinen veriler</h2>
+    <ul>
+      <li>Buluttaki oyun profilin (Unity Cloud Save): oyuncu adın, avatarın ve kozmetiklerin, altın bakiyen, market eşyaların, online maç istatistiklerin, günlük köprü ilerlemen ve günlük reklam ödülü sayaçların</li>
+      <li>Anonim oyuncu hesabın (Unity Authentication)</li>
+      <li>Cihazındaki oyun verileri (aynı profil bilgileri)</li>
+      <li>Kullanım istatistiklerin (Unity Analytics): silinmeleri Unity'den istenir ve Unity'nin silme süreci içinde silinir</li>
+    </ul>
+    <p>Bu işlem geri alınamaz; altınların ve eşyaların da silinir.</p>
+
+    <h2>4. Saklanan veya ayrıca silinmesi gereken veriler</h2>
+    <table>
+      <thead><tr><th>Veri</th><th>Ne olur</th></tr></thead>
+      <tbody>
+        <tr><td>Müzik, ses efekti, FPS ve dil ayarları</td><td>Yalnızca cihazında kalır, bize hiç gönderilmez. Oyunu kaldırdığında silinir.</td></tr>
+        <tr><td>Hata raporları (Unity Diagnostics)</td><td>Adın veya iletişim bilgilerin içermez. Unity'nin belirlediği saklama süresi dolunca silinir.</td></tr>
+        <tr><td>Reklam ortaklarının topladığı veriler (Unity LevelPlay, ironSource Ads, Unity Ads)</td><td>Bu hizmetlerin kendi gizlilik politikalarında belirtilen süre boyunca saklanır. Android'de Ayarlar → Google → Reklamlar bölümünden reklam kimliğini sıfırlayabilir veya silebilirsin.</td></tr>
+        <tr><td>Online maç verileri (Photon)</td><td>Yalnızca maç süresince kullanılır, tarafımızca saklanmaz; silinecek bir kayıt kalmaz.</td></tr>
+      </tbody>
+    </table>
+    <p>Bunların dışında ek bir saklama süresi yoktur. Ayrıntılar için <a href="privacyPolicyMindfield.html#tr">gizlilik politikasına</a> bakabilirsin.</p>
+
+    <h2>İletişim</h2>
+    <p>Kaan Kara · <a href="mailto:kaan.kara@yahoo.com">kaan.kara@yahoo.com</a></p>
+  </article>
+
+  <!-- ===================== ENGLISH ===================== -->
+  <article id="en" lang="en">
+    <h1>Mindfield – Delete Your Data</h1>
+    <p class="meta">Last updated: October 28, 2026</p>
+
+    <p>This page explains how to request deletion of your data in <strong>Mindfield – Trap &amp; Run</strong> (Turkish title <strong>Kur ve Geç</strong>), published by <strong>Frozen Duck Games</strong>. The game has no email or password sign-up; it automatically creates an anonymous player account for you.</p>
+
+    <h2>1. Delete from inside the game (recommended)</h2>
+    <ol>
+      <li>Open the game and make sure you are connected to the internet.</li>
+      <li>On the home screen, tap <strong>Settings</strong>.</li>
+      <li>Tap <strong>Delete my data</strong>.</li>
+      <li>In the dialog, choose <strong>Yes, delete everything</strong>.</li>
+    </ol>
+    <p>Deletion happens right away and "Your data was deleted" is shown. You start over as a new player.</p>
+
+    <h2>2. Delete by email</h2>
+    <p>If you have uninstalled the game or can't open it, email <a href="mailto:kaan.kara@yahoo.com?subject=Mindfield%20data%20deletion">kaan.kara@yahoo.com</a> with the subject "Mindfield data deletion". Include your player name and roughly when and on which device (Android/iOS) you last played. We will complete your request within 30 days and let you know.</p>
+
+    <h2>3. Data that is deleted</h2>
+    <ul>
+      <li>Your cloud game profile (Unity Cloud Save): player name, avatar and cosmetics, coin balance, market items, online match statistics, daily bridge progress and daily ad reward counters</li>
+      <li>Your anonymous player account (Unity Authentication)</li>
+      <li>The game data on your device (the same profile information)</li>
+      <li>Your usage statistics (Unity Analytics): Unity is asked to delete them, and they are deleted through Unity's deletion process</li>
+    </ul>
+    <p>This cannot be undone; your coins and items are deleted too.</p>
+
+    <h2>4. Data that is kept or must be deleted separately</h2>
+    <table>
+      <thead><tr><th>Data</th><th>What happens</th></tr></thead>
+      <tbody>
+        <tr><td>Music, sound effect, FPS and language settings</td><td>Stay on your device only and are never sent to us. Removed when you uninstall the game.</td></tr>
+        <tr><td>Crash reports (Unity Diagnostics)</td><td>Contain no name or contact details. Deleted when Unity's retention period ends.</td></tr>
+        <tr><td>Data collected by ad partners (Unity LevelPlay, ironSource Ads, Unity Ads)</td><td>Kept for the period stated in those services' own privacy policies. On Android, Settings → Google → Ads lets you reset or delete your advertising ID.</td></tr>
+        <tr><td>Online match data (Photon)</td><td>Used only for the duration of a match and not stored by us, so there is no record left to delete.</td></tr>
+      </tbody>
+    </table>
+    <p>There is no other additional retention period. See the <a href="privacyPolicyMindfield.html#en">privacy policy</a> for details.</p>
+
+    <h2>Contact</h2>
+    <p>Kaan Kara · <a href="mailto:kaan.kara@yahoo.com">kaan.kara@yahoo.com</a></p>
+  </article>
+</div>
+
+<script>
+  // Dil seçimi: ?lang=en, #en veya tarayıcı dili (tr, diğerleri İngilizce). JS kapalıysa iki dil alt alta görünür.
+  (function () {
+    var langs = ["tr", "en"];
+    function pick() {
+      var h = location.hash.replace("#", "");
+      var q = new URLSearchParams(location.search).get("lang");
+      if (langs.indexOf(h) >= 0) return h;
+      if (langs.indexOf(q) >= 0) return q;
+      var nav = (navigator.language || "en").slice(0, 2).toLowerCase();
+      return langs.indexOf(nav) >= 0 ? nav : "en";
+    }
+    function show(lang) {
+      document.documentElement.lang = lang;
+      langs.forEach(function (l) {
+        document.getElementById(l).classList.toggle("show", l === lang);
+        document.querySelector('[data-lang="' + l + '"]').classList.toggle("active", l === lang);
+      });
+    }
+    show(pick());
+    window.addEventListener("hashchange", function () { show(pick()); });
+  })();
+</script>
+</body>
+</html>
