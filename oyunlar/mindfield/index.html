@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title data-i18n="title.mind">Mindfield · Tuzak Kur ve Koş · Frozen Duck Games</title>
-  <meta name="description" content="Mindfield (Kur ve Geç): cam köprüye gizli tuzaklar kur, rakibin haritayı yalnızca bir kez görsün. İki kişilik tuzak düellosu, online ya da aynı telefonda.">
+  <meta name="description" content="Mindfield (Kur ve Geç): cam köprüye gizli tuzaklar kur, rakibin haritayı yalnızca bir kez görsün. İki kişilik tuzak düellosu: online, düello modu, günün köprüsü, bota karşı ya da aynı telefonda.">
   <meta name="theme-color" content="#000005">
   <meta property="og:title" content="Mindfield · Tuzak Kur ve Koş">
   <meta property="og:image" content="https://kaankara.com.tr/oyunlar/mindfield/ekran-goruntuleri/ana-menu.jpg">
@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Pixelify+Sans:wght@500;700&family=Press+Start+2P&family=Silkscreen:wght@400;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../../style.css?v=9">
+  <link rel="stylesheet" href="../../style.css?v=10">
   <script>(function(){var d=document.documentElement,t;try{var s=sessionStorage;t=new URLSearchParams(location.search).get("theme")||localStorage.getItem("theme");if(t)localStorage.setItem("theme",t);if(!matchMedia("(prefers-reduced-motion: reduce)").matches){if(!s.getItem("intro"))d.dataset.intro="pending";else if(s.getItem("warp-in"))d.dataset.arrive="1"}s.removeItem("warp-in")}catch(e){}d.dataset.theme=t||"galaxy"})()</script>
 </head>
 <body class="game-page mindfield">
@@ -49,18 +49,19 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
             <span data-i18n="game.all">Tüm oyunlar</span>
           </a>
-          <span class="badge"><span data-i18n="badge.dev">Geliştiriliyor</span></span>
+          <span class="badge"><span data-i18n="badge.soon">Yakında</span></span>
           <h1>Mindfield</h1>
           <p class="tagline"><span data-i18n="mind.tagline">Cam köprüye gizli tuzaklar kur, rakibin haritayı yalnızca bir kez görsün. Sonra sıra sende: ezberle ve koş.</span></p>
           <div class="btn-row">
             <a class="btn btn-primary" href="#ekran-goruntuleri"><span data-i18n="game.shots">Ekran görüntüleri</span></a>
-            <a class="btn" href="mailto:kaan.kara@yahoo.com?subject=Mindfield"><span data-i18n="mind.notify">Test sürümünden haber ver</span></a>
+            <a class="btn" href="mailto:kaan.kara@yahoo.com?subject=Mindfield"><span data-i18n="mind.notify">Çıkınca haber ver</span></a>
           </div>
           <ul class="meta-list">
             <li><small><span data-i18n="game.genre">Tür</span></small><strong><span data-i18n="mind.genre">Strateji · Hafıza</span></strong></li>
-            <li><small>Platform</small><strong><span data-i18n="tag.mobile">Mobil</span></strong></li>
+            <li><small>Platform</small><strong>iOS · Android</strong></li>
             <li><small><span data-i18n="game.engine">Motor</span></small><strong>Unity</strong></li>
-            <li><small><span data-i18n="game.mode">Mod</span></small><strong><span data-i18n="mind.modes">Online + tek telefon</span></strong></li>
+            <li><small><span data-i18n="game.mode">Mod</span></small><strong><span data-i18n="mind.modes">Online · bot · tek telefon</span></strong></li>
+            <li><small><span data-i18n="game.lang">Dil</span></small><strong><span data-i18n="mind.langs">Türkçe · İngilizce</span></strong></li>
           </ul>
         </div>
         <div class="device-wrap intro-self">
@@ -78,13 +79,13 @@
             <span class="eyebrow"><span data-i18n="game.about">Oyun hakkında</span></span>
             <h2 class="section-title"><span data-i18n="mind.h2">Ezberle, koş, düşme.</span></h2>
           </div>
-          <p class="section-lead reveal" style="--d:.1s"><span data-i18n="mind.lead">Türkçe adıyla Kur ve Geç, iki kişilik bir tuzak düellosu. Her tur biri tuzakçı, diğeri koşucu olur; roller her turda değişir.</span></p>
+          <p class="section-lead reveal" style="--d:.1s"><span data-i18n="mind.lead">Türkçe adıyla Kur ve Geç, iki kişilik bir tuzak düellosu. Klasik modda biri tuzak kurar, diğeri koşar; roller her turda değişir. Düello modunda ikiniz de rakibin köprüsüne tuzak kurar, sonra aynı anda koşarsınız.</span></p>
         </div>
         <div class="features">
           <div class="feature reveal">
             <div class="ico" aria-hidden="true">🪤</div>
             <h3><span data-i18n="mind.f1">Gizli tuzaklar</span></h3>
-            <p><span data-i18n="mind.f1p">Kırık cam, bomba, buz ve sahte cam. Bütçeni akıllıca harca, ama köprüde en az bir geçilebilir yol açık kalmalı.</span></p>
+            <p><span data-i18n="mind.f1p">On farklı tuzak: kırık cam, bomba, buz, sakız, ayna, sis, fan ve daha fazlası. 20 puanlık bütçeni akıllıca harca, ama köprüde en az bir geçilebilir yol açık kalmalı.</span></p>
           </div>
           <div class="feature reveal" style="--d:.08s">
             <div class="ico" aria-hidden="true">🧠</div>
@@ -94,12 +95,27 @@
           <div class="feature reveal" style="--d:.16s">
             <div class="ico" aria-hidden="true">👁️</div>
             <h3><span data-i18n="mind.f3">Yetenekler</span></h3>
-            <p><span data-i18n="mind.f3p">Göz tüm tuzakları bir anlığına gösterir, Radar önündeki sıraları tarar, Geri Al ilk düşüşünde seni kurtarır.</span></p>
+            <p><span data-i18n="mind.f3p">Her koşuda bir kez: Göz tüm tuzakları bir anlığına gösterir, Radar önündeki 3 sırayı gösterir, Geri Al ilk düşüşünde seni kurtarır.</span></p>
           </div>
           <div class="feature reveal">
             <div class="ico" aria-hidden="true">🌐</div>
-            <h3><span data-i18n="mind.f4">Online düello</span></h3>
-            <p><span data-i18n="mind.f4p">Oda koduyla arkadaşına meydan oku. Profilin ve maç geçmişin buluta kaydedilir.</span></p>
+            <h3><span data-i18n="mind.f4">Online oyna</span></h3>
+            <p><span data-i18n="mind.f4p">Oda kur ya da açık odalar listesinden birine katıl; davet bağlantısıyla arkadaşını doğrudan odana çağır. Profilin, altınların ve maç geçmişin buluta kaydedilir.</span></p>
+          </div>
+          <div class="feature reveal" style="--d:.08s">
+            <div class="ico" aria-hidden="true">⚔️</div>
+            <h3><span data-i18n="mind.f7">Düello modu</span></h3>
+            <p><span data-i18n="mind.f7p">İkiniz aynı anda birbirinizin köprüsüne tuzak kurar, sonra aynı anda koşarsınız. Köprüden topladığın Sis, Yavaşlatma ve Cam kırma eşyalarıyla rakibini engelle.</span></p>
+          </div>
+          <div class="feature reveal" style="--d:.16s">
+            <div class="ico" aria-hidden="true">📅</div>
+            <h3><span data-i18n="mind.f8">Günün köprüsü</span></h3>
+            <p><span data-i18n="mind.f8p">Her gün herkes için aynı, normalden çok daha tuzaklı yeni bir köprü. Haritayı 6 saniye görürsün, geçmek için 30 saniyen var. Bitirene altın.</span></p>
+          </div>
+          <div class="feature reveal">
+            <div class="ico" aria-hidden="true">🤖</div>
+            <h3><span data-i18n="mind.f9">Bota karşı</span></h3>
+            <p><span data-i18n="mind.f9p">Bot hem tuzak kurar hem koşar. Tek başına pratik yapmak için ideal; bot maçları online maçlardan daha az altın verir.</span></p>
           </div>
           <div class="feature reveal" style="--d:.08s">
             <div class="ico" aria-hidden="true">📱</div>
@@ -109,7 +125,7 @@
           <div class="feature reveal" style="--d:.16s">
             <div class="ico" aria-hidden="true">🎩</div>
             <h3>Market</h3>
-            <p><span data-i18n="mind.f6p">Kazandığın altınlarla renk, şapka, avatar ve köprü temaları al; koşucunu ve köprünü süsle.</span></p>
+            <p><span data-i18n="mind.f6p">Kazandığın altınlarla renk, şapka, avatar, çerçeve, isimlik, tuzak ve köprü temaları al; koşucunu ve köprünü süsle.</span></p>
           </div>
         </div>
       </div>
@@ -123,7 +139,7 @@
             <h2 class="section-title" style="margin-bottom:28px"><span data-i18n="komp.steps">Dört adımda bir tur</span></h2>
           </div>
           <ol class="steps">
-            <li class="reveal"><span data-i18n="mind.s1"><strong>Tuzakçı</strong>, bütçesiyle cam köprüye gizli tuzaklar kurar.</span></li>
+            <li class="reveal"><span data-i18n="mind.s1"><strong>Tuzakçı</strong>, 20 puanlık bütçesiyle 16 sıralık cam köprüye gizli tuzaklar kurar.</span></li>
             <li class="reveal" style="--d:.06s"><span data-i18n="mind.s2"><strong>Koşucu</strong> haritayı yalnızca bir kez görür. Sonra yol bomboş görünür.</span></li>
             <li class="reveal" style="--d:.12s"><span data-i18n="mind.s3">Koşucu ne kadar ilerlerse o kadar puan alır, kalan puanlar tuzakçının olur.</span></li>
             <li class="reveal" style="--d:.18s"><span data-i18n="mind.s4">Roller her tur değişir. Toplamda <strong>en çok puanı</strong> alan kazanır.</span></li>
@@ -131,12 +147,18 @@
         </div>
         <div class="reveal" style="--d:.1s">
           <table class="score-table trap-table">
-            <thead><tr><th><span data-i18n="mind.th1">Tuzak</span></th><th style="text-align:right"><span data-i18n="mind.th2">Bütçe</span></th></tr></thead>
+            <thead><tr><th><span data-i18n="mind.th1">Tuzak</span></th><th style="text-align:right"><span data-i18n="mind.th2">Puan</span></th></tr></thead>
             <tbody>
               <tr><td><i class="dot" style="background:#ff3d5a"></i><strong><span data-i18n="mind.t1">Kırık cam</span></strong><small><span data-i18n="mind.t1p">Basan düşer, koşu biter.</span></small></td><td>3</td></tr>
-              <tr><td><i class="dot" style="background:#ffad33"></i><strong><span data-i18n="mind.t2">Bomba</span></strong><small><span data-i18n="mind.t2p">Koşucuyu birkaç sıra geri fırlatır.</span></small></td><td>2</td></tr>
-              <tr><td><i class="dot" style="background:#3fb6ff"></i><strong><span data-i18n="mind.t3">Buz</span></strong><small><span data-i18n="mind.t3p">Koşucuyu ileri kaydırır. Nereye düşeceğine dikkat.</span></small></td><td>1</td></tr>
+              <tr><td><i class="dot" style="background:#ffad33"></i><strong><span data-i18n="mind.t2">Bomba</span></strong><small><span data-i18n="mind.t2p">Koşucuyu 3 sıra geri fırlatır, patladığı cam da kırılır.</span></small></td><td>2</td></tr>
+              <tr><td><i class="dot" style="background:#7ee0ff"></i><strong><span data-i18n="mind.t8">Ayna</span></strong><small><span data-i18n="mind.t8p">5 saniye boyunca sağ ve sol ters çalışır.</span></small></td><td>2</td></tr>
+              <tr><td><i class="dot" style="background:#ff7ab8"></i><strong><span data-i18n="mind.t9">Domino cam</span></strong><small><span data-i18n="mind.t9p">Koşucuyu taşır ama sağındaki ve solundaki camlar kırılır.</span></small></td><td>2</td></tr>
+              <tr><td><i class="dot" style="background:#48e0a0"></i><strong>Fan</strong><small><span data-i18n="mind.t10p">Köprünün kenarına konur. O sıradaki yakın ve orta cama basanı bir cam öteye iter.</span></small></td><td>2</td></tr>
+              <tr><td><i class="dot" style="background:#3fb6ff"></i><strong><span data-i18n="mind.t3">Buz</span></strong><small><span data-i18n="mind.t3p">Koşucuyu 2 sıra ileri kaydırır. Nereye düşeceğine dikkat.</span></small></td><td>1</td></tr>
               <tr><td><i class="dot" style="background:#b98cff"></i><strong><span data-i18n="mind.t4">Sahte cam</span></strong><small><span data-i18n="mind.t4p">Önizlemede kırık cam gibi görünür ama zararsızdır.</span></small></td><td>1</td></tr>
+              <tr><td><i class="dot" style="background:#c9b38a"></i><strong><span data-i18n="mind.t5">Çatlak cam</span></strong><small><span data-i18n="mind.t5p">Bir kez taşır. Koşucu üstünden ayrılınca kırılır, geri dönen düşer.</span></small></td><td>1</td></tr>
+              <tr><td><i class="dot" style="background:#ff9ad5"></i><strong><span data-i18n="mind.t6">Sakız</span></strong><small><span data-i18n="mind.t6p">Koşucuyu 2 saniye yapıştırır. Süre akmaya devam eder.</span></small></td><td>1</td></tr>
+              <tr><td><i class="dot" style="background:#9aa3b8"></i><strong><span data-i18n="mind.t7">Sis</span></strong><small><span data-i18n="mind.t7p">Basanın ekranını 3 saniye sisle kaplar.</span></small></td><td>1</td></tr>
             </tbody>
           </table>
         </div>
@@ -165,11 +187,14 @@
           <a class="shot reveal" style="--d:.15s" href="ekran-goruntuleri/kosu.jpg" data-gallery="mindfield">
             <img src="ekran-goruntuleri/kosu.jpg" alt="Koşucu boş görünen köprüde ilerliyor" loading="lazy"><span class="cap"><span data-i18n="mind.c4">Koşu</span></span>
           </a>
-          <a class="shot reveal" style="--d:.2s" href="ekran-goruntuleri/goz.jpg" data-gallery="mindfield">
-            <img src="ekran-goruntuleri/goz.jpg" alt="Göz yeteneği tuzakları bir anlığına gösteriyor" loading="lazy"><span class="cap"><span data-i18n="mind.c5">Göz yeteneği</span></span>
+          <a class="shot reveal" style="--d:.2s" href="ekran-goruntuleri/bomba.jpg" data-gallery="mindfield">
+            <img src="ekran-goruntuleri/bomba.jpg" alt="Bomba patlıyor, koşucu 3 sıra geri fırlıyor" loading="lazy"><span class="cap"><span data-i18n="mind.c5">Bomba!</span></span>
           </a>
-          <a class="shot reveal" style="--d:.25s" href="ekran-goruntuleri/market.jpg" data-gallery="mindfield">
-            <img src="ekran-goruntuleri/market.jpg" alt="Market: koşucu renkleri" loading="lazy"><span class="cap">Market</span>
+          <a class="shot reveal" style="--d:.25s" href="ekran-goruntuleri/gunun-koprusu.jpg" data-gallery="mindfield">
+            <img src="ekran-goruntuleri/gunun-koprusu.jpg" alt="Günün köprüsü: herkes için aynı tuzaklı köprü" loading="lazy"><span class="cap"><span data-i18n="mind.f8">Günün köprüsü</span></span>
+          </a>
+          <a class="shot reveal" style="--d:.3s" href="ekran-goruntuleri/market.jpg" data-gallery="mindfield">
+            <img src="ekran-goruntuleri/market.jpg" alt="Market: koşucu şapkaları" loading="lazy"><span class="cap">Market</span>
           </a>
         </div>
       </div>
@@ -179,8 +204,8 @@
       <div class="container">
         <div class="cta-box reveal reveal-zoom">
           <div>
-            <h2><span data-i18n="mind.cta">Mindfield yolda.</span></h2>
-            <p><span data-i18n="mind.ctap">Oyun geliştirme aşamasında. Test sürümü çıktığında ilk haberdar olanlardan olmak için bana yaz ya da Instagram'dan takip et.</span></p>
+            <h2><span data-i18n="mind.cta">Mindfield çok yakında mağazalarda.</span></h2>
+            <p><span data-i18n="mind.ctap">1.0 sürümü hazır; App Store ve Google Play'e çıkmak üzere. Çıktığı gün haberdar olmak için bana yaz ya da Instagram'dan takip et.</span></p>
           </div>
           <div class="btn-row">
             <a class="btn btn-primary" href="mailto:kaan.kara@yahoo.com?subject=Mindfield"><span data-i18n="game.write">Bana yaz</span></a>
@@ -208,7 +233,7 @@
     </div>
   </footer>
 
-  <script src="../../i18n.js?v=7"></script>
+  <script src="../../i18n.js?v=8"></script>
   <script src="../../script.js?v=8"></script>
 </body>
 </html>

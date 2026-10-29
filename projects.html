@@ -4,13 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title data-i18n="title.projects">Projeler · Kaan Kara</title>
-  <meta name="description" content="Kaan Kara'nın projeleri: 1Üni mobil uygulaması, Komparsita, Mindfield, Togy, Duck Strike ve Ducks & Dragons.">
+  <meta name="description" content="Kaan Kara'nın projeleri: 1Üni ve Fulldepo mobil uygulamaları, Komparsita, Mindfield, Togy, Duck Strike ve Ducks & Dragons.">
   <meta name="theme-color" content="#000005">
   <link rel="icon" href="Assets/Kaan_ghibli.jpeg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Pixelify+Sans:wght@500;700&family=Press+Start+2P&family=Silkscreen:wght@400;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=9">
+  <link rel="stylesheet" href="style.css?v=10">
   <script>(function(){var d=document.documentElement,t;try{var s=sessionStorage;t=new URLSearchParams(location.search).get("theme")||localStorage.getItem("theme");if(t)localStorage.setItem("theme",t);if(!matchMedia("(prefers-reduced-motion: reduce)").matches){if(!s.getItem("intro"))d.dataset.intro="pending";else if(s.getItem("warp-in"))d.dataset.arrive="1"}s.removeItem("warp-in")}catch(e){}d.dataset.theme=t||"galaxy"})()</script>
 </head>
 <body>
@@ -76,6 +76,31 @@
       </div>
     </section>
 
+    <!-- Fulldepo -->
+    <section class="section" style="padding-top:0">
+      <div class="container">
+        <div class="project-feature reveal">
+          <div>
+            <span class="eyebrow"><span data-i18n="proj.fd.eyebrow">Mobil uygulama · Yakında</span></span>
+            <h2>Fulldepo</h2>
+            <p><span data-i18n="proj.fd">Türkiye'nin 81 ilinde güncel benzin, motorin ve LPG fiyatlarını markalara göre karşılaştıran uygulama. Flutter ve Firebase ile yazdım; fiyatlar EPDK'nın herkese açık verisinden, istasyonlar OpenStreetMap'ten geliyor.</span></p>
+            <div class="btn-row">
+              <a class="btn" href="privacyPolicyFulldepo.html"><span data-i18n="foot.privacy">Gizlilik</span></a>
+            </div>
+          </div>
+          <div class="app-points">
+            <img class="app-icon" src="Assets/fulldepo/ikon.png" alt="Fulldepo uygulama simgesi" loading="lazy">
+            <ul>
+              <li><strong><span data-i18n="proj.fd.p1">Haritada en ucuz ve en yakın</span></strong><small><span data-i18n="proj.fd.p1p">Uygulama haritayla açılır; en ucuz ve en yakın istasyon öne çıkar, en ucuzun bölge ortalamasına farkı görünür.</span></small></li>
+              <li><strong><span data-i18n="proj.fd.p2">Zam ve indirim bildirimi</span></strong><small><span data-i18n="proj.fd.p2p">İlin ve yakıtın için; gece rahatsız etmez, sabah özet gelir.</span></small></li>
+              <li><strong><span data-i18n="proj.fd.p3">Fiyat geçmişi</span></strong><small><span data-i18n="proj.fd.p3p">Grafiğe dokunarak geçmiş fiyatları markalara göre gör.</span></small></li>
+              <li><strong><span data-i18n="proj.fd.p4">Hesap yok</span></strong><small><span data-i18n="proj.fd.p4p">Konumun yalnızca telefonunda kullanılır, hiçbir yere gönderilmez.</span></small></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Unity oyunları -->
     <section class="section" style="padding-top:0">
       <div class="container">
@@ -99,7 +124,7 @@
           </article>
           <article class="game-card mindfield reveal" style="--d:.1s" data-tilt>
             <div class="game-cover cover-mindfield">
-              <span class="badge"><span data-i18n="badge.dev">Geliştiriliyor</span></span>
+              <span class="badge"><span data-i18n="badge.soon">Yakında</span></span>
               <img src="oyunlar/mindfield/ekran-goruntuleri/ana-menu.jpg" alt="Mindfield ana menüsü" loading="lazy">
             </div>
             <div class="game-body">
@@ -173,7 +198,7 @@
     </div>
   </footer>
 
-  <script src="i18n.js?v=7"></script>
+  <script src="i18n.js?v=8"></script>
 
   <script src="script.js?v=8"></script>
 </body>

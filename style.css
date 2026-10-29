@@ -694,7 +694,7 @@ p { margin: 0; }
 
 .cover-komparsita img { object-position: center 30%; }
 
-.cover-mindfield img { object-position: center 38%; }
+.cover-mindfield img { object-position: center 20%; }
 .cover-togy img { object-position: 42% center; }
 
 .badge {
@@ -1567,6 +1567,25 @@ p { margin: 0; }
   aspect-ratio: 9 / 20;
   scroll-snap-align: start;
 }
+
+.app-points {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: clamp(18px, 3vw, 32px);
+  align-items: start;
+}
+.app-points .app-icon {
+  width: clamp(84px, 12vw, 120px);
+  aspect-ratio: 1;
+  border-radius: 24%;
+  border: 1px solid var(--border);
+  box-shadow: 0 18px 40px -18px rgba(0, 0, 0, 0.6);
+}
+.app-points ul { display: grid; gap: 16px; margin: 0; padding: 0; list-style: none; }
+.app-points li { display: flex; flex-direction: column; gap: 2px; }
+.app-points strong { font-family: var(--font-display); font-weight: 600; }
+.app-points small { color: var(--muted); font-size: 0.92rem; }
+@media (max-width: 560px) { .app-points { grid-template-columns: 1fr; } }
 
 /* Foto galeri */
 .masonry {
