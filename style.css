@@ -977,6 +977,37 @@ p { margin: 0; }
   .dd-banner .dd-art { order: -1; max-width: 340px; }
 }
 
+/* ---------- Salon Maçı bandı ---------- */
+.sm-banner {
+  border-color: rgba(76, 175, 80, 0.4);
+  background:
+    radial-gradient(520px circle at 0% 50%, rgba(76, 175, 80, 0.18), transparent 60%),
+    var(--surface);
+}
+.sm-banner:hover { border-color: rgba(76, 175, 80, 0.75); box-shadow: 0 30px 60px -30px rgba(76, 175, 80, 0.55); }
+.sm-banner .eyebrow { color: #7ed87f; }
+.sm-banner h2 { color: #4caf50; text-shadow: 3px 3px 0 #0f3d14; }
+.sm-banner .btn-primary { background: #4caf50; color: #04210a; box-shadow: 0 10px 30px -10px rgba(76, 175, 80, 0.8); }
+.sm-art {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  border-radius: 18px;
+  overflow: hidden;
+  background: #2e7d32;
+  box-shadow: inset 0 0 0 6px #123d16;
+}
+.sm-art svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.sm-ball { animation: smball 3.6s ease-in-out infinite; }
+@keyframes smball {
+  0%, 100% { transform: translate(0, 0); }
+  35% { transform: translate(30px, -12px); }
+  70% { transform: translate(52px, 6px); }
+}
+@media (max-width: 760px) {
+  .sm-banner .sm-art { max-width: 340px; }
+}
+@media (prefers-reduced-motion: reduce) { .sm-ball { animation: none; } }
+
 /* ---------- Mağaza (Shopier) ---------- */
 
 .shop {
@@ -2043,7 +2074,7 @@ html[data-intro="playing"] :is(.intro > *, .intro-self) { animation-play-state: 
 
 /* Köşeli, piksel her şey */
 [data-theme="retro"] :is(.btn, .lang-toggle, .theme-toggle, .nav-links a, .nav-toggle, .brand img, .status-pill, .tags li, .badge,
-  .float-chip, .orbit, .orbit .planet, .avatar, .project-feature, .shop, .ds-banner, .ds-art, .dd-art, .panel, .quick-links a,
+  .float-chip, .orbit, .orbit .planet, .avatar, .project-feature, .shop, .ds-banner, .ds-art, .dd-art, .sm-art, .panel, .quick-links a,
   .socials a, .mini-game, .mini-game .icon, .mini-game .play, .shot, .video, .device, .device img, .feature, .feature .ico,
   .cta-box, .game-nav a, .tee-stack figure, .project, .project-thumb, .score-table, .lightbox img, .lb-btn, .fx-toast, .scroll-hint) {
   border-radius: 0;
@@ -2380,7 +2411,7 @@ html[data-intro="playing"] :is(.intro > *, .intro-self) { animation-play-state: 
 
 .arcade-strip {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 18px;
 }
 @media (max-width: 900px) { .arcade-strip { grid-template-columns: 1fr; } }
@@ -2404,6 +2435,7 @@ html[data-intro="playing"] :is(.intro > *, .intro-self) { animation-play-state: 
 }
 .arcade-tile.ds { --c: #ffd23f; }
 .arcade-tile.dd { --c: #ff5a48; }
+.arcade-tile.sm { --c: #4caf50; }
 .tile-art {
   flex: 0 0 72px;
   height: 72px;
