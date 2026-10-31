@@ -1788,9 +1788,14 @@ html[data-intro="pending"] body > * {
 /* Perde kalkana kadar hero animasyonu bekler */
 html[data-intro="playing"] :is(.intro > *, .intro-self) { animation-play-state: paused; }
 
-.fx-crawl { transition: opacity 0.7s ease; }
-.fx-crawl small {
+/* Galaksi açılışı: mavi giriş cümlesi → küçülerek uzaklaşan logo → eğik düzlemde kayan sarı hikâye
+   Toplam süre script.js'teki playFx ile eş (~30 sn, tıkla/tuşa bas: geç) */
+.fx-crawl { overflow: hidden; transition: opacity 0.7s ease; --crawl-font: "News Cycle", "Franklin Gothic Medium", "Arial Narrow", sans-serif; }
+.fx-crawl > * { grid-area: 1 / 1; }
+.fx-crawl.out { opacity: 0; pointer-events: none; }
+.fx-crawl .crawl-skip {
   position: absolute;
+  z-index: 1;
   left: 0;
   right: 0;
   bottom: max(28px, env(safe-area-inset-bottom));
@@ -1799,21 +1804,80 @@ html[data-intro="playing"] :is(.intro > *, .intro-self) { animation-play-state: 
   letter-spacing: 0.08em;
   text-align: center;
   opacity: 0;
-  animation: crawlin 2s ease 0.4s forwards;
+  animation: crawl-skip 30s linear forwards;
 }
-.fx-crawl.out { opacity: 0; pointer-events: none; }
-.fx-crawl p {
+@keyframes crawl-skip {
+  2%, 15% { opacity: 1; }
+  20%, 100% { opacity: 0.45; }
+}
+.crawl-intro {
   max-width: 30ch;
   color: #4bd5ee;
   font-size: clamp(1.1rem, 3vw, 1.7rem);
   line-height: 1.5;
   text-align: center;
   opacity: 0;
-  animation: crawlin 1.9s ease 0.1s forwards;
+  animation: crawlin 4.2s ease 0.3s forwards;
 }
 @keyframes crawlin {
-  25%, 80% { opacity: 1; }
+  20%, 80% { opacity: 1; }
   100% { opacity: 0; }
+}
+.crawl-logo {
+  color: transparent;
+  -webkit-text-stroke: 2px #ffe81f;
+  font-family: var(--crawl-font);
+  font-weight: 700;
+  font-size: clamp(3rem, 15vmin, 9rem);
+  line-height: 0.85;
+  letter-spacing: 0.02em;
+  text-align: center;
+  text-transform: uppercase;
+  opacity: 0;
+  animation: crawl-logo 9s cubic-bezier(0.3, 0.5, 0.6, 1) 4.6s forwards;
+}
+@keyframes crawl-logo {
+  0% { opacity: 1; transform: scale(2.4); }
+  80% { opacity: 1; }
+  100% { opacity: 0; transform: scale(0.05); }
+}
+/* Yazı ekranın alt kenarından başlayan, geriye yatık bir düzlemde ilerler; üstte karanlığa karışır */
+.crawl-stage {
+  position: absolute;
+  inset: 0;
+  perspective: 50vh;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 2%, #000 40%);
+  mask-image: linear-gradient(to bottom, transparent 2%, #000 40%);
+}
+.crawl-text {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  width: min(92vw, 19em);
+  margin-left: calc(min(92vw, 19em) / -2);
+  color: #ffe81f;
+  font-family: var(--crawl-font);
+  font-weight: 700;
+  font-size: min(4.2vh, 6.4vw, 2.5rem);
+  line-height: 1.3;
+  text-align: justify;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+  transform-origin: 50% 0;
+  transform: rotateX(25deg);
+  animation: crawl 24s linear 5.4s forwards;
+}
+.crawl-text h2 {
+  margin-bottom: 1em;
+  font: inherit;
+  font-size: 1.5em;
+  line-height: 1.1;
+  text-align: center;
+}
+.crawl-text h2 small { display: block; font-size: 0.55em; margin-bottom: 0.25em; }
+.crawl-text p + p { margin-top: 0.9em; }
+@keyframes crawl {
+  to { transform: rotateX(25deg) translateY(calc(-100% - 100vh)); }
 }
 
 .fx-crt { background: none; pointer-events: none; }
@@ -1999,6 +2063,27 @@ html[data-intro="playing"] :is(.intro > *, .intro-self) { animation-play-state: 
 [data-theme="galaxy"] .orbit { border-color: rgba(255, 232, 31, 0.22); }
 [data-theme="galaxy"] .marquee-track span { letter-spacing: 0.06em; }
 [data-theme="galaxy"] .marquee-track span::after { color: #ffe81f; }
+
+/* Açılış yazısının dili: başlıklar ve bölüm girişleri sarı, iki yana yaslı; ekrana eğik düzlemden doğrularak girer */
+[data-theme="galaxy"] :is(h1, .section-title, .cta-box h2) {
+  font-family: "News Cycle", var(--font-display);
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+/* Büyük harfe çevrilmez: Türkçe kuralı "Unity"yi "UNİTY" yapıyor */
+[data-theme="galaxy"] .section-title { color: #ffe81f; }
+[data-theme="galaxy"] .section-lead {
+  color: rgba(255, 232, 31, 0.82);
+  font-family: "News Cycle", var(--font-body);
+  font-weight: 700;
+  font-size: 1.15rem;
+  line-height: 1.45;
+  text-align: justify;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+}
+[data-theme="galaxy"] .section-head .reveal { transform-origin: 50% 100%; }
+[data-theme="galaxy"] .section-head .reveal:not(.in) { transform: perspective(500px) rotateX(38deg) translateY(48px); }
 
 /* =========================================================
    RETRO — synthwave gün batımı, piksel yazılar, CRT tarama çizgileri

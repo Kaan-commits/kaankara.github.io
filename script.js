@@ -810,7 +810,8 @@ const playFx = (t, done) => {
     if (done) done();
   };
   if (t === "galaxy") {
-    // Kısa bir açılış yazısı, ardından hiperuzay sıçraması
+    // Açılış yazısı → küçülen logo → eğik düzlemde kayan hikâye → hiperuzay sıçraması
+    // Süreler style.css'teki .fx-crawl animasyonlarıyla eş
     let jumped = false;
     const jump = () => {
       if (jumped) return;
@@ -819,11 +820,22 @@ const playFx = (t, done) => {
       sfx.play("whoosh");
       finish();
     };
-    const el = overlay("fx-crawl", `<p>${tr("fx.crawl")}</p><small>${tr("fx.skip")}</small>`, 3000, jump);
+    const story = ["p1", "p2", "p3"].map((k) => `<p>${tr(`fx.crawl.${k}`)}</p>`).join("");
+    const el = overlay(
+      "fx-crawl",
+      `<p class="crawl-intro">${tr("fx.crawl")}</p>
+      <div class="crawl-logo">Frozen<br>Duck Games</div>
+      <div class="crawl-stage"><div class="crawl-text" lang="${root.lang}">
+        <h2><small>${tr("fx.crawl.ep")}</small>${tr("fx.crawl.title")}</h2>${story}
+      </div></div>
+      <small class="crawl-skip">${tr("fx.skip")}</small>`,
+      30000,
+      jump
+    );
     setTimeout(() => {
       el.classList.add("out");
       jump();
-    }, 2100);
+    }, 29300);
   } else if (t === "retro") {
     overlay("fx-crt", `<p>${tr("fx.ready")}</p>`, 1300);
     sfx.play("ready");
