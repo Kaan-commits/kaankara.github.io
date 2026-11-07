@@ -152,35 +152,7 @@ const pixelSvg = (rows, palette, cls = "") => {
   return `<svg class="${cls}" viewBox="0 0 ${rows[0].length} ${rows.length}" shape-rendering="crispEdges" aria-hidden="true">${rects}</svg>`;
 };
 
-/* ---------- Temalar: Uzay · Galaksi · Retro ---------- */
-const THEMES = ["space", "galaxy", "retro"];
-const THEME_BG = { space: "#06060c", galaxy: "#000005", retro: "#0d0221" };
-const THEME_ICONS = {
-  space: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="5"/><path d="M4.6 14.6c-2.6 2.8-1.2 4.6 3.4 3.6 2.4-.5 5.2-1.8 7.8-3.5 2.6-1.8 4.6-3.8 5.6-5.6 1.4-2.6 0-3.8-3.4-3.2"/></svg>',
-  galaxy: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 1.5 14 10l8.5 2-8.5 2-2 8.5-2-8.5-8.5-2L10 10z"/></svg>',
-  retro: pixelSvg(
-    ["..x.....x..", "...x...x...", "..xxxxxxx..", ".xx.xxx.xx.", "xxxxxxxxxxx", "x.xxxxxxx.x", "x.x.....x.x", "...xx.xx..."],
-    { x: "currentColor" }
-  ),
-};
-
 const root = document.documentElement;
-let theme = THEMES.includes(root.dataset.theme) ? root.dataset.theme : "galaxy";
-root.dataset.theme = theme;
-
-const themeMeta = document.querySelector('meta[name="theme-color"]');
-const themeToggles = document.querySelectorAll("[data-theme-toggle]");
-const nextTheme = () => THEMES[(THEMES.indexOf(theme) + 1) % THEMES.length];
-
-const renderToggles = () => {
-  themeToggles.forEach((b) => {
-    b.querySelector(".theme-ico").innerHTML = THEME_ICONS[theme];
-    b.querySelector(".theme-name").textContent = tr(`theme.${theme}`);
-    const label = `${tr("theme.switch")}: ${tr(`theme.${theme}`)} → ${tr(`theme.${nextTheme()}`)}`;
-    b.setAttribute("aria-label", label);
-    b.title = label;
-  });
-};
 
 /* ---------- Bildirim balonu ---------- */
 const toast = (() => {
@@ -278,26 +250,10 @@ const sfx = (() => {
 
   const sounds = {
     blip: () => tone({ type: "triangle", f: 660, f2: 990, t: 0.12, v: 0.15 }),
-    chime: () => {
-      tone({ f: 880, t: 0.4, v: 0.12 });
-      tone({ f: 1320, t: 0.45, v: 0.07, delay: 0.05 });
-    },
     pew: () => tone({ type: "square", f: 1500, f2: 160, t: 0.17, v: 0.07 }),
-    coin: () => {
-      tone({ type: "square", f: 988, t: 0.08, v: 0.07 });
-      tone({ type: "square", f: 1319, t: 0.32, v: 0.07, delay: 0.08 });
-    },
     whoosh: () => {
       noise({ t: 1.1, v: 0.3, f: 250, f2: 3200, q: 0.7 });
       tone({ type: "sawtooth", f: 55, f2: 240, t: 1, v: 0.05 });
-    },
-    ready: () => {
-      noise({ t: 0.18, v: 0.12, f: 3000, type: "highpass" });
-      [523, 659, 784, 1047].forEach((f, i) => tone({ type: "square", f, t: i === 3 ? 0.3 : 0.1, v: 0.06, delay: 0.2 + i * 0.1 }));
-    },
-    crtOff: () => {
-      tone({ f: 1400, f2: 50, t: 0.4, v: 0.12 });
-      noise({ t: 0.25, v: 0.1, f: 4000, type: "highpass" });
     },
     fanfare: () => [392, 523, 659, 784, 659, 784].forEach((f, i) => tone({ type: "square", f, t: 0.14, v: 0.06, delay: i * 0.11 })),
     quack: () => {
@@ -399,18 +355,16 @@ const sfx = (() => {
   document.body.appendChild(btn);
 })();
 
-/* ---------- Yıldız alanı (temaya göre değişir) ---------- */
+/* ---------- Yıldız alanı: yıldızların arasından ileri uçuş ---------- */
 const sky = (() => {
   const canvas = document.getElementById("stars");
-  if (!canvas) return { setMode() {}, burst() {}, hold() {}, boost() {} };
+  if (!canvas) return { reset() {}, burst() {}, hold() {}, boost() {}, jump() {}, arrive() {} };
   const ctx = canvas.getContext("2d");
   const dpr = Math.min(window.devicePixelRatio || 1, 2);
-  let mode = theme;
   let w = 0;
   let h = 0;
   let stars = [];
   let parts = [];
-  let gridFade = null;
   let scrollY = window.scrollY;
   let scrollV = 0;
   let warp = 0; // 0 = normal, 1 = tam hız
@@ -422,39 +376,16 @@ const sky = (() => {
   let py = 0;
   let tpx = 0;
   let tpy = 0;
-  let grid = 0;
   let last = performance.now();
   let running = true;
 
   const rand = (a, b) => a + Math.random() * (b - a);
   const pick = (arr) => arr[(Math.random() * arr.length) | 0];
-  const horizon = () => h * 0.7;
 
   const deepStar = (z = 1) => ({ x: rand(-1, 1), y: rand(-1, 1), z });
 
   const seed = () => {
-    const area = w * h;
-    if (mode === "galaxy") {
-      stars = Array.from({ length: Math.round(Math.min(420, area / 3800)) }, () => deepStar(rand(0.05, 1)));
-    } else if (mode === "retro") {
-      stars = Array.from({ length: Math.round(Math.min(150, area / 9000)) }, () => ({
-        x: Math.random() * w,
-        y: Math.random() * horizon() * 0.92,
-        z: rand(0.2, 1),
-        t: Math.random() * 10,
-      }));
-      gridFade = ctx.createLinearGradient(0, horizon(), 0, h);
-      gridFade.addColorStop(0, "rgba(255, 47, 185, 0)");
-      gridFade.addColorStop(0.25, "rgba(255, 47, 185, 0.32)");
-      gridFade.addColorStop(1, "rgba(0, 240, 255, 0.5)");
-    } else {
-      stars = Array.from({ length: Math.round(Math.min(260, area / 7000)) }, () => ({
-        x: Math.random() * w,
-        y: Math.random() * h,
-        z: rand(0.2, 1), // derinlik: yakın yıldızlar daha büyük ve hızlı
-        t: Math.random() * Math.PI * 2,
-      }));
-    }
+    stars = Array.from({ length: Math.round(Math.min(420, (w * h) / 3800)) }, () => deepStar(rand(0.05, 1)));
   };
 
   const resize = () => {
@@ -466,33 +397,7 @@ const sky = (() => {
     seed();
   };
 
-  /* Uzay: yavaş akan, göz kırpan yıldızlar */
-  const drawSpace = (dt) => {
-    for (const s of stars) {
-      s.t += 0.02 * s.z * dt;
-      s.x += (0.06 + warp * 14) * s.z * dt;
-      if (s.x > w + 40) s.x = -40;
-      const x = s.x + px * s.z * 24;
-      const y = ((((s.y - scrollY * s.z * 0.25 + py * s.z * 24) % h) + h) % h);
-      const alpha = 0.35 + Math.sin(s.t) * 0.25 + s.z * 0.4;
-      ctx.globalAlpha = Math.max(0.1, Math.min(1, alpha));
-      ctx.fillStyle = s.z > 0.85 ? "#bfefff" : "#ffffff";
-      if (warp > 0.05) {
-        ctx.strokeStyle = ctx.fillStyle;
-        ctx.lineWidth = s.z * 1.6;
-        ctx.beginPath();
-        ctx.moveTo(x - warp * 60 * s.z, y);
-        ctx.lineTo(x, y);
-        ctx.stroke();
-      } else {
-        ctx.beginPath();
-        ctx.arc(x, y, s.z * 1.4, 0, Math.PI * 2);
-        ctx.fill();
-      }
-    }
-  };
-
-  /* Galaksi: yıldızların arasından ileri uçuş, basılı tutunca hiperuzay */
+  /* Yıldızların arasından ileri uçuş, basılı tutunca hiperuzay */
   const drawGalaxy = (dt) => {
     const cx = focus ? focus.x : w / 2 + px * 60;
     const cy = focus ? focus.y : h / 2 + py * 40;
@@ -531,88 +436,6 @@ const sky = (() => {
     }
   };
 
-  /* Retro: piksel yıldızlar, çizgili gün batımı ve ufka koşan neon ızgara */
-  const drawRetro = (dt) => {
-    const hz = horizon();
-    const r = Math.min(w * 0.3, h * 0.25);
-    const sunX = w / 2 + px * 14;
-    const sunY = hz - r * 0.3;
-
-    // Güneş
-    ctx.save();
-    ctx.beginPath();
-    ctx.rect(0, 0, w, hz);
-    ctx.clip();
-    const sg = ctx.createLinearGradient(0, sunY - r, 0, sunY + r);
-    sg.addColorStop(0, "#ffd319");
-    sg.addColorStop(0.5, "#ff2975");
-    sg.addColorStop(1, "#b31aff");
-    ctx.globalAlpha = 0.55;
-    ctx.shadowColor = "#ff2975";
-    ctx.shadowBlur = 50;
-    ctx.fillStyle = sg;
-    ctx.beginPath();
-    ctx.arc(sunX, sunY, r, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.shadowBlur = 0;
-    // Güneşin alt yarısındaki boşluklar (yavaşça aşağı kayar)
-    ctx.globalCompositeOperation = "destination-out";
-    ctx.globalAlpha = 1;
-    const band = (grid * 0.5) % 1;
-    for (let i = 0; i < 7; i++) {
-      const k = i + band;
-      const y = sunY + r * (0.02 + k * 0.15);
-      ctx.fillRect(sunX - r, y, r * 2, 1 + k * 1.8);
-    }
-    ctx.restore();
-
-    // Piksel yıldızlar
-    for (const s of stars) {
-      s.t += 0.04 * s.z * dt;
-      s.x -= (0.12 + warp * 10) * s.z * dt;
-      if (s.x < -4) s.x = w + 4;
-      if (Math.sin(s.t * 3) < -0.55) continue; // yanıp sönme
-      const size = s.z > 0.75 ? 3 : 2;
-      ctx.globalAlpha = 0.5 + s.z * 0.5;
-      ctx.fillStyle = s.z > 0.9 ? "#00f0ff" : s.z < 0.35 ? "#ff8ad8" : "#ffffff";
-      ctx.fillRect(Math.round(s.x + px * s.z * 12), Math.round(s.y + py * s.z * 8), size, size);
-      if (warp > 0.1) ctx.fillRect(Math.round(s.x + px * s.z * 12), Math.round(s.y + py * s.z * 8), size + warp * 30 * s.z, 1);
-    }
-
-    // Zemin + ufuk çizgisi
-    ctx.globalAlpha = 1;
-    const fg = ctx.createLinearGradient(0, hz, 0, h);
-    fg.addColorStop(0, "rgba(40, 6, 70, 0.85)");
-    fg.addColorStop(1, "rgba(13, 2, 33, 0.95)");
-    ctx.fillStyle = fg;
-    ctx.fillRect(0, hz, w, h - hz);
-    ctx.fillStyle = "rgba(255, 47, 185, 0.8)";
-    ctx.shadowColor = "#ff2fb9";
-    ctx.shadowBlur = 16;
-    ctx.fillRect(0, hz - 1, w, 2);
-    ctx.shadowBlur = 0;
-
-    // Izgara
-    grid = (grid + (0.006 + warp * 0.09 + Math.min(Math.abs(scrollV), 60) * 0.0012) * dt) % 1;
-    ctx.strokeStyle = gridFade;
-    ctx.lineWidth = 1.5;
-    ctx.beginPath();
-    const rows = 14;
-    for (let i = 0; i < rows; i++) {
-      const p = (i + grid) / rows;
-      const y = hz + (h - hz) * p * p;
-      ctx.moveTo(0, y);
-      ctx.lineTo(w, y);
-    }
-    const vx = w / 2 + px * 40;
-    const cols = Math.ceil(w / 90) + 4;
-    for (let k = -cols; k <= cols; k++) {
-      ctx.moveTo(vx + k * w * 0.012, hz);
-      ctx.lineTo(vx + k * 140 - px * 60, h);
-    }
-    ctx.stroke();
-  };
-
   /* Tıklama patlamaları */
   const drawParts = (dt) => {
     parts = parts.filter((p) => p.life > 0);
@@ -628,34 +451,16 @@ const sky = (() => {
         ctx.stroke();
         continue;
       }
-      if (p.kind === "text") {
-        p.y -= 0.6 * dt;
-        ctx.fillStyle = p.color;
-        ctx.font = '12px "Press Start 2P", monospace';
-        ctx.textAlign = "center";
-        ctx.fillText(p.text, p.x, p.y);
-        continue;
-      }
       p.vx *= Math.pow(0.95, dt);
       p.vy = p.vy * Math.pow(0.95, dt) + p.g * dt;
       p.x += p.vx * dt;
       p.y += p.vy * dt;
-      ctx.fillStyle = p.color;
-      if (p.kind === "pixel") {
-        const s = p.size;
-        ctx.fillRect(Math.round(p.x / s) * s, Math.round(p.y / s) * s, s, s);
-      } else if (p.kind === "streak") {
-        ctx.strokeStyle = p.color;
-        ctx.lineWidth = 1.6;
-        ctx.beginPath();
-        ctx.moveTo(p.x - p.vx * 3, p.y - p.vy * 3);
-        ctx.lineTo(p.x, p.y);
-        ctx.stroke();
-      } else {
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size * p.life + 0.4, 0, Math.PI * 2);
-        ctx.fill();
-      }
+      ctx.strokeStyle = p.color;
+      ctx.lineWidth = 1.6;
+      ctx.beginPath();
+      ctx.moveTo(p.x - p.vx * 3, p.y - p.vy * 3);
+      ctx.lineTo(p.x, p.y);
+      ctx.stroke();
     }
   };
 
@@ -668,16 +473,8 @@ const sky = (() => {
         parts.push({ kind, x, y, vx: Math.cos(a) * v, vy: Math.sin(a) * v, life: 1, decay: rand(0.016, 0.03), size: rand(1.5, 3), color: pick(colors), g: 0.03, ...extra });
       }
     };
-    if (mode === "galaxy") {
-      parts.push({ kind: "ring", x, y, r: 2, vr: 5, life: 1, decay: 0.035, color: "#ffe81f" });
-      spray(16, "streak", ["#ffe81f", "#4bd5ee", "#ffffff"], 6, { g: 0 });
-    } else if (mode === "retro") {
-      spray(22, "pixel", ["#ff2fb9", "#00f0ff", "#ffd319", "#ffffff"], 5, { size: 4, g: 0.18, decay: 0.022 });
-      parts.push({ kind: "text", x, y: y - 12, text: "+100", life: 1, decay: 0.02, color: "#ffd319" });
-    } else {
-      parts.push({ kind: "ring", x, y, r: 2, vr: 3, life: 1, decay: 0.04, color: "#8b6cff" });
-      spray(18, "dot", ["#5ad7ff", "#8b6cff", "#ff6fae", "#ffffff"], 4);
-    }
+    parts.push({ kind: "ring", x, y, r: 2, vr: 5, life: 1, decay: 0.035, color: "#ffe81f" });
+    spray(16, "streak", ["#ffe81f", "#4bd5ee", "#ffffff"], 6, { g: 0 });
   };
 
   const draw = (dt) => {
@@ -688,9 +485,7 @@ const sky = (() => {
     px += (tpx - px) * 0.05 * dt;
     py += (tpy - py) * 0.05 * dt;
     scrollV *= Math.pow(0.9, dt);
-    if (mode === "galaxy") drawGalaxy(dt);
-    else if (mode === "retro") drawRetro(dt);
-    else drawSpace(dt);
+    drawGalaxy(dt);
     drawParts(dt);
     ctx.globalAlpha = 1;
   };
@@ -736,8 +531,8 @@ const sky = (() => {
   }
 
   return {
-    setMode(m) {
-      mode = m;
+    // Geri tuşuyla dönülünce temiz başla
+    reset() {
       parts = [];
       focus = null;
       ramp = 0.05;
@@ -768,18 +563,7 @@ const sky = (() => {
   };
 })();
 
-/* ---------- Tema değiştirme + geçiş efektleri ---------- */
-const applyTheme = (t) => {
-  theme = t;
-  root.dataset.theme = t;
-  try {
-    localStorage.setItem("theme", t);
-  } catch (e) {}
-  if (themeMeta) themeMeta.content = THEME_BG[t];
-  sky.setMode(t);
-  renderToggles();
-};
-
+/* ---------- Açılış efekti ---------- */
 const overlay = (cls, html, ms, onSkip) => {
   const el = document.createElement("div");
   el.className = `fx-overlay ${cls}`;
@@ -801,65 +585,40 @@ const overlay = (cls, html, ms, onSkip) => {
   return el;
 };
 
-const themeHint = (t) => toast(`<strong>${tr(`theme.${t}`)}</strong> · ${tr(`theme.hint.${t}`)}`);
+const showHint = () => toast(tr("fx.hint"));
 
-// Temanın giriş efekti: tema değişince ve oturumun ilk açılışında oynar
-const playFx = (t, done) => {
+// Oturumun ilk açılışında oynar
+const playIntro = (done) => {
   const finish = () => {
     delete root.dataset.intro;
     if (done) done();
   };
-  if (t === "galaxy") {
-    // Açılış yazısı → küçülen logo → eğik düzlemde kayan hikâye → hiperuzay sıçraması
-    // Süreler style.css'teki .fx-crawl animasyonlarıyla eş
-    let jumped = false;
-    const jump = () => {
-      if (jumped) return;
-      jumped = true;
-      sky.boost(1200);
-      sfx.play("whoosh");
-      finish();
-    };
-    const story = ["p1", "p2", "p3"].map((k) => `<p>${tr(`fx.crawl.${k}`)}</p>`).join("");
-    const el = overlay(
-      "fx-crawl",
-      `<p class="crawl-intro">${tr("fx.crawl")}</p>
-      <div class="crawl-logo">Frozen<br>Duck Games</div>
-      <div class="crawl-stage"><div class="crawl-text" lang="${root.lang}">
-        <h2><small>${tr("fx.crawl.ep")}</small>${tr("fx.crawl.title")}</h2>${story}
-      </div></div>
-      <small class="crawl-skip">${tr("fx.skip")}</small>`,
-      30000,
-      jump
-    );
-    setTimeout(() => {
-      el.classList.add("out");
-      jump();
-    }, 29300);
-  } else if (t === "retro") {
-    overlay("fx-crt", `<p>${tr("fx.ready")}</p>`, 1300);
-    sfx.play("ready");
-    setTimeout(finish, 700);
-  } else {
-    sky.boost(650);
+  // Açılış yazısı → küçülen logo → eğik düzlemde kayan hikâye → hiperuzay sıçraması
+  // Süreler style.css'teki .fx-crawl animasyonlarıyla eş
+  let jumped = false;
+  const jump = () => {
+    if (jumped) return;
+    jumped = true;
+    sky.boost(1200);
     sfx.play("whoosh");
     finish();
-  }
-};
-
-let switching = false;
-const switchTheme = (t) => {
-  if (switching) return;
-  applyTheme(t);
-  if (reduceMotion) {
-    themeHint(t);
-    return;
-  }
-  switching = true;
-  playFx(t, () => {
-    switching = false;
-    themeHint(t);
-  });
+  };
+  const story = ["p1", "p2", "p3"].map((k) => `<p>${tr(`fx.crawl.${k}`)}</p>`).join("");
+  const el = overlay(
+    "fx-crawl",
+    `<p class="crawl-intro">${tr("fx.crawl")}</p>
+    <div class="crawl-logo">Frozen<br>Duck Games</div>
+    <div class="crawl-stage"><div class="crawl-text" lang="${root.lang}">
+      <h2><small>${tr("fx.crawl.ep")}</small>${tr("fx.crawl.title")}</h2>${story}
+    </div></div>
+    <small class="crawl-skip">${tr("fx.skip")}</small>`,
+    30000,
+    jump
+  );
+  setTimeout(() => {
+    el.classList.add("out");
+    jump();
+  }, 29300);
 };
 
 // Oturumun ilk açılışı: sayfa <head>'de gizlendi (data-intro="pending"), efekt onu açar
@@ -871,7 +630,7 @@ if (root.dataset.intro) {
     delete root.dataset.intro;
   } else {
     root.dataset.intro = "playing";
-    playFx(theme, () => setTimeout(() => themeHint(theme), 500));
+    playIntro(() => setTimeout(showHint, 500));
   }
 }
 
@@ -893,12 +652,6 @@ if (root.dataset.intro) {
   window.addEventListener("scroll", queue, { passive: true });
   window.addEventListener("resize", queue);
 })();
-
-themeToggles.forEach((b) => b.addEventListener("click", () => switchTheme(nextTheme())));
-renderToggles();
-sky.setMode(theme);
-if (themeMeta) themeMeta.content = THEME_BG[theme];
-document.addEventListener("langchange", renderToggles);
 
 /* ---------- Boşluğa tıkla: patlama · basılı tut: warp ---------- */
 (() => {
@@ -930,7 +683,7 @@ document.addEventListener("langchange", renderToggles);
   document.addEventListener("click", (e) => {
     if (isUI(e.target) || (press && press.warped) || window.getSelection().toString()) return;
     sky.burst(e.clientX, e.clientY);
-    sfx.play({ galaxy: "pew", retro: "coin", space: "chime" }[theme]);
+    sfx.play("pew");
   });
 })();
 
@@ -1086,11 +839,11 @@ document.addEventListener("langchange", renderToggles);
   });
 })();
 
-/* ---------- Sayfa geçişleri: galakside hiperuzay, retroda CRT kapanışı ---------- */
+/* ---------- Sayfa geçişleri: hiperuzay ---------- */
 (() => {
   // Yeni sayfaya varış (<head> betiği data-arrive koyar)
   if (root.dataset.arrive) {
-    if (theme !== "retro") sky.arrive();
+    sky.arrive();
     setTimeout(() => delete root.dataset.arrive, 900);
   }
   if (reduceMotion) return;
@@ -1103,19 +856,14 @@ document.addEventListener("langchange", renderToggles);
       sessionStorage.setItem("warp-in", "1");
     } catch (e) {}
     const el = document.createElement("div");
-    el.className = `fx-leave fx-leave-${theme}`;
+    el.className = "fx-leave";
     el.setAttribute("aria-hidden", "true");
     el.style.setProperty("--x", `${x}px`);
     el.style.setProperty("--y", `${y}px`);
-    if (theme === "retro") {
-      el.innerHTML = "<i></i>";
-      sfx.play("crtOff");
-    } else {
-      sky.jump(x, y);
-      sfx.play("whoosh");
-    }
+    sky.jump(x, y);
+    sfx.play("whoosh");
     document.body.appendChild(el);
-    setTimeout(() => (location.href = href), theme === "retro" ? 450 : 700);
+    setTimeout(() => (location.href = href), 700);
   };
 
   document.addEventListener("click", (e) => {
@@ -1140,6 +888,6 @@ document.addEventListener("langchange", renderToggles);
     if (!e.persisted) return;
     document.querySelectorAll(".fx-leave").forEach((n) => n.remove());
     leaving = false;
-    sky.setMode(theme);
+    sky.reset();
   });
 })();
