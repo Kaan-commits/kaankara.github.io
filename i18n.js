@@ -157,7 +157,7 @@
     "title.video": "Video Gallery · Kaan Kara",
     "title.komp": "Komparsita · Card Guessing Game · Frozen Duck Games",
     "title.togy": "Togy · Pixel Platform Adventure · Frozen Duck Games",
-    "title.tee": "Childish Togy · T-shirt Designs · Kaan Kara",
+    "title.tee": "Togy · T-shirt Designs · Kaan Kara",
     "tee.badge": "Coming soon",
     "tee.tagline": "T-shirts we draw and print ourselves. Designs born from games, old consoles and strange ideas.",
     "tee.see": "See the collection",
