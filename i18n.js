@@ -47,7 +47,7 @@
     "mini.rps": "Rock · Paper · Scissors",
     "shop.title": "T-shirts <span class=\"grad-text\">coming soon</span> on Shopier.",
     "shop.text": "Our own t-shirt designs are moving to a Shopier store. Once it opens, you'll be able to order right from here.",
-    "shop.btn": "Store opening soon",
+    "shop.btn": "See the collection",
     "shop.note": "Follow on Instagram to hear about it first.",
     "about.eyebrow": "About",
     "about.title": "I love trying and learning new things.",
