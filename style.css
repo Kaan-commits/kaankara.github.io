@@ -563,20 +563,19 @@ p { margin: 0; }
 }
 .float-chip small { color: var(--muted); font-weight: 500; }
 
-/* Kartlar dış yörüngede dönüyor; her kart kendi etrafında ters dönüp dik kalıyor */
-.chip-orbit { z-index: 1; }
-.chip-slot {
+/* Kartlar dış yörüngede rastgele geziyor (konumları script.js veriyor) */
+.chip-cloud {
   position: absolute;
   inset: 0;
-  transform: rotate(var(--a));
+  z-index: 1;
 }
-.chip-slot .float-chip {
-  left: 50%;
-  top: 0;
-  translate: -50% -50%;
-  rotate: calc(var(--a) * -1);
-  animation: spin 40s linear infinite reverse;
-}
+.chip-cloud .float-chip { left: 0; top: 0; will-change: transform; }
+/* JS yokken dört yöne sabit dağılsınlar */
+.chip-cloud .float-chip:nth-child(1) { transform: translate(-50%, -50%); left: 50%; top: 0; }
+.chip-cloud .float-chip:nth-child(2) { transform: translate(-50%, -50%); left: 100%; top: 50%; }
+.chip-cloud .float-chip:nth-child(3) { transform: translate(-50%, -50%); left: 50%; top: 100%; }
+.chip-cloud .float-chip:nth-child(4) { transform: translate(-50%, -50%); left: 0; top: 50%; }
+.chip-cloud.live .float-chip { left: 0; top: 0; }
 
 .scroll-hint {
   position: absolute;

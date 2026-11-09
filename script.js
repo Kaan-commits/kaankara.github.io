@@ -891,3 +891,115 @@ if (root.dataset.intro) {
     sky.reset();
   });
 })();
+
+/* ---------- Ana görsel: yörüngede rastgele gezen kartlar ----------
+   Her kart halkada kendi hızıyla ve yönüyle döner, ara sıra hız/yön değiştirir.
+   Kartlar birbirine değince boncuk gibi seker; böylece hiç üst üste binmezler. */
+const chipCloud = document.querySelector(".chip-cloud");
+if (chipCloud) {
+  const els = [...chipCloud.querySelectorAll(".float-chip")];
+  const TAU = Math.PI * 2;
+  const rand = (a, b) => a + Math.random() * (b - a);
+  const pickSpeed = () => rand(0.12, 0.4) * (Math.random() < 0.5 ? -1 : 1); // rad/sn
+
+  const chips = els.map((el, i) => {
+    const v = pickSpeed();
+    return {
+      el,
+      a: -Math.PI / 2 + (i * TAU) / els.length + rand(-0.3, 0.3),
+      v,
+      target: v,
+      nextTurn: rand(2, 6),
+      wobble: rand(0, TAU),
+      x: 0, y: 0, w: 0, h: 0,
+    };
+  });
+
+  let size = 0;
+  const measure = () => {
+    size = chipCloud.offsetWidth;
+    chips.forEach((c) => { c.w = c.el.offsetWidth; c.h = c.el.offsetHeight; });
+  };
+
+  const place = (t) => {
+    const R = size / 2;
+    chips.forEach((c) => {
+      const r = R * (1 + 0.03 * Math.sin(t * 0.7 + c.wobble));
+      c.x = R + Math.cos(c.a) * r;
+      c.y = R + Math.sin(c.a) * r;
+      c.el.style.transform = `translate(${c.x}px, ${c.y}px) translate(-50%, -50%)`;
+    });
+  };
+
+  const overlap = (p, q, gap) =>
+    Math.abs(p.x - q.x) < (p.w + q.w) / 2 + gap && Math.abs(p.y - q.y) < (p.h + q.h) / 2 + gap;
+
+  // Açısal fark, [-π, π] aralığında
+  const diff = (a, b) => {
+    let d = (a - b) % TAU;
+    if (d > Math.PI) d -= TAU;
+    if (d < -Math.PI) d += TAU;
+    return d;
+  };
+
+  measure();
+  chipCloud.classList.add("live");
+  place(0);
+
+  if (!reduceMotion) {
+    let last = 0;
+    let time = 0;
+    let visible = true;
+    let raf = 0;
+
+    const step = (now) => {
+      const dt = Math.min((now - (last || now)) / 1000, 0.05);
+      last = now;
+      time += dt;
+
+      chips.forEach((c) => {
+        c.nextTurn -= dt;
+        if (c.nextTurn <= 0) { c.target = pickSpeed(); c.nextTurn = rand(2, 6); }
+        c.v += (c.target - c.v) * Math.min(1, dt * 0.8);
+        c.a += c.v * dt;
+      });
+
+      place(time);
+
+      for (let i = 0; i < chips.length; i++) {
+        for (let j = i + 1; j < chips.length; j++) {
+          const p = chips[i], q = chips[j];
+          if (!overlap(p, q, 6)) continue;
+          const d = diff(p.a, q.a); // p, q'nun ne kadar önünde
+          const s = Math.sign(d) || 1;
+          // Birbirine yaklaşıyorlarsa hızları değiş tokuş et (esnek çarpışma)
+          if ((p.v - q.v) * s < 0) {
+            [p.v, q.v] = [q.v, p.v];
+            p.target = Math.abs(pickSpeed()) * s;
+            q.target = -Math.abs(pickSpeed()) * s;
+          }
+          // Hafifçe ayır
+          p.a += s * 0.01;
+          q.a -= s * 0.01;
+        }
+      }
+
+      raf = visible ? requestAnimationFrame(step) : 0;
+    };
+
+    const start = () => { if (!raf) { last = 0; raf = requestAnimationFrame(step); } };
+
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(([e]) => {
+        visible = e.isIntersecting;
+        if (visible) start();
+      }).observe(chipCloud);
+    }
+    start();
+  }
+
+  window.addEventListener("resize", () => { measure(); place(0); });
+  // Dil değişince kart genişlikleri değişebilir
+  document.addEventListener("langchange", measure);
+  if (document.fonts) document.fonts.ready.then(measure);
+}
