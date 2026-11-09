@@ -560,14 +560,23 @@ p { margin: 0; }
   font-weight: 600;
   white-space: nowrap;
   box-shadow: var(--shadow);
-  animation: float 7s ease-in-out infinite;
 }
-.float-chip.c1 { left: -4%; top: 18%; animation-delay: -2s; }
-.float-chip.c2 { right: -4%; bottom: 16%; animation-delay: -4s; }
-.float-chip.c3 { right: -2%; top: 4%; animation-delay: -1s; }
-.float-chip.c4 { left: -8%; bottom: 30%; animation-delay: -5s; }
-.float-chip.c5 { left: 22%; bottom: -2%; animation-delay: -3s; }
 .float-chip small { color: var(--muted); font-weight: 500; }
+
+/* Kartlar dış yörüngede dönüyor; her kart kendi etrafında ters dönüp dik kalıyor */
+.chip-orbit { z-index: 1; }
+.chip-slot {
+  position: absolute;
+  inset: 0;
+  transform: rotate(var(--a));
+}
+.chip-slot .float-chip {
+  left: 50%;
+  top: 0;
+  translate: -50% -50%;
+  rotate: calc(var(--a) * -1);
+  animation: spin 40s linear infinite reverse;
+}
 
 .scroll-hint {
   position: absolute;
@@ -604,11 +613,6 @@ p { margin: 0; }
   .hero-sub { margin-left: auto; margin-right: auto; }
   .hero .btn-row { justify-content: center; }
   .float-chip { font-size: 0.75rem; padding: 8px 10px; }
-  .float-chip.c1 { left: -12%; }
-  .float-chip.c2 { right: -12%; }
-  .float-chip.c3 { right: -10%; }
-  .float-chip.c4 { left: -14%; }
-  .float-chip.c5 { left: 14%; bottom: -6%; }
   .scroll-hint { display: none; }
 }
 
