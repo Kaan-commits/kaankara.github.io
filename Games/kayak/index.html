@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Kayak · Kaan Kara</title>
+  <meta name="description" content="Kaan pistte: slalom kapıları, rampalar ve havada numaralarla piksel kayak oyunu. Tarayıcıda oyna.">
+  <link rel="icon" href="../../Assets/Kaan_ghibli.jpeg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <style>
+    html, body { height: 100%; margin: 0; }
+    body {
+      display: grid; place-items: center; overflow: hidden;
+      background: #cfe3f4; touch-action: none; user-select: none; -webkit-user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+    #box { position: fixed; inset: 0; display: grid; place-items: center; }
+    canvas { display: block; image-rendering: pixelated; image-rendering: crisp-edges; cursor: crosshair; }
+    noscript { font: 14px sans-serif; }
+  </style>
+</head>
+<body>
+  <div id="box"><canvas id="game" aria-label="Kayak oyunu"></canvas></div>
+  <noscript>Bu oyun için JavaScript gerekli.</noscript>
+  <script src="../ortak/piksel.js?v=1"></script>
+  <script src="oyun.js?v=1"></script>
+</body>
+</html>
