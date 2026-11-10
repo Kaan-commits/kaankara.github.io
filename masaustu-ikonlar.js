@@ -1,0 +1,296 @@
+/* =========================================================
+   Duck OS — piksel simgeler
+   Her simge 16×16'lık bir harita: her karakter bir piksel,
+   "." boş. Renkler PAL'da. Sayfa yüklenirken <symbol>'lere
+   çevrilir; <svg class="ic"><use href="#i-ad"/></svg> ile kullanılır.
+   16'nın katlarında (16, 32, 48) en keskin görünür.
+   ========================================================= */
+(function () {
+  const PAL = {
+    k: "#23262e", w: "#ffffff", l: "#e6e4da", g: "#b5b2a5", G: "#7d7b70",
+    y: "#fff0a8", Y: "#f6c445", o: "#c98a1c", O: "#7a5208",
+    b: "#a8d0ff", B: "#2f74e0", n: "#123f9a",
+    r: "#ff9a86", R: "#e03a24", d: "#8c1a0e",
+    e: "#b8f0a0", E: "#3cae3c", f: "#1f6e1f",
+    s: "#f6c99a", x: "#070a24", p: "#ffd23f", q: "#ff8a1f", m: "#ffd34a",
+    c: "#8fd0ff", v: "#3f4452", t: "#d9a066", T: "#9a5f2a", h: "#5c3412",
+  };
+
+  const docTop = [
+    "..kkkkkkkkk.....",
+    "..kwwwwwwwkk....",
+    "..kwwwwwwwklk...",
+    "..kwwwwwwwkkkk..",
+  ];
+  const folder = (front) => [
+    "................",
+    "................",
+    ".OOOOO..........",
+    "OyyyyyO.........",
+    "OyYYYYYOOOOOOOO.",
+    "OyYYYYYYYYYYYYYO",
+    "OOOOOOOOOOOOOOOO",
+    "OyyyyyyyyyyyyyyO",
+    ...front,
+    "OoooooooooooooOO",
+    "OOOOOOOOOOOOOOOO",
+  ];
+
+  const ICONS = {
+    about: [
+      ...docTop,
+      "..kwhhhhwwwwwk..",
+      "..kwhsshwGGGwk..",
+      "..kwsssswwwwwk..",
+      "..kwwsswGGGGwk..",
+      "..kwbBBbwwwwwk..",
+      "..kbBBBBbGGGwk..",
+      "..kbBBBBbwwwwk..",
+      "..kwwwwwwwwwwk..",
+      "..kwGGGGGGGGwk..",
+      "..kwwwwwwwwwwk..",
+      "..kllllllllllk..",
+      "..kkkkkkkkkkkk..",
+    ],
+    folder: folder([
+      "OyYYYYYYYYYYYYoO",
+      "OyYYYYYYYYYYYYoO",
+      "OyYYYYYYYYYYYYoO",
+      "OyYYYYYYYYYYYYoO",
+      "OyYYYYYYYYYYYYoO",
+      "OyYYYYYYYYYYYYoO",
+    ]),
+    games: folder([
+      "OyYYvvvvvvvvYYoO",
+      "OyYvvwvvvvRvvYoO",
+      "OyYvwwwvvEvvvYoO",
+      "OyYvvwvvvvvvvYoO",
+      "OyYYvvYYYYvvYYoO",
+      "OyYYYYYYYYYYYYoO",
+    ]),
+    arcade: [
+      "................",
+      "......kkkk......",
+      ".....kRrrRk.....",
+      ".....krRRRk.....",
+      ".....kRRRdk.....",
+      "......kddk......",
+      "......kGGk......",
+      "......kGGk......",
+      "......kGGk......",
+      "..kkkkkGGkkkkk..",
+      ".krrrrrrrrrrrrk.",
+      ".kRRRRRRRRRBbRk.",
+      ".kRRRRRRRRRnBRk.",
+      ".kddddddddddddk.",
+      "..kkkkkkkkkkkk..",
+      "................",
+    ],
+    projects: [
+      "................",
+      "................",
+      "......kkkk......",
+      ".....kk..kk.....",
+      ".kkkkkkkkkkkkkk.",
+      ".kttttttttttttk.",
+      ".ktTTTTTTTTTTTk.",
+      ".kTTTTTkkTTTTTk.",
+      ".kkkkkkYYkkkkkk.",
+      ".kTTTTTkkTTTTTk.",
+      ".kTTTTTTTTTTTTk.",
+      ".kTTTTTTTTTTTTk.",
+      ".khhhhhhhhhhhhk.",
+      ".kkkkkkkkkkkkkk.",
+      "................",
+      "................",
+    ],
+    shop: [
+      "................",
+      "......kkkk......",
+      ".....k....k.....",
+      ".....k....k.....",
+      "..kkkkkkkkkkkk..",
+      "..keeeeeeeeeEk..",
+      "..keEEEEEEEEEk..",
+      "..kEEEEEEEEEEk..",
+      "..kEEwwwwwwEEk..",
+      "..kEEEEEEEEEEk..",
+      "..kEEEwwwwEEEk..",
+      ".kEEEEEEEEEEEEk.",
+      ".kEEEEEEEEEEEEk.",
+      ".kffffffffffffk.",
+      ".kkkkkkkkkkkkkk.",
+      "................",
+    ],
+    photos: [
+      "................",
+      "................",
+      ".kkkkkkkkkkkkkk.",
+      ".kwwwwwwwwwwwwk.",
+      ".kwccccccccccwk.",
+      ".kwccccccccmmwk.",
+      ".kwccccccccmmwk.",
+      ".kwcccEccccccwk.",
+      ".kwccEEEccccEwk.",
+      ".kwcEEEEEccEEwk.",
+      ".kwEEEEEEEEEEwk.",
+      ".kwffffffffffwk.",
+      ".kwwwwwwwwwwwwk.",
+      ".kkkkkkkkkkkkkk.",
+      "................",
+      "................",
+    ],
+    video: [
+      "................",
+      "................",
+      "................",
+      ".kkkkkkkkkkkkkk.",
+      ".kwvwvwvwvwvwvk.",
+      ".kvvvvmvvvvvvvk.",
+      ".kvvvvmmvvvvvvk.",
+      ".kvvvvmmmvvvvvk.",
+      ".kvvvvmmmmvvvvk.",
+      ".kvvvvmmmvvvvvk.",
+      ".kvvvvmmvvvvvvk.",
+      ".kvvvvmvvvvvvvk.",
+      ".kwvwvwvwvwvwvk.",
+      ".kkkkkkkkkkkkkk.",
+      "................",
+      "................",
+    ],
+    mail: [
+      "................",
+      "................",
+      "................",
+      ".kkkkkkkkkkkkkk.",
+      ".kGwwwwwwwwwwGk.",
+      ".kwGwwwwwwwwGwk.",
+      ".kwwGwwwwwwGwwk.",
+      ".kwwwGwwwwGwwwk.",
+      ".kwwwwGwwGwwwwk.",
+      ".kwwwwwGGwwwwwk.",
+      ".kwwwwwwwwwwwwk.",
+      ".kllllllllllllk.",
+      ".kkkkkkkkkkkkkk.",
+      "................",
+      "................",
+      "................",
+    ],
+    web: [
+      "................",
+      ".....kkkkkk.....",
+      "...kkbBBBBBkk...",
+      "..kbBEEBBBBBBk..",
+      ".kbEEEEBBBEEBBk.",
+      ".kBBEEEBBEEEBBk.",
+      "kBBBEEBBBBEEBBBk",
+      "kBBBBEBBBBBBBBBk",
+      "kBBBBBBEEEBBBBBk",
+      "kBBBBBEEEEEBBBBk",
+      "kBBBBBBEEEEBBBnk",
+      ".kBBBBBBEEBBBnk.",
+      ".knBBBBBBBBBBnk.",
+      "..knnBBBBBBnnk..",
+      "...kknnnnnnkk...",
+      ".....kkkkkk.....",
+    ],
+    pdf: [
+      ...docTop,
+      "..kwwwwwwwwwwk..",
+      "..kwGGGGGGGGwk..",
+      "..kwwwwwwwwwwk..",
+      "kkkkkkkkkkkwwk..",
+      "kRwwwRwRwRkwwk..",
+      "kRwRRRwRwRkwwk..",
+      "kRwRRRwRwRkwwk..",
+      "kRwRRRwRwRkwwk..",
+      "kRwwwRRwRRkwwk..",
+      "kkkkkkkkkkkwwk..",
+      "..kllllllllllk..",
+      "..kkkkkkkkkkkk..",
+    ],
+    bin: [
+      "................",
+      "....kkkkkkkk....",
+      "..kkllllllllkk..",
+      ".klwwwwwwwwwwlk.",
+      "..kkllllllllkk..",
+      "..klglglglglgk..",
+      "..klglglglglgk..",
+      "...klglglglgk...",
+      "...klglglglgk...",
+      "...klglglglgk...",
+      "...klglglglgk...",
+      "...klglglglgk...",
+      "...kGGGGGGGGk...",
+      "....kkkkkkkk....",
+      "................",
+      "................",
+    ],
+    power: [
+      "................",
+      ".kkkkkkkkkkkkkk.",
+      ".krrrrrrrrrrrRk.",
+      ".kRRRRRwwRRRRRk.",
+      ".kRRRRRwwRRRRRk.",
+      ".kRRwRRwwRRwRRk.",
+      ".kRwRRRwwRRRwRk.",
+      ".kRwRRRwwRRRwRk.",
+      ".kRwRRRRRRRRwRk.",
+      ".kRwRRRRRRRRwRk.",
+      ".kRRwRRRRRRwRRk.",
+      ".kRRRwwwwwwRRRk.",
+      ".kRRRRRRRRRRRRk.",
+      ".kddddddddddddk.",
+      ".kkkkkkkkkkkkkk.",
+      "................",
+    ],
+    duck: [
+      "................",
+      "................",
+      "................",
+      "........kkkk....",
+      ".......kppppk...",
+      ".......kppkpk...",
+      ".......kppppqqk.",
+      ".k.....kpppk....",
+      ".kkk..kkppppk...",
+      ".kpppppppppppk..",
+      ".kppYYYYYpppk...",
+      ".kpppYYYYppppk..",
+      "..kppppppppppk..",
+      "...kkkkkkkkkk...",
+      "................",
+      "................",
+    ],
+  };
+
+  const NS = "http://www.w3.org/2000/svg";
+  let svg = document.getElementById("iconSprite");
+  if (!svg) {
+    svg = document.createElementNS(NS, "svg");
+    svg.setAttribute("width", "0");
+    svg.setAttribute("height", "0");
+    svg.setAttribute("aria-hidden", "true");
+    svg.style.position = "absolute";
+    (document.body || document.documentElement).appendChild(svg);
+  }
+
+  let out = "";
+  for (const [name, rows] of Object.entries(ICONS)) {
+    let rects = "";
+    rows.forEach((row, y) => {
+      if (row.length !== 16) console.warn(`simge ${name}: ${y}. satır ${row.length} karakter`);
+      let x = 0;
+      while (x < row.length) {
+        const ch = row[x];
+        let n = 1;
+        while (row[x + n] === ch) n++;
+        if (ch !== "." && PAL[ch]) rects += `<rect x="${x}" y="${y}" width="${n}" height="1" fill="${PAL[ch]}"/>`;
+        x += n;
+      }
+    });
+    out += `<symbol id="i-${name}" viewBox="0 0 16 16"><g shape-rendering="crispEdges">${rects}</g></symbol>`;
+  }
+  svg.innerHTML = out;
+})();
