@@ -1,370 +1,372 @@
 <!DOCTYPE html>
-<html lang="tr" data-theme="galaxy">
+<html lang="tr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Kaan Kara · Frozen Duck Games</title>
-  <meta name="description" content="Kaan Kara — Frozen Duck Games. Unity ile geliştirilen Komparsita, Mindfield ve Togy oyunları, 1Üni ve Fulldepo uygulamaları ve daha fazlası.">
-  <meta name="theme-color" content="#000005">
+  <title>Kaan Kara · Duck OS</title>
+  <meta name="description" content="Kaan Kara — Frozen Duck Games. Unity oyunları, mobil uygulamalar ve tarayıcıda oynanan mini oyunlar; eski bir masaüstünün içinde.">
+  <meta name="theme-color" content="#1d5bd6">
   <meta property="og:title" content="Kaan Kara · Frozen Duck Games">
   <meta property="og:description" content="Unity oyunları, mobil uygulamalar ve tuhaf fikirler.">
   <meta property="og:image" content="https://kaankara.com.tr/Assets/Kaan_ghibli.jpeg">
   <meta property="og:url" content="https://kaankara.com.tr/">
+  <link rel="canonical" href="https://kaankara.com.tr/">
   <link rel="icon" href="Assets/Kaan_ghibli.jpeg">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Pixelify+Sans:wght@500;700&family=Press+Start+2P&family=News+Cycle:wght@400;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=17">
-  <script>(function(){var d=document.documentElement;try{var s=sessionStorage;if(!matchMedia("(prefers-reduced-motion: reduce)").matches){if(!s.getItem("intro"))d.dataset.intro="pending";else if(s.getItem("warp-in"))d.dataset.arrive="1"}s.removeItem("warp-in")}catch(e){}})()</script>
+  <!-- Ördek Gezgini penceresinde bir sayfa ana sayfaya link verirse iç içe masaüstü açılmasın: üstteki masaüstü devralır -->
+  <script>if(window.top!==window.self){try{if(window.top.DuckOS){window.top.DuckOS.home(location.hash);document.documentElement.style.display="none";window.stop()}}catch(e){}}</script>
+  <link rel="stylesheet" href="masaustu.css?v=2">
+  <script>(function(d){try{if(!sessionStorage.getItem("os-boot")&&!/^#./.test(location.hash)&&!matchMedia("(prefers-reduced-motion: reduce)").matches)d.classList.add("booting")}catch(e){}})(document.documentElement)</script>
 </head>
 <body>
-  <a class="skip-link" href="#icerik"><span data-i18n="nav.skip">İçeriğe geç</span></a>
-  <div class="bg-glow" aria-hidden="true"></div>
-  <canvas id="stars" aria-hidden="true"></canvas>
 
-  <header class="site-header">
-    <nav class="nav container" aria-label="Ana menü">
-      <a class="brand" href="index.html">
-        <img src="Assets/Kaan_ghibli.jpeg" alt="">
-        <span>Kaan Kara</span>
-      </a>
-      <button class="nav-toggle" aria-label="Menüyü aç" data-i18n-aria="nav.menu" aria-expanded="false" aria-controls="nav-links"><span></span></button>
-      <ul class="nav-links" id="nav-links">
-        <li><a href="#oyunlar"><span data-i18n="nav.games">Oyunlar</span></a></li>
-        <li><a href="arcade.html">Arcade</a></li>
-        <li><a href="#projeler"><span data-i18n="nav.projects">Projeler</span></a></li>
-        <li><a href="#magaza"><span data-i18n="nav.shop">Mağaza</span></a></li>
-        <li><a href="fotogaleri.html"><span data-i18n="nav.gallery">Galeri</span></a></li>
-        <li><a href="#iletisim"><span data-i18n="nav.contact">İletişim</span></a></li>
-        <li><button class="lang-toggle" type="button" data-lang-toggle>EN</button></li>
-        <li><a class="nav-cta" href="Assets/CVturkce.pdf" data-href-en="Assets/Kaan_Kara_CV_Eng.pdf" target="_blank" rel="noopener">CV</a></li>
-      </ul>
-    </nav>
-  </header>
+  <!-- ===== Simgeler: masaustu-ikonlar.js piksel haritalardan üretir ===== -->
+  <svg id="iconSprite" width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"></svg>
+  <script src="masaustu-ikonlar.js?v=1"></script>
 
-  <main id="icerik">
-    <!-- ========== HERO ========== -->
-    <section class="hero">
-      <div class="container hero-grid">
-        <div class="intro">
-          <div class="status-pill"><span class="dot"></span> <span data-i18n="home.status">Şu an 3 Unity oyunu üzerinde çalışıyorum</span></div>
-          <h1><span data-i18n="home.h1">Merhaba, ben <span class="grad-text">Kaan</span>.</span></h1>
-          <p class="hero-sub">
-            <span data-i18n="home.sub"><strong>Frozen Duck Games</strong> çatısı altında geliştiriyorum:</span>
-            <span class="typed-line"><span class="typed" data-typed="Unity oyunları|mobil uygulamalar|piksel dünyalar|tuhaf fikirler" data-typed-en="Unity games|mobile apps|pixel worlds|weird ideas"><span data-i18n="proj.unity">Unity oyunları</span></span></span>
-          </p>
-          <div class="btn-row">
-            <a class="btn btn-primary" href="#oyunlar">
-              <span data-i18n="home.explore">Oyunlarımı keşfet</span>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
-            </a>
-            <a class="btn" href="Assets/CVturkce.pdf" data-href-en="Assets/Kaan_Kara_CV_Eng.pdf" target="_blank" rel="noopener">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
-              <span data-i18n="home.cv">CV indir</span>
-            </a>
-          </div>
-        </div>
-
-        <div class="hero-visual intro-self" aria-hidden="true">
-          <div class="orbit"><span class="planet">🃏</span></div>
-          <div class="chip-cloud">
-            <div class="float-chip">🃏 Komparsita <small><span data-i18n="home.live">yayında</span></small></div>
-            <div class="float-chip">🎮 Unity <small>· C#</small></div>
-            <div class="float-chip">🧠 Mindfield <small><span data-i18n="home.live">yayında</span></small></div>
-            <div class="float-chip">📱 1Üni <small><span data-i18n="home.live">yayında</span></small></div>
-          </div>
-          <div class="orbit o2"><span class="planet">🧠</span></div>
-          <div class="avatar"><img src="Assets/Kaan_ghibli.jpeg" alt=""></div>
-        </div>
-      </div>
-      <a class="scroll-hint" href="#oyunlar" aria-label="Aşağı kaydır"></a>
-    </section>
-
-    <div class="marquee" aria-hidden="true">
-      <div class="marquee-track">
-        <span>Komparsita</span><span>Mindfield</span><span>Togy</span><span>1Üni</span><span>Fulldepo</span><span>Duck Strike</span><span>Ducks &amp; Dragons</span><span>Unity</span><span>C#</span><span>Flutter</span><span>Android</span><span>iOS</span>
-        <span>Komparsita</span><span>Mindfield</span><span>Togy</span><span>1Üni</span><span>Fulldepo</span><span>Duck Strike</span><span>Ducks &amp; Dragons</span><span>Unity</span><span>C#</span><span>Flutter</span><span>Android</span><span>iOS</span>
-      </div>
+  <!-- ===== Açılış ekranı ===== -->
+  <div class="boot" id="boot" aria-hidden="true">
+    <div class="boot-inner">
+      <svg class="boot-duck"><use href="#i-duck"/></svg>
+      <p class="boot-brand">Duck<b>OS</b></p>
+      <p class="boot-sub">Frozen Duck Games</p>
+      <div class="boot-bar"><i></i><i></i><i></i></div>
     </div>
+    <p class="boot-foot">© 2026 Kaan Kara</p>
+  </div>
 
-    <!-- ========== OYUNLAR ========== -->
-    <section class="section" id="oyunlar">
-      <div class="container">
-        <div class="section-head">
-          <div class="reveal">
-            <span class="eyebrow"><span data-i18n="home.wip">Geliştirilenler</span></span>
-            <h2 class="section-title"><span data-i18n="home.games">Unity oyunlarım</span></h2>
-          </div>
-          <p class="section-lead reveal" style="--d:.1s"><span data-i18n="home.games.lead">Şu an üzerinde çalıştığım üç oyun. Her birine tıklayıp ekran görüntülerine ve detaylara göz atabilirsin.</span></p>
-        </div>
+  <!-- ===== Masaüstü ===== -->
+  <main class="desktop" id="desktop" aria-label="Masaüstü" data-i18n-aria="os.desktop">
+    <!-- Duvar kağıdı: katmanlar fareyle kayar (data-depth), kar canvas'ta, ördeğe tıklanabilir -->
+    <svg class="wallpaper" id="wallpaper" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <defs>
+        <linearGradient id="wSky" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="1000">
+          <stop offset="0" stop-color="#1b4fc4"/><stop offset=".45" stop-color="#5d9be8"/><stop offset=".62" stop-color="#bcdcf7"/><stop offset=".66" stop-color="#ffe9c8"/>
+        </linearGradient>
+        <radialGradient id="wSun" cx="1180" cy="610" r="380" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stop-color="#fff7d6" stop-opacity=".95"/><stop offset=".25" stop-color="#ffe1a8" stop-opacity=".55"/><stop offset="1" stop-color="#ffe1a8" stop-opacity="0"/>
+        </radialGradient>
+        <linearGradient id="wIce" gradientUnits="userSpaceOnUse" x1="0" y1="660" x2="0" y2="1000">
+          <stop offset="0" stop-color="#d7ecfb"/><stop offset=".4" stop-color="#9fcbef"/><stop offset="1" stop-color="#5f9fdc"/>
+        </linearGradient>
+        <linearGradient id="wSnow" gradientUnits="userSpaceOnUse" x1="0" y1="860" x2="0" y2="1060"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#cfe2f5"/></linearGradient>
+        <linearGradient id="wFar" gradientUnits="userSpaceOnUse" x1="0" y1="430" x2="0" y2="660"><stop offset="0" stop-color="#e9f1fb"/><stop offset="1" stop-color="#8fb3de"/></linearGradient>
+        <linearGradient id="wNear" gradientUnits="userSpaceOnUse" x1="0" y1="560" x2="0" y2="700"><stop offset="0" stop-color="#f6fbff"/><stop offset="1" stop-color="#6d93c9"/></linearGradient>
+      </defs>
+      <g class="wp-layer" data-depth=".04">
+        <rect x="-120" y="-120" width="1840" height="1240" fill="url(#wSky)"/>
+        <rect x="-120" y="-120" width="1840" height="1240" fill="url(#wSun)"/>
+      </g>
+      <g class="wp-layer" data-depth=".14" fill="#fff" opacity=".55">
+        <ellipse cx="260" cy="170" rx="150" ry="26"/><ellipse cx="350" cy="150" rx="90" ry="30"/>
+        <ellipse cx="980" cy="120" rx="170" ry="22"/><ellipse cx="1060" cy="102" rx="80" ry="24"/>
+        <ellipse cx="1420" cy="250" rx="120" ry="16"/><ellipse cx="-40" cy="300" rx="110" ry="14"/>
+      </g>
+      <g class="wp-layer" data-depth=".22">
+        <path d="M-120 660 L-120 600 L-40 560 L120 520 L210 590 L330 450 L470 600 L560 540 L700 660Z" fill="url(#wFar)"/>
+        <path d="M720 660 L900 500 L980 570 L1100 430 L1230 580 L1330 520 L1480 640 L1600 560 L1720 600 L1720 660Z" fill="url(#wFar)"/>
+        <path d="M330 450 L370 500 L345 495 L330 520 L312 492 L292 498Z M1100 430 L1140 480 L1118 476 L1100 500 L1082 474 L1060 480Z" fill="#fff"/>
+      </g>
+      <g class="wp-layer" data-depth=".36">
+        <path d="M-140 700 L-140 640 L160 560 L300 640 L420 580 L580 700Z" fill="url(#wNear)"/>
+        <path d="M1160 700 L1330 590 L1430 650 L1520 600 L1740 680 L1740 700Z" fill="url(#wNear)"/>
+      </g>
+      <g class="wp-layer" data-depth=".5">
+        <rect x="-140" y="660" width="1880" height="460" fill="url(#wIce)"/>
+        <g fill="none" stroke="#fff" stroke-opacity=".55" stroke-width="2">
+          <path d="M180 760 l90 18 l40 -12 l70 30"/><path d="M270 778 l-20 40"/>
+          <path d="M900 820 l120 -10 l60 24 l110 -6"/><path d="M1080 834 l20 50"/>
+          <path d="M560 900 l140 14 l50 -20"/><path d="M1300 740 l80 10"/>
+        </g>
+      </g>
+      <g class="wp-layer" data-depth=".62">
+        <g class="wp-duck" transform="translate(1160 760) scale(6)">
+          <g class="duck-body" shape-rendering="crispEdges">
+            <rect x="-1" y="19" width="26" height="2" fill="#2d5f9e" opacity=".3"/>
+            <rect x="4" y="11" width="13" height="8" fill="#ffd23f"/><rect x="3" y="13" width="15" height="5" fill="#ffd23f"/>
+            <rect x="12" y="5" width="7" height="7" fill="#ffd23f"/><rect id="duckEye" x="16" y="7" width="1" height="1" fill="#111"/>
+            <rect x="19" y="8" width="4" height="2" fill="#ff8a1f"/><rect x="6" y="13" width="7" height="2" fill="#f2b20f"/>
+            <rect x="2" y="11" width="2" height="2" fill="#ffd23f"/>
+            <rect x="11" y="4" width="9" height="2" fill="#e8483a"/><rect x="13" y="2" width="5" height="2" fill="#e8483a"/><rect x="14" y="1" width="3" height="1" fill="#fff"/>
+            <rect x="10" y="11" width="9" height="2" fill="#e8483a"/><rect x="6" y="11" width="2" height="4" fill="#e8483a"/>
+            <rect x="0" y="0" width="24" height="21" fill="transparent"/>
+          </g>
+        </g>
+      </g>
+      <g class="wp-layer" data-depth=".9">
+        <path d="M-160 900 C 260 850 520 940 800 905 S 1340 860 1760 910 L1760 1120 L-160 1120Z" fill="url(#wSnow)"/>
+      </g>
+    </svg>
+    <canvas class="snowfx" id="snowfx" aria-hidden="true"></canvas>
+    <p class="quack" id="quack" aria-hidden="true"></p>
 
-        <!-- Galaksi temasında oyunlar gezegen olarak görünür (diğer temalarda kartlar) -->
-        <div class="planet-map">
-          <svg class="planet-orbits" viewBox="0 0 1000 640" preserveAspectRatio="none" aria-hidden="true">
-            <circle cx="-150" cy="320" r="329"/>
-            <circle cx="-150" cy="320" r="651"/>
-            <circle cx="-150" cy="320" r="993"/>
-          </svg>
-          <span class="planet-sun" aria-hidden="true"></span>
+    <ul class="desk-icons" id="deskIcons" aria-label="Masaüstü simgeleri" data-i18n-aria="os.icons">
+      <li><button class="dicon" data-open="hakkimda"><svg class="ic"><use href="#i-about"/></svg><span class="lbl" data-i18n="os.i.about">Hakkımda</span></button></li>
+      <li><button class="dicon" data-open="oyunlar"><svg class="ic"><use href="#i-games"/></svg><span class="lbl" data-i18n="os.i.games">Oyunlarım</span></button></li>
+      <li><button class="dicon" data-open="arcade"><svg class="ic"><use href="#i-arcade"/></svg><span class="lbl">Arcade</span></button></li>
+      <li><button class="dicon" data-open="projeler"><svg class="ic"><use href="#i-projects"/></svg><span class="lbl" data-i18n="nav.projects">Projeler</span></button></li>
+      <li><button class="dicon" data-open="magaza"><svg class="ic"><use href="#i-shop"/></svg><span class="lbl" data-i18n="nav.shop">Mağaza</span></button></li>
+      <li><button class="dicon" data-open="galeri"><svg class="ic"><use href="#i-photos"/></svg><span class="lbl" data-i18n="os.i.photos">Resimlerim</span></button></li>
+      <li><button class="dicon" data-web="videogaleri.html"><svg class="ic"><use href="#i-video"/></svg><span class="lbl" data-i18n="os.i.videos">Videolarım</span></button></li>
+      <li><button class="dicon" data-open="iletisim"><svg class="ic"><use href="#i-mail"/></svg><span class="lbl" data-i18n="nav.contact">İletişim</span></button></li>
+      <li><a class="dicon" href="Assets/CVturkce.pdf" data-href-en="Assets/Kaan_Kara_CV_Eng.pdf" target="_blank" rel="noopener"><svg class="ic"><use href="#i-pdf"/></svg><span class="lbl">CV.pdf</span></a></li>
+      <li><a class="dicon" href="https://frozenduckgames9.wordpress.com" target="_blank" rel="noopener"><svg class="ic"><use href="#i-bin"/></svg><span class="lbl" data-i18n="foot.old">Eski site</span></a></li>
+    </ul>
 
-          <a class="planet komparsita" href="oyunlar/komparsita/">
-            <span class="planet-body" aria-hidden="true">
-              <span class="ring"></span>
-              <span class="orb"><img src="oyunlar/komparsita/ekran-goruntuleri/ana-menu.jpg" alt="" loading="lazy"></span>
-              <span class="ring front"></span>
-            </span>
-            <span class="planet-info">
-              <span class="planet-badge"><span data-i18n="badge.live">Yayında</span></span>
-              <strong lang="en">Komparsita</strong>
-              <small><span data-i18n="komp.short">Desteden açılacak kartı tahmin et, çarpanlarını doğru anda kullan ve rakibini puanda geç.</span></small>
-              <span class="planet-go"><span data-i18n="planet.land">Gezegene in</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
-            </span>
-          </a>
+    <div id="windows">
 
-          <a class="planet mindfield" href="oyunlar/mindfield/">
-            <span class="planet-body" aria-hidden="true">
-              <span class="orb"><img src="oyunlar/mindfield/ekran-goruntuleri/ana-menu.jpg" alt="" loading="lazy"></span>
-              <span class="moon-orbit"><span class="moon"></span></span>
-            </span>
-            <span class="planet-info">
-              <span class="planet-badge"><span data-i18n="badge.live">Yayında</span></span>
-              <strong lang="en">Mindfield</strong>
-              <small><span data-i18n="mind.short">Cam köprüye gizli tuzaklar kur, rakibin haritayı bir kez görsün. Sonra sıra sende: ezberle ve koş.</span></small>
-              <span class="planet-go"><span data-i18n="planet.land">Gezegene in</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
-            </span>
-          </a>
-
-          <a class="planet togy" href="oyunlar/togy/">
-            <span class="planet-body" aria-hidden="true">
-              <span class="orb"><img src="oyunlar/togy/ekran-goruntuleri/ana-menu.jpg" alt="" loading="lazy"></span>
-              <span class="moon-orbit"><span class="moon"></span></span>
-              <span class="moon-orbit m2"><span class="moon"></span></span>
-            </span>
-            <span class="planet-info">
-              <span class="planet-badge"><span data-i18n="badge.internal">Dahili test</span></span>
-              <strong lang="en">Togy</strong>
-              <small><span data-i18n="togy.short">Piksel sanatlı bir platform macerası: iki dünya arasında yolculuk, boss savaşları ve tarot kartları.</span></small>
-              <span class="planet-go"><span data-i18n="planet.land">Gezegene in</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
-            </span>
-          </a>
-        </div>
-
-        <div class="games-grid">
-          <article class="game-card komparsita reveal" data-tilt>
-            <div class="game-cover cover-komparsita">
-              <span class="badge"><span data-i18n="badge.live">Yayında</span></span>
-              <img src="oyunlar/komparsita/ekran-goruntuleri/ana-menu.jpg" alt="Komparsita ana menüsü" loading="lazy">
-            </div>
-            <div class="game-body">
-              <h3>Komparsita</h3>
-              <p><span data-i18n="komp.short">Desteden açılacak kartı tahmin et, çarpanlarını doğru anda kullan ve rakibini puanda geç.</span></p>
-              <ul class="tags"><li><span data-i18n="tag.cards">Kart</span></li><li><span data-i18n="tag.multi">Çok oyunculu</span></li><li><span data-i18n="tag.mobile">Mobil</span></li></ul>
-              <a class="card-link stretched" href="oyunlar/komparsita/">
-                <span data-i18n="card.view">Oyunu incele</span>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-              </a>
-            </div>
-          </article>
-
-          <article class="game-card mindfield reveal" style="--d:.1s" data-tilt>
-            <div class="game-cover cover-mindfield">
-              <span class="badge"><span data-i18n="badge.live">Yayında</span></span>
-              <img src="oyunlar/mindfield/ekran-goruntuleri/ana-menu.jpg" alt="Mindfield ana menüsü" loading="lazy">
-            </div>
-            <div class="game-body">
-              <h3>Mindfield</h3>
-              <p><span data-i18n="mind.short">Cam köprüye gizli tuzaklar kur, rakibin haritayı bir kez görsün. Sonra sıra sende: ezberle ve koş.</span></p>
-              <ul class="tags"><li><span data-i18n="tag.strategy">Strateji</span></li><li>Online</li><li><span data-i18n="tag.mobile">Mobil</span></li></ul>
-              <a class="card-link stretched" href="oyunlar/mindfield/">
-                <span data-i18n="card.view">Oyunu incele</span>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-              </a>
-            </div>
-          </article>
-
-          <article class="game-card togy reveal" style="--d:.2s" data-tilt>
-            <div class="game-cover cover-togy">
-              <span class="badge"><span data-i18n="badge.internal">Dahili test</span></span>
-              <img src="oyunlar/togy/ekran-goruntuleri/karsilasma.jpg" alt="Togy ormanda bir köylüyle karşılaşıyor" loading="lazy">
-            </div>
-            <div class="game-body">
-              <h3>Togy</h3>
-              <p><span data-i18n="togy.short">Piksel sanatlı bir platform macerası: iki dünya arasında yolculuk, boss savaşları ve tarot kartları.</span></p>
-              <ul class="tags"><li><span data-i18n="tag.pixel">Piksel sanat</span></li><li>Platform</li><li>Android</li></ul>
-              <a class="card-link stretched" href="oyunlar/togy/">
-                <span data-i18n="card.view">Oyunu incele</span>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-              </a>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- ========== ARCADE ========== -->
-    <section class="section" id="arcade" style="padding-top:0">
-      <div class="container">
-        <div class="section-head">
-          <div class="reveal">
-            <span class="eyebrow"><span data-i18n="arc.eyebrow">Tarayıcıda oyna · İndirme yok</span></span>
-            <h2 class="section-title">Arcade</h2>
-          </div>
-          <a class="btn reveal" style="--d:.1s" href="arcade.html">
-            <span data-i18n="arc.all">Tüm oyunlar</span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-          </a>
-        </div>
-        <div class="arcade-strip">
-          <a class="arcade-tile ds reveal" href="Games/duck-strike/">
-            <span class="tile-art" aria-hidden="true"><svg class="tile-duck" viewBox="0 0 24 18" shape-rendering="crispEdges" aria-hidden="true"><rect x="3" y="4" width="10" height="10" fill="#8a6a10"/><rect x="2" y="5" width="12" height="8" fill="#8a6a10"/><rect x="4" y="5" width="8" height="8" fill="#ffd23f"/><rect x="3" y="6" width="10" height="6" fill="#ffd23f"/><rect x="5" y="6" width="3" height="2" fill="#ffe680"/><rect x="10" y="7" width="5" height="4" fill="#fff3a8"/><rect x="13" y="7" width="1" height="1" fill="#111"/><rect x="13" y="10" width="1" height="1" fill="#111"/><rect x="15" y="8" width="3" height="2" fill="#ff9a1f"/><rect x="9" y="13" width="13" height="2" fill="#222"/><rect x="9" y="13" width="3" height="3" fill="#6b4a2b"/></svg></span>
-            <span class="tile-text"><strong>Duck Strike</strong><small><span data-i18n="ds.mini">Online piksel shooter</span></small></span>
-            <span class="play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 4l14 8-14 8z"/></svg></span>
-          </a>
-          <a class="arcade-tile dd reveal" style="--d:.08s" href="Games/ducks-dragons/">
-            <span class="tile-art" aria-hidden="true"><svg class="tile-die" viewBox="0 0 40 40" aria-hidden="true"><polygon points="20,2 36,11 36,29 20,38 4,29 4,11" fill="#c8302a" stroke="#1a1220" stroke-width="2.4" stroke-linejoin="round"/><path d="M20,9 L31,27 L9,27 Z M20,9 L20,2 M20,9 L4,11 M20,9 L36,11 M31,27 L36,11 M31,27 L36,29 M31,27 L20,38 M9,27 L4,11 M9,27 L4,29 M9,27 L20,38" fill="none" stroke="#7a1410" stroke-width="1.3"/><polygon points="20,9 31,27 9,27" fill="#e8483a"/><text x="20" y="24.5" text-anchor="middle" font-family="Pixelify Sans, monospace" font-weight="700" font-size="9" fill="#fff3c0">20</text></svg></span>
-            <span class="tile-text"><strong>Ducks &amp; Dragons</strong><small><span data-i18n="dd.mini">Zarlı piksel macera · online</span></small></span>
-            <span class="play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 4l14 8-14 8z"/></svg></span>
-          </a>
-          <a class="arcade-tile sm reveal" style="--d:.12s" href="https://salon.kaankara.com.tr/perde">
-            <span class="tile-art" aria-hidden="true"><svg class="tile-ball" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="17" fill="#f4f4f4" stroke="#1a1a1a" stroke-width="2"/><polygon points="20,12 27,17 24.5,25 15.5,25 13,17" fill="#1a1a1a"/><path d="M20,12 L20,3.5 M27,17 L35,14 M24.5,25 L29.5,32.5 M15.5,25 L10.5,32.5 M13,17 L5,14" stroke="#1a1a1a" stroke-width="2" fill="none"/></svg></span>
-            <span class="tile-text"><strong>Salon Maçı</strong><small><span data-i18n="sm.mini">Perdede futbol, telefonla oyna</span></small></span>
-            <span class="play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 4l14 8-14 8z"/></svg></span>
-          </a>
-          <a class="arcade-tile more reveal" style="--d:.16s" href="arcade.html">
-            <span class="tile-art" aria-hidden="true">🕹️</span>
-            <span class="tile-text"><strong><span data-i18n="arc.classics.n">+3 klasik</span></strong><small>Pong · Pong 2 · <span data-i18n="mini.rps">Taş · Kağıt · Makas</span></small></span>
-            <span class="play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 4l14 8-14 8z"/></svg></span>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- ========== PROJELER ========== -->
-    <section class="section" id="projeler" style="padding-top:0">
-      <div class="container">
-        <div class="section-head">
-          <div class="reveal">
-            <span class="eyebrow"><span data-i18n="home.apps">Mobil uygulamalar</span></span>
-            <h2 class="section-title"><span data-i18n="home.other">Diğer projeler</span></h2>
-          </div>
-          <a class="btn reveal" style="--d:.1s" href="projects.html">
-            <span data-i18n="home.allprojects">Tüm projeler</span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-          </a>
-        </div>
-
-        <div class="project-feature reveal">
-          <div>
-            <span class="eyebrow"><span data-i18n="proj.uni.eyebrow">Mobil uygulama · Yayında</span></span>
-            <h2>1Üni</h2>
-            <p><span data-i18n="proj.uni">Üniversitemin öğrencileri için geliştirdiğim mobil uygulama. Anketler, kampüs chatbot'u, sanal tur, yemekhane listesi ve kulüp etkinlikleri tek yerde.</span></p>
-            <div class="btn-row">
-              <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=com.frozenduckgames.oneuni" target="_blank" rel="noopener">Google Play</a>
-              <a class="btn" href="https://apps.apple.com/tr/app/1%C3%BCni/id6748721249" target="_blank" rel="noopener">App Store</a>
+      <!-- ===== Hakkımda ===== -->
+      <section class="win" id="w-hakkimda" data-icon="i-about" data-w="620" data-h="560" aria-labelledby="t-hakkimda" hidden>
+        <header class="title"><svg class="ic"><use href="#i-about"/></svg><h2 id="t-hakkimda" data-i18n="os.t.about">Hakkımda — Kaan Kara</h2></header>
+        <div class="win-body doc">
+          <div class="doc-hero">
+            <img class="doc-avatar" src="Assets/Kaan_ghibli.jpeg" alt="Kaan Kara">
+            <div>
+              <p class="status"><span class="dot"></span> <span data-i18n="home.status">Şu an 3 Unity oyunu üzerinde çalışıyorum</span></p>
+              <h1><span data-i18n="home.h1">Merhaba, ben <span class="grad-text">Kaan</span>.</span></h1>
+              <p class="lede"><span data-i18n="os.about.lede"><strong>Frozen Duck Games</strong> çatısı altında Unity oyunları, mobil uygulamalar ve tarayıcıda oynanan küçük oyunlar yapıyorum.</span></p>
             </div>
           </div>
-          <div class="phone-strip">
-            <a class="shot" href="Assets/1uni/AppSS/MainMenuB.jpeg" data-gallery="1uni"><img src="Assets/1uni/AppSS/MainMenuB.jpeg" alt="1Üni ana menü" loading="lazy"><span class="cap"><span data-i18n="game.mainmenu">Ana menü</span></span></a>
-            <a class="shot" href="Assets/1uni/AppSS/Anketler.jpeg" data-gallery="1uni"><img src="Assets/1uni/AppSS/Anketler.jpeg" alt="1Üni anketler" loading="lazy"><span class="cap"><span data-i18n="proj.polls">Anketler</span></span></a>
-            <a class="shot" href="Assets/1uni/AppSS/Chatbot.jpeg" data-gallery="1uni"><img src="Assets/1uni/AppSS/Chatbot.jpeg" alt="1Üni chatbot" loading="lazy"><span class="cap">Chatbot</span></a>
-            <a class="shot" href="Assets/1uni/AppSS/SanalTur.jpeg" data-gallery="1uni"><img src="Assets/1uni/AppSS/SanalTur.jpeg" alt="1Üni sanal tur" loading="lazy"><span class="cap"><span data-i18n="proj.tour">Sanal tur</span></span></a>
+          <div class="btn-row">
+            <button class="xbtn primary" data-open="oyunlar"><svg class="ic"><use href="#i-games"/></svg><span data-i18n="home.explore">Oyunlarımı keşfet</span></button>
+            <button class="xbtn" data-open="arcade"><svg class="ic"><use href="#i-arcade"/></svg><span data-i18n="os.playnow">Tarayıcıda oyna</span></button>
+            <a class="xbtn" href="Assets/CVturkce.pdf" data-href-en="Assets/Kaan_Kara_CV_Eng.pdf" target="_blank" rel="noopener"><svg class="ic"><use href="#i-pdf"/></svg><span data-i18n="home.cv">CV indir</span></a>
           </div>
-        </div>
-
-        <div class="project-feature reveal" style="margin-top:24px">
-          <div>
-            <span class="eyebrow"><span data-i18n="proj.fd.eyebrow">Mobil uygulama · Yakında</span></span>
-            <h2>Fulldepo</h2>
-            <p><span data-i18n="proj.fd">Türkiye'nin 81 ilinde güncel benzin, motorin ve LPG fiyatlarını markalara göre karşılaştıran uygulama. Flutter ve Firebase ile yazdım; fiyatlar EPDK'nın herkese açık verisinden, istasyonlar OpenStreetMap'ten geliyor.</span></p>
-            <div class="btn-row">
-              <a class="btn" href="privacyPolicyFulldepo.html"><span data-i18n="foot.privacy">Gizlilik</span></a>
-            </div>
-          </div>
-          <div class="app-points">
-            <img class="app-icon" src="Assets/fulldepo/ikon.png" alt="Fulldepo uygulama simgesi" loading="lazy">
-            <ul>
-              <li><strong><span data-i18n="proj.fd.p1">Haritada en ucuz ve en yakın</span></strong><small><span data-i18n="proj.fd.p1p">Uygulama haritayla açılır; en ucuz ve en yakın istasyon öne çıkar, en ucuzun bölge ortalamasına farkı görünür.</span></small></li>
-              <li><strong><span data-i18n="proj.fd.p2">Zam ve indirim bildirimi</span></strong><small><span data-i18n="proj.fd.p2p">İlin ve yakıtın için; gece rahatsız etmez, sabah özet gelir.</span></small></li>
-              <li><strong><span data-i18n="proj.fd.p3">Fiyat geçmişi</span></strong><small><span data-i18n="proj.fd.p3p">Grafiğe dokunarak geçmiş fiyatları markalara göre gör.</span></small></li>
-              <li><strong><span data-i18n="proj.fd.p4">Hesap yok</span></strong><small><span data-i18n="proj.fd.p4p">Konumun yalnızca telefonunda kullanılır, hiçbir yere gönderilmez.</span></small></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ========== MAĞAZA ========== -->
-    <section class="section" id="magaza" style="padding-top:0">
-      <div class="container">
-        <div class="shop reveal reveal-zoom">
-          <span class="wall-tag" aria-hidden="true">Togy</span>
-          <div>
-            <span class="eyebrow" lang="en">Togy</span>
-            <h2><span data-i18n="shop.title">Tişörtler <span class="grad-text">çok yakında</span> Shopier'de.</span></h2>
-            <p><span data-i18n="shop.text">Kendi tasarladığımız tişörtler Shopier mağazasına taşınıyor. Mağaza açıldığında siparişlerini doğrudan buradan verebileceksin.</span></p>
-            <a class="btn btn-primary" href="togy/">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4zM3 6h18M16 10a4 4 0 0 1-8 0"/></svg>
-              <span data-i18n="shop.btn">Koleksiyonu gör</span>
-            </a>
-            <p class="shop-note" data-shopier-note><span data-i18n="shop.note">Haberdar olmak için Instagram'dan takip et.</span></p>
-          </div>
-          <div class="tee-stack">
-            <figure><img src="Assets/magaza/tee-psp.jpg" alt="PSP baskılı siyah tişört" loading="lazy"></figure>
-            <figure><img src="Assets/magaza/tee-fih.jpg" alt="Fih baskılı beyaz tişört" loading="lazy"></figure>
-            <figure><img src="Assets/magaza/tee-flower-surf.jpg" alt="Çiçek Sörfü baskılı tişört" loading="lazy"></figure>
-            <figure><img src="Assets/magaza/tee-shiny-horse.jpg" alt="Parlak At baskılı tişört" loading="lazy"></figure>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ========== HAKKIMDA + İLETİŞİM ========== -->
-    <section class="section" id="iletisim" style="padding-top:0">
-      <div class="container about-grid">
-        <div class="panel reveal">
-          <span class="eyebrow"><span data-i18n="about.eyebrow">Hakkımda</span></span>
           <h3><span data-i18n="about.title">Denemeyi ve öğrenmeyi seviyorum.</span></h3>
           <p><span data-i18n="about.p1">Frozen Duck Games adı altında Unity ile mobil oyunlar geliştiriyorum. Kart oyunundan piksel platformere, aklıma takılan her fikri oynanabilir bir şeye dönüştürmeye çalışıyorum.</span></p>
           <p><span data-i18n="about.p2">Üniversitem için geliştirdiğim 1Üni uygulaması Google Play ve App Store'da yayında.</span></p>
-          <div class="quick-links">
-            <a href="fotogaleri.html"><strong><span data-i18n="about.photo">📸 Foto galeri</span></strong><small><span data-i18n="about.photo.sub">Gezilerden kareler</span></small></a>
-            <a href="videogaleri.html"><strong><span data-i18n="about.video">🎬 Video galeri</span></strong><small>Fortnite & FC</small></a>
-            <a href="Assets/CVturkce.pdf" target="_blank" rel="noopener"><strong>📄 CV</strong><small><span data-i18n="about.cv.tr">Türkçe</span></small></a>
-            <a href="Assets/Kaan_Kara_CV_Eng.pdf" target="_blank" rel="noopener"><strong>📄 CV</strong><small>English</small></a>
-          </div>
+          <fieldset class="group">
+            <legend data-i18n="os.about.now">Şu an yayında</legend>
+            <ul class="live-list">
+              <li><button data-web="oyunlar/komparsita/"><img src="oyunlar/komparsita/ekran-goruntuleri/ana-menu.jpg" alt="" loading="lazy"><span><strong>Komparsita</strong><small data-i18n="os.genre.cards">Kart tahmini · Android, iOS</small></span></button></li>
+              <li><button data-web="oyunlar/mindfield/"><img src="oyunlar/mindfield/ekran-goruntuleri/ana-menu.jpg" alt="" loading="lazy"><span><strong>Mindfield</strong><small data-i18n="os.genre.mind">Strateji · Android, iOS</small></span></button></li>
+              <li><button data-open="projeler"><img src="Assets/1uni/AppSS/MainMenuB.jpeg" alt="" loading="lazy"><span><strong>1Üni</strong><small data-i18n="os.genre.uni">Kampüs uygulaması</small></span></button></li>
+            </ul>
+          </fieldset>
+          <p class="hint" data-i18n="os.hint">İpucu: Masaüstündeki simgelere çift tıkla, pencereleri başlıklarından sürükle.</p>
         </div>
+      </section>
 
-        <div class="panel reveal" style="--d:.1s">
-          <span class="eyebrow"><span data-i18n="nav.contact">İletişim</span></span>
-          <h3><span data-i18n="contact.title">Bir fikrin mi var? Yaz bana.</span></h3>
-          <a class="mail-link" href="mailto:kaan.kara@yahoo.com">kaan.kara@yahoo.com</a>
-          <div class="socials">
-            <a href="https://www.instagram.com/byekaan/" target="_blank" rel="noopener"><img src="Assets/SocialMediaLogos/insta.avif" alt="">Instagram</a>
-            <a href="https://www.linkedin.com/in/kaan-kara-104851252/" target="_blank" rel="noopener"><img src="Assets/SocialMediaLogos/linkedin.avif" alt="">LinkedIn</a>
-            <a href="https://github.com/Kaan-commits" target="_blank" rel="noopener"><img src="Assets/SocialMediaLogos/github.png" alt="">GitHub</a>
-            <a href="https://www.youtube.com/channel/UCc_2_AVpN7Ew9yPQIfsB1Kw" target="_blank" rel="noopener"><img src="Assets/SocialMediaLogos/youtube.avif" alt="">YouTube</a>
-            <a href="https://open.spotify.com/user/k6bc2aij207snalhr5kyrxyjr" target="_blank" rel="noopener"><img src="Assets/SocialMediaLogos/spoti.png" alt="">Spotify</a>
-          </div>
+      <!-- ===== Oyunlarım (gezgin) ===== -->
+      <section class="win explorer" id="w-oyunlar" data-icon="i-games" data-w="780" data-h="520" aria-labelledby="t-oyunlar" hidden>
+        <header class="title"><svg class="ic"><use href="#i-games"/></svg><h2 id="t-oyunlar" data-i18n="os.i.games">Oyunlarım</h2></header>
+        <div class="addr"><span data-i18n="os.addr">Adres</span><div class="field"><svg class="ic"><use href="#i-folder"/></svg>C:\Kaan\<span data-i18n="os.i.games">Oyunlarım</span></div></div>
+        <div class="win-body split">
+          <aside class="taskpane">
+            <div class="tp-box">
+              <h3 data-i18n="os.details">Ayrıntılar</h3>
+              <div class="tp-body" id="gameDetail"></div>
+            </div>
+            <div class="tp-box">
+              <h3 data-i18n="os.other">Diğer yerler</h3>
+              <div class="tp-body tp-links">
+                <button data-open="arcade"><svg class="ic"><use href="#i-arcade"/></svg>Arcade</button>
+                <button data-open="projeler"><svg class="ic"><use href="#i-projects"/></svg><span data-i18n="nav.projects">Projeler</span></button>
+                <button data-open="galeri"><svg class="ic"><use href="#i-photos"/></svg><span data-i18n="os.i.photos">Resimlerim</span></button>
+              </div>
+            </div>
+          </aside>
+          <ul class="files big" data-files="games">
+            <li><button class="file" data-web="oyunlar/komparsita/" data-key="komparsita"><img src="oyunlar/komparsita/ekran-goruntuleri/ana-menu.jpg" alt="" loading="lazy"><strong>Komparsita</strong><small><span data-i18n="badge.live">Yayında</span></small></button></li>
+            <li><button class="file" data-web="oyunlar/mindfield/" data-key="mindfield"><img src="oyunlar/mindfield/ekran-goruntuleri/ana-menu.jpg" alt="" loading="lazy"><strong>Mindfield</strong><small><span data-i18n="badge.live">Yayında</span></small></button></li>
+            <li><button class="file" data-web="oyunlar/togy/" data-key="togy"><img src="oyunlar/togy/ekran-goruntuleri/karsilasma.jpg" alt="" loading="lazy"><strong>Togy</strong><small><span data-i18n="badge.internal">Dahili test</span></small></button></li>
+          </ul>
         </div>
-      </div>
-    </section>
+        <footer class="statusbar"><span data-i18n="os.items3">3 nesne</span><span>Unity · C#</span></footer>
+      </section>
+
+      <!-- ===== Arcade ===== -->
+      <section class="win explorer" id="w-arcade" data-icon="i-arcade" data-w="760" data-h="480" aria-labelledby="t-arcade" hidden>
+        <header class="title"><svg class="ic"><use href="#i-arcade"/></svg><h2 id="t-arcade">Arcade</h2></header>
+        <div class="addr"><span data-i18n="os.addr">Adres</span><div class="field"><svg class="ic"><use href="#i-folder"/></svg>C:\Kaan\Arcade</div></div>
+        <div class="win-body split">
+          <aside class="taskpane">
+            <div class="tp-box">
+              <h3>Arcade</h3>
+              <div class="tp-body"><p data-i18n="arc.eyebrow">Tarayıcıda oyna · İndirme yok</p><p class="muted" data-i18n="os.arc.tip">Bir oyuna çift tıkla, burada bir pencerede açılsın.</p></div>
+            </div>
+            <div class="tp-box">
+              <h3 data-i18n="os.other">Diğer yerler</h3>
+              <div class="tp-body tp-links">
+                <button data-open="oyunlar"><svg class="ic"><use href="#i-games"/></svg><span data-i18n="os.i.games">Oyunlarım</span></button>
+                <button data-web="arcade.html"><svg class="ic"><use href="#i-web"/></svg><span data-i18n="os.arc.page">Arcade sayfası</span></button>
+              </div>
+            </div>
+          </aside>
+          <ul class="files" data-files="arcade">
+            <li><button class="file" data-web="Games/duck-strike/"><span class="art ds"><svg viewBox="0 0 24 24"><use href="#i-duck"/></svg></span><strong>Duck Strike</strong><small data-i18n="ds.mini">Online piksel shooter</small></button></li>
+            <li><button class="file" data-web="Games/ducks-dragons/"><span class="art dd">d20</span><strong>Ducks &amp; Dragons</strong><small data-i18n="dd.mini">Zarlı piksel macera · online</small></button></li>
+            <li><a class="file" href="https://salon.kaankara.com.tr/perde" target="_blank" rel="noopener"><span class="art sm">⚽</span><strong>Salon Maçı</strong><small data-i18n="sm.mini">Perdede futbol, telefonla oyna</small></a></li>
+            <li><button class="file" data-web="Games/pong.html"><span class="art pg"><i></i></span><strong>Pong</strong><small data-i18n="tag.solo">Tek oyunculu</small></button></li>
+            <li><button class="file" data-web="Games/pong2.html"><span class="art pg two"><i></i></span><strong>Pong 2</strong><small data-i18n="tag.local2">2 oyuncu · aynı cihaz</small></button></li>
+            <li><button class="file" data-web="Games/rps.html"><span class="art rps">✊✋✌️</span><strong data-i18n="mini.rps">Taş · Kağıt · Makas</strong><small data-i18n="tag.solo">Tek oyunculu</small></button></li>
+          </ul>
+        </div>
+        <footer class="statusbar"><span data-i18n="os.items6">6 nesne</span><span data-i18n="os.arc.free">Hepsi ücretsiz</span></footer>
+      </section>
+
+      <!-- ===== Projeler ===== -->
+      <section class="win" id="w-projeler" data-icon="i-projects" data-w="720" data-h="560" aria-labelledby="t-projeler" hidden>
+        <header class="title"><svg class="ic"><use href="#i-projects"/></svg><h2 id="t-projeler" data-i18n="os.t.projects">Projeler — Mobil uygulamalar</h2></header>
+        <div class="win-body doc">
+          <article class="proj">
+            <div>
+              <p class="kicker" data-i18n="proj.uni.eyebrow">Mobil uygulama · Yayında</p>
+              <h2>1Üni</h2>
+              <p><span data-i18n="proj.uni">Üniversitemin öğrencileri için geliştirdiğim mobil uygulama. Anketler, kampüs chatbot'u, sanal tur, yemekhane listesi ve kulüp etkinlikleri tek yerde.</span></p>
+              <div class="btn-row">
+                <a class="xbtn primary" href="https://play.google.com/store/apps/details?id=com.frozenduckgames.oneuni" target="_blank" rel="noopener">Google Play</a>
+                <a class="xbtn" href="https://apps.apple.com/tr/app/1%C3%BCni/id6748721249" target="_blank" rel="noopener">App Store</a>
+              </div>
+            </div>
+            <div class="shots" data-set="uni">
+              <button data-src="Assets/1uni/AppSS/MainMenuB.jpeg"><img src="Assets/1uni/AppSS/MainMenuB.jpeg" alt="1Üni ana menü" loading="lazy"></button>
+              <button data-src="Assets/1uni/AppSS/Anketler.jpeg"><img src="Assets/1uni/AppSS/Anketler.jpeg" alt="1Üni anketler" loading="lazy"></button>
+              <button data-src="Assets/1uni/AppSS/Chatbot.jpeg"><img src="Assets/1uni/AppSS/Chatbot.jpeg" alt="1Üni chatbot" loading="lazy"></button>
+              <button data-src="Assets/1uni/AppSS/SanalTur.jpeg"><img src="Assets/1uni/AppSS/SanalTur.jpeg" alt="1Üni sanal tur" loading="lazy"></button>
+            </div>
+          </article>
+          <hr class="rule">
+          <article class="proj">
+            <div>
+              <p class="kicker" data-i18n="proj.fd.eyebrow">Mobil uygulama · Yakında</p>
+              <h2>Fulldepo</h2>
+              <p><span data-i18n="proj.fd">Türkiye'nin 81 ilinde güncel benzin, motorin ve LPG fiyatlarını markalara göre karşılaştıran uygulama. Flutter ve Firebase ile yazdım; fiyatlar EPDK'nın herkese açık verisinden, istasyonlar OpenStreetMap'ten geliyor.</span></p>
+              <div class="btn-row"><button class="xbtn" data-web="privacyPolicyFulldepo.html"><span data-i18n="foot.privacy">Gizlilik</span></button></div>
+            </div>
+            <div class="points">
+              <img class="app-icon" src="Assets/fulldepo/ikon.png" alt="Fulldepo uygulama simgesi" loading="lazy">
+              <ul>
+                <li><strong data-i18n="proj.fd.p1">Haritada en ucuz ve en yakın</strong><small data-i18n="proj.fd.p1p">Uygulama haritayla açılır; en ucuz ve en yakın istasyon öne çıkar, en ucuzun bölge ortalamasına farkı görünür.</small></li>
+                <li><strong data-i18n="proj.fd.p2">Zam ve indirim bildirimi</strong><small data-i18n="proj.fd.p2p">İlin ve yakıtın için; gece rahatsız etmez, sabah özet gelir.</small></li>
+                <li><strong data-i18n="proj.fd.p3">Fiyat geçmişi</strong><small data-i18n="proj.fd.p3p">Grafiğe dokunarak geçmiş fiyatları markalara göre gör.</small></li>
+                <li><strong data-i18n="proj.fd.p4">Hesap yok</strong><small data-i18n="proj.fd.p4p">Konumun yalnızca telefonunda kullanılır, hiçbir yere gönderilmez.</small></li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- ===== Mağaza ===== -->
+      <section class="win" id="w-magaza" data-icon="i-shop" data-w="640" data-h="540" aria-labelledby="t-magaza" hidden>
+        <header class="title"><svg class="ic"><use href="#i-shop"/></svg><h2 id="t-magaza" data-i18n="os.t.shop">Mağaza — Togy</h2></header>
+        <div class="win-body doc">
+          <p class="kicker">Togy</p>
+          <h2><span data-i18n="shop.title">Tişörtler <span class="grad-text">çok yakında</span> Shopier'de.</span></h2>
+          <p><span data-i18n="shop.text">Kendi tasarladığımız tişörtler Shopier mağazasına taşınıyor. Mağaza açıldığında siparişlerini doğrudan buradan verebileceksin.</span></p>
+          <div class="tees" data-set="tees">
+            <button data-src="Assets/magaza/tee-psp.jpg"><img src="Assets/magaza/tee-psp.jpg" alt="PSP baskılı siyah tişört" loading="lazy"></button>
+            <button data-src="Assets/magaza/tee-fih.jpg"><img src="Assets/magaza/tee-fih.jpg" alt="Fih baskılı beyaz tişört" loading="lazy"></button>
+            <button data-src="Assets/magaza/tee-flower-surf.jpg"><img src="Assets/magaza/tee-flower-surf.jpg" alt="Çiçek Sörfü baskılı tişört" loading="lazy"></button>
+            <button data-src="Assets/magaza/tee-shiny-horse.jpg"><img src="Assets/magaza/tee-shiny-horse.jpg" alt="Parlak At baskılı tişört" loading="lazy"></button>
+          </div>
+          <div class="btn-row">
+            <button class="xbtn primary" data-web="togy/"><svg class="ic"><use href="#i-shop"/></svg><span data-i18n="shop.btn">Koleksiyonu gör</span></button>
+            <a class="xbtn" href="https://www.instagram.com/byekaan/" target="_blank" rel="noopener">Instagram</a>
+          </div>
+          <p class="hint"><span data-i18n="shop.note">Haberdar olmak için Instagram'dan takip et.</span></p>
+        </div>
+      </section>
+
+      <!-- ===== Resim görüntüleyici ===== -->
+      <section class="win viewer" id="w-galeri" data-icon="i-photos" data-w="720" data-h="560" aria-labelledby="t-galeri" hidden>
+        <header class="title"><svg class="ic"><use href="#i-photos"/></svg><h2 id="t-galeri">Resimlerim</h2></header>
+        <div class="win-body">
+          <figure class="stage"><img id="viewImg" alt=""></figure>
+          <div class="view-bar">
+            <button class="xbtn sq" id="viewPrev" aria-label="Önceki" data-i18n-aria="os.prev">◀</button>
+            <span id="viewCount">1 / 1</span>
+            <button class="xbtn sq" id="viewNext" aria-label="Sonraki" data-i18n-aria="os.next">▶</button>
+          </div>
+          <div class="thumbs" id="viewThumbs"></div>
+        </div>
+      </section>
+
+      <!-- ===== İletişim (yeni ileti) ===== -->
+      <section class="win mail" id="w-iletisim" data-icon="i-mail" data-w="600" data-h="520" aria-labelledby="t-iletisim" hidden>
+        <header class="title"><svg class="ic"><use href="#i-mail"/></svg><h2 id="t-iletisim" data-i18n="os.t.mail">Yeni ileti — Kaan'a yaz</h2></header>
+        <form class="mail-form" id="mailForm">
+          <div class="toolbar">
+            <button class="tbtn" type="submit"><svg class="ic"><use href="#i-mail"/></svg><span data-i18n="os.send">Gönder</span></button>
+            <span class="tsep"></span>
+            <a class="tbtn" href="https://www.instagram.com/byekaan/" target="_blank" rel="noopener"><img src="Assets/SocialMediaLogos/insta.avif" alt="">Instagram</a>
+            <a class="tbtn" href="https://www.linkedin.com/in/kaan-kara-104851252/" target="_blank" rel="noopener"><img src="Assets/SocialMediaLogos/linkedin.avif" alt="">LinkedIn</a>
+            <a class="tbtn" href="https://github.com/Kaan-commits" target="_blank" rel="noopener"><img src="Assets/SocialMediaLogos/github.png" alt="">GitHub</a>
+            <a class="tbtn" href="https://www.youtube.com/channel/UCc_2_AVpN7Ew9yPQIfsB1Kw" target="_blank" rel="noopener"><img src="Assets/SocialMediaLogos/youtube.avif" alt="">YouTube</a>
+            <a class="tbtn" href="https://open.spotify.com/user/k6bc2aij207snalhr5kyrxyjr" target="_blank" rel="noopener"><img src="Assets/SocialMediaLogos/spoti.png" alt="">Spotify</a>
+          </div>
+          <div class="fields">
+            <label><span data-i18n="os.to">Kime:</span><input type="text" value="kaan.kara@yahoo.com" readonly></label>
+            <label><span data-i18n="os.subject">Konu:</span><input type="text" name="subject" placeholder="Bir fikrim var!" data-i18n-ph="os.subject.ph"></label>
+          </div>
+          <textarea name="body" placeholder="Merhaba Kaan," data-i18n-ph="os.body.ph" aria-label="İleti" data-i18n-aria="os.body"></textarea>
+        </form>
+        <footer class="statusbar"><span data-i18n="contact.title">Bir fikrin mi var? Yaz bana.</span><span><a href="mailto:kaan.kara@yahoo.com">kaan.kara@yahoo.com</a></span></footer>
+      </section>
+
+      <!-- ===== Ördek Gezgini (sayfaları pencerede açar) ===== -->
+      <section class="win browser" id="w-gezgin" data-icon="i-web" data-w="960" data-h="640" aria-labelledby="t-gezgin" hidden>
+        <header class="title"><svg class="ic"><use href="#i-web"/></svg><h2 id="t-gezgin">Ördek Gezgini</h2></header>
+        <div class="toolbar">
+          <button class="tbtn" id="webBack"><span class="arrow back">◀</span><span data-i18n="os.back">Geri</span></button>
+          <button class="tbtn" id="webFwd"><span class="arrow">▶</span><span data-i18n="os.fwd">İleri</span></button>
+          <button class="tbtn" id="webReload"><span class="arrow">⟳</span><span data-i18n="os.reload">Yenile</span></button>
+          <span class="tsep"></span>
+          <a class="tbtn" id="webOut" href="#" target="_blank" rel="noopener"><svg class="ic"><use href="#i-web"/></svg><span data-i18n="os.newtab">Yeni sekme</span></a>
+        </div>
+        <div class="addr"><span data-i18n="os.addr">Adres</span><div class="field"><svg class="ic"><use href="#i-web"/></svg><span id="webAddr">kaankara.com.tr</span></div></div>
+        <div class="win-body sunk"><iframe id="webFrame" title="Ördek Gezgini" allow="fullscreen; autoplay; gamepad"></iframe></div>
+        <footer class="statusbar"><span id="webStatus">Bitti</span><span>kaankara.com.tr</span></footer>
+      </section>
+
+    </div>
   </main>
 
-  <footer class="site-footer">
-    <div class="container">
-      <span>© <span data-year>2026</span> <span class="duck">🦆</span> Frozen Duck Games</span>
-      <div class="footer-links">
-        <a href="privacyPolicy.html"><span data-i18n="foot.privacy1">1Üni Gizlilik</span></a>
-        <a href="privacyPolicyKomparsita.html"><span data-i18n="foot.privacy2">Komparsita Gizlilik</span></a>
-        <a href="privacyPolicyMindfield.html"><span data-i18n="foot.privacy3">Mindfield Gizlilik</span></a>
-        <a href="privacyPolicyFulldepo.html"><span data-i18n="foot.privacy4">Fulldepo Gizlilik</span></a>
-        <a href="https://frozenduckgames9.wordpress.com" target="_blank" rel="noopener"><span data-i18n="foot.old">Eski site</span></a>
-      </div>
+  <!-- ===== Görev çubuğu ===== -->
+  <footer class="taskbar">
+    <button class="start-btn" id="startBtn" aria-haspopup="menu" aria-expanded="false" aria-controls="startMenu"><svg class="ic"><use href="#i-duck"/></svg><span data-i18n="os.start">başlat</span></button>
+    <div class="tasks" id="tasks" role="toolbar" aria-label="Açık pencereler" data-i18n-aria="os.tasks"></div>
+    <div class="tray">
+      <button class="tray-lang" type="button" data-lang-toggle>EN</button>
+      <time id="clock">--:--</time>
     </div>
   </footer>
 
-  <script src="i18n.js?v=15"></script>
+  <!-- ===== Başlat menüsü ===== -->
+  <div class="start-menu" id="startMenu" role="menu" hidden>
+    <div class="sm-head"><img src="Assets/Kaan_ghibli.jpeg" alt=""><span>Kaan Kara</span></div>
+    <div class="sm-cols">
+      <div class="sm-left">
+        <button role="menuitem" data-open="oyunlar"><svg class="ic"><use href="#i-games"/></svg><span><strong data-i18n="os.i.games">Oyunlarım</strong><small>Komparsita · Mindfield · Togy</small></span></button>
+        <button role="menuitem" data-open="arcade"><svg class="ic"><use href="#i-arcade"/></svg><span><strong>Arcade</strong><small data-i18n="arc.eyebrow">Tarayıcıda oyna · İndirme yok</small></span></button>
+        <hr>
+        <button role="menuitem" data-open="projeler"><svg class="ic"><use href="#i-projects"/></svg><span data-i18n="nav.projects">Projeler</span></button>
+        <button role="menuitem" data-open="magaza"><svg class="ic"><use href="#i-shop"/></svg><span data-i18n="nav.shop">Mağaza</span></button>
+        <button role="menuitem" data-open="iletisim"><svg class="ic"><use href="#i-mail"/></svg><span data-i18n="nav.contact">İletişim</span></button>
+      </div>
+      <div class="sm-right">
+        <button role="menuitem" data-open="hakkimda"><svg class="ic"><use href="#i-about"/></svg><strong data-i18n="os.i.about">Hakkımda</strong></button>
+        <button role="menuitem" data-open="galeri"><svg class="ic"><use href="#i-photos"/></svg><strong data-i18n="os.i.photos">Resimlerim</strong></button>
+        <button role="menuitem" data-web="videogaleri.html"><svg class="ic"><use href="#i-video"/></svg><strong data-i18n="os.i.videos">Videolarım</strong></button>
+        <hr>
+        <a role="menuitem" href="Assets/CVturkce.pdf" target="_blank" rel="noopener"><svg class="ic"><use href="#i-pdf"/></svg>CV · Türkçe</a>
+        <a role="menuitem" href="Assets/Kaan_Kara_CV_Eng.pdf" target="_blank" rel="noopener"><svg class="ic"><use href="#i-pdf"/></svg>CV · English</a>
+        <hr>
+        <button role="menuitem" data-web="privacyPolicyKomparsita.html"><svg class="ic"><use href="#i-web"/></svg><span data-i18n="foot.privacy">Gizlilik</span></button>
+      </div>
+    </div>
+    <div class="sm-foot">
+      <button role="menuitem" id="shutBtn"><svg class="ic"><use href="#i-power"/></svg><span data-i18n="os.shutdown">Kapat</span></button>
+    </div>
+  </div>
 
-  <script src="script.js?v=11"></script>
+  <!-- ===== Kapatma ekranı ===== -->
+  <div class="shutdown" id="shutdown" hidden>
+    <p data-i18n="os.safe">Bilgisayarınızı kapatmak artık güvenlidir.</p>
+    <button class="xbtn" id="restartBtn" data-i18n="os.restart">Yeniden başlat</button>
+  </div>
+
+  <script src="i18n.js?v=15"></script>
+  <script src="masaustu-duvar.js?v=1"></script>
+  <script src="masaustu.js?v=3"></script>
 </body>
 </html>
