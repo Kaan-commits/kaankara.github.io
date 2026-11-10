@@ -14,14 +14,14 @@
   <link rel="icon" href="Assets/Kaan_ghibli.jpeg">
   <!-- Ördek Gezgini penceresinde bir sayfa ana sayfaya link verirse iç içe masaüstü açılmasın: üstteki masaüstü devralır -->
   <script>if(window.top!==window.self){try{if(window.top.DuckOS){window.top.DuckOS.home(location.hash);document.documentElement.style.display="none";window.stop()}}catch(e){}}</script>
-  <link rel="stylesheet" href="masaustu.css?v=2">
+  <link rel="stylesheet" href="masaustu.css?v=3">
   <script>(function(d){try{if(!sessionStorage.getItem("os-boot")&&!/^#./.test(location.hash)&&!matchMedia("(prefers-reduced-motion: reduce)").matches)d.classList.add("booting")}catch(e){}})(document.documentElement)</script>
 </head>
 <body>
 
   <!-- ===== Simgeler: masaustu-ikonlar.js piksel haritalardan üretir ===== -->
   <svg id="iconSprite" width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"></svg>
-  <script src="masaustu-ikonlar.js?v=1"></script>
+  <script src="masaustu-ikonlar.js?v=2"></script>
 
   <!-- ===== Açılış ekranı ===== -->
   <div class="boot" id="boot" aria-hidden="true">
@@ -103,6 +103,8 @@
       <li><button class="dicon" data-open="hakkimda"><svg class="ic"><use href="#i-about"/></svg><span class="lbl" data-i18n="os.i.about">Hakkımda</span></button></li>
       <li><button class="dicon" data-open="oyunlar"><svg class="ic"><use href="#i-games"/></svg><span class="lbl" data-i18n="os.i.games">Oyunlarım</span></button></li>
       <li><button class="dicon" data-open="arcade"><svg class="ic"><use href="#i-arcade"/></svg><span class="lbl">Arcade</span></button></li>
+      <li><button class="dicon" data-open="kayak"><svg class="ic"><use href="#i-ski"/></svg><span class="lbl" data-i18n="os.i.ski">Kayak</span></button></li>
+      <li><button class="dicon" data-open="koruyucu"><svg class="ic"><use href="#i-saver"/></svg><span class="lbl" data-i18n="os.i.saver">Ekran Koruyucu</span></button></li>
       <li><button class="dicon" data-open="projeler"><svg class="ic"><use href="#i-projects"/></svg><span class="lbl" data-i18n="nav.projects">Projeler</span></button></li>
       <li><button class="dicon" data-open="magaza"><svg class="ic"><use href="#i-shop"/></svg><span class="lbl" data-i18n="nav.shop">Mağaza</span></button></li>
       <li><button class="dicon" data-open="galeri"><svg class="ic"><use href="#i-photos"/></svg><span class="lbl" data-i18n="os.i.photos">Resimlerim</span></button></li>
@@ -193,6 +195,8 @@
             </div>
           </aside>
           <ul class="files" data-files="arcade">
+            <li><button class="file" data-open="kayak"><span class="art sk"><svg viewBox="0 0 16 16"><use href="#i-ski"/></svg></span><strong data-i18n="os.i.ski">Kayak</strong><small data-i18n="os.ski.mini">Kaan pistte · piksel kayak</small></button></li>
+            <li><button class="file" data-open="koruyucu"><span class="art sv"><svg viewBox="0 0 16 16"><use href="#i-saver"/></svg></span><strong data-i18n="os.i.saver">Ekran Koruyucu</strong><small data-i18n="os.saver.mini">İmleç sensin · bullet hell</small></button></li>
             <li><button class="file" data-web="Games/duck-strike/"><span class="art ds"><svg viewBox="0 0 24 24"><use href="#i-duck"/></svg></span><strong>Duck Strike</strong><small data-i18n="ds.mini">Online piksel shooter</small></button></li>
             <li><button class="file" data-web="Games/ducks-dragons/"><span class="art dd">d20</span><strong>Ducks &amp; Dragons</strong><small data-i18n="dd.mini">Zarlı piksel macera · online</small></button></li>
             <li><a class="file" href="https://salon.kaankara.com.tr/perde" target="_blank" rel="noopener"><span class="art sm">⚽</span><strong>Salon Maçı</strong><small data-i18n="sm.mini">Perdede futbol, telefonla oyna</small></a></li>
@@ -201,7 +205,7 @@
             <li><button class="file" data-web="Games/rps.html"><span class="art rps">✊✋✌️</span><strong data-i18n="mini.rps">Taş · Kağıt · Makas</strong><small data-i18n="tag.solo">Tek oyunculu</small></button></li>
           </ul>
         </div>
-        <footer class="statusbar"><span data-i18n="os.items6">6 nesne</span><span data-i18n="os.arc.free">Hepsi ücretsiz</span></footer>
+        <footer class="statusbar"><span data-i18n="os.items8">8 nesne</span><span data-i18n="os.arc.free">Hepsi ücretsiz</span></footer>
       </section>
 
       <!-- ===== Projeler ===== -->
@@ -303,6 +307,16 @@
         <footer class="statusbar"><span data-i18n="contact.title">Bir fikrin mi var? Yaz bana.</span><span><a href="mailto:kaan.kara@yahoo.com">kaan.kara@yahoo.com</a></span></footer>
       </section>
 
+      <!-- ===== Oyun pencereleri: açılınca yüklenir, kapanınca durur ===== -->
+      <section class="win game" id="w-kayak" data-icon="i-ski" data-w="640" data-h="560" aria-labelledby="t-kayak" hidden>
+        <header class="title"><svg class="ic"><use href="#i-ski"/></svg><h2 id="t-kayak" data-i18n="os.i.ski">Kayak</h2></header>
+        <div class="win-body"><iframe data-src="Games/kayak/" title="Kayak" allow="autoplay; fullscreen"></iframe></div>
+      </section>
+      <section class="win game" id="w-koruyucu" data-icon="i-saver" data-w="420" data-h="590" aria-labelledby="t-koruyucu" hidden>
+        <header class="title"><svg class="ic"><use href="#i-saver"/></svg><h2 id="t-koruyucu" data-i18n="os.i.saver">Ekran Koruyucu</h2></header>
+        <div class="win-body"><iframe data-src="Games/ekran-koruyucu/" title="Ekran Koruyucu" allow="autoplay; fullscreen"></iframe></div>
+      </section>
+
       <!-- ===== Ördek Gezgini (sayfaları pencerede açar) ===== -->
       <section class="win browser" id="w-gezgin" data-icon="i-web" data-w="960" data-h="640" aria-labelledby="t-gezgin" hidden>
         <header class="title"><svg class="ic"><use href="#i-web"/></svg><h2 id="t-gezgin">Ördek Gezgini</h2></header>
@@ -338,6 +352,8 @@
       <div class="sm-left">
         <button role="menuitem" data-open="oyunlar"><svg class="ic"><use href="#i-games"/></svg><span><strong data-i18n="os.i.games">Oyunlarım</strong><small>Komparsita · Mindfield · Togy</small></span></button>
         <button role="menuitem" data-open="arcade"><svg class="ic"><use href="#i-arcade"/></svg><span><strong>Arcade</strong><small data-i18n="arc.eyebrow">Tarayıcıda oyna · İndirme yok</small></span></button>
+        <button role="menuitem" data-open="kayak"><svg class="ic"><use href="#i-ski"/></svg><span><strong data-i18n="os.i.ski">Kayak</strong><small data-i18n="os.ski.mini">Kaan pistte · piksel kayak</small></span></button>
+        <button role="menuitem" data-open="koruyucu"><svg class="ic"><use href="#i-saver"/></svg><span><strong data-i18n="os.i.saver">Ekran Koruyucu</strong><small data-i18n="os.saver.mini">İmleç sensin · bullet hell</small></span></button>
         <hr>
         <button role="menuitem" data-open="projeler"><svg class="ic"><use href="#i-projects"/></svg><span data-i18n="nav.projects">Projeler</span></button>
         <button role="menuitem" data-open="magaza"><svg class="ic"><use href="#i-shop"/></svg><span data-i18n="nav.shop">Mağaza</span></button>
@@ -367,6 +383,6 @@
 
   <script src="i18n.js?v=15"></script>
   <script src="masaustu-duvar.js?v=1"></script>
-  <script src="masaustu.js?v=3"></script>
+  <script src="masaustu.js?v=4"></script>
 </body>
 </html>

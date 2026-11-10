@@ -53,6 +53,11 @@
     "os.restart": "Restart",
     "os.d.open": "Open the game's page",
     "os.d.shots": "Screenshots",
+    "os.i.ski": "Downhill",
+    "os.i.saver": "Screen Saver Wars",
+    "os.ski.mini": "Kaan on the slopes · pixel skiing",
+    "os.saver.mini": "You're the cursor · bullet hell",
+    "os.items8": "8 objects",
   };
   const TR = {
     "os.browser": "Ördek Gezgini",
@@ -165,6 +170,11 @@
       win.classList.remove("closing");
       win.hidden = false;
       if (!rec.placed) place(rec);
+      const game = $("iframe[data-src]", win);
+      if (game && (!game.getAttribute("src") || game.getAttribute("src") === "about:blank")) {
+        game.src = game.dataset.src;
+        game.addEventListener("load", () => { try { game.contentWindow.focus(); } catch (e) {} }, { once: true });
+      }
       win.classList.add("opening");
       win.addEventListener("animationend", () => win.classList.remove("opening"), { once: true });
       addTask(rec);
@@ -182,6 +192,8 @@
       win.classList.remove("closing", "active", "max", "min");
       win.hidden = true;
       if (id === "gezgin") web.blank();
+      const game = $("iframe[data-src]", win);
+      if (game) game.src = "about:blank";
     };
     win.classList.add("closing");
     win.addEventListener("animationend", done, { once: true });
@@ -616,10 +628,12 @@
     syncTasks();
     tick();
     $("#webStatus").textContent = t("os.done");
-    try {
-      const inner = $("#webFrame").contentWindow.i18n;
-      if (inner && inner.lang !== i18n.lang) inner.set(i18n.lang);
-    } catch (e) {}
+    $$("#webFrame, iframe[data-src]").forEach((f) => {
+      try {
+        const inner = f.contentWindow.i18n;
+        if (inner && inner.lang !== i18n.lang) inner.set(i18n.lang);
+      } catch (e) {}
+    });
   });
 
   /* =========================================================
