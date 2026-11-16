@@ -304,6 +304,7 @@ html.booting .boot {
 /* proje + mağaza */
 .proj { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; align-items: center; }
 .shots { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+.proj .shots.wide { grid-column: 1 / -1; grid-template-columns: repeat(6, 1fr); }
 .shots button, .tees button { padding: 0; border: 1px solid var(--shade); background: #fff; cursor: zoom-in; }
 .shots img { display: block; width: 100%; aspect-ratio: 9 / 19; object-fit: cover; }
 .shots button:hover, .tees button:hover { outline: 2px solid #f8b636; }

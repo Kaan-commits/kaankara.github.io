@@ -559,7 +559,7 @@
     if (shot) {
       const box = shot.closest("[data-set]");
       const n = $$("[data-src]", box).indexOf(shot);
-      viewer.show(box.dataset.set, n, box.dataset.set === "uni" ? "1Üni" : box.dataset.set === "tees" ? "Togy" : "");
+      viewer.show(box.dataset.set, n, ({ uni: "1Üni", fulldepo: "Fulldepo", tees: "Togy" })[box.dataset.set] || "");
       return;
     }
     if (e.target.closest(".start-menu a")) closeStart();

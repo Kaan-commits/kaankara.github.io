@@ -14,7 +14,7 @@
   <link rel="icon" href="Assets/Kaan_ghibli.jpeg">
   <!-- Ördek Gezgini penceresinde bir sayfa ana sayfaya link verirse iç içe masaüstü açılmasın: üstteki masaüstü devralır -->
   <script>if(window.top!==window.self){try{if(window.top.DuckOS){window.top.DuckOS.home(location.hash);document.documentElement.style.display="none";window.stop()}}catch(e){}}</script>
-  <link rel="stylesheet" href="masaustu.css?v=4">
+  <link rel="stylesheet" href="masaustu.css?v=5">
   <script>(function(d){try{if(!sessionStorage.getItem("os-boot")&&!/^#./.test(location.hash)&&!matchMedia("(prefers-reduced-motion: reduce)").matches)d.classList.add("booting")}catch(e){}})(document.documentElement)</script>
 </head>
 <body>
@@ -235,7 +235,7 @@
               <p class="kicker" data-i18n="proj.fd.eyebrow">Mobil uygulama · Yakında</p>
               <h2>Fulldepo</h2>
               <p><span data-i18n="proj.fd">Türkiye'nin 81 ilinde güncel benzin, motorin ve LPG fiyatlarını markalara göre karşılaştıran uygulama. Flutter ve Firebase ile yazdım; fiyatlar EPDK'nın herkese açık verisinden, istasyonlar OpenStreetMap'ten geliyor.</span></p>
-              <div class="btn-row"><button class="xbtn" data-web="privacyPolicyFulldepo.html"><span data-i18n="foot.privacy">Gizlilik</span></button></div>
+              <div class="btn-row"><button class="xbtn primary" data-web="fulldepo/"><span data-i18n="proj.fd.page">Uygulamanın sayfasını aç</span></button><button class="xbtn" data-web="privacyPolicyFulldepo.html"><span data-i18n="foot.privacy">Gizlilik</span></button></div>
             </div>
             <div class="points">
               <img class="app-icon" src="Assets/fulldepo/ikon.png" alt="Fulldepo uygulama simgesi" loading="lazy">
@@ -245,6 +245,14 @@
                 <li><strong data-i18n="proj.fd.p3">Fiyat geçmişi</strong><small data-i18n="proj.fd.p3p">Grafiğe dokunarak geçmiş fiyatları markalara göre gör.</small></li>
                 <li><strong data-i18n="proj.fd.p4">Hesap yok</strong><small data-i18n="proj.fd.p4p">Konumun yalnızca telefonunda kullanılır, hiçbir yere gönderilmez.</small></li>
               </ul>
+            </div>
+            <div class="shots wide" data-set="fulldepo">
+              <button data-src="Assets/fulldepo/ekran-goruntuleri/harita.jpg"><img src="Assets/fulldepo/ekran-goruntuleri/harita.jpg" alt="Fulldepo haritası" loading="lazy"></button>
+              <button data-src="Assets/fulldepo/ekran-goruntuleri/liste.jpg"><img src="Assets/fulldepo/ekran-goruntuleri/liste.jpg" alt="Fulldepo en yakın istasyonlar" loading="lazy"></button>
+              <button data-src="Assets/fulldepo/ekran-goruntuleri/fiyatlar.jpg"><img src="Assets/fulldepo/ekran-goruntuleri/fiyatlar.jpg" alt="Fulldepo fiyatlar" loading="lazy"></button>
+              <button data-src="Assets/fulldepo/ekran-goruntuleri/gecmis.jpg"><img src="Assets/fulldepo/ekran-goruntuleri/gecmis.jpg" alt="Fulldepo fiyat geçmişi" loading="lazy"></button>
+              <button data-src="Assets/fulldepo/ekran-goruntuleri/harcamalar.jpg"><img src="Assets/fulldepo/ekran-goruntuleri/harcamalar.jpg" alt="Fulldepo harcamalar" loading="lazy"></button>
+              <button data-src="Assets/fulldepo/ekran-goruntuleri/ayarlar.jpg"><img src="Assets/fulldepo/ekran-goruntuleri/ayarlar.jpg" alt="Fulldepo bildirim ayarları" loading="lazy"></button>
             </div>
           </article>
         </div>
@@ -405,8 +413,8 @@
     <button class="xbtn" id="restartBtn" data-i18n="os.restart">Yeniden başlat</button>
   </div>
 
-  <script src="i18n.js?v=17"></script>
+  <script src="i18n.js?v=18"></script>
   <script src="masaustu-duvar.js?v=1"></script>
-  <script src="masaustu.js?v=6"></script>
+  <script src="masaustu.js?v=7"></script>
 </body>
 </html>
