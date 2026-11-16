@@ -14,7 +14,7 @@
   <link rel="icon" href="Assets/Kaan_ghibli.jpeg">
   <!-- Ördek Gezgini penceresinde bir sayfa ana sayfaya link verirse iç içe masaüstü açılmasın: üstteki masaüstü devralır -->
   <script>if(window.top!==window.self){try{if(window.top.DuckOS){window.top.DuckOS.home(location.hash);document.documentElement.style.display="none";window.stop()}}catch(e){}}</script>
-  <link rel="stylesheet" href="masaustu.css?v=3">
+  <link rel="stylesheet" href="masaustu.css?v=4">
   <script>(function(d){try{if(!sessionStorage.getItem("os-boot")&&!/^#./.test(location.hash)&&!matchMedia("(prefers-reduced-motion: reduce)").matches)d.classList.add("booting")}catch(e){}})(document.documentElement)</script>
 </head>
 <body>
@@ -108,7 +108,7 @@
       <li><button class="dicon" data-open="projeler"><svg class="ic"><use href="#i-projects"/></svg><span class="lbl" data-i18n="nav.projects">Projeler</span></button></li>
       <li><button class="dicon" data-open="magaza"><svg class="ic"><use href="#i-shop"/></svg><span class="lbl" data-i18n="nav.shop">Mağaza</span></button></li>
       <li><button class="dicon" data-open="galeri"><svg class="ic"><use href="#i-photos"/></svg><span class="lbl" data-i18n="os.i.photos">Resimlerim</span></button></li>
-      <li><button class="dicon" data-web="videogaleri.html"><svg class="ic"><use href="#i-video"/></svg><span class="lbl" data-i18n="os.i.videos">Videolarım</span></button></li>
+      <li><button class="dicon" data-open="videolar"><svg class="ic"><use href="#i-video"/></svg><span class="lbl" data-i18n="os.i.videos">Videolarım</span></button></li>
       <li><button class="dicon" data-open="iletisim"><svg class="ic"><use href="#i-mail"/></svg><span class="lbl" data-i18n="nav.contact">İletişim</span></button></li>
       <li><a class="dicon" href="Assets/CVturkce.pdf" data-href-en="Assets/Kaan_Kara_CV_Eng.pdf" target="_blank" rel="noopener"><svg class="ic"><use href="#i-pdf"/></svg><span class="lbl">CV.pdf</span></a></li>
       <li><a class="dicon" href="https://frozenduckgames9.wordpress.com" target="_blank" rel="noopener"><svg class="ic"><use href="#i-bin"/></svg><span class="lbl" data-i18n="foot.old">Eski site</span></a></li>
@@ -191,7 +191,6 @@
               <h3 data-i18n="os.other">Diğer yerler</h3>
               <div class="tp-body tp-links">
                 <button data-open="oyunlar"><svg class="ic"><use href="#i-games"/></svg><span data-i18n="os.i.games">Oyunlarım</span></button>
-                <button data-web="arcade.html"><svg class="ic"><use href="#i-web"/></svg><span data-i18n="os.arc.page">Arcade sayfası</span></button>
               </div>
             </div>
           </aside>
@@ -286,6 +285,30 @@
         </div>
       </section>
 
+      <!-- ===== Videolarım ===== -->
+      <section class="win explorer" id="w-videolar" data-icon="i-video" data-w="780" data-h="600" aria-labelledby="t-videolar" hidden>
+        <header class="title"><svg class="ic"><use href="#i-video"/></svg><h2 id="t-videolar" data-i18n="os.i.videos">Videolarım</h2></header>
+        <div class="addr"><span data-i18n="os.addr">Adres</span><div class="field"><svg class="ic"><use href="#i-folder"/></svg>C:\Kaan\<span data-i18n="os.i.videos">Videolarım</span></div></div>
+        <div class="win-body vids">
+          <div class="vid-player"><iframe id="vidFrame" data-src="https://www.youtube-nocookie.com/embed/-4PW6wxBCnE" title="YouTube videosu" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen></iframe></div>
+          <div class="vid-files">
+            <h3 class="vid-group">Fortnite</h3>
+            <ul class="files vid-list">
+              <li><button class="file sel" data-yt="-4PW6wxBCnE"><img src="https://i.ytimg.com/vi/-4PW6wxBCnE/mqdefault.jpg" alt="" loading="lazy"><strong>Fortnite_20250410144704</strong><small>YouTube</small></button></li>
+              <li><button class="file" data-yt="T9XN8OhlLVw"><img src="https://i.ytimg.com/vi/T9XN8OhlLVw/mqdefault.jpg" alt="" loading="lazy"><strong>Fortnite_20250303001905</strong><small>YouTube</small></button></li>
+            </ul>
+            <h3 class="vid-group">FC25</h3>
+            <ul class="files vid-list">
+              <li><button class="file" data-yt="Su6rlSaIeEg"><img src="https://i.ytimg.com/vi/Su6rlSaIeEg/mqdefault.jpg" alt="" loading="lazy"><strong>EA SPORTS FC 25_20250405140</strong><small>YouTube</small></button></li>
+              <li><button class="file" data-yt="lARoF9Rx1hE"><img src="https://i.ytimg.com/vi/lARoF9Rx1hE/mqdefault.jpg" alt="" loading="lazy"><strong>EA SPORTS FC 25_20250309000</strong><small>YouTube</small></button></li>
+              <li><button class="file" data-yt="hxDG77BHxbY"><img src="https://i.ytimg.com/vi/hxDG77BHxbY/mqdefault.jpg" alt="" loading="lazy"><strong>Huge comeback part#1</strong><small>YouTube</small></button></li>
+              <li><button class="file" data-yt="kFU-Rf7syRM"><img src="https://i.ytimg.com/vi/kFU-Rf7syRM/mqdefault.jpg" alt="" loading="lazy"><strong>Huge comeback part#2</strong><small>YouTube</small></button></li>
+            </ul>
+          </div>
+        </div>
+        <footer class="statusbar"><span data-i18n="os.items6">6 nesne</span><span><a href="https://www.youtube.com/channel/UCc_2_AVpN7Ew9yPQIfsB1Kw" target="_blank" rel="noopener" data-i18n="video.channel">YouTube kanalına git</a></span></footer>
+      </section>
+
       <!-- ===== İletişim (yeni ileti) ===== -->
       <section class="win mail" id="w-iletisim" data-icon="i-mail" data-w="600" data-h="520" aria-labelledby="t-iletisim" hidden>
         <header class="title"><svg class="ic"><use href="#i-mail"/></svg><h2 id="t-iletisim" data-i18n="os.t.mail">Yeni ileti — Kaan'a yaz</h2></header>
@@ -363,7 +386,7 @@
       <div class="sm-right">
         <button role="menuitem" data-open="hakkimda"><svg class="ic"><use href="#i-about"/></svg><strong data-i18n="os.i.about">Hakkımda</strong></button>
         <button role="menuitem" data-open="galeri"><svg class="ic"><use href="#i-photos"/></svg><strong data-i18n="os.i.photos">Resimlerim</strong></button>
-        <button role="menuitem" data-web="videogaleri.html"><svg class="ic"><use href="#i-video"/></svg><strong data-i18n="os.i.videos">Videolarım</strong></button>
+        <button role="menuitem" data-open="videolar"><svg class="ic"><use href="#i-video"/></svg><strong data-i18n="os.i.videos">Videolarım</strong></button>
         <hr>
         <a role="menuitem" href="Assets/CVturkce.pdf" target="_blank" rel="noopener"><svg class="ic"><use href="#i-pdf"/></svg>CV · Türkçe</a>
         <a role="menuitem" href="Assets/Kaan_Kara_CV_Eng.pdf" target="_blank" rel="noopener"><svg class="ic"><use href="#i-pdf"/></svg>CV · English</a>
@@ -382,8 +405,8 @@
     <button class="xbtn" id="restartBtn" data-i18n="os.restart">Yeniden başlat</button>
   </div>
 
-  <script src="i18n.js?v=16"></script>
+  <script src="i18n.js?v=17"></script>
   <script src="masaustu-duvar.js?v=1"></script>
-  <script src="masaustu.js?v=5"></script>
+  <script src="masaustu.js?v=6"></script>
 </body>
 </html>

@@ -33,7 +33,6 @@
     "os.items4": "4 objects",
     "os.items6": "6 objects",
     "os.arc.tip": "Double-click a game to open it in a window right here.",
-    "os.arc.page": "Arcade page",
     "os.arc.free": "All free",
     "os.prev": "Previous",
     "os.next": "Next",
@@ -331,7 +330,7 @@
     if (location.hash !== h) history.replaceState(null, "", h || location.pathname + location.search);
   }
 
-  // #/oyunlar (masaüstü) ve eski sitenin #oyunlar, #projeler… linkleri
+  // #/oyunlar (masaüstü) ve eski adreslerin #oyunlar, #projeler… linkleri
   function fromHash(hash = location.hash) {
     const m = hash.match(/^#\/?(.+)$/);
     if (!m) return false;
@@ -341,6 +340,7 @@
       if (/^[\w\-./]+$/.test(p) && !p.includes("..")) { web.go(p); return true; }
       return false;
     }
+    if (v === "galeri") { viewer.show("photos"); return true; }
     if (wins.has(v)) { open(v); return true; }
     return false;
   }
@@ -368,8 +368,6 @@
       out.href = path;
       status.textContent = t("os.loading");
       setTitle("");
-      // klasik sitenin oturum açılışı (intro) pencerede oynamasın
-      try { sessionStorage.setItem("intro", "1"); } catch (e) {}
       frame.src = path;
       open("gezgin");
     };
@@ -515,6 +513,7 @@
      Tıklamalar: simgeler, dosyalar, düğmeler
      ========================================================= */
   function follow(el) {
+    if (el.dataset.yt) return playVideo(el);
     if (el.dataset.open === "galeri") return viewer.show("photos");
     if (el.dataset.open) return open(el.dataset.open);
     if (el.dataset.web) return web.go(el.dataset.web);
@@ -525,8 +524,16 @@
     }
   }
 
+  // Videolarım: seçilen videoyu üstteki oynatıcıda aç
+  function playVideo(el) {
+    const frame = $("#vidFrame");
+    const src = "https://www.youtube-nocookie.com/embed/" + el.dataset.yt;
+    frame.dataset.src = src;
+    frame.src = src + "?autoplay=1";
+  }
+
   function select(el) {
-    const scope = el.closest(".desk-icons, .files");
+    const scope = el.closest(".desk-icons, .vid-files, .files");
     $$(".sel", scope).forEach((x) => x.classList.remove("sel"));
     el.classList.add("sel");
     if (el.dataset.key) showGame(el.dataset.key);
