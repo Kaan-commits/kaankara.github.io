@@ -1,7 +1,9 @@
 /* =========================================================
-   Togy mağazası: Duck OS penceresinin içinde sokak teması
-   (tuğla duvar, sprey yazılar, bantlı posterler, metro).
-   Başlıklar ve düğmeler el yazısı Rock Salt; açıklamalar düz yazı.
+   Togy — kaydırdıkça içine girilen tişört hikâyeleri
+   Her sahne bir öncekinin tam ortasında küçücük belirir ve
+   kaydırdıkça büyüyüp ekranı kaplar (togy.js). Zincir bitince
+   sayfa normal bir mağaza ızgarasına döner.
+   JS yoksa ya da hareket azaltılmışsa sahneler alt alta durur.
    ========================================================= */
 
 /* Rock Salt + Türkçe harfler (ş Ş ğ Ğ İ eklendi, bkz. Assets/fonts/README.md) */
@@ -11,226 +13,155 @@
   font-display: swap;
 }
 
-.tee-page {
-  --spray-pink: #ff3fa4;
-  --spray-lime: #b6ff3b;
-  --spray-yellow: #ffd60a;
-  --spray-cyan: #2de2e6;
-  --c: var(--spray-pink);
-  --text: #f4f1ea;
-  --tmuted: #c9c2b8;
-  --font-shop: "Rock Salt TR", "Comic Sans MS", cursive;
+:root {
+  --ink: #0b0b0b;
+  --paper: #f2f2f2;
+  --ui: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --hand: "Rock Salt TR", "Comic Sans MS", cursive;
+  --pink: #ff3fa4;
+  --lime: #b6ff3b;
+  color-scheme: light;
 }
-.tee-page .dp-body {
-  position: relative;
-  overflow: hidden;
-  padding: 0;
-  color: var(--text);
-  line-height: 1.9;
-  background:
-    radial-gradient(70% 40% at 72% 4%, rgba(255, 196, 120, 0.16), transparent 70%),
-    linear-gradient(180deg, rgba(14, 12, 11, 0.55), rgba(14, 12, 11, 0.78) 45%, rgba(14, 12, 11, 0.92)),
-    url("../Assets/togy/brick.svg") 0 0 / 330px 168px repeat,
-    #3a2a24;
-}
-html.in-frame .tee-page { background: #141110; }
-.tee-page .dp-body ::selection { background: var(--spray-lime); color: #000; }
-.tee-page .dp-body, .tee-page .dp-body * { font-family: var(--font-shop); letter-spacing: 0; }
-.tee-page .dp-body :is(p, p *) { font-family: var(--ui); }
-.tee-page .wrap { padding: 0 clamp(16px, 4vw, 40px); }
-.tee-page .game-hero { position: relative; padding: 26px clamp(16px, 4vw, 40px) 40px; }
-.tee-page .section { margin-top: 0; padding-bottom: 40px; }
+* { box-sizing: border-box; }
+html { -webkit-tap-highlight-color: transparent; }
+body { margin: 0; background: #000; color: #fff; font: 15px/1.55 var(--ui); -webkit-font-smoothing: antialiased; }
+img { display: block; max-width: 100%; }
+a { color: inherit; }
+button { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--lime); outline-offset: 2px; }
 
-/* Duvara sıkılmış Togy imzası */
-.wall-tag {
-  position: absolute;
-  z-index: 0;
-  top: 8%;
-  right: -4%;
-  font-size: clamp(7rem, 22vw, 17rem);
-  line-height: 1;
-  color: transparent;
-  -webkit-text-stroke: 3px rgba(182, 255, 59, 0.22);
-  text-shadow: 0 0 40px rgba(182, 255, 59, 0.12);
-  transform: rotate(-9deg);
+/* ===== Üst ve alt şeritler: her zeminde okunsun diye fark karışımı ===== */
+.tg-bar {
+  position: fixed; left: 0; right: 0; z-index: 50;
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  padding: 14px clamp(14px, 3vw, 28px);
+  color: #fff; mix-blend-mode: difference;
+  font-size: 11px; letter-spacing: .08em; text-transform: uppercase;
   pointer-events: none;
-  user-select: none;
 }
-.tee-page .game-hero-grid { position: relative; z-index: 1; grid-template-columns: minmax(0, 1fr) minmax(0, 460px); }
-.tee-page .breadcrumb { color: var(--tmuted); }
-.tee-page .badge { border: 0; border-radius: 3px; background: var(--spray-yellow); color: #111; transform: rotate(-2deg); }
-.tee-page .badge::before { background: #111; box-shadow: none; }
-.tee-page .intro h1 {
-  width: fit-content;
-  font-size: clamp(3.4rem, 10vw, 6.4rem);
-  line-height: 1.25;
-  color: #fff;
-  text-shadow: 4px 5px 0 rgba(0, 0, 0, 0.45);
+.tg-bar a, .tg-bar button { pointer-events: auto; }
+.tg-top { top: 0; padding-top: max(14px, env(safe-area-inset-top)); }
+.tg-bottom { bottom: 0; padding-bottom: max(14px, env(safe-area-inset-bottom)); }
+.tg-bar a { text-decoration: none; }
+.tg-bar a:hover { text-decoration: underline; }
+.tg-now { position: absolute; left: 50%; transform: translateX(-50%); white-space: nowrap; }
+.tg-right { display: flex; gap: 16px; align-items: center; }
+.tg-lang { padding: 0; border: 0; background: none; cursor: pointer; letter-spacing: inherit; text-transform: inherit; font-size: inherit; }
+.tg-prog { flex: 1; max-width: 360px; height: 1px; background: rgba(255, 255, 255, .35); }
+.tg-prog i { display: block; height: 100%; width: 0; background: #fff; }
+
+/* ===== Sahneler (JS yokken: alt alta) ===== */
+.sc { position: relative; min-height: 100vh; min-height: 100svh; overflow: hidden; }
+.sc-in {
+  position: absolute; inset: 0; overflow: hidden;
+  background: var(--bg, #000);
+  transform-origin: 50% 46%;
 }
-.tee-page .intro h1::after { content: none; }
-.tee-page .tagline { font-size: 1.05rem; line-height: 1.65; color: var(--text); text-shadow: 0 2px 8px #000; }
-.tee-page .meta-list { border-color: rgba(255, 255, 255, 0.14); }
-.tee-page .meta-list li { background: rgba(14, 12, 11, 0.72); box-shadow: inset -1px 0 rgba(255, 255, 255, 0.1); }
-.tee-page .meta-list small { font-size: 0.7rem; color: var(--tmuted); }
-.tee-page .meta-list strong { font-size: 0.85rem; }
+.sc-in > img { width: 100%; height: 100%; object-fit: cover; }
 
-.tee-page .btn {
-  min-height: 38px; padding: 4px 18px; border: 1px solid rgba(255, 255, 255, 0.28); border-radius: 999px;
-  background: rgba(14, 12, 11, 0.7); box-shadow: none; color: var(--text); font-size: 0.85rem;
+.sc-intro .sc-in { display: grid; place-items: center; background: #000; }
+.sc-intro h1 {
+  margin: 0; font: 400 clamp(84px, 19vw, 260px)/1.2 var(--hand); color: #fff;
+  text-shadow: 0 0 60px rgba(182, 255, 59, .25);
+  transform: rotate(-6deg);
 }
-.tee-page .btn:hover { border-color: var(--spray-lime); color: var(--spray-lime); box-shadow: none; }
-.tee-page .btn-primary { border-color: transparent; background: var(--spray-pink); color: #fff; box-shadow: 0 10px 30px -10px rgba(255, 63, 164, 0.8); }
-.tee-page .btn-primary:hover { color: #fff; filter: brightness(1.1); }
 
-.tee-page .eyebrow { display: flex; align-items: center; gap: 10px; color: var(--spray-yellow); text-transform: none; letter-spacing: 0; }
-.tee-page .eyebrow::before { content: ""; width: 30px; height: 6px; border-radius: 6px; background: currentColor; box-shadow: 0 0 10px currentColor; }
-.tee-page .section-title { font-size: clamp(1.6rem, 4vw, 2.5rem); line-height: 1.45; color: var(--spray-lime); text-shadow: 0 0 20px rgba(182, 255, 59, 0.35), 3px 4px 0 rgba(0, 0, 0, 0.5); }
-.tee-page .section-lead { font-size: 1rem; line-height: 1.65; color: var(--text); text-shadow: 0 2px 8px #000; }
-
-/* Duvara bantla yapıştırılmış posterler */
-.tee-stack { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; padding: 14px 6px 30px; }
-.tee-stack figure,
-.tee-card { position: relative; margin: 0; }
-.tee-stack figure { border: 6px solid #f1ece2; border-radius: 4px; background: #f1ece2; box-shadow: 0 18px 40px -12px rgba(0, 0, 0, 0.8); transition: transform 0.3s; }
-.tee-stack img { width: 100%; aspect-ratio: 1; object-fit: cover; }
-.tee-stack figure:nth-child(1) { transform: rotate(-3deg); }
-.tee-stack figure:nth-child(2) { transform: translateY(22px) rotate(4deg); }
-.tee-stack figure:nth-child(3) { transform: rotate(2deg); }
-.tee-stack figure:nth-child(4) { transform: translateY(22px) rotate(-4deg); }
-.tee-stack figure:hover { transform: rotate(0) scale(1.04); z-index: 1; }
-.tee-stack figure::before,
-.tee-card::before {
-  content: "";
-  position: absolute;
-  z-index: 2;
-  top: -12px;
-  left: 50%;
-  width: 78px;
-  height: 24px;
-  margin-left: -39px;
-  background: rgba(240, 232, 205, 0.78);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+.sc-story .sc-in { background: radial-gradient(120% 90% at 50% 40%, color-mix(in srgb, var(--bg) 70%, #fff), var(--bg) 55%, color-mix(in srgb, var(--bg) 55%, #000)); }
+.sc-story .sc-in::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(180deg, rgba(0, 0, 0, .25), transparent 25%, transparent 50%, rgba(0, 0, 0, .7));
+}
+.ph {
+  position: absolute; inset: 0; display: grid; place-items: center; padding: 8%;
+  font: 400 clamp(40px, 9vw, 120px)/1.25 var(--hand); color: rgba(255, 255, 255, .9); text-align: center;
   transform: rotate(-4deg);
-  pointer-events: none;
-}
-.tee-stack figure:nth-child(even)::before { transform: rotate(5deg); }
-
-/* Metro: tişörtlerin arasından geçen grafitili tren */
-.metro {
-  position: relative;
-  margin: 0 0 44px;
-  padding-top: 64px;
-  overflow: hidden;
-  background:
-    linear-gradient(180deg, rgba(0, 0, 0, 0.55), transparent 30%),
-    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.07) 0 1px, transparent 1px 48px),
-    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.07) 0 1px, transparent 1px 24px),
-    #20262b;
-  border-block: 4px solid #0c0d0e;
-}
-.metro-sign {
-  position: absolute;
-  top: 14px;
-  left: 50%;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 6px 18px 6px 8px;
-  border-radius: 6px;
-  background: #1d3f8f;
-  border: 2px solid #f4f1ea;
-  color: #fff;
-  font-size: 0.8rem;
-  white-space: nowrap;
-  transform: translateX(-50%);
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5);
-}
-.metro-sign b { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: var(--spray-pink); font-weight: 400; }
-.metro-train { display: block; width: max(900px, 120%); height: auto; animation: train 9s linear infinite; }
-@keyframes train {
-  0% { transform: translateX(100%); }
-  75%, 100% { transform: translateX(-100%); }
-}
-.metro-track {
-  height: 34px;
-  margin-top: -6px;
-  background:
-    repeating-linear-gradient(90deg, #3a2f28 0 10px, transparent 10px 34px) 0 14px / 100% 10px no-repeat,
-    linear-gradient(#8d9399, #8d9399) 0 10px / 100% 4px no-repeat,
-    radial-gradient(circle, #1a1a1a 2.5px, transparent 3px) 0 26px / 14px 8px repeat-x,
-    linear-gradient(var(--spray-yellow), var(--spray-yellow)) 0 24px / 100% 10px no-repeat,
-    #15181b;
 }
 
-/* Koleksiyon kartları: metro hattı rozetleri */
-.tee-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
-  gap: clamp(26px, 3.5vw, 36px);
-}
-.tee-card {
-  display: flex;
-  flex-direction: column;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 6px;
-  background: rgba(16, 14, 13, 0.9);
-  transition: border-color 0.4s, box-shadow 0.5s;
-}
-.tee-card:nth-child(odd) { rotate: -0.6deg; }
-.tee-card:nth-child(even) { rotate: 0.8deg; }
-.tee-card:hover { border-color: var(--line, var(--c)); box-shadow: 0 0 0 2px var(--line, var(--c)), 0 24px 40px -20px #000; }
-.tee-card .shot { padding: 0; border: 0; border-radius: 6px 6px 0 0; overflow: hidden; background: none; }
-.tee-card .shot img { aspect-ratio: 4 / 5; border: 0; box-shadow: none; }
-.tee-card .shot:hover { background: none; }
-.tee-no {
-  position: absolute;
-  top: 14px;
-  left: 14px;
-  z-index: 1;
-  display: grid;
-  place-items: center;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  border: 3px solid #fff;
-  background: var(--line, var(--c));
-  color: #111;
-  font-size: 0.85rem;
-  pointer-events: none;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
-}
-.tee-body { display: grid; gap: 10px; padding: 18px 20px 22px; border-top: 6px solid var(--line, var(--c)); }
-.tee-body h3 { margin: 0; font-size: 1.15rem; line-height: 1.5; color: #fff; }
-.tee-body p { margin: 0; color: var(--tmuted); font-size: 0.95rem; line-height: 1.6; }
-.tee-colors { display: flex; flex-wrap: wrap; gap: 8px 14px; margin: 4px 0 0; padding: 0; list-style: none; font-size: 0.75rem; color: var(--text); }
-.tee-colors li { display: inline-flex; align-items: center; gap: 8px; }
-.tee-colors li::before {
-  content: "";
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  background: var(--sw);
-  border: 1px solid rgba(255, 255, 255, 0.28);
-  box-shadow: inset 0 0 0 2px rgba(0, 0, 0, 0.25);
-}
+.sc-tee .sc-in { background: var(--paper); }
+.sc-tee .sc-in > img { object-fit: contain; padding: 64px 0 120px; }
 
-/* Son kutu: duvardaki sprey çerçeve */
-.tee-page .cta-box {
-  padding: 22px 24px;
-  border: 3px dashed var(--spray-lime);
-  border-radius: 10px;
-  background: rgba(14, 12, 11, 0.82);
-  transform: rotate(-0.6deg);
-}
-.tee-page .cta-box h2 { line-height: 1.5; color: var(--spray-yellow); }
-.tee-page .cta-box p { font-size: 1rem; line-height: 1.65; color: var(--text); }
+.sc-outro .sc-in { display: grid; place-items: center; background: var(--pink); }
+.out-logo { font: 400 clamp(84px, 19vw, 260px)/1.2 var(--hand); color: #fff; transform: rotate(-6deg); text-shadow: 6px 8px 0 rgba(0, 0, 0, .18); }
 
-@media (max-width: 760px) {
-  .tee-page .game-hero-grid { grid-template-columns: minmax(0, 1fr); }
+/* Yazılar: sahne ekranı kaplayınca belirir, ölçeklenmez */
+.cap {
+  position: absolute; left: clamp(16px, 4vw, 48px); bottom: clamp(56px, 9vh, 96px); z-index: 2;
+  max-width: min(520px, calc(100% - 32px));
 }
-@media (prefers-reduced-motion: reduce) {
-  .metro-train { width: 100%; min-width: 900px; animation: none; transform: none; }
-}
+.cap small { display: block; margin-bottom: 8px; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; opacity: .85; }
+.cap h2 { margin: 0 0 10px; font: 400 clamp(26px, 4vw, 44px)/1.3 var(--hand); }
+.cap p { margin: 0; font-size: 15px; }
+.sc-story .cap { color: #fff; text-shadow: 0 1px 12px rgba(0, 0, 0, .5); }
+.sc-tee .cap { color: var(--ink); }
+.meta { display: flex; flex-wrap: wrap; gap: 6px; margin: 14px 0 0; padding: 0; list-style: none; }
+.meta li { padding: 3px 10px; border: 1px solid currentColor; border-radius: 999px; font-size: 11px; letter-spacing: .06em; text-transform: uppercase; }
 
-/* Bölüm içerikleri: kenar boşluğu (metro kenardan kenara uzanır) */
-.tee-page .section > .container { padding: 0 clamp(16px, 4vw, 40px); }
+.sc-intro .cap { left: 50%; bottom: clamp(70px, 12vh, 120px); transform: translateX(-50%); text-align: center; color: #fff; }
+.hint { display: inline-flex; flex-direction: column; align-items: center; gap: 8px; margin-top: 18px; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; opacity: .8; }
+.hint i { width: 1px; height: 38px; background: linear-gradient(#fff, transparent); animation: drip 1.8s ease-in-out infinite; transform-origin: top; }
+@keyframes drip { 0% { transform: scaleY(0); } 50% { transform: scaleY(1); } 100% { transform: scaleY(1); opacity: 0; } }
+
+.sc-outro .cap { left: 50%; bottom: clamp(60px, 10vh, 110px); transform: translateX(-50%); text-align: center; color: #fff; width: min(560px, calc(100% - 32px)); }
+.btns { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 18px; }
+.tg-btn {
+  display: inline-flex; align-items: center; min-height: 40px; padding: 8px 18px;
+  border: 1px solid currentColor; border-radius: 999px;
+  text-decoration: none; font-size: 12px; letter-spacing: .08em; text-transform: uppercase;
+}
+.tg-btn.solid { background: #fff; border-color: #fff; color: var(--ink); }
+.tg-btn.dark { background: var(--ink); border-color: var(--ink); color: #fff; }
+.tg-btn:hover { filter: brightness(.92); }
+
+/* ===== Yakınlaşma modu (togy.js html.zoom ekler) ===== */
+html.zoom .reel { position: relative; }
+html.zoom .stage { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; }
+html.zoom .sc { position: absolute; inset: 0; min-height: 0; overflow: visible; visibility: hidden; }
+html.zoom .sc-in { will-change: transform; backface-visibility: hidden; }
+html.zoom .cap { opacity: 0; }
+
+.tg-bottom { transition: opacity .3s; }
+html.in-shop .tg-bottom { opacity: 0; pointer-events: none; }
+
+/* ===== Mağaza ızgarası ===== */
+.shop { position: relative; z-index: 1; background: #fff; color: var(--ink); }
+.shop-in { max-width: 1200px; margin: 0 auto; padding: clamp(70px, 10vh, 110px) clamp(16px, 4vw, 40px) clamp(70px, 10vh, 100px); }
+.shop h2 { margin: 0 0 22px; font: 700 clamp(28px, 4vw, 40px)/1.1 var(--ui); letter-spacing: -.02em; }
+.shop-bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 20px; margin-bottom: 30px; font-size: 13px; color: #555; }
+.filters { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 14px; }
+.filters button { padding: 2px 0; border: 0; border-bottom: 1px solid transparent; background: none; color: #555; cursor: pointer; }
+.filters button[aria-pressed="true"] { color: var(--ink); border-bottom-color: var(--ink); }
+.filters button:hover { color: var(--ink); }
+.count b { font-weight: 400; }
+.grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 44px 24px; margin: 0; padding: 0; list-style: none; }
+.card[hidden] { display: none; }
+.card-img { display: block; background: var(--paper); overflow: hidden; cursor: zoom-in; }
+.card-img img { width: 100%; aspect-ratio: 1; object-fit: cover; transition: transform .6s cubic-bezier(.2, .8, .2, 1); }
+.card-img:hover img { transform: scale(1.04); }
+.card h3 { margin: 14px 0 4px; font: 700 13px/1.35 var(--ui); letter-spacing: .02em; }
+.price { margin: 0; font-size: 14px; color: #333; }
+.story-link { margin-top: 6px; padding: 0; border: 0; background: none; color: #777; font-size: 12px; cursor: pointer; }
+.story-link:hover { color: var(--ink); text-decoration: underline; }
+.shop-foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px 24px; margin-top: 70px; padding-top: 24px; border-top: 1px solid #e3e3e3; color: #444; }
+.shop-foot p { margin: 0; max-width: 560px; }
+
+/* Resim görüntüleyici (sayfa.js): sade, beyaz */
+.viewer { position: fixed; inset: 0; z-index: 100; display: grid; place-items: center; padding: 16px; background: rgba(255, 255, 255, .96); }
+.viewer[hidden] { display: none; }
+.viewer-win { position: relative; width: min(100%, 860px); display: grid; gap: 10px; }
+.viewer-win .dp-title { display: flex; align-items: center; gap: 10px; color: var(--ink); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; }
+.viewer-win .dp-title .ic { display: none; }
+.viewer-win .dp-title strong { flex: 1; font-weight: 400; }
+.dp-close { color: var(--ink); text-decoration: none; font-size: 26px; line-height: 1; }
+.viewer-stage img { width: 100%; max-height: calc(100vh - 140px); object-fit: contain; background: var(--paper); }
+.viewer-bar { display: flex; justify-content: center; align-items: center; gap: 16px; color: var(--ink); font-size: 12px; }
+.viewer-bar .btn { width: 40px; height: 40px; border: 1px solid var(--ink); border-radius: 50%; background: #fff; cursor: pointer; }
+
+@media (max-width: 900px) {
+  .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 34px 14px; }
+}
+@media (max-width: 640px) {
+  .tg-now { display: none; }
+  .sc-tee .sc-in > img { padding: 70px 0 220px; }
+  .cap { bottom: 64px; }
+  .cap p { font-size: 14px; }
+}
