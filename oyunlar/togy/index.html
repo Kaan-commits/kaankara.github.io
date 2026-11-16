@@ -1,54 +1,51 @@
 <!DOCTYPE html>
-<html lang="tr" data-theme="galaxy">
+<html lang="tr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title data-i18n="title.togy">Togy · Piksel Platform Macerası · Frozen Duck Games</title>
   <meta name="description" content="Togy: iki dünya arasında geçen, boss savaşları ve tarot kartlarıyla şekillenen piksel sanatlı bir platform macerası. Şu an dahili test aşamasında.">
-  <meta name="theme-color" content="#000005">
+  <meta name="theme-color" content="#0a3fb0">
   <meta property="og:title" content="Togy · Piksel Platform Macerası">
   <meta property="og:image" content="https://kaankara.com.tr/oyunlar/togy/ekran-goruntuleri/orman.jpg">
   <link rel="icon" href="ikon.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Pixelify+Sans:wght@500;700&family=Press+Start+2P&family=News+Cycle:wght@400;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../../style.css?v=17">
-  <script>(function(){var d=document.documentElement;try{var s=sessionStorage;if(!matchMedia("(prefers-reduced-motion: reduce)").matches){if(!s.getItem("intro"))d.dataset.intro="pending";else if(s.getItem("warp-in"))d.dataset.arrive="1"}s.removeItem("warp-in")}catch(e){}})()</script>
+  <link rel="stylesheet" href="../../sayfa.css?v=1">
+  <script>(function(){try{var p=window.parent;if(p!==window&&p.document.getElementById("windows"))document.documentElement.classList.add("in-frame")}catch(e){}})()</script>
+  <script src="../../masaustu-ikonlar.js?v=2"></script>
 </head>
 <body class="game-page togy">
   <a class="skip-link" href="#icerik"><span data-i18n="nav.skip">İçeriğe geç</span></a>
-  <div class="bg-glow" aria-hidden="true"></div>
-  <canvas id="stars" aria-hidden="true"></canvas>
 
-  <header class="site-header">
-    <nav class="nav container" aria-label="Ana menü">
-      <a class="brand" href="../../index.html">
-        <img src="../../Assets/Kaan_ghibli.jpeg" alt="">
-        <span>Kaan Kara</span>
-      </a>
-      <button class="nav-toggle" aria-label="Menüyü aç" data-i18n-aria="nav.menu" aria-expanded="false" aria-controls="nav-links"><span></span></button>
-      <ul class="nav-links" id="nav-links">
-        <li><a href="../../index.html#oyunlar" aria-current="page"><span data-i18n="nav.games">Oyunlar</span></a></li>
-        <li><a href="../../arcade.html">Arcade</a></li>
-        <li><a href="../../index.html#projeler"><span data-i18n="nav.projects">Projeler</span></a></li>
-        <li><a href="../../index.html#magaza"><span data-i18n="nav.shop">Mağaza</span></a></li>
-        <li><a href="../../fotogaleri.html"><span data-i18n="nav.gallery">Galeri</span></a></li>
-        <li><a href="../../index.html#iletisim"><span data-i18n="nav.contact">İletişim</span></a></li>
-        <li><button class="lang-toggle" type="button" data-lang-toggle>EN</button></li>
-        <li><a class="nav-cta" href="../../Assets/CVturkce.pdf" data-href-en="../../Assets/Kaan_Kara_CV_Eng.pdf" target="_blank" rel="noopener">CV</a></li>
-      </ul>
+  <div class="dp-win">
+    <header class="dp-title">
+      <svg class="ic"><use href="#i-web"/></svg>
+      <strong>Togy — <span data-i18n="page.browser">Ördek Gezgini</span></strong>
+      <a class="dp-close" href="../../index.html#/oyunlar" data-desk="oyunlar" aria-label="Masaüstüne dön" data-i18n-aria="page.close">×</a>
+    </header>
+    <nav class="dp-bar" aria-label="Ana menü" data-i18n-aria="page.menu">
+      <a href="../../index.html"><svg class="ic"><use href="#i-duck"/></svg><span data-i18n="page.desk">Masaüstü</span></a>
+      <span class="sep"></span>
+      <a href="../../index.html#/oyunlar" data-desk="oyunlar" aria-current="page"><svg class="ic"><use href="#i-games"/></svg><span data-i18n="page.games">Oyunlarım</span></a>
+      <a href="../../index.html#/arcade" data-desk="arcade"><svg class="ic"><use href="#i-arcade"/></svg><span>Arcade</span></a>
+      <a href="../../index.html#/projeler" data-desk="projeler"><svg class="ic"><use href="#i-projects"/></svg><span data-i18n="nav.projects">Projeler</span></a>
+      <a href="../../index.html#/magaza" data-desk="magaza"><svg class="ic"><use href="#i-shop"/></svg><span data-i18n="nav.shop">Mağaza</span></a>
+      <a href="../../index.html#/galeri" data-desk="galeri"><svg class="ic"><use href="#i-photos"/></svg><span data-i18n="page.photos">Resimlerim</span></a>
+      <a href="../../index.html#/iletisim" data-desk="iletisim"><svg class="ic"><use href="#i-mail"/></svg><span data-i18n="nav.contact">İletişim</span></a>
+      <span class="sep push"></span>
+      <button class="lang" type="button" data-lang-toggle>EN</button>
+      <a href="../../Assets/CVturkce.pdf" data-href-en="../../Assets/Kaan_Kara_CV_Eng.pdf" target="_blank" rel="noopener"><svg class="ic"><use href="#i-pdf"/></svg><span>CV</span></a>
     </nav>
-  </header>
+    <div class="dp-addr"><span data-i18n="page.addr">Adres</span><div class="field"><svg class="ic"><use href="#i-web"/></svg>kaankara.com.tr/oyunlar/togy/</div></div>
 
-  <main id="icerik">
+    <main id="icerik" class="dp-body">
     <section class="game-hero">
       <div class="container game-hero-grid wide-shot">
         <div class="intro">
-          <a class="breadcrumb" href="../../index.html#oyunlar">
+          <a class="breadcrumb" href="../../index.html#/oyunlar" data-desk="oyunlar">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
             <span data-i18n="game.all">Tüm oyunlar</span>
           </a>
-          <span class="badge"><span data-i18n="badge.internal">Dahili test</span></span>
+          <span class="badge test"><span data-i18n="badge.internal">Dahili test</span></span>
           <h1>Togy</h1>
           <p class="tagline"><span data-i18n="togy.tagline">Piksel sanatlı bir platform macerası. Üst dünyadan alt dünyaya in, boss'larla yüzleş, seçtiğin tarot kartlarıyla oyunun kurallarını değiştir.</span></p>
           <div class="btn-row">
@@ -62,7 +59,7 @@
             <li><small><span data-i18n="game.status">Durum</span></small><strong><span data-i18n="badge.internal">Dahili test</span></strong></li>
           </ul>
         </div>
-        <div class="device-wrap intro-self">
+        <div class="device-wrap">
           <div class="device landscape">
             <img src="ekran-goruntuleri/orman.jpg" alt="Togy pikselli ormanda: huh? ben nerdeyim burası da neresi?">
           </div>
@@ -70,42 +67,42 @@
       </div>
     </section>
 
-    <section class="section" id="hakkinda" style="padding-top:0">
+    <section class="section" id="hakkinda">
       <div class="container">
         <div class="section-head">
-          <div class="reveal">
+          <div>
             <span class="eyebrow"><span data-i18n="game.about">Oyun hakkında</span></span>
             <h2 class="section-title"><span data-i18n="togy.h2">İki dünya, bir deste kart.</span></h2>
           </div>
-          <p class="section-lead reveal" style="--d:.1s"><span data-i18n="togy.lead">Togy'de yolculuk yukarıda başlar, ama asıl sınav aşağıda bekler. Her boss'tan önce çektiğin kartlar o savaşı senin için kolaylaştırabilir ya da zorlaştırabilir.</span></p>
+          <p class="section-lead"><span data-i18n="togy.lead">Togy'de yolculuk yukarıda başlar, ama asıl sınav aşağıda bekler. Her boss'tan önce çektiğin kartlar o savaşı senin için kolaylaştırabilir ya da zorlaştırabilir.</span></p>
         </div>
         <div class="features">
-          <div class="feature reveal">
+          <div class="feature">
             <div class="ico" aria-hidden="true">🌗</div>
             <h3><span data-i18n="togy.f1">Üst ve alt dünya</span></h3>
             <p><span data-i18n="togy.f1p">Katmanlı, parallax arka planlı haritalarda ilerle; doğru noktada alt dünyaya geç ve geri dön.</span></p>
           </div>
-          <div class="feature reveal" style="--d:.08s">
+          <div class="feature">
             <div class="ico" aria-hidden="true">👹</div>
             <h3><span data-i18n="togy.f2">Boss savaşları</span></h3>
             <p><span data-i18n="togy.f2p">Zıplayarak üstüne gelen boss'ları alt et; zafer, yeni yolların kilidini açar.</span></p>
           </div>
-          <div class="feature reveal" style="--d:.16s">
+          <div class="feature">
             <div class="ico" aria-hidden="true">🔮</div>
             <h3><span data-i18n="togy.f3">Tarot kartları</span></h3>
             <p><span data-i18n="togy.f3p">Savaş öncesi seçtiğin kartlar hızını, zıplamanı ve zorluğu değiştirir; doğru kombinasyonları bul.</span></p>
           </div>
-          <div class="feature reveal">
+          <div class="feature">
             <div class="ico" aria-hidden="true">💬</div>
             <h3><span data-i18n="togy.f4">Diyaloglar</span></h3>
             <p><span data-i18n="togy.f4p">Hikâye, karakterlerle yapılan konuşmalarla ilerler.</span></p>
           </div>
-          <div class="feature reveal" style="--d:.08s">
+          <div class="feature">
             <div class="ico" aria-hidden="true">📱</div>
             <h3><span data-i18n="togy.f5">Dokunmatik kontroller</span></h3>
             <p><span data-i18n="togy.f5p">Telefon için tasarlandı; gamepad ve klavye desteği de var.</span></p>
           </div>
-          <div class="feature reveal" style="--d:.16s">
+          <div class="feature">
             <div class="ico" aria-hidden="true">🌍</div>
             <h3><span data-i18n="togy.f6">Çoklu dil</span></h3>
             <p><span data-i18n="togy.f6p">Oyunun içinden dil değiştirilebilir.</span></p>
@@ -114,35 +111,35 @@
       </div>
     </section>
 
-    <section class="section" id="ekran-goruntuleri" style="padding-top:0">
+    <section class="section" id="ekran-goruntuleri">
       <div class="container">
         <div class="section-head">
-          <div class="reveal">
+          <div>
             <span class="eyebrow"><span data-i18n="nav.gallery">Galeri</span></span>
             <h2 class="section-title"><span data-i18n="game.shots">Ekran görüntüleri</span></h2>
           </div>
-          <p class="section-lead reveal" style="--d:.1s"><span data-i18n="game.tap">Büyütmek için bir görsele dokun.</span></p>
+          <p class="section-lead"><span data-i18n="game.tap">Büyütmek için bir görsele dokun.</span></p>
         </div>
         <div class="shots landscape">
-          <a class="shot reveal" href="ekran-goruntuleri/orman.jpg" data-gallery="togy">
+          <a class="shot" href="ekran-goruntuleri/orman.jpg" data-gallery="togy">
             <img src="ekran-goruntuleri/orman.jpg" alt="Togy ormanda uyanıyor" loading="lazy"><span class="cap"><span data-i18n="togy.c1">Orman</span></span>
           </a>
-          <a class="shot reveal" style="--d:.06s" href="ekran-goruntuleri/karsilasma.jpg" data-gallery="togy">
+          <a class="shot" href="ekran-goruntuleri/karsilasma.jpg" data-gallery="togy">
             <img src="ekran-goruntuleri/karsilasma.jpg" alt="Togy ağaçların altında bir köylüyle karşılaşıyor" loading="lazy"><span class="cap"><span data-i18n="togy.c2">Karşılaşma</span></span>
           </a>
-          <a class="shot reveal" style="--d:.12s" href="ekran-goruntuleri/diyalog.jpg" data-gallery="togy">
+          <a class="shot" href="ekran-goruntuleri/diyalog.jpg" data-gallery="togy">
             <img src="ekran-goruntuleri/diyalog.jpg" alt="Diyalog: Evet istanbul. Çok mu uzak?" loading="lazy"><span class="cap"><span data-i18n="togy.f4">Diyaloglar</span></span>
           </a>
-          <a class="shot reveal" style="--d:.18s" href="ekran-goruntuleri/ana-menu.jpg" data-gallery="togy">
+          <a class="shot" href="ekran-goruntuleri/ana-menu.jpg" data-gallery="togy">
             <img src="ekran-goruntuleri/ana-menu.jpg" alt="Togy ana menüsü" loading="lazy"><span class="cap"><span data-i18n="game.mainmenu">Ana menü</span></span>
           </a>
         </div>
       </div>
     </section>
 
-    <section class="section" style="padding-top:0">
+    <section class="section">
       <div class="container">
-        <div class="cta-box reveal reveal-zoom">
+        <div class="cta-box">
           <div>
             <h2><span data-i18n="togy.cta">Togy dahili testte.</span></h2>
             <p><span data-i18n="togy.ctap">Oyun şu an dahili test aşamasında. Teste katılmak ya da yayınlandığında ilk duyanlardan olmak için bana yaz veya Instagram'dan takip et.</span></p>
@@ -155,26 +152,21 @@
       </div>
     </section>
 
-    <section class="section" style="padding-top:0">
+    <section class="section">
       <div class="container game-nav">
         <a href="../mindfield/"><small><span data-i18n="game.prev">← Önceki oyun</span></small><strong>Mindfield</strong></a>
-        <a href="../komparsita/"><small><span data-i18n="game.next">Sonraki oyun →</span></small><strong>Komparsita</strong></a>
+        <a href="../brrr/"><small><span data-i18n="game.next">Sonraki oyun →</span></small><strong>Brrr!</strong></a>
       </div>
     </section>
-  </main>
+    </main>
 
-  <footer class="site-footer">
-    <div class="container">
-      <span>© <span data-year>2026</span> <span class="duck">🦆</span> Frozen Duck Games</span>
-      <div class="footer-links">
-        <a href="../../index.html"><span data-i18n="nav.home">Ana sayfa</span></a>
-        <a href="mailto:kaan.kara@yahoo.com"><span data-i18n="nav.contact">İletişim</span></a>
-      </div>
-    </div>
-  </footer>
+    <footer class="dp-status">
+      <span>© <span data-year>2026</span> Frozen Duck Games</span>
+      <span><a href="../../index.html" data-i18n="page.desk">Masaüstü</a><a href="../../index.html#/iletisim" data-desk="iletisim" data-i18n="nav.contact">İletişim</a></span>
+    </footer>
+  </div>
 
-  <script src="../../i18n.js?v=15"></script>
-
-  <script src="../../script.js?v=11"></script>
+  <script src="../../i18n.js?v=17"></script>
+  <script src="../../sayfa.js?v=1"></script>
 </body>
 </html>
