@@ -265,6 +265,7 @@ html.in-frame .dp-body { box-shadow: none; }
 .mindfield { --c: #ff4d6d; }
 .togy { --c: #36b6e8; }
 .brrr { --c: #ff8a1f; }
+.fulldepo { --c: #0b6b74; }
 
 /* ===== Resim görüntüleyici ===== */
 .viewer {
