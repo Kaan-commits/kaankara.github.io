@@ -4,265 +4,203 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title data-i18n="title.tee">Togy · Tişörtler · Kaan Kara</title>
-  <meta name="description" content="Togy: kendi çizip bastırdığımız tişörtler. Altı tasarım, altı hikâye; Loot Lake Lifeguard'dan İstanbul metro haritasına. Çok yakında Shopier'de.">
-  <meta name="theme-color" content="#000000">
+  <meta name="description" content="Togy: kendi çizip bastırdığımız tişörtler. Altı tasarım, altı hikâye; Loot Lake Lifeguard'dan İstanbul metro haritasına. Çok yakında Shopier ve Dolap'ta.">
+  <meta name="theme-color" content="#ffffff">
   <meta property="og:title" content="Togy · Tişörtler">
   <meta property="og:image" content="https://kaankara.com.tr/togy/tisortler/loot-lake-lifeguard.jpg">
   <link rel="icon" href="tisortler/loot-lake-lifeguard.jpg">
   <link rel="preload" href="../Assets/fonts/rock-salt-tr.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="togy.css?v=2">
+  <link rel="stylesheet" href="togy.css?v=5">
   <script>document.documentElement.classList.add("js")</script>
 </head>
 <body>
-  <header class="tg-bar tg-top">
-    <a class="tg-back" href="../index.html#/magaza" data-desk="magaza">← <span data-i18n="tg.back">Masaüstü</span></a>
-    <span class="tg-now" id="tgNow" aria-live="polite">Togy</span>
-    <span class="tg-right">
-      <button class="tg-lang" type="button" data-lang-toggle>EN</button>
-      <a href="https://www.instagram.com/childishtogy/" target="_blank" rel="noopener">Instagram</a>
-    </span>
+  <!-- Üst şerit: fark karışımıyla her zeminde okunur -->
+  <header class="hd">
+    <nav class="hd-l" aria-label="Togy">
+      <a class="hd-cell" href="../index.html#/magaza" data-desk="magaza">← <span data-i18n="tg.back">Masaüstü</span></a>
+      <div class="hd-cell filters" role="group" aria-label="Renk" data-i18n-aria="tg.filter">
+        <button type="button" data-filter="all" aria-pressed="true"><span data-i18n="tg.f.all">Hepsi</span> <sup>6</sup></button>
+        <button type="button" data-filter="black" aria-pressed="false"><span data-i18n="tg.c.black">Siyah</span> <sup>3</sup></button>
+        <button type="button" data-filter="white" aria-pressed="false"><span data-i18n="tg.c.white">Beyaz</span> <sup>3</sup></button>
+      </div>
+    </nav>
+    <div class="hd-r">
+      <div class="hd-cell views" role="group" aria-label="Görünüm" data-i18n-aria="tg.view">
+        <button type="button" data-view="grid" aria-pressed="true" data-i18n="tg.grid">Izgara</button>
+        <button type="button" data-view="list" aria-pressed="false" data-i18n="tg.list">Liste</button>
+      </div>
+      <button class="hd-cell" type="button" data-lang-toggle>EN</button>
+      <a class="hd-cell" href="https://www.instagram.com/togytogytogy/" target="_blank" rel="noopener">Instagram</a>
+    </div>
   </header>
 
-  <main>
-  <div class="reel" id="reel">
-    <div class="stage">
-    <section class="sc sc-intro" data-label="Togy">
-      <div class="sc-in">
-        <h1>Togy</h1>
-      </div>
-      <div class="cap">
-        <p data-i18n="tg.intro">Kendi çizip kendi bastırdığımız tişörtler. Altı tasarım, altı hikâye.</p>
-        <span class="hint"><span data-i18n="tg.scroll">Kaydır</span> <i aria-hidden="true"></i></span>
-      </div>
-    </section>
+  <!-- Togy işareti: büyük başlar, kaydırdıkça küçülüp üst şeride oturur (togy.js) -->
+  <h1 class="mark" id="mark">Togy</h1>
 
-    <!-- 01 · Loot Lake Lifeguard: hikâye görseli togy/hikaye/loot-lake.jpg (yoksa renkli yer tutucu görünür) -->
-    <section class="sc sc-story" data-label="Loot Lake" style="--bg:#2f7fa6">
-      <div class="sc-in">
-        <span class="ph" aria-hidden="true">Loot Lake</span>
-        <img src="hikaye/loot-lake.jpg" alt="" onerror="this.remove()">
-      </div>
-      <div class="cap">
-        <small>01 · <span data-i18n="tg.story">Hikâye</span></small>
-        <h2 data-i18n="tg.lootlake.sh">Loot Lake, 2018.</h2>
-        <p data-i18n="tg.lootlake.st">Haritanın ortasında bir göl. Kaç kişi oraya atlayıp bir daha çıkamadı, sayan olmadı. Birinin nöbet tutması gerekiyordu.</p>
-      </div>
-    </section>
-    <section class="sc sc-tee" data-label="Loot Lake Lifeguard">
-      <div class="sc-in">
-        <img src="tisortler/loot-lake-lifeguard.jpg" alt="Loot Lake Lifeguard tişörtü" loading="lazy">
-      </div>
-      <div class="cap">
-        <small>01 / 06 · <span data-i18n="tg.tee">Tişört</span></small>
-        <h2 data-i18n="tg.lootlake.n">Loot Lake Lifeguard</h2>
-        <p data-i18n="tg.lootlake.d">Göl hâlâ orada, nöbet hâlâ sürüyor. Göğüste kırmızı haç, altında küçük bir sponsor yazısı.</p>
-        <ul class="meta"><li data-i18n="tg.c.black">Siyah</li><li data-i18n="tg.p.front">Ön baskı</li><li data-i18n="tg.soon">Shopier'de yakında</li></ul>
-      </div>
-    </section>
-
-    <!-- 02 · Importanter: hikâye görseli togy/hikaye/fortnite.jpg (yoksa renkli yer tutucu görünür) -->
-    <section class="sc sc-story" data-label="Battle Bus" style="--bg:#7b4fd6">
-      <div class="sc-in">
-        <span class="ph" aria-hidden="true">Battle Bus</span>
-        <img src="hikaye/fortnite.jpg" alt="" onerror="this.remove()">
-      </div>
-      <div class="cap">
-        <small>02 · <span data-i18n="tg.story">Hikâye</span></small>
-        <h2 data-i18n="tg.importanter.sh">Otobüs kalkıyor.</h2>
-        <p data-i18n="tg.importanter.st">Bir yanda yarınki sınav, öbür yanda bir maç daha. Kimse sormadı ama cevap belli.</p>
-      </div>
-    </section>
-    <section class="sc sc-tee" data-label="Importanter">
-      <div class="sc-in">
-        <img src="tisortler/importanter.jpg" alt="Importanter tişörtü" loading="lazy">
-      </div>
-      <div class="cap">
-        <small>02 / 06 · <span data-i18n="tg.tee">Tişört</span></small>
-        <h2 data-i18n="tg.importanter.n">Importanter</h2>
-        <p data-i18n="tg.importanter.d">Eğitim önemli. Ama bazı şeyler daha önemli; dil bilgisi kuralları da dahil.</p>
-        <ul class="meta"><li data-i18n="tg.c.black">Siyah</li><li data-i18n="tg.p.front">Ön baskı</li><li data-i18n="tg.soon">Shopier'de yakında</li></ul>
-      </div>
-    </section>
-
-    <!-- 03 · Date a Centaur: hikâye görseli togy/hikaye/veri-merkezi.jpg (yoksa renkli yer tutucu görünür) -->
-    <section class="sc sc-story" data-label="Data Center" style="--bg:#1d6b5c">
-      <div class="sc-in">
-        <span class="ph" aria-hidden="true">Data Center</span>
-        <img src="hikaye/veri-merkezi.jpg" alt="" onerror="this.remove()">
-      </div>
-      <div class="cap">
-        <small>03 · <span data-i18n="tg.story">Hikâye</span></small>
-        <h2 data-i18n="tg.centaur.sh">Soğuk koridor.</h2>
-        <p data-i18n="tg.centaur.st">Sunucular uğulduyor, fanlar üflüyor, ışıklar yanıp sönüyor. Herkes bir veri merkezi kurmanın peşinde.</p>
-      </div>
-    </section>
-    <section class="sc sc-tee" data-label="Date a Centaur">
-      <div class="sc-in">
-        <img src="tisortler/date-a-centaur.jpg" alt="Date a Centaur tişörtü" loading="lazy">
-      </div>
-      <div class="cap">
-        <small>03 / 06 · <span data-i18n="tg.tee">Tişört</span></small>
-        <h2 data-i18n="tg.centaur.n">Date a Centaur</h2>
-        <p data-i18n="tg.centaur.d">Veri merkezi mi? Ben bir kentaurla buluşmayı tercih ederim. Eski bir gravürden çıkmış gibi duran bir kentaur.</p>
-        <ul class="meta"><li data-i18n="tg.c.white">Beyaz</li><li data-i18n="tg.p.front">Ön baskı</li><li data-i18n="tg.soon">Shopier'de yakında</li></ul>
-      </div>
-    </section>
-
-    <!-- 04 · Kılıç: hikâye görseli togy/hikaye/kilic.jpg (yoksa renkli yer tutucu görünür) -->
-    <section class="sc sc-story" data-label="Excalibur" style="--bg:#5d5a52">
-      <div class="sc-in">
-        <span class="ph" aria-hidden="true">Excalibur</span>
-        <img src="hikaye/kilic.jpg" alt="" onerror="this.remove()">
-      </div>
-      <div class="cap">
-        <small>04 · <span data-i18n="tg.story">Hikâye</span></small>
-        <h2 data-i18n="tg.kilic.sh">Taştaki kılıç.</h2>
-        <p data-i18n="tg.kilic.st">Bazı hikâyeler tek bir nesneyle anlatılır. Çeken kral olur, gerisini herkes bilir.</p>
-      </div>
-    </section>
-    <section class="sc sc-tee" data-label="Kılıç">
-      <div class="sc-in">
-        <img src="tisortler/kilic.jpg" alt="Kılıç tişörtü" loading="lazy">
-      </div>
-      <div class="cap">
-        <small>04 / 06 · <span data-i18n="tg.tee">Tişört</span></small>
-        <h2 data-i18n="tg.kilic.n">Kılıç</h2>
-        <p data-i18n="tg.kilic.d">Göğüste çapraz uzanan tek bir kılıç. Yazı yok, açıklama yok.</p>
-        <ul class="meta"><li data-i18n="tg.c.white">Beyaz</li><li data-i18n="tg.p.front">Ön baskı</li><li data-i18n="tg.soon">Shopier'de yakında</li></ul>
-      </div>
-    </section>
-
-    <!-- 05 · That's What: hikâye görseli togy/hikaye/the-office.jpg (yoksa renkli yer tutucu görünür) -->
-    <section class="sc sc-story" data-label="Scranton, PA" style="--bg:#8a6a3a">
-      <div class="sc-in">
-        <span class="ph" aria-hidden="true">Scranton, PA</span>
-        <img src="hikaye/the-office.jpg" alt="" onerror="this.remove()">
-      </div>
-      <div class="cap">
-        <small>05 · <span data-i18n="tg.story">Hikâye</span></small>
-        <h2 data-i18n="tg.thatswhat.sh">Scranton, Pennsylvania.</h2>
-        <p data-i18n="tg.thatswhat.st">Bir kâğıt şirketinin ofisi. Her cümleden sonra aynı espriyi bekleyen bir müdür.</p>
-      </div>
-    </section>
-    <section class="sc sc-tee" data-label="That&#x27;s What">
-      <div class="sc-in">
-        <img src="tisortler/thats-what.jpg" alt="That&#x27;s What tişörtü" loading="lazy">
-      </div>
-      <div class="cap">
-        <small>05 / 06 · <span data-i18n="tg.tee">Tişört</span></small>
-        <h2 data-i18n="tg.thatswhat.n">That&#x27;s What</h2>
-        <p data-i18n="tg.thatswhat.d">“That’s what.” –She. Gerisini sen tamamla.</p>
-        <ul class="meta"><li data-i18n="tg.c.black">Siyah</li><li data-i18n="tg.p.front">Ön baskı</li><li data-i18n="tg.soon">Shopier'de yakında</li></ul>
-      </div>
-    </section>
-
-    <!-- 06 · Lost Without It: hikâye görseli togy/hikaye/metro.jpg (yoksa renkli yer tutucu görünür) -->
-    <section class="sc sc-story" data-label="İstanbul Metro" style="--bg:#c8312f">
-      <div class="sc-in">
-        <span class="ph" aria-hidden="true">İstanbul Metro</span>
-        <img src="hikaye/metro.jpg" alt="" onerror="this.remove()">
-      </div>
-      <div class="cap">
-        <small>06 · <span data-i18n="tg.story">Hikâye</span></small>
-        <h2 data-i18n="tg.metro.sh">Yenikapı, aktarma.</h2>
-        <p data-i18n="tg.metro.st">M1, M2, Marmaray, füniküler, tramvay… Şehrin altında bir ağ daha var ve onu ezbere bilen pek yok.</p>
-      </div>
-    </section>
-    <section class="sc sc-tee" data-label="Lost Without It">
-      <div class="sc-in">
-        <img src="tisortler/metro-haritasi.jpg" alt="Lost Without It tişörtü" loading="lazy">
-      </div>
-      <div class="cap">
-        <small>06 / 06 · <span data-i18n="tg.tee">Tişört</span></small>
-        <h2 data-i18n="tg.metro.n">Lost Without It</h2>
-        <p data-i18n="tg.metro.d">Sırtta İstanbul&#x27;un raylı sistem haritası. Altında tek cümle: onsuz kaybolurdum.</p>
-        <ul class="meta"><li data-i18n="tg.c.white">Beyaz</li><li data-i18n="tg.p.back">Sırt baskısı</li><li data-i18n="tg.soon">Shopier'de yakında</li></ul>
-      </div>
-    </section>
-
-    <section class="sc sc-outro" data-label="Shopier">
-      <div class="sc-in">
-        <span class="out-logo">Togy</span>
-      </div>
-      <div class="cap">
-        <h2 data-i18n="tg.out.h">Çok yakında Shopier'de.</h2>
-        <p data-i18n="tg.out.p">Mağaza açılınca siparişini buradan verebileceksin. İlk duyanlardan olmak için Instagram'dan takip et.</p>
-        <div class="btns">
-          <a class="tg-btn solid" href="https://www.instagram.com/childishtogy/" target="_blank" rel="noopener">Instagram</a>
-          <a class="tg-btn" href="mailto:kaan.kara@yahoo.com?subject=Togy" data-i18n="tg.write">Bana yaz</a>
-          <a class="tg-btn" href="#magaza" data-i18n="tg.all">Tüm tişörtler ↓</a>
+  <main id="top">
+    <!-- Giriş: tişörtler ekranın ortasında uzaktan gelip tek tek yaklaşır, sonunda beyaz bir kare
+         ekranı kapatır ve ızgara başlar (togy.js). JS yoksa ya da hareket azaltılmışsa gizlenir. -->
+    <section class="entry" id="entry" aria-label="Togy">
+      <div class="entry-stage">
+        <div class="mark-space" aria-hidden="true"></div>
+        <div class="intro-row">
+          <p class="intro-lead" data-i18n="tg.intro">Kendi çizip kendi bastırdığımız tişörtler. Altı tasarım, altı hikâye.</p>
+          <span class="intro-cell"><span class="mut" data-i18n="tg.k.count">Tasarım</span> 06</span>
+          <span class="intro-cell"><span class="mut" data-i18n="tg.k.colors">Renk</span> <span data-i18n="tg.colors">Siyah, Beyaz</span></span>
+          <span class="intro-cell"><span class="mut" data-i18n="tg.k.status">Durum</span> <span data-i18n="tg.soon">Shopier ve Dolap'ta yakında</span></span>
         </div>
+        <div class="fly" aria-hidden="true">
+          <img class="gl" src="tisortler/loot-lake-lifeguard.jpg" width="1400" height="1400" alt="">
+          <img class="gl" src="tisortler/importanter.jpg" width="1400" height="1400" alt="">
+          <img class="gl" src="tisortler/date-a-centaur.jpg" width="1400" height="1400" alt="">
+          <img class="gl" src="tisortler/kilic.jpg" width="1400" height="1400" alt="">
+          <img class="gl" src="tisortler/thats-what.jpg" width="1400" height="1400" alt="">
+          <img class="gl" src="tisortler/metro-haritasi.jpg?v=2" width="1400" height="1400" alt="">
+          <img class="gl portal" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVR4nGP4//8/AAX+Av4N70a4AAAAAElFTkSuQmCC" width="1" height="1" alt="">
+        </div>
+        <span class="entry-hint"><span data-i18n="tg.scroll">Yaklaşmak için kaydır</span> <i aria-hidden="true">↓</i></span>
       </div>
     </section>
-    </div>
-  </div>
 
-  <section class="shop" id="magaza" aria-labelledby="shopTitle">
-    <div class="shop-in">
-      <h2 id="shopTitle" data-i18n="tg.shop.h">Tişörtler</h2>
-      <div class="shop-bar">
-        <div class="filters" role="group" aria-label="Renk" data-i18n-aria="tg.filter">
-          <span data-i18n="tg.filter">Filtre:</span>
-          <button type="button" data-filter="all" aria-pressed="true" data-i18n="tg.f.all">Hepsi</button>
-          <button type="button" data-filter="black" aria-pressed="false" data-i18n="tg.c.black">Siyah</button>
-          <button type="button" data-filter="white" aria-pressed="false" data-i18n="tg.c.white">Beyaz</button>
+    <div class="works" id="works">
+      <div class="shop-head">
+        <h2 data-i18n="tg.shop.h">Tüm tişörtler</h2>
+        <span class="mut" data-i18n="tg.soon">Shopier ve Dolap'ta yakında</span>
+      </div>
+      <article class="tee" data-color="black" id="loot-lake">
+        <header class="row">
+          <span class="r-no">01</span>
+          <h2 class="r-title" data-i18n="tg.lootlake.n">Loot Lake Lifeguard</h2>
+          <span class="r-meta"><span data-i18n="tg.c.black">Siyah</span>, <span data-i18n="tg.p.front">ön baskı</span></span>
+          <span class="r-year" data-i18n="tg.price">Yakında</span>
+        </header>
+        <div class="media">
+          <figure class="m m-tee">
+            <a href="tisortler/loot-lake-lifeguard.jpg" data-gallery="togy"><img src="tisortler/loot-lake-lifeguard.jpg" width="1400" height="1400" alt="Loot Lake Lifeguard tişörtü"><span class="cap" hidden>Loot Lake Lifeguard</span></a>
+            <figcaption data-i18n="tg.tee">Tişört</figcaption>
+          </figure>
         </div>
-        <span class="count"><b id="shopCount">6</b> <span data-i18n="tg.items">ürün</span></span>
-      </div>
-      <ul class="grid">
-        <li class="card" data-color="black">
-          <a class="card-img" href="tisortler/loot-lake-lifeguard.jpg" data-gallery="togy"><img src="tisortler/loot-lake-lifeguard.jpg" alt="Loot Lake Lifeguard tişörtü" loading="lazy"><span class="cap" hidden>Loot Lake Lifeguard</span></a>
-          <h3 data-i18n="tg.lootlake.n">Loot Lake Lifeguard</h3>
-          <p class="price"><span data-i18n="tg.price">Yakında</span> · <span data-i18n="tg.c.black">Siyah</span></p>
-          <button class="story-link" type="button" data-scene="1" data-i18n="tg.story.see">Hikâyesini gör ↑</button>
-        </li>
-        <li class="card" data-color="black">
-          <a class="card-img" href="tisortler/importanter.jpg" data-gallery="togy"><img src="tisortler/importanter.jpg" alt="Importanter tişörtü" loading="lazy"><span class="cap" hidden>Importanter</span></a>
-          <h3 data-i18n="tg.importanter.n">Importanter</h3>
-          <p class="price"><span data-i18n="tg.price">Yakında</span> · <span data-i18n="tg.c.black">Siyah</span></p>
-          <button class="story-link" type="button" data-scene="3" data-i18n="tg.story.see">Hikâyesini gör ↑</button>
-        </li>
-        <li class="card" data-color="white">
-          <a class="card-img" href="tisortler/date-a-centaur.jpg" data-gallery="togy"><img src="tisortler/date-a-centaur.jpg" alt="Date a Centaur tişörtü" loading="lazy"><span class="cap" hidden>Date a Centaur</span></a>
-          <h3 data-i18n="tg.centaur.n">Date a Centaur</h3>
-          <p class="price"><span data-i18n="tg.price">Yakında</span> · <span data-i18n="tg.c.white">Beyaz</span></p>
-          <button class="story-link" type="button" data-scene="5" data-i18n="tg.story.see">Hikâyesini gör ↑</button>
-        </li>
-        <li class="card" data-color="white">
-          <a class="card-img" href="tisortler/kilic.jpg" data-gallery="togy"><img src="tisortler/kilic.jpg" alt="Kılıç tişörtü" loading="lazy"><span class="cap" hidden>Kılıç</span></a>
-          <h3 data-i18n="tg.kilic.n">Kılıç</h3>
-          <p class="price"><span data-i18n="tg.price">Yakında</span> · <span data-i18n="tg.c.white">Beyaz</span></p>
-          <button class="story-link" type="button" data-scene="7" data-i18n="tg.story.see">Hikâyesini gör ↑</button>
-        </li>
-        <li class="card" data-color="black">
-          <a class="card-img" href="tisortler/thats-what.jpg" data-gallery="togy"><img src="tisortler/thats-what.jpg" alt="That&#x27;s What tişörtü" loading="lazy"><span class="cap" hidden>That&#x27;s What</span></a>
-          <h3 data-i18n="tg.thatswhat.n">That&#x27;s What</h3>
-          <p class="price"><span data-i18n="tg.price">Yakında</span> · <span data-i18n="tg.c.black">Siyah</span></p>
-          <button class="story-link" type="button" data-scene="9" data-i18n="tg.story.see">Hikâyesini gör ↑</button>
-        </li>
-        <li class="card" data-color="white">
-          <a class="card-img" href="tisortler/metro-haritasi.jpg" data-gallery="togy"><img src="tisortler/metro-haritasi.jpg" alt="Lost Without It tişörtü" loading="lazy"><span class="cap" hidden>Lost Without It</span></a>
-          <h3 data-i18n="tg.metro.n">Lost Without It</h3>
-          <p class="price"><span data-i18n="tg.price">Yakında</span> · <span data-i18n="tg.c.white">Beyaz</span></p>
-          <button class="story-link" type="button" data-scene="11" data-i18n="tg.story.see">Hikâyesini gör ↑</button>
-        </li>
-      </ul>
-      <div class="shop-foot">
-        <p data-i18n="tg.out.p">Mağaza açılınca siparişini buradan verebileceksin. İlk duyanlardan olmak için Instagram'dan takip et.</p>
-        <a class="tg-btn dark" href="https://www.instagram.com/childishtogy/" target="_blank" rel="noopener">Instagram</a>
-      </div>
+        <div class="text">
+          <p class="t-story"><b data-i18n="tg.lootlake.sh">Loot Lake, 2018.</b> <span data-i18n="tg.lootlake.st">Haritanın ortasında bir göl. Kaç kişi oraya atlayıp bir daha çıkamadı, sayan olmadı. Birinin nöbet tutması gerekiyordu.</span></p>
+          <p class="t-desc" data-i18n="tg.lootlake.d">Göl hâlâ orada, nöbet hâlâ sürüyor. Göğüste kırmızı haç, altında küçük bir sponsor yazısı.</p>
+        </div>
+      </article>
+
+      <article class="tee" data-color="black" id="importanter">
+        <header class="row">
+          <span class="r-no">02</span>
+          <h2 class="r-title" data-i18n="tg.importanter.n">Importanter</h2>
+          <span class="r-meta"><span data-i18n="tg.c.black">Siyah</span>, <span data-i18n="tg.p.front">ön baskı</span></span>
+          <span class="r-year" data-i18n="tg.price">Yakında</span>
+        </header>
+        <div class="media">
+          <figure class="m m-tee">
+            <a href="tisortler/importanter.jpg" data-gallery="togy"><img src="tisortler/importanter.jpg" width="1400" height="1400" alt="Importanter tişörtü"><span class="cap" hidden>Importanter</span></a>
+            <figcaption data-i18n="tg.tee">Tişört</figcaption>
+          </figure>
+        </div>
+        <div class="text">
+          <p class="t-story"><b data-i18n="tg.importanter.sh">Otobüs kalkıyor.</b> <span data-i18n="tg.importanter.st">Bir yanda yarınki sınav, öbür yanda bir maç daha. Kimse sormadı ama cevap belli.</span></p>
+          <p class="t-desc" data-i18n="tg.importanter.d">Eğitim önemli. Ama bazı şeyler daha önemli; dil bilgisi kuralları da dahil.</p>
+        </div>
+      </article>
+
+      <article class="tee" data-color="white" id="date-a-centaur">
+        <header class="row">
+          <span class="r-no">03</span>
+          <h2 class="r-title" data-i18n="tg.centaur.n">Date a Centaur</h2>
+          <span class="r-meta"><span data-i18n="tg.c.white">Beyaz</span>, <span data-i18n="tg.p.front">ön baskı</span></span>
+          <span class="r-year" data-i18n="tg.price">Yakında</span>
+        </header>
+        <div class="media">
+          <figure class="m m-tee">
+            <a href="tisortler/date-a-centaur.jpg" data-gallery="togy"><img src="tisortler/date-a-centaur.jpg" width="1400" height="1400" alt="Date a Centaur tişörtü"><span class="cap" hidden>Date a Centaur</span></a>
+            <figcaption data-i18n="tg.tee">Tişört</figcaption>
+          </figure>
+        </div>
+        <div class="text">
+          <p class="t-story"><b data-i18n="tg.centaur.sh">Soğuk koridor.</b> <span data-i18n="tg.centaur.st">Sunucular uğulduyor, fanlar üflüyor, ışıklar yanıp sönüyor. Herkes bir veri merkezi kurmanın peşinde.</span></p>
+          <p class="t-desc" data-i18n="tg.centaur.d">Veri merkezi mi? Ben bir kentaurla buluşmayı tercih ederim. Eski bir gravürden çıkmış gibi duran bir kentaur.</p>
+        </div>
+      </article>
+
+      <article class="tee" data-color="white" id="kilic">
+        <header class="row">
+          <span class="r-no">04</span>
+          <h2 class="r-title" data-i18n="tg.kilic.n">Kılıç</h2>
+          <span class="r-meta"><span data-i18n="tg.c.white">Beyaz</span>, <span data-i18n="tg.p.front">ön baskı</span></span>
+          <span class="r-year" data-i18n="tg.price">Yakında</span>
+        </header>
+        <div class="media">
+          <figure class="m m-tee">
+            <a href="tisortler/kilic.jpg" data-gallery="togy"><img src="tisortler/kilic.jpg" width="1400" height="1400" alt="Kılıç tişörtü"><span class="cap" hidden>Kılıç</span></a>
+            <figcaption data-i18n="tg.tee">Tişört</figcaption>
+          </figure>
+        </div>
+        <div class="text">
+          <p class="t-story"><b data-i18n="tg.kilic.sh">Taştaki kılıç.</b> <span data-i18n="tg.kilic.st">Bazı hikâyeler tek bir nesneyle anlatılır. Çeken kral olur, gerisini herkes bilir.</span></p>
+          <p class="t-desc" data-i18n="tg.kilic.d">Göğüste çapraz uzanan tek bir kılıç. Yazı yok, açıklama yok.</p>
+        </div>
+      </article>
+
+      <article class="tee" data-color="black" id="thats-what">
+        <header class="row">
+          <span class="r-no">05</span>
+          <h2 class="r-title" data-i18n="tg.thatswhat.n">That&#x27;s What</h2>
+          <span class="r-meta"><span data-i18n="tg.c.black">Siyah</span>, <span data-i18n="tg.p.front">ön baskı</span></span>
+          <span class="r-year" data-i18n="tg.price">Yakında</span>
+        </header>
+        <div class="media">
+          <figure class="m m-tee">
+            <a href="tisortler/thats-what.jpg" data-gallery="togy"><img src="tisortler/thats-what.jpg" width="1400" height="1400" alt="That&#x27;s What tişörtü"><span class="cap" hidden>That&#x27;s What</span></a>
+            <figcaption data-i18n="tg.tee">Tişört</figcaption>
+          </figure>
+        </div>
+        <div class="text">
+          <p class="t-story"><b data-i18n="tg.thatswhat.sh">Scranton, Pennsylvania.</b> <span data-i18n="tg.thatswhat.st">Bir kâğıt şirketinin ofisi. Her cümleden sonra aynı espriyi bekleyen bir müdür.</span></p>
+          <p class="t-desc" data-i18n="tg.thatswhat.d">“That’s what.” –She. Gerisini sen tamamla.</p>
+        </div>
+      </article>
+
+      <article class="tee" data-color="white" id="lost-without-it">
+        <header class="row">
+          <span class="r-no">06</span>
+          <h2 class="r-title" data-i18n="tg.metro.n">Lost Without It</h2>
+          <span class="r-meta"><span data-i18n="tg.c.white">Beyaz</span>, <span data-i18n="tg.p.back">sırt baskısı</span></span>
+          <span class="r-year" data-i18n="tg.price">Yakında</span>
+        </header>
+        <div class="media">
+          <figure class="m m-tee">
+            <a href="tisortler/metro-haritasi.jpg?v=2" data-gallery="togy"><img src="tisortler/metro-haritasi.jpg?v=2" width="1400" height="1400" alt="Lost Without It tişörtü"><span class="cap" hidden>Lost Without It</span></a>
+            <figcaption data-i18n="tg.tee">Tişört</figcaption>
+          </figure>
+        </div>
+        <div class="text">
+          <p class="t-story"><b data-i18n="tg.metro.sh">Yenikapı, aktarma.</b> <span data-i18n="tg.metro.st">M1, M2, Marmaray, füniküler, tramvay… Şehrin altında bir ağ daha var ve onu ezbere bilen pek yok.</span></p>
+          <p class="t-desc" data-i18n="tg.metro.d">Sırtta İstanbul&#x27;un raylı sistem haritası. Altında tek cümle: onsuz kaybolurdum.</p>
+        </div>
+      </article>
     </div>
-  </section>
+
+    <section class="outro" aria-labelledby="outroTitle">
+      <h2 id="outroTitle" data-i18n="tg.out.h">Çok yakında Shopier ve Dolap'ta.</h2>
+      <p data-i18n="tg.out.p">Mağaza açılınca siparişini buradan verebileceksin. İlk duyanlardan olmak için Instagram'dan takip et.</p>
+      <div class="links">
+        <a href="https://www.instagram.com/togytogytogy/" target="_blank" rel="noopener">Instagram ↗</a>
+        <a href="mailto:kaan.kara@yahoo.com?subject=Togy" data-i18n="tg.write">Bana yaz</a>
+      </div>
+    </section>
   </main>
 
-  <footer class="tg-bar tg-bottom">
-    <span>© <span data-year>2026</span> Togy · Kaan Kara</span>
-    <span class="tg-prog" aria-hidden="true"><i id="tgProg"></i></span>
-    <span data-i18n="tg.soon">Shopier'de yakında</span>
+  <footer class="ft">
+    <span class="ft-cell">© <span data-year>2026</span> Togy · Kaan Kara</span>
+    <span class="ft-cell"><span data-i18n="tg.city">İstanbul saati, (GMT+3)</span> <span id="clock">--:--:--</span></span>
+    <span class="ft-cell ft-xy" id="xy" aria-hidden="true">x0 y0</span>
+    <a class="ft-cell" href="#top" data-i18n="tg.top">Yukarı ↑</a>
   </footer>
 
-  <script src="../i18n.js?v=19"></script>
+  <script src="../i18n.js?v=22"></script>
   <script src="../sayfa.js?v=1"></script>
-  <script src="togy.js?v=1"></script>
+  <script src="togy.js?v=4"></script>
 </body>
 </html>
