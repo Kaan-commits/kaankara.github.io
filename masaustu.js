@@ -30,6 +30,7 @@
     "os.details": "Details",
     "os.other": "Other places",
     "os.items3": "3 objects",
+    "os.items4": "4 objects",
     "os.items6": "6 objects",
     "os.arc.tip": "Double-click a game to open it in a window right here.",
     "os.arc.page": "Arcade page",
@@ -413,6 +414,7 @@
     komparsita: ["ana-menu", "modlar", "tam-deste", "tahmin", "acilan-kart"].map((f) => `oyunlar/komparsita/ekran-goruntuleri/${f}.jpg`),
     mindfield: ["ana-menu", "tuzak-kur", "ezberle", "kosu", "bomba", "gunun-koprusu", "market"].map((f) => `oyunlar/mindfield/ekran-goruntuleri/${f}.jpg`),
     togy: ["ana-menu", "karsilasma", "orman", "diyalog"].map((f) => `oyunlar/togy/ekran-goruntuleri/${f}.jpg`),
+    brrr: ["kamp", "odun", "gece", "donmus-gol", "buz-devi", "kule"].map((f) => `oyunlar/brrr/ekran-goruntuleri/${f}.jpg`),
   };
   $$("[data-set]").forEach((box) => {
     SETS[box.dataset.set] = $$("[data-src]", box).map((b) => b.dataset.src);
@@ -482,6 +484,12 @@
       name: "Togy", img: "oyunlar/togy/ekran-goruntuleri/karsilasma.jpg", page: "oyunlar/togy/",
       badge: ["badge.internal", "Dahili test"],
       text: ["togy.short", "Piksel sanatlı bir platform macerası: iki dünya arasında yolculuk, boss savaşları ve tarot kartları."],
+      links: [],
+    },
+    brrr: {
+      name: "Brrr!", img: "oyunlar/brrr/ekran-goruntuleri/kamp.jpg", page: "oyunlar/brrr/",
+      badge: ["badge.dev", "Geliştiriliyor"],
+      text: ["brrr.short", "Karda hayatta kal: gündüz odun topla, sobayı yanık tut, gece buz canavarlarına karşı kampını savun."],
       links: [],
     },
   };
