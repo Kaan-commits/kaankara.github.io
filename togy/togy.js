@@ -197,7 +197,8 @@
     if (!entryOn) return;
     const pos = clamp((scrollY - entry.offsetTop) / stepPx, 0, STEPS);
     const W = innerWidth, H = innerHeight, k = H / 1080;
-    const cover = (h) => h >= W && h >= H;
+    // Şeffaf tişört: köşeler boş, yalnız gövde (kutunun ~yarısı) ekranı kaplarsa alttakini gizle
+    const cover = (h) => h * 0.45 >= W && h * 0.8 >= H;
     const hs = flyTees.map((_, i) => heightAt(i, pos) * k);
     const ps = portalAt(pos);
     flyTees.forEach((el, i) => {
