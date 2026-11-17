@@ -16,7 +16,7 @@
     "os.i.photos": "My pictures",
     "os.i.videos": "My videos",
     "os.t.about": "About me — Kaan Kara",
-    "os.t.projects": "Projects — Mobile apps",
+    "os.t.projects": "Projects — Apps and web",
     "os.t.shop": "Shop — Togy",
     "os.t.mail": "New message — write to Kaan",
     "os.about.lede": "Under the <strong>Frozen Duck Games</strong> name I make Unity games, mobile apps and small games you can play in the browser.",
