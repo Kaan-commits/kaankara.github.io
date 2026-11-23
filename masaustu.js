@@ -623,7 +623,7 @@
     const q = new URLSearchParams();
     if (f.subject.value) q.set("subject", f.subject.value);
     if (f.body.value) q.set("body", f.body.value);
-    location.href = "mailto:kaan.kara@yahoo.com" + (q.toString() ? "?" + q.toString().replace(/\+/g, "%20") : "");
+    location.href = "mailto:kaan@kaankara.com.tr" + (q.toString() ? "?" + q.toString().replace(/\+/g, "%20") : "");
   });
 
   /* ---------- Saat ---------- */
