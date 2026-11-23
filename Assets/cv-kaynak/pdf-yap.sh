@@ -13,5 +13,5 @@ yap() {
   echo "$2"
 }
 
-yap tr.html "$CIKTI/CVturkce.pdf"
+yap tr.html "$CIKTI/Kaan_Kara_CV_Tr.pdf"
 yap en.html "$CIKTI/Kaan_Kara_CV_Eng.pdf"
